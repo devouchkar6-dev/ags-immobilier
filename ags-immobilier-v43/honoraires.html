@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:image" content="https://bespoke-kelpie-8efae8.netlify.app/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://bespoke-kelpie-8efae8.netlify.app/images/og-image.jpg">
+  <title>Honoraires – AGS Immobilier Le Cannet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1B2D4F;
+      --blue-mid: #2C4A7C;
+      --blue-light: #4A6FA5;
+      --accent: #8BA7CC;
+      --cream: #F7F5F0;
+      --text: #1a1a2e;
+      --text-light: #5a6377;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--text); }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 60px; background: var(--navy); transition: all .4s ease;
+    }
+    nav.scrolled { background: rgba(255,255,255,.97); backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(27,45,79,.1); }
+    .logo img { height: 48px; width: auto; display: block; }
+    nav ul { list-style: none; display: flex; gap: 36px; }
+    nav ul a { text-decoration: none; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 300; color: rgba(255,255,255,.9); transition: color .3s; }
+    nav.scrolled ul a { color: var(--text-light); }
+    nav ul a:hover, nav.scrolled ul a:hover { color: var(--blue-light) !important; }
+    .nav-cta { background: transparent; border: 1px solid rgba(255,255,255,.4); color: white !important; padding: 9px 22px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; font-family: 'Jost', sans-serif; transition: all .3s; }
+    nav.scrolled .nav-cta { border-color: var(--navy); color: var(--navy) !important; }
+    .nav-cta:hover { background: var(--navy) !important; color: white !important; border-color: var(--navy) !important; }
+
+    /* ── HERO HONORAIRES ── */
+    .page-hero {
+      padding: 160px 60px 80px;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue-mid) 100%);
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: 'HONORAIRES';
+      position: absolute; font-family: 'Cormorant Garamond', serif;
+      font-size: 200px; font-weight: 300; color: rgba(255,255,255,.03);
+      top: 50%; left: 50%; transform: translate(-50%,-50%);
+      white-space: nowrap; pointer-events: none;
+    }
+    .page-hero-tag { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+    .page-hero-tag::before { content: ''; display: block; width: 40px; height: 1px; background: var(--accent); }
+    .page-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 58px); font-weight: 300; color: white; line-height: 1.15; margin-bottom: 16px; }
+    .page-hero h1 em { font-style: italic; color: #A8C0DC; }
+    .page-hero p { color: rgba(255,255,255,.55); font-size: 14px; font-weight: 300; max-width: 480px; line-height: 1.8; }
+
+    /* ── ENTÊTE AGENCE ── */
+    .agence-header {
+      background: white; border-bottom: 1px solid rgba(27,45,79,.08);
+      padding: 40px 60px; display: flex; align-items: center; justify-content: space-between; gap: 40px;
+    }
+    .agence-box { border: 2px solid var(--navy); padding: 18px 28px; display: inline-block; }
+    .agence-box-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--navy); letter-spacing: 1px; }
+    .agence-box-sub { font-size: 12px; font-style: italic; color: var(--text-light); letter-spacing: 1px; margin-top: 2px; }
+    .agence-contact { text-align: right; }
+    .agence-contact p { font-size: 13px; color: var(--text-light); font-weight: 300; line-height: 2; }
+    .agence-contact strong { color: var(--navy); font-weight: 400; }
+    .agence-contact .tel { font-size: 16px; color: var(--navy); font-weight: 400; letter-spacing: 1px; }
+    .agence-contact .dirigeant { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--navy); font-weight: 600; }
+    .agence-contact .diplome { font-size: 11px; color: var(--text-light); font-style: italic; }
+
+    /* ── CONTENU ── */
+    .honoraires-content { max-width: 900px; margin: 0 auto; padding: 80px 60px; }
+
+    /* Sections */
+    .hono-section { margin-bottom: 64px; }
+    .hono-section-header { display: flex; align-items: center; gap: 20px; margin-bottom: 36px; }
+    .hono-section-icon { width: 52px; height: 52px; background: var(--navy); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .hono-section-icon span { font-size: 22px; }
+    .hono-section-title { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; color: var(--navy); }
+
+    /* Lignes de tarifs */
+    .tarif-grid { display: flex; flex-direction: column; gap: 2px; }
+    .tarif-row { display: flex; align-items: stretch; background: white; border: 1px solid rgba(27,45,79,.07); transition: all .3s; }
+    .tarif-row:hover { border-color: var(--blue-light); transform: translateX(4px); }
+    .tarif-label { flex: 1; padding: 22px 28px; font-size: 14px; color: var(--text); font-weight: 300; border-right: 1px solid rgba(27,45,79,.07); display: flex; align-items: center; }
+    .tarif-value { min-width: 220px; padding: 22px 28px; background: var(--navy); color: white; font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; display: flex; align-items: center; justify-content: center; text-align: center; }
+
+    /* Note gratuite */
+    .tarif-note { margin-top: 16px; padding: 18px 24px; background: rgba(74,111,165,.08); border-left: 3px solid var(--blue-light); font-size: 13px; color: var(--blue-mid); font-weight: 300; font-style: italic; }
+
+    /* Diviseur */
+    .divider { width: 100%; height: 1px; background: linear-gradient(to right, var(--accent), transparent); margin: 56px 0; }
+
+    /* Carte pro */
+    .carte-pro { background: var(--navy); padding: 48px; position: relative; overflow: hidden; }
+    .carte-pro::before { content: ''; position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; border: 1px solid rgba(255,255,255,.06); border-radius: 50%; }
+    .carte-pro::after { content: ''; position: absolute; bottom: -60px; right: 20px; width: 300px; height: 300px; border: 1px solid rgba(255,255,255,.04); border-radius: 50%; }
+    .carte-pro-tag { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    .carte-pro-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; color: white; margin-bottom: 28px; }
+    .carte-pro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; position: relative; z-index: 1; }
+    .carte-pro-item { }
+    .carte-pro-item-label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 4px; }
+    .carte-pro-item-value { font-size: 13px; color: rgba(255,255,255,.85); font-weight: 300; line-height: 1.6; }
+    .carte-pro-item-value a { color: var(--accent); text-decoration: none; }
+    .carte-pro-note { margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.1); font-size: 12px; color: rgba(255,255,255,.4); font-style: italic; position: relative; z-index: 1; }
+
+    /* Footer simple */
+    .page-footer { background: var(--navy); padding: 30px 60px; text-align: center; }
+    .page-footer p { font-size: 12px; color: rgba(255,255,255,.3); letter-spacing: 1px; }
+    .page-footer a { color: rgba(255,255,255,.5); text-decoration: none; }
+    .page-footer a:hover { color: white; }
+
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      nav ul { display: none; }
+      .page-hero { padding: 120px 24px 60px; }
+      .page-hero::before { font-size: 80px; }
+      .agence-header { flex-direction: column; padding: 32px 24px; text-align: center; }
+      .agence-contact { text-align: center; }
+      .honoraires-content { padding: 48px 24px; }
+      .tarif-row { flex-direction: column; }
+      .tarif-value { min-width: unset; }
+      .carte-pro-grid { grid-template-columns: 1fr; }
+      .page-footer { padding: 24px; }
+    }
+
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    .fade-in { animation: fadeUp .6s ease both; }
+    .fade-in-2 { animation: fadeUp .6s .15s ease both; }
+    .fade-in-3 { animation: fadeUp .6s .3s ease both; }
+  
+/* ═══════════════════════════════════════
+   MOBILE UNIQUEMENT — max-width: 768px
+   Ne touche pas le desktop
+   ═══════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* Cacher le menu desktop et le CTA */
+  nav ul    { display: none !important; }
+  .nav-cta  { display: none !important; }
+  nav { padding: 12px 20px !important; }
+  .logo img { height: 38px !important; }
+
+  /* Bouton hamburger */
+  .mob-burger {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px; height: 17px;
+    background: none; border: none;
+    cursor: pointer; padding: 0;
+    z-index: 9999;
+  }
+  .mob-burger span {
+    display: block; width: 100%; height: 2px;
+    background: white; border-radius: 2px;
+    transition: all .28s ease;
+  }
+  nav.scrolled .mob-burger span { background: var(--navy); }
+  .mob-burger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+  .mob-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .mob-burger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+  /* Overlay sombre */
+  .mob-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.6);
+    z-index: 9997;
+  }
+  .mob-overlay.on { display: block; }
+
+  /* Panneau menu */
+  .mob-panel {
+    position: fixed;
+    top: 0; right: -100%;
+    width: 75vw; max-width: 280px;
+    height: 100%;
+    background: #0F1E36;
+    z-index: 9998;
+    transition: right .3s ease;
+    display: flex; flex-direction: column;
+    padding-top: 70px;
+  }
+  .mob-panel.on { right: 0; }
+
+  .mob-panel a {
+    display: block;
+    padding: 17px 28px;
+    color: rgba(255,255,255,.75) !important;
+    text-decoration: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px; font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    transition: color .2s, padding-left .2s;
+  }
+  .mob-panel a:hover { color: white !important; padding-left: 34px; }
+
+  .mob-panel .mob-tel {
+    margin: 24px 20px 0;
+    padding: 15px 20px;
+    background: #2C4A7C;
+    color: white !important;
+    text-align: center;
+    letter-spacing: 1px;
+    font-size: 14px;
+    border-bottom: none;
+  }
+}
+
+/* Cacher le burger sur desktop */
+.mob-burger { display: none; }
+
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="logo"><a href="index.html"><img src="images/logo.jpg" alt="AGS Immobilier"></a></div>
+  <ul>
+    <li><a href="index.html#properties">Propriétés</a></li>
+    <li><a href="index.html#about">L'Agence</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#equipe">Équipe</a></li>
+    <li><a href="honoraires.html" style="color:var(--accent) !important;">Honoraires</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="index.html#contact" class="nav-cta">Nous contacter</a>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-tag fade-in">Transparence & confiance</div>
+  <h1 class="fade-in-2">Barème des <em>honoraires</em></h1>
+  <p class="fade-in-3">Conformément à la réglementation en vigueur, AGS Immobilier affiche l'intégralité de ses honoraires. Aucune surprise, une relation de confiance.</p>
+</div>
+
+<!-- ENTÊTE AGENCE -->
+<div class="agence-header">
+  <div>
+    <div class="agence-box">
+      <div class="agence-box-title">A.G.S. IMMOBILIER</div>
+      <div class="agence-box-sub">Achats, Ventes, Locations</div>
+    </div>
+    <p style="margin-top:16px; font-size:13px; color:var(--text-light); font-weight:300; line-height:2;">
+      Le Montfleuri<br>
+      46, av. Maurice JEANPIERRE<br>
+      06110 LE CANNET
+    </p>
+  </div>
+  <div class="agence-contact">
+    <div class="dirigeant">Philippe SERVAS</div>
+    <div class="diplome">Maître en Droit Privé<br>Diplômé de l'Institut d'Études Politiques de Bordeaux</div>
+    <div style="margin-top:12px;" class="tel">☎ 06 07 13 11 81</div>
+  </div>
+</div>
+
+<!-- CONTENU PRINCIPAL -->
+<div class="honoraires-content">
+
+  <!-- TRANSACTIONS -->
+  <div class="hono-section">
+    <div class="hono-section-header">
+      <div class="hono-section-icon"><span>🏠</span></div>
+      <h2 class="hono-section-title">Transactions immobilières</h2>
+    </div>
+    <div class="tarif-grid">
+      <div class="tarif-row">
+        <div class="tarif-label">Ventes d'appartements et villas</div>
+        <div class="tarif-value">6 % TTC<br><span style="font-size:13px;opacity:.6;">du prix de vente</span></div>
+      </div>
+      <div class="tarif-row">
+        <div class="tarif-label">Ventes de fonds de commerce</div>
+        <div class="tarif-value">10 % TTC<br><span style="font-size:13px;opacity:.6;">du prix de vente</span></div>
+      </div>
+      <div class="tarif-row">
+        <div class="tarif-label">Ventes de terrains</div>
+        <div class="tarif-value">10 % TTC<br><span style="font-size:13px;opacity:.6;">du prix de vente</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- LOCATIONS -->
+  <div class="hono-section">
+    <div class="hono-section-header">
+      <div class="hono-section-icon"><span>🔑</span></div>
+      <h2 class="hono-section-title">Locations</h2>
+    </div>
+    <div class="tarif-grid">
+      <div class="tarif-row">
+        <div class="tarif-label">Part du propriétaire</div>
+        <div class="tarif-value">1 mois de loyer TTC</div>
+      </div>
+      <div class="tarif-row">
+        <div class="tarif-label">Part du locataire</div>
+        <div class="tarif-value">13 € TTC / m²</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ESTIMATIONS -->
+  <div class="hono-section">
+    <div class="hono-section-header">
+      <div class="hono-section-icon"><span>📊</span></div>
+      <h2 class="hono-section-title">Estimations</h2>
+    </div>
+    <div class="tarif-grid">
+      <div class="tarif-row">
+        <div class="tarif-label">De villas</div>
+        <div class="tarif-value">250 € TTC</div>
+      </div>
+      <div class="tarif-row">
+        <div class="tarif-label">D'appartements et dépendances</div>
+        <div class="tarif-value">200 € TTC</div>
+      </div>
+    </div>
+    <div class="tarif-note">
+      ✦ En cas de délivrance d'un mandat de vente, ces honoraires d'estimation sont offerts.
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CARTE PROFESSIONNELLE -->
+  <div class="carte-pro">
+    <div class="carte-pro-tag">Mentions légales obligatoires</div>
+    <div class="carte-pro-title">Carte Professionnelle</div>
+    <div class="carte-pro-grid">
+      <div class="carte-pro-item">
+        <div class="carte-pro-item-label">Numéro de carte</div>
+        <div class="carte-pro-item-value">CPI 0605 2020 000 045 025</div>
+      </div>
+      <div class="carte-pro-item">
+        <div class="carte-pro-item-label">Délivrée par</div>
+        <div class="carte-pro-item-value">La Chambre de Commerce des Alpes-Maritimes</div>
+      </div>
+      <div class="carte-pro-item">
+        <div class="carte-pro-item-label">RCS / SIRET</div>
+        <div class="carte-pro-item-value">CANNES A 322 523 622 00056<br>APE 6832A</div>
+      </div>
+      <div class="carte-pro-item">
+        <div class="carte-pro-item-label">Contact</div>
+        <div class="carte-pro-item-value"><a href="mailto:agence.ags@gmail.com">agence.ags@gmail.com</a></div>
+      </div>
+    </div>
+    <div class="carte-pro-note">
+      Les règlements en espèces ne sont pas acceptés.
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="page-footer">
+  <p>© 2025 AGS Immobilier · <a href="honoraires.html">Honoraires</a> · <a href="index.html">Accueil</a></p>
+</div>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+</script>
+
+
+<script>
+(function() {
+  // Créer le bouton hamburger
+  var nav = document.getElementById('nav');
+  if (!nav) return;
+
+  var burger = document.createElement('button');
+  burger.className = 'mob-burger';
+  burger.setAttribute('aria-label', 'Menu');
+  burger.innerHTML = '<span></span><span></span><span></span>';
+  nav.appendChild(burger);
+
+  // Créer l'overlay
+  var overlay = document.createElement('div');
+  overlay.className = 'mob-overlay';
+  document.body.appendChild(overlay);
+
+  // Créer le panneau
+  var panel = document.createElement('div');
+  panel.className = 'mob-panel';
+
+  // Récupérer les liens de la nav existante
+  var navLinks = nav.querySelectorAll('ul li a');
+  navLinks.forEach(function(a) {
+    var link = document.createElement('a');
+    link.href = a.href;
+    link.textContent = a.textContent;
+    link.addEventListener('click', close);
+    panel.appendChild(link);
+  });
+
+  // Bouton téléphone
+  var tel = document.createElement('a');
+  tel.href = 'tel:+33607131181';
+  tel.className = 'mob-tel';
+  tel.textContent = '📞 06 07 13 11 81';
+  panel.appendChild(tel);
+
+  document.body.appendChild(panel);
+
+  function open() {
+    burger.classList.add('open');
+    panel.classList.add('on');
+    overlay.classList.add('on');
+    document.body.style.overflow = 'hidden';
+  }
+  function close() {
+    burger.classList.remove('open');
+    panel.classList.remove('on');
+    overlay.classList.remove('on');
+    document.body.style.overflow = '';
+  }
+
+  burger.addEventListener('click', function() {
+    panel.classList.contains('on') ? close() : open();
+  });
+  overlay.addEventListener('click', close);
+})();
+</script>
+
+</body>
+</html>
