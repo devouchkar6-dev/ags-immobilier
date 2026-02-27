@@ -1,7 +1,11 @@
 [build]
-  publish = "ags-immobilier-v44"
-  functions = "ags-immobilier-v43/netlify/functions"
+  functions = "netlify/functions"
+  publish = "."
 
+[functions]
+  node_bundler = "esbuild"
+
+# Redirection API vers les fonctions
 [[redirects]]
   from = "/api/biens"
   to = "/.netlify/functions/get-biens"
@@ -11,3 +15,11 @@
   from = "/api/bien/:id"
   to = "/.netlify/functions/get-bien"
   status = 200
+
+# Headers CORS
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET"
+    Cache-Control = "public, max-age=300"

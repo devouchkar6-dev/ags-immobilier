@@ -849,29 +849,32 @@ const VILLE_LABELS = {
 
 // ── Chargement des biens depuis l'API ──
 async function chargerBiensAPIMO() {
+  // 1. Priorité : biens saisis dans l'admin
+  try {
+    const biensAdmin = JSON.parse(localStorage.getItem('ags_biens_site') || '[]');
+    if (biensAdmin.length > 0) {
+      BIENS_APIMO = biensAdmin;
+      mettreAJourGrilleBiens(BIENS_APIMO);
+      console.log('✓ Admin : ' + BIENS_APIMO.length + ' biens chargés');
+      return true;
+    }
+  } catch(e) {}
+
+  // 2. Fallback : APIMO si configuré
   try {
     const res = await fetch('/api/biens');
-
-    // Vérifier que la réponse est bien du JSON avant de parser
     const contentType = res.headers.get('content-type') || '';
-    if (!res.ok || !contentType.includes('application/json')) {
-      return false; // Netlify Functions pas encore configurées — fallback silencieux
-    }
-
+    if (!res.ok || !contentType.includes('application/json')) { return false; }
     const data = await res.json();
-    if (data.error) return false; // Variables APIMO manquantes — fallback silencieux
-
+    if (data.error) return false;
     BIENS_APIMO   = data.biens   || [];
     FILTRES_APIMO = data.filtres || {};
-
     mettreAJourFiltres(data.filtres);
     mettreAJourGrilleBiens(BIENS_APIMO);
-
     console.log('✓ APIMO : ' + BIENS_APIMO.length + ' biens chargés');
     return true;
-
   } catch(e) {
-    return false; // Erreur réseau — fallback silencieux sur les biens statiques
+    return false;
   }
 }
 

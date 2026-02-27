@@ -371,23 +371,26 @@ window.addEventListener('scroll', () => {
 });
 
 async function chargerBiensAPIMO() {
+  // 1. Priorité : biens saisis dans l'admin
+  try {
+    const biensAdmin = JSON.parse(localStorage.getItem('ags_biens_site') || '[]');
+    if (biensAdmin.length > 0) {
+      BIENS_APIMO = biensAdmin;
+      afficherBiens(BIENS_APIMO);
+      console.log('✓ Admin : ' + BIENS_APIMO.length + ' biens chargés');
+      return true;
+    }
+  } catch(e) {}
+
+  // 2. Fallback APIMO
   try {
     const res = await fetch('/api/biens');
-    const ct = res.headers.get('content-type') || '';
-    if (!res.ok || !ct.includes('application/json')) return false;
+    const contentType = res.headers.get('content-type') || '';
+    if (!res.ok || !contentType.includes('application/json')) { return false; }
     const data = await res.json();
-    if (data.error || !data.biens?.length) return false;
-    BIENS_APIMO = data.biens;
-    if (data.filtres?.types?.length) {
-      const s = document.getElementById('filter-type');
-      s.innerHTML = '<option value="">Tous les types</option>';
-      data.filtres.types.forEach(t => { const o = document.createElement('option'); o.value=t; o.textContent=TYPE_LABELS[t]||t; s.appendChild(o); });
-    }
-    if (data.filtres?.villes?.length) {
-      const s = document.getElementById('filter-lieu');
-      s.innerHTML = '<option value="">Tous les secteurs</option>';
-      data.filtres.villes.forEach(v => { const o = document.createElement('option'); o.value=v; o.textContent=VILLE_LABELS[v]||v; s.appendChild(o); });
-    }
+    if (data.error) return false;
+    BIENS_APIMO = data.biens || [];
+    afficherBiens(BIENS_APIMO);
     return true;
   } catch(e) { return false; }
 }
