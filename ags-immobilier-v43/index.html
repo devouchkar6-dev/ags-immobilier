@@ -724,35 +724,35 @@
     <div class="footer-col">
       <h4>Propriétés</h4>
       <ul>
-        <li><a href="#">Appartements</a></li>
-        <li><a href="#">Maisons &amp; Villas</a></li>
-        <li><a href="#">Studios</a></li>
-        <li><a href="#">Terrains</a></li>
+        <li><a href="biens.html">Appartements</a></li>
+        <li><a href="biens.html">Maisons &amp; Villas</a></li>
+        <li><a href="biens.html">Studios</a></li>
+        <li><a href="biens.html">Terrains</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Secteurs</h4>
       <ul>
-        <li><a href="#">Le Cannet</a></li>
-        <li><a href="#">Cannes</a></li>
-        <li><a href="#">Mougins</a></li>
-        <li><a href="#">Vallauris</a></li>
-        <li><a href="#">Mandelieu</a></li>
+        <li><a href="biens.html">Le Cannet</a></li>
+        <li><a href="biens.html">Cannes</a></li>
+        <li><a href="biens.html">Mougins</a></li>
+        <li><a href="biens.html">Vallauris</a></li>
+        <li><a href="biens.html">Mandelieu</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>L'agence</h4>
       <ul>
-        <li><a href="#">Qui sommes-nous</a></li>
-        <li><a href="#">Nos services</a></li>
-        <li><a href="#">Estimation gratuite</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#about">Qui sommes-nous</a></li>
+        <li><a href="#services">Nos services</a></li>
+        <li><a href="#contact">Estimation gratuite</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <span>© 2024 AGS Immobilier — Le Cannet · Tous droits réservés</span>
-    <span>Mentions légales · Politique de confidentialité</span>
+    <span><a href="mentions-legales.html" style="color:rgba(255,255,255,.4);text-decoration:underline;cursor:pointer;pointer-events:all;">Mentions légales</a> · <a href="mentions-legales.html" style="color:rgba(255,255,255,.4);text-decoration:underline;cursor:pointer;pointer-events:all;">Politique de confidentialité</a></span>
   </div>
 </footer>
 
@@ -789,38 +789,31 @@
     }, 200);
   }
 
-  function handleSubmit(e) {
+  function netlifySubmit(e) {
     e.preventDefault();
-    const btn = e.target;
+    const form = e.target;
+    const btn = form.querySelector('button[type=submit]');
     const msg = document.getElementById('form-msg');
-    const inputs = document.querySelectorAll('.full-form input, .full-form select, .full-form textarea');
-    const data = {};
-    inputs.forEach(i => { if(i.name) data[i.name] = i.value; });
-    // Collect manually
-    const allInputs = document.querySelectorAll('.full-form input[type=text], .full-form input[type=email], .full-form input[type=tel]');
-    const textareaEl = document.querySelector('.full-form textarea');
-    const selectEls = document.querySelectorAll('.full-form select');
     btn.textContent = 'Envoi en cours…';
     btn.style.opacity = '.6';
-    emailjs.send('service_ags', 'template_ags', {
-      from_name: allInputs[0] ? allInputs[0].value : '',
-      from_phone: allInputs[1] ? allInputs[1].value : '',
-      from_email: allInputs[2] ? allInputs[2].value : '',
-      project_type: selectEls[0] ? selectEls[0].value : '',
-      budget: selectEls[1] ? selectEls[1].value : '',
-      message: textareaEl ? textareaEl.value : '',
-      bien: 'Contact général',
-      to_email: 'agsimmo06@gmail.com'
+    btn.disabled = true;
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString()
     }).then(() => {
       btn.textContent = '✓ Message envoyé !';
       btn.style.background = '#4A6FA5';
       btn.style.opacity = '1';
-      if (msg) { msg.textContent = 'Merci ! Philippe ou Matéo vous contactera rapidement.'; msg.style.color = '#4A6FA5'; }
+      btn.disabled = false;
+      if (msg) { msg.textContent = 'Merci ! Philippe ou Matéo vous contactera très rapidement.'; msg.style.color = '#4A6FA5'; }
+      form.reset();
     }).catch(() => {
-      btn.textContent = 'Erreur — Réessayez';
+      btn.textContent = 'Réessayez';
       btn.style.background = '#c0392b';
       btn.style.opacity = '1';
-      if (msg) { msg.textContent = 'Problème d’envoi. Appelez-nous directement.'; msg.style.color = '#c0392b'; }
+      btn.disabled = false;
+      if (msg) { msg.textContent = "Problème d'envoi. Appelez-nous directement."; msg.style.color = '#c0392b'; }
     });
   }
 </script>
@@ -938,6 +931,13 @@ function rechercherBiens() {
   const type   = document.getElementById('filter-type').value;
   const lieu   = document.getElementById('filter-lieu').value;
   const budget = document.getElementById('filter-budget').value;
+
+  // Si aucun filtre sélectionné, afficher tous les biens
+  if (!type && !lieu && !budget) {
+    const section = document.getElementById('search-results');
+    if (section) section.style.display = 'none';
+    return;
+  }
 
   // Utiliser APIMO si chargé, sinon fallback statique
   const source = BIENS_APIMO.length ? BIENS_APIMO : BIENS_STATIQUES;
