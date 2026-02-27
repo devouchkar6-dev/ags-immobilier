@@ -1,5 +1,5 @@
 [build]
-  publish = "ags-immobilier-v43"
+  publish = "ags-immobilier-v44"
   functions = "ags-immobilier-v43/netlify/functions"
 
 [[redirects]]
