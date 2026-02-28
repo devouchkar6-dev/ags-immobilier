@@ -275,99 +275,75 @@
 
 /* ═══════════════════════════════════════
    MOBILE — max-width: 768px
-   ═══════════════════════════════════════ */
 
-.mob-bottomnav { display: none; }
-.mob-burger, .mob-overlay, .mob-panel { display: none !important; }
-
+/* ── MOBILE ── */
 @media (max-width: 768px) {
-
-  /* NAV */
   nav ul, .nav-cta { display: none !important; }
-  nav { padding: 10px 18px !important; }
+  nav { padding: 12px 20px !important; }
   .logo img { height: 36px !important; }
 
-  /* HERO - CRITIQUE : height auto sinon écran vide */
-  .hero {
-    height: auto !important;
-    min-height: 0 !important;
-    padding-top: 90px !important;
-    padding-bottom: 40px !important;
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-    display: block !important;
-    overflow: visible !important;
-  }
-  .hero-bg { position: absolute !important; inset: 0 !important; }
-  .hero-content {
-    position: relative !important;
-    z-index: 2 !important;
-    padding: 0 !important;
-    max-width: 100% !important;
-  }
-  .hero h1 { font-size: 32px !important; line-height: 1.2 !important; margin-bottom: 16px !important; }
-  .hero p { font-size: 14px !important; line-height: 1.7 !important; margin-bottom: 24px !important; }
-  .hero-btns { flex-direction: column !important; gap: 12px !important; }
-  .btn-primary, .btn-ghost { text-align: center !important; display: block !important; width: 100% !important; box-sizing: border-box !important; }
-  .hero-stats {
-    position: relative !important;
-    bottom: auto !important; right: auto !important;
-    display: flex !important;
-    justify-content: space-around !important;
-    margin-top: 32px !important;
-    padding-top: 20px !important;
-    border-top: 1px solid rgba(255,255,255,.15) !important;
-  }
-  .stat-num { font-size: 26px !important; }
-  .stat-label { font-size: 8px !important; }
+  .hero { height: auto !important; min-height: 0 !important; overflow: visible !important; display: block !important; padding: 90px 20px 36px !important; }
+  .hero-content { position: relative !important; z-index: 2 !important; padding: 0 !important; max-width: 100% !important; }
+  .hero h1 { font-size: 30px !important; line-height: 1.2 !important; }
+  .hero p { font-size: 13px !important; margin-bottom: 20px !important; }
+  .hero-btns { flex-direction: column !important; gap: 10px !important; }
+  .btn-primary, .btn-ghost { display: block !important; text-align: center !important; width: 100% !important; box-sizing: border-box !important; }
+  .hero-stats { position: relative !important; bottom: auto !important; right: auto !important; display: flex !important; justify-content: space-around !important; padding: 20px 0 !important; margin-top: 28px !important; border-top: 1px solid rgba(255,255,255,.15) !important; }
 
-  /* SEARCH BAR */
-  .search-bar { flex-direction: column !important; height: auto !important; padding: 16px 18px !important; }
+  .search-bar { flex-direction: column !important; height: auto !important; padding: 16px 20px !important; }
   .search-field { width: 100% !important; border-right: none !important; border-bottom: 1px solid rgba(255,255,255,.1) !important; padding: 10px 0 !important; }
-  .search-submit { width: 100% !important; margin-top: 12px !important; }
+  .search-submit { width: 100% !important; margin-top: 10px !important; }
 
-  /* GRIDS 1 colonne */
-  .about { grid-template-columns: 1fr !important; padding: 50px 18px !important; gap: 32px !important; }
+  .properties { padding: 48px 18px !important; }
+  .props-grid { grid-template-columns: 1fr !important; }
+
+  .about { grid-template-columns: 1fr !important; padding: 48px 18px !important; gap: 28px !important; }
+  .about-imgs { height: 220px !important; }
+  .about-img-main { width: 80% !important; height: 170px !important; }
+
+  .services { padding: 48px 18px !important; }
   .services-grid { grid-template-columns: 1fr !important; }
+
+  .locations { padding: 48px 18px !important; }
   .locs-grid { grid-template-columns: 1fr 1fr !important; }
+
+  .team { padding: 48px 18px !important; }
   .team-grid { grid-template-columns: 1fr !important; }
+
+  .testimonials { padding: 48px 18px !important; }
   .testi-grid { grid-template-columns: 1fr !important; }
-  .contact-wrap { grid-template-columns: 1fr !important; gap: 32px !important; }
+
+  .contact-section { padding: 48px 18px !important; }
+  .contact-wrap { grid-template-columns: 1fr !important; gap: 28px !important; }
+  .full-form { padding: 24px 16px !important; }
+  .form-row { grid-template-columns: 1fr !important; }
+
+  footer { padding: 40px 18px 80px !important; }
   .footer-top { grid-template-columns: 1fr !important; gap: 24px !important; }
   .footer-bottom { flex-direction: column !important; text-align: center !important; }
-  .form-row { grid-template-columns: 1fr !important; }
-  .about-imgs { height: 240px !important; }
-  .about-img-main { width: 80% !important; height: 180px !important; }
 
-  /* PADDING sections */
-  .properties, .services, .locations, .team,
-  .testimonials, .contact-section, footer { padding-left: 18px !important; padding-right: 18px !important; }
-  .full-form { padding: 24px 16px !important; }
-
-  /* BARRE NAV BAS */
   body { padding-bottom: 68px !important; }
   .mob-bottomnav {
-    display: flex !important;
-    position: fixed !important;
+    display: flex !important; position: fixed !important;
     bottom: 0 !important; left: 0 !important; right: 0 !important;
-    background: #0F1E36 !important;
+    background: #0F1E36 !important; z-index: 9999 !important;
     border-top: 1px solid rgba(255,255,255,.1) !important;
-    z-index: 9999 !important;
     padding-bottom: env(safe-area-inset-bottom, 0px) !important;
   }
   .mob-bottomnav a {
     flex: 1 !important; display: flex !important; flex-direction: column !important;
     align-items: center !important; justify-content: center !important;
-    padding: 9px 2px !important; text-decoration: none !important;
-    color: rgba(255,255,255,.45) !important; font-size: 8px !important;
+    padding: 8px 2px !important; text-decoration: none !important;
+    color: rgba(255,255,255,.5) !important; font-size: 8px !important;
     letter-spacing: 1px !important; text-transform: uppercase !important; gap: 4px !important;
   }
-  .mob-bottomnav a .nav-icon { font-size: 17px !important; line-height: 1 !important; }
+  .mob-bottomnav .nav-icon { font-size: 16px !important; }
 }
 
+.mob-bottomnav { display: none; }
+.mob-burger, .mob-overlay, .mob-panel { display: none !important; }
+
 </style>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-</head>
 <body>
 
 <!-- NAV -->
