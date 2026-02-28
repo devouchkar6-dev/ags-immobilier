@@ -1,4 +1,3 @@
 [build]
-  base = "."
-  publish = "."
+  publish = "ags-immobilier-v44"
   command = ""
