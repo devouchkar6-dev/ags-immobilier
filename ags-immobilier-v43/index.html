@@ -419,6 +419,33 @@
   /* Cacher décos desktop */
   .hero > div[style*="position:absolute;top:0;right:0"] { display: none; }
   .hero > div[style*="position:absolute;left:60px"] { display: none; }
+
+  /* FIXES CRITIQUES SAFARI/iOS */
+  html, body { 
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    overflow-x: hidden;
+  }
+  .hero {
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow: visible !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  .hero-bg {
+    position: fixed !important;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: -1;
+  }
+  .hero-content {
+    position: relative !important;
+    z-index: 2 !important;
+    padding: 100px 22px 0 !important;
+    max-width: 100% !important;
+  }
 }
 
 .mob-burger { display: none; }
