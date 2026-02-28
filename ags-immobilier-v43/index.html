@@ -272,92 +272,155 @@
   .whatsapp-btn { position: fixed; bottom: 28px; left: 28px; z-index: 999; width: 56px; height: 56px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,.4); text-decoration: none; transition: transform .3s, box-shadow .3s; font-size: 26px; }
   .whatsapp-btn:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,.5); }
 
-@media (max-width: 768px) {
-  
+/* ═══════════════════════════════════════
+   MOBILE — max-width: 768px
+   ═══════════════════════════════════════ */
+
+/* Barre de nav mobile en bas */
+.mob-bottomnav {
+  display: none;
 }
 
-/* ═══════════════════════════════════════
-   MOBILE UNIQUEMENT — max-width: 768px
-   Ne touche pas le desktop
-   ═══════════════════════════════════════ */
 @media (max-width: 768px) {
 
-  /* Cacher le menu desktop et le CTA */
+  /* NAV desktop : cacher tout sauf logo */
   nav ul    { display: none !important; }
   .nav-cta  { display: none !important; }
-  nav { padding: 12px 20px !important; }
-  .logo img { height: 38px !important; }
+  .mob-burger { display: none !important; }
+  .mob-overlay { display: none !important; }
+  .mob-panel { display: none !important; }
+  nav { padding: 10px 18px !important; }
+  .logo img { height: 36px !important; }
 
-  /* Bouton hamburger */
-  .mob-burger {
+  /* BARRE NAV MOBILE EN BAS */
+  .mob-bottomnav {
     display: flex !important;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 24px; height: 17px;
-    background: none; border: none;
-    cursor: pointer; padding: 0;
-    z-index: 9999;
-  }
-  .mob-burger span {
-    display: block; width: 100%; height: 2px;
-    background: white; border-radius: 2px;
-    transition: all .28s ease;
-  }
-  nav.scrolled .mob-burger span { background: var(--navy); }
-  .mob-burger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
-  .mob-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-  .mob-burger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
-
-  /* Overlay sombre */
-  .mob-overlay {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,.6);
-    z-index: 9997;
-  }
-  .mob-overlay.on { display: block; }
-
-  /* Panneau menu */
-  .mob-panel {
     position: fixed;
-    top: 0; right: -100%;
-    width: 75vw; max-width: 280px;
-    height: 100%;
-    background: #0F1E36;
-    z-index: 9998;
-    transition: right .3s ease;
-    display: flex; flex-direction: column;
-    padding-top: 70px;
+    bottom: 0; left: 0; right: 0;
+    background: var(--navy-deep);
+    border-top: 1px solid rgba(255,255,255,.08);
+    z-index: 9999;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
-  .mob-panel.on { right: 0; }
-
-  .mob-panel a {
-    display: block;
-    padding: 17px 28px;
-    color: rgba(255,255,255,.75) !important;
+  .mob-bottomnav a {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 4px;
     text-decoration: none;
+    color: rgba(255,255,255,.45);
     font-family: 'Jost', sans-serif;
-    font-size: 12px; font-weight: 300;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    border-bottom: 1px solid rgba(255,255,255,.06);
-    transition: color .2s, padding-left .2s;
-  }
-  .mob-panel a:hover { color: white !important; padding-left: 34px; }
-
-  .mob-panel .mob-tel {
-    margin: 24px 20px 0;
-    padding: 15px 20px;
-    background: #2C4A7C;
-    color: white !important;
-    text-align: center;
+    font-size: 9px;
     letter-spacing: 1px;
-    font-size: 14px;
-    border-bottom: none;
+    text-transform: uppercase;
+    transition: color .2s;
+    gap: 5px;
   }
+  .mob-bottomnav a:hover,
+  .mob-bottomnav a.active { color: var(--accent); }
+  .mob-bottomnav a .nav-icon { font-size: 18px; line-height: 1; }
+
+  /* Espace en bas pour éviter que le contenu soit caché par la barre */
+  body { padding-bottom: 68px; }
+
+  /* HERO */
+  .hero { min-height: 100svh; }
+  .hero-content { padding: 100px 22px 0; }
+  .hero-content h1 { font-size: 34px; line-height: 1.15; }
+  .hero-content p { font-size: 14px; line-height: 1.75; margin-top: 14px; }
+  .hero-btns { flex-direction: column; gap: 12px; margin-top: 28px; }
+  .hero-btns a { text-align: center; padding: 15px 20px; }
+  .hero-stats {
+    position: relative; bottom: auto; right: auto;
+    display: flex; justify-content: space-around;
+    padding: 28px 22px; margin-top: 32px; gap: 0;
+  }
+  .stat-num { font-size: 26px; }
+  .stat-label { font-size: 9px; }
+
+  /* SEARCH BAR */
+  .search-bar {
+    flex-direction: column; height: auto;
+    padding: 18px 22px; gap: 10px;
+  }
+  .search-field {
+    width: 100% !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    padding: 10px 0;
+  }
+  .search-field label { font-size: 9px; }
+  .search-field select { font-size: 13px; }
+  .search-submit { width: 100%; padding: 14px; margin-top: 4px; }
+  .search-clear { width: 100%; text-align: center; }
+
+  /* PROPERTIES */
+  .properties { padding: 50px 18px; }
+  .section-title { font-size: 36px; }
+  .prop-grid { grid-template-columns: 1fr !important; gap: 20px; }
+
+  /* ABOUT */
+  .about {
+    grid-template-columns: 1fr !important;
+    padding: 50px 18px; gap: 32px;
+  }
+  .about-imgs { height: 260px; }
+  .about-img-main { width: 80%; height: 200px; }
+  .about-img-accent { width: 50%; }
+  .about-text p { font-size: 14px; line-height: 1.75; }
+  .about-values { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .value-num { font-size: 24px; }
+
+  /* SERVICES */
+  .services { padding: 50px 18px; }
+  .services-grid { grid-template-columns: 1fr !important; gap: 2px; }
+  .service-card { padding: 26px 20px; }
+
+  /* LOCATIONS */
+  .locations { padding: 50px 18px; }
+  .locs-grid { grid-template-columns: 1fr 1fr !important; gap: 8px; }
+  .loc-img { height: 160px; }
+  .loc-name { font-size: 16px; }
+
+  /* TEAM */
+  .team { padding: 50px 18px; }
+  .team-grid { grid-template-columns: 1fr !important; gap: 36px; }
+  .team-photo-wrap { width: 160px; height: 200px; }
+  .team-name { font-size: 20px; }
+  .team-bio { font-size: 13px; }
+
+  /* TESTIMONIALS */
+  .testimonials { padding: 50px 18px; }
+  .testi-grid { grid-template-columns: 1fr !important; gap: 16px; }
+  .testi-card { padding: 24px 20px; }
+
+  /* CONTACT */
+  .contact-section { padding: 50px 18px; }
+  .contact-wrap {
+    grid-template-columns: 1fr !important;
+    gap: 32px; margin-top: 28px;
+  }
+  .contact-info-block h3 { font-size: 24px; }
+  .full-form { padding: 24px 18px; }
+  .form-row { grid-template-columns: 1fr !important; gap: 0; }
+
+  /* FOOTER */
+  footer { padding: 44px 18px 24px; }
+  .footer-top {
+    grid-template-columns: 1fr !important;
+    gap: 28px; margin-bottom: 28px; padding-bottom: 28px;
+  }
+  .footer-bottom {
+    flex-direction: column; gap: 10px; text-align: center;
+  }
+
+  /* Cacher décos desktop */
+  .hero > div[style*="position:absolute;top:0;right:0"] { display: none; }
+  .hero > div[style*="position:absolute;left:60px"] { display: none; }
 }
 
-/* Cacher le burger sur desktop */
 .mob-burger { display: none; }
 
 </style>
@@ -1106,6 +1169,17 @@ document.addEventListener('DOMContentLoaded', () => {
   overlay.addEventListener('click', close);
 })();
 </script>
+
+
+<!-- BARRE NAV MOBILE BAS -->
+<nav class="mob-bottomnav">
+  <a href="#properties" class=""><span class="nav-icon">🏠</span>Biens</a>
+  <a href="#about"><span class="nav-icon">🏛</span>Agence</a>
+  <a href="#services"><span class="nav-icon">✓</span>Services</a>
+  <a href="#equipe"><span class="nav-icon">👥</span>Équipe</a>
+  <a href="honoraires.html"><span class="nav-icon">📋</span>Honoraires</a>
+  <a href="#contact"><span class="nav-icon">✉</span>Contact</a>
+</nav>
 
 </body>
 </html>
