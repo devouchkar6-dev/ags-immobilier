@@ -398,11 +398,6 @@
     <label>Secteur</label>
     <select id="filter-lieu">
       <option value="">Tous les secteurs</option>
-      <option value="cannet">Le Cannet</option>
-      <option value="mougins">Mougins</option>
-      <option value="cannes">Cannes</option>
-      <option value="mandelieu">Mandelieu-la-Napoule</option>
-      <option value="vallauris">Vallauris</option>
     </select>
   </div>
   <div class="search-field">
@@ -829,6 +824,7 @@ async function chargerBiensAPIMO() {
       if (Array.isArray(biens) && biens.length > 0) {
         BIENS_APIMO = biens;
         mettreAJourGrilleBiens(BIENS_APIMO);
+        remplirFiltreVilles(BIENS_APIMO);
         console.log('✓ GitHub : ' + BIENS_APIMO.length + ' biens chargés');
         return true;
       }
@@ -950,7 +946,7 @@ function afficherResultats(resultats, type, lieu, budget) {
     noResults.style.display = 'none';
     grid.style.display = 'grid';
     resultats.forEach(b => {
-      const url   = b.url || `bien-${b.id}.html`;
+      const url   = b.url || `fiche.html?id=${b.id}`;
       const img   = b.mainPhoto || b.img || 'images/placeholder.jpg';
       const titre = b.titre || b.titre;
       const sstitre = b.ville || b.soustitre || '';
@@ -1003,6 +999,26 @@ const BIENS_STATIQUES = [
 
 // ── Lancement au chargement de la page ──
 document.addEventListener('DOMContentLoaded', () => {
+  function remplirFiltreVilles(biens) {
+    const sel = document.getElementById('filter-lieu');
+    if (!sel) return;
+    // Collecter toutes les villes uniques
+    const villes = {};
+    biens.forEach(b => {
+      const key = (b.villeFilter || b.ville || '').toLowerCase().trim();
+      const label = b.ville || key;
+      if (key) villes[key] = label;
+    });
+    // Vider et reconstruire
+    sel.innerHTML = '<option value="">Tous les secteurs</option>';
+    Object.entries(villes).sort((a,b) => a[1].localeCompare(b[1])).forEach(([key, label]) => {
+      const opt = document.createElement('option');
+      opt.value = key;
+      opt.textContent = label;
+      sel.appendChild(opt);
+    });
+  }
+
   chargerBiensAPIMO(); // Tentative APIMO — fallback auto si non configuré
 });
 </script>

@@ -306,11 +306,6 @@
     <label>Secteur</label>
     <select id="filter-lieu" onchange="rechercherBiens()">
       <option value="">Tous les secteurs</option>
-      <option value="cannet">Le Cannet</option>
-      <option value="mougins">Mougins</option>
-      <option value="cannes">Cannes</option>
-      <option value="mandelieu">Mandelieu</option>
-      <option value="vallauris">Vallauris</option>
     </select>
   </div>
   <div class="filtre-field">
@@ -412,24 +407,14 @@ window.addEventListener('scroll', () => {
 });
 
 async function chargerBiensAPIMO() {
-  // 1. Priorité : biens saisis dans l'admin
-  try {
-    const biensAdmin = JSON.parse(localStorage.getItem('ags_biens_site') || '[]');
-    if (biensAdmin.length > 0) {
-      BIENS_APIMO = biensAdmin;
-      afficherBiens(BIENS_APIMO);
-      console.log('✓ Admin : ' + BIENS_APIMO.length + ' biens chargés');
-      return true;
-    }
-  } catch(e) {}
-
-  // 2. Fallback APIMO
   try {
     const res = await fetch('https://raw.githubusercontent.com/devouchkar6-dev/ags-immobilier/main/ags-immobilier-v44/biens.json?t=' + Date.now());
     if (!res.ok) { return false; }
-    const biens = await res.json();
-    if (!Array.isArray(biens) || biens.length === 0) { return false; }
-    BIENS_APIMO = biens;
+    const biensAdmin = await res.json();
+    if (Array.isArray(biensAdmin)) {
+      BIENS_APIMO = biensAdmin;
+    }
+    remplirFiltreVilles(BIENS_APIMO);
     afficherBiens(BIENS_APIMO);
     return true;
   } catch(e) { return false; }
@@ -447,7 +432,7 @@ function afficherBiens(biens) {
   noRes.style.display = 'none';
   count.textContent = biens.length + ' bien' + (biens.length > 1 ? 's' : '') + ' disponible' + (biens.length > 1 ? 's' : '');
   grid.innerHTML = biens.map(b => {
-    const url = b.url || ('bien-' + b.id + '.html');
+    const url = b.url || ('fiche.html?id=' + b.id);
     const bc = b.badgeClass || (b.type === 'viager' ? 'viager' : b.type === 'commercial' ? 'commercial' : 'default');
     const surf = b.surface || b.caracteristiques?.surface || '';
     const pieces = b.pieces || b.caracteristiques?.pieces || '';
@@ -469,6 +454,24 @@ function afficherBiens(biens) {
   }).join('');
 }
 
+function remplirFiltreVilles(biens) {
+  const sel = document.getElementById('filter-lieu');
+  if (!sel) return;
+  const villes = {};
+  biens.forEach(b => {
+    const key = (b.villeFilter || b.ville || '').toLowerCase().trim();
+    const label = b.ville || key;
+    if (key) villes[key] = label;
+  });
+  sel.innerHTML = '<option value="">Tous les secteurs</option>';
+  Object.entries(villes).sort((a,b) => a[1].localeCompare(b[1])).forEach(([key, label]) => {
+    const opt = document.createElement('option');
+    opt.value = key;
+    opt.textContent = label;
+    sel.appendChild(opt);
+  });
+}
+
 function rechercherBiens() {
   const type   = document.getElementById('filter-type').value;
   const lieu   = document.getElementById('filter-lieu').value;
@@ -476,7 +479,10 @@ function rechercherBiens() {
   const source = BIENS_APIMO.length ? BIENS_APIMO : BIENS_STATIQUES;
   const res = source.filter(b => {
     if (type && b.type !== type) return false;
-    if (lieu && b.villeFilter !== lieu) return false;
+    if (lieu) {
+      const bVille = (b.villeFilter || b.ville || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/\s+/g,'-');
+      if (bVille !== lieu) return false;
+    }
     if (budget) {
       const p = b.prixBrut || 0;
       if (budget === 'viager' && b.type !== 'viager') return false;

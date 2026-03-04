@@ -1,1 +1,97 @@
-[]
+[
+  {
+    "id": "bien-001",
+    "titre": "Appartement 2 pièces à rénover",
+    "type": "appartement",
+    "badge": "Exclusivité AGS",
+    "ville": "Le Cannet",
+    "villeFilter": "cannet",
+    "quartier": "Rocheville",
+    "soustitre": "Rocheville — Le Cannet",
+    "prix": "140 000 €",
+    "prixBrut": 140000,
+    "surface": "48 m²",
+    "pieces": "2 pièces",
+    "chambres": "1 chambre",
+    "etage": "",
+    "exposition": "Vue dégagée",
+    "dpe": "E",
+    "accroche": "Appartement 2 pièces idéalement situé à Rocheville, à fort potentiel de rénovation.",
+    "description": "Situé dans le quartier prisé de Rocheville au Cannet, cet appartement lumineux de 48 m² offre un fort potentiel de valorisation après rénovation, dans un environnement calme avec vue dégagée.Idéal pour un investisseur souhaitant se constituer un patrimoine ou pour un primo-accédant désireux de personnaliser entièrement son logement. Le bien est libre immédiatement. Coût estimatif de rénovation : 40 000 €.",
+    "equipements": [
+      "Ascenseur",
+      "Chauffage collectif",
+      "Cave"
+    ],
+    "photos": [
+      "images/bien1_p1.jpg",
+      "images/bien1_p2.jpg"
+    ],
+    "actif": true,
+    "ref": "AGS-001"
+  },
+  {
+    "id": "bien-002",
+    "titre": "Maison de charme en viager occupé",
+    "type": "viager",
+    "badge": "Viager Occupé",
+    "ville": "Mougins",
+    "villeFilter": "mougins",
+    "quartier": "",
+    "soustitre": "Mougins",
+    "prix": "Bouquet 250 000 €",
+    "prixBrut": 250000,
+    "rente": "400 €/mois",
+    "surface": "161 m²",
+    "pieces": "6 pièces",
+    "chambres": "4 chambres",
+    "etage": "Maison individuelle",
+    "exposition": "Vue collines",
+    "dpe": "D",
+    "accroche": "Magnifique maison de charme de 161 m² proposée en viager occupé — bouquet de 250 000 € et rente de 400 €/mois.",
+    "description": "Magnifique propriété de 161 m² proposée en viager occupé. Bouquet de 250 000 € et rente mensuelle de 400 €. Le bien est en excellent état et dispose d'une multitude d'équipements haut de gamme : piscine, espace cinéma, véranda, garage de 43 m² et jardin clos avec barbecue. Un investissement patrimonial exceptionnel.",
+    "equipements": [
+      "Piscine",
+      "Jardin",
+      "Garage",
+      "Climatisation",
+      "Cheminée"
+    ],
+    "photos": [
+      "images/bien2_facade.jpg",
+      "images/bien2_veranda.jpg"
+    ],
+    "actif": true,
+    "ref": "AGS-002"
+  },
+  {
+    "id": "bien-003",
+    "titre": "Local commercial moderne & lumineux",
+    "type": "commercial",
+    "badge": "À Vendre",
+    "ville": "Cannes",
+    "villeFilter": "cannes",
+    "quartier": "Proche A8",
+    "soustitre": "Cannes — Proche A8",
+    "prix": "Prix sur demande",
+    "prixBrut": 0,
+    "surface": "42,60 m²",
+    "pieces": "Local commercial",
+    "chambres": "",
+    "etage": "Rez-de-chaussée",
+    "exposition": "Plein sud",
+    "dpe": "C",
+    "accroche": "Local commercial de 42,60 m² en plein sud, 2 vitrines, proche A8 — état impeccable.",
+    "description": "Local commercial moderne et lumineux de 42,60 m², idéalement situé à proximité de l'autoroute A8. Exposition plein sud avec 2 grandes vitrines offrant une visibilité maximale. Climatisation réversible, état impeccable. Situé dans une galerie commerciale dynamique.",
+    "equipements": [
+      "Climatisation",
+      "Vitrine commerciale"
+    ],
+    "photos": [
+      "images/bien3_facade.jpg",
+      "images/bien3_bureau2.jpg"
+    ],
+    "actif": true,
+    "ref": "AGS-003"
+  }
+]
