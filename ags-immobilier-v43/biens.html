@@ -394,11 +394,7 @@
 const TYPE_LABELS = { appartement:'Appartement', maison:'Maison / Villa', viager:'Viager', commercial:'Local commercial' };
 const VILLE_LABELS = { cannet:'Le Cannet', cannes:'Cannes', mougins:'Mougins', mandelieu:'Mandelieu', vallauris:'Vallauris' };
 
-const BIENS_STATIQUES = [
-  { id:'bien1', url:'bien1.html', titre:'Appartement 2 pièces à rénover', soustitre:'Rocheville — Vue dégagée', type:'appartement', villeFilter:'cannet', ville:'Le Cannet', prix:'140 000 €', prixBrut:140000, surface:'48 m²', pieces:'2 pièces', badge:'À Rénover', badgeClass:'default', mainPhoto:'images/bien1_p2.jpg' },
-  { id:'bien2', url:'bien2.html', titre:'Maison de charme en viager occupé', soustitre:'Vue collines — Piscine', type:'viager', villeFilter:'mougins', ville:'Mougins', prix:'Bouquet 250 000 € · 400 €/mois', prixBrut:250000, surface:'161 m²', pieces:'6 pièces', badge:'Viager Occupé', badgeClass:'viager', mainPhoto:'images/bien2_facade.jpg' },
-  { id:'bien3', url:'bien3.html', titre:'Local commercial moderne', soustitre:'Rocheville — Plein sud', type:'commercial', villeFilter:'cannet', ville:'Le Cannet', prix:'159 000 €', prixBrut:159000, surface:'42,60 m²', pieces:'', badge:'Local Commercial', badgeClass:'commercial', mainPhoto:'images/bien3_bureau2.jpg' },
-];
+
 
 let BIENS_APIMO = [];
 
@@ -408,7 +404,7 @@ window.addEventListener('scroll', () => {
 
 async function chargerBiensAPIMO() {
   try {
-    const res = await fetch('https://raw.githubusercontent.com/devouchkar6-dev/ags-immobilier/main/ags-immobilier-v44/biens.json?t=' + Date.now());
+    const res = await fetch('https://raw.githubusercontent.com/devouchkar6-dev/ags-immobilier/main/ags-immobilier-v43/biens.json?t=' + Date.now());
     if (!res.ok) { return false; }
     const biensAdmin = await res.json();
     if (Array.isArray(biensAdmin)) {
@@ -476,7 +472,7 @@ function rechercherBiens() {
   const type   = document.getElementById('filter-type').value;
   const lieu   = document.getElementById('filter-lieu').value;
   const budget = document.getElementById('filter-budget').value;
-  const source = BIENS_APIMO.length ? BIENS_APIMO : BIENS_STATIQUES;
+  const source = BIENS_APIMO;
   const res = source.filter(b => {
     if (type && b.type !== type) return false;
     if (lieu) {
@@ -499,7 +495,7 @@ function rechercherBiens() {
 
 document.addEventListener('DOMContentLoaded', async () => {
   const apimo = await chargerBiensAPIMO();
-  afficherBiens(apimo ? BIENS_APIMO : BIENS_STATIQUES);
+  afficherBiens(apimo ? BIENS_APIMO : []);
 });
 </script>
 

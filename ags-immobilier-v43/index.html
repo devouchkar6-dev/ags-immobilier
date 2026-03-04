@@ -816,7 +816,7 @@ const VILLE_LABELS = {
 // ── Chargement des biens depuis l'API ──
 async function chargerBiensAPIMO() {
   // Lire biens.json directement depuis GitHub raw (mis à jour par l'admin)
-  const GITHUB_RAW = 'https://raw.githubusercontent.com/devouchkar6-dev/ags-immobilier/main/ags-immobilier-v44/biens.json';
+  const GITHUB_RAW = 'https://raw.githubusercontent.com/devouchkar6-dev/ags-immobilier/main/ags-immobilier-v43/biens.json';
   try {
     const res = await fetch(GITHUB_RAW + '?t=' + Date.now());
     if (res.ok) {
@@ -901,7 +901,7 @@ function rechercherBiens() {
   }
 
   // Utiliser APIMO si chargé, sinon fallback statique
-  const source = BIENS_APIMO.length ? BIENS_APIMO : BIENS_STATIQUES;
+  const source = BIENS_APIMO;
 
   let resultats = source.filter(b => {
     if (type && b.type !== type) return false;
@@ -991,11 +991,7 @@ function capitalise(str) {
 }
 
 // ── Biens statiques (fallback si APIMO non configuré) ──
-const BIENS_STATIQUES = [
-  { id:'bien1', url:'bien1.html', titre:'Appartement 2 pièces à rénover', soustitre:'Le Cannet – Rocheville', type:'appartement', lieu:'cannet', villeFilter:'cannet', ville:'Le Cannet', prix:'140 000 €', prixBrut:140000, caracteristiques:{surface:'48 m²',pieces:'2 pièces'}, badge:'À Rénover', mainPhoto:'images/bien1_p2.jpg' },
-  { id:'bien2', url:'bien2.html', titre:'Maison de charme en viager occupé', soustitre:'Mougins – Vue collines', type:'viager', lieu:'mougins', villeFilter:'mougins', ville:'Mougins', prix:'Bouquet 250 000 € · Rente 400 €/mois', prixBrut:250000, caracteristiques:{surface:'161 m²',pieces:'6 pièces'}, badge:'Viager Occupé', mainPhoto:'images/bien2_facade.jpg' },
-  { id:'bien3', url:'bien3.html', titre:'Local commercial moderne', soustitre:'Le Cannet – Rocheville', type:'commercial', lieu:'cannet', villeFilter:'cannet', ville:'Le Cannet', prix:'159 000 €', prixBrut:159000, caracteristiques:{surface:'42,60 m²'}, badge:'Local Commercial', mainPhoto:'images/bien3_bureau2.jpg' },
-];
+
 
 // ── Lancement au chargement de la page ──
 document.addEventListener('DOMContentLoaded', () => {
