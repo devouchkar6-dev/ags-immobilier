@@ -9,49 +9,78 @@
   :root { --navy:#1B2D4F; --navy-deep:#0F1E36; --blue-mid:#2C4A7C; --blue-light:#4A6FA5; --accent:#5B9BD5; --cream:#F0F4F8; --stone:#C8D6E5; --text:#1B2D4F; --text-light:#5A7499; }
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:'Jost',sans-serif; background:var(--cream); color:var(--text); }
+
   nav { background:var(--navy); display:flex; justify-content:space-between; align-items:center; padding:16px 60px; }
   .logo img { height:48px; width:auto; display:block; }
   .nav-back { color:rgba(255,255,255,.7); text-decoration:none; font-size:11px; letter-spacing:2px; text-transform:uppercase; display:flex; align-items:center; gap:8px; transition:color .3s; }
   .nav-back:hover { color:var(--accent); }
-  .gallery { display:grid; grid-template-columns:2fr 1fr 1fr; grid-template-rows:1fr 1fr; gap:4px; height:520px; }
+
+  .gallery { display:grid; grid-template-columns:2fr 1fr 1fr; grid-template-rows:1fr 1fr; gap:4px; height:520px; background:#1B2D4F; }
   .gallery-main { grid-row:span 2; overflow:hidden; }
   .gallery img { width:100%; height:100%; object-fit:cover; display:block; cursor:pointer; transition:transform .5s; }
   .gallery img:hover { transform:scale(1.03); }
-  .gallery-placeholder { background:#d0dce8; display:flex; align-items:center; justify-content:center; font-size:48px; }
-  .content { max-width:1100px; margin:0 auto; padding:56px 40px; display:grid; grid-template-columns:1fr 380px; gap:56px; }
-  .prop-header { margin-bottom:32px; }
+  .gallery-ph { background:#2C4A7C; display:flex; align-items:center; justify-content:center; font-size:40px; opacity:.3; }
+
+  .wrap { max-width:1200px; margin:0 auto; padding:56px 40px; display:grid; grid-template-columns:1fr 400px; gap:56px; align-items:start; }
+
   .prop-badge { display:inline-block; background:var(--blue-mid); color:white; font-size:9px; letter-spacing:2px; text-transform:uppercase; padding:5px 14px; margin-bottom:14px; }
   .prop-title { font-family:'Cormorant Garamond',serif; font-size:38px; font-weight:300; color:var(--navy); line-height:1.15; margin-bottom:8px; }
   .prop-loc { font-size:13px; color:var(--text-light); font-weight:300; margin-bottom:20px; }
-  .prop-price-big { font-family:'Cormorant Garamond',serif; font-size:44px; font-weight:300; color:var(--navy); }
-  .prop-tags { display:flex; flex-wrap:wrap; gap:10px; margin:28px 0; }
+  .prop-price { font-family:'Cormorant Garamond',serif; font-size:44px; font-weight:300; color:var(--navy); }
+  .prop-ref { font-size:11px; color:var(--text-light); margin-top:6px; letter-spacing:1px; }
+
+  .tags { display:flex; flex-wrap:wrap; gap:10px; margin:28px 0; }
   .tag { background:white; border:1px solid var(--stone); padding:8px 16px; font-size:12px; color:var(--navy); font-weight:300; }
+
   .section-h { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:400; color:var(--navy); margin:36px 0 16px; padding-bottom:10px; border-bottom:1px solid var(--stone); }
   .desc { font-size:14px; line-height:1.9; color:var(--text-light); font-weight:300; }
-  .equip-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:12px; }
-  .equip-item { background:white; border:1px solid var(--stone); padding:10px 14px; font-size:12px; color:var(--navy); display:flex; align-items:center; gap:8px; }
-  .sidebar { position:sticky; top:24px; }
-  .contact-card { background:var(--navy); padding:32px; color:white; }
-  .contact-card h3 { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; margin-bottom:8px; }
-  .contact-card p { font-size:13px; color:rgba(255,255,255,.6); margin-bottom:24px; line-height:1.7; }
-  .btn-contact { display:block; background:var(--accent); color:white; text-align:center; padding:15px; font-size:11px; letter-spacing:2px; text-transform:uppercase; text-decoration:none; margin-bottom:12px; }
-  .btn-tel { display:block; border:1px solid rgba(255,255,255,.3); color:white; text-align:center; padding:15px; font-size:11px; letter-spacing:2px; text-transform:uppercase; text-decoration:none; }
-  .dpe-box { background:white; padding:24px; margin-top:16px; border:1px solid var(--stone); }
-  .dpe-box h4 { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--text-light); margin-bottom:12px; }
-  .dpe-letters { display:flex; gap:6px; align-items:flex-end; }
-  .dpe-letter { width:32px; font-size:10px; font-weight:500; color:white; display:flex; align-items:center; justify-content:center; border-radius:2px; }
-  .loading { text-align:center; padding:120px 40px; font-size:18px; color:var(--text-light); }
-  footer { background:var(--navy-deep); color:rgba(255,255,255,.4); text-align:center; padding:24px; font-size:12px; }
+  .equip-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .equip-item { background:white; border:1px solid var(--stone); padding:10px 14px; font-size:12px; color:var(--navy); }
+
+  /* STICKY CARD */
+  .sticky-card { position:sticky; top:24px; background:white; box-shadow:0 4px 32px rgba(27,45,79,.1); padding:36px; }
+  .sticky-price { font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:300; color:var(--navy); margin-bottom:4px; }
+  .sticky-sub { font-size:12px; color:var(--text-light); font-weight:300; margin-bottom:28px; padding-bottom:24px; border-bottom:1px solid var(--stone); }
+  .sticky-card .form-group { margin-bottom:14px; }
+  .sticky-card label { display:block; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--text-light); margin-bottom:6px; }
+  .sticky-card input, .sticky-card textarea { width:100%; border:1px solid var(--stone); background:var(--cream); padding:11px 14px; font-family:'Jost',sans-serif; font-size:13px; color:var(--navy); font-weight:300; outline:none; transition:border-color .3s; }
+  .sticky-card input:focus, .sticky-card textarea:focus { border-color:var(--blue-light); }
+  .sticky-card textarea { min-height:80px; resize:vertical; }
+  .sticky-submit { width:100%; background:var(--navy); color:white; border:none; padding:14px; font-family:'Jost',sans-serif; font-size:11px; letter-spacing:2.5px; text-transform:uppercase; cursor:pointer; transition:background .3s; margin-top:4px; }
+  .sticky-submit:hover { background:var(--blue-light); }
+  .sticky-contacts { margin-top:20px; padding-top:20px; border-top:1px solid var(--stone); display:flex; flex-direction:column; gap:8px; }
+  .sticky-contact-line { font-size:13px; color:var(--text-light); }
+  .sticky-contact-line a { color:var(--navy); text-decoration:none; font-weight:400; }
+  .sticky-contact-line a:hover { color:var(--accent); }
+  .msg-ok { color:#27ae60; font-size:13px; margin-top:10px; display:none; }
+  .msg-err { color:#e74c3c; font-size:13px; margin-top:10px; display:none; }
+
+  .dpe-row { display:flex; gap:24px; margin-top:16px; }
+  .dpe-block { flex:1; }
+  .dpe-label-h { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-light); margin-bottom:8px; }
+  .dpe-letters { display:flex; gap:4px; align-items:flex-end; }
+  .dpe-l { width:28px; font-size:10px; font-weight:500; color:white; display:flex; align-items:center; justify-content:center; border-radius:2px; }
+
+  .loading { text-align:center; padding:120px 40px; font-size:16px; color:var(--text-light); }
+
+  footer { background:var(--navy-deep); display:flex; justify-content:space-between; align-items:center; padding:20px 60px; }
+  footer span { font-size:12px; color:rgba(255,255,255,.3); }
+  footer a { font-size:12px; color:rgba(255,255,255,.4); text-decoration:none; }
+  footer a:hover { color:var(--accent); }
+
+  .whatsapp-btn { position:fixed; bottom:28px; left:28px; z-index:999; width:56px; height:56px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(37,211,102,.4); text-decoration:none; font-size:26px; }
+
   @media(max-width:768px) {
     nav { padding:12px 20px; }
-    .gallery { grid-template-columns:1fr; grid-template-rows:240px; height:240px; }
+    .gallery { grid-template-columns:1fr; grid-template-rows:260px; height:260px; }
     .gallery > *:not(.gallery-main) { display:none; }
     .gallery-main { grid-row:span 1; }
-    .content { grid-template-columns:1fr; padding:24px 16px; gap:24px; }
+    .wrap { grid-template-columns:1fr; padding:24px 16px; gap:24px; }
     .prop-title { font-size:28px; }
-    .prop-price-big { font-size:32px; }
+    .prop-price { font-size:32px; }
     .equip-grid { grid-template-columns:1fr 1fr; }
-    .sidebar { position:static; }
+    .sticky-card { position:static; }
+    footer { padding:16px 20px; flex-direction:column; gap:8px; text-align:center; }
   }
 </style>
 </head>
@@ -63,104 +92,165 @@
 </nav>
 
 <div id="page-content">
-  <div class="loading">Chargement de la fiche…</div>
+  <div class="loading">⏳ Chargement de la fiche…</div>
 </div>
 
 <footer>
-  <p>© 2024 AGS Immobilier — Le Cannet · Tous droits réservés</p>
+  <span>© 2024 AGS Immobilier — Le Cannet</span>
+  <a href="index.html">← Retour au site</a>
 </footer>
+
+<a class="whatsapp-btn" href="https://wa.me/33607131181" target="_blank" title="WhatsApp">💬</a>
 
 <script>
 const GITHUB_RAW = 'https://raw.githubusercontent.com/devouchkar6-dev/ags-immobilier/main/ags-immobilier-v44/biens.json';
 const DPE_COLORS = {A:'#00a651',B:'#57b947',C:'#c4d600',D:'#fbaf17',E:'#f26522',F:'#ed1c24',G:'#be1e2d'};
-const VILLES = {cannet:'Le Cannet',cannes:'Cannes',mougins:'Mougins',vallauris:'Vallauris',mandelieu:'Mandelieu-la-Napoule',autre:''};
 
 async function chargerFiche() {
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id');
   if (!id) { afficherErreur('Aucun bien spécifié.'); return; }
-
   try {
     const res = await fetch(GITHUB_RAW + '?t=' + Date.now());
     if (!res.ok) throw new Error('Impossible de charger les biens');
     const biens = await res.json();
     const bien = biens.find(b => b.id === id);
-    if (!bien) { afficherErreur('Ce bien n\'existe pas ou a été retiré.'); return; }
+    if (!bien) { afficherErreur('Ce bien n\'existe plus ou a été retiré.'); return; }
     afficherBien(bien);
   } catch(e) {
-    afficherErreur('Erreur lors du chargement : ' + e.message);
+    afficherErreur('Erreur : ' + e.message);
   }
 }
 
 function afficherErreur(msg) {
-  document.getElementById('page-content').innerHTML = `<div class="loading">⚠️ ${msg}<br><br><a href="biens.html" style="color:var(--accent)">← Retour aux biens</a></div>`;
+  document.getElementById('page-content').innerHTML = `
+    <div class="loading">⚠️ ${msg}<br><br>
+    <a href="biens.html" style="color:var(--accent);font-size:13px;">← Retour aux biens</a></div>`;
+}
+
+function dpeBar(lettre) {
+  if (!lettre) return '';
+  const lettres = ['A','B','C','D','E','F','G'];
+  return `<div class="dpe-letters">
+    ${lettres.map((l,i) => `<div class="dpe-l" style="height:${18+i*5}px;background:${DPE_COLORS[l]};${lettre===l?'outline:3px solid #333;transform:scale(1.15)':''}">${l}</div>`).join('')}
+  </div>`;
 }
 
 function afficherBien(b) {
-  const ville = VILLES[b.villeFilter] || b.ville || '';
   const photos = b.photos || (b.mainPhoto ? [b.mainPhoto] : []);
+  const titre = b.titre || '';
+  const prix = b.prix || '';
+  const ville = b.ville || '';
+  const loc = [ville, b.quartier].filter(Boolean).join(' — ');
 
   // Galerie
-  const galerie = `
+  const galHTML = `
     <div class="gallery">
       <div class="gallery-main">
-        ${photos[0] ? `<img src="${photos[0]}" alt="${b.titre}">` : `<div class="gallery-placeholder">🏠</div>`}
+        ${photos[0] ? `<img src="${photos[0]}" alt="${titre}">` : `<div class="gallery-ph">🏠</div>`}
       </div>
-      ${photos[1] ? `<div><img src="${photos[1]}" alt="${b.titre}"></div>` : `<div class="gallery-placeholder"></div>`}
-      ${photos[2] ? `<div><img src="${photos[2]}" alt="${b.titre}"></div>` : `<div class="gallery-placeholder"></div>`}
+      ${[1,2].map(i => photos[i]
+        ? `<div><img src="${photos[i]}" alt="${titre}"></div>`
+        : `<div class="gallery-ph"></div>`).join('')}
     </div>`;
 
-  // Tags
-  const tags = [];
-  if (b.caracteristiques?.surface || b.surface) tags.push('📐 ' + (b.caracteristiques?.surface || b.surface));
-  if (b.caracteristiques?.pieces || b.pieces) tags.push('🏠 ' + (b.caracteristiques?.pieces || b.pieces));
-  if (b.chambres) tags.push('🛏 ' + b.chambres);
-  if (b.etage) tags.push('🏢 ' + b.etage);
-  if (b.exposition) tags.push('🌅 ' + b.exposition);
-  if (b.annee) tags.push('📅 ' + b.annee);
+  // Tags caractéristiques
+  const tags = [
+    b.surface && `📐 ${b.surface}`,
+    b.pieces && `🚪 ${b.pieces}`,
+    b.chambres && `🛏 ${b.chambres}`,
+    b.etage && `🏢 ${b.etage}`,
+    b.exposition && `🌅 ${b.exposition}`,
+    b.annee && `📅 Construit en ${b.annee}`,
+  ].filter(Boolean);
 
   // Équipements
   const equips = (b.equipements || []).map(e => `<div class="equip-item">✓ ${e}</div>`).join('');
 
   // DPE
-  const dpeLetters = ['A','B','C','D','E','F','G'];
-  const dpeHtml = b.dpe ? `
-    <div class="dpe-box">
-      <h4>Diagnostic énergétique</h4>
-      <div class="dpe-letters">
-        ${dpeLetters.map((l,i) => `<div class="dpe-letter" style="height:${20+i*5}px;background:${DPE_COLORS[l]};${b.dpe===l?'outline:3px solid #333;transform:scale(1.1)':''}">${l}</div>`).join('')}
-      </div>
+  const dpeHTML = (b.dpe || b.ges) ? `
+    <h2 class="section-h">Diagnostic énergétique</h2>
+    <div class="dpe-row">
+      ${b.dpe ? `<div class="dpe-block"><div class="dpe-label-h">Énergie (DPE)</div>${dpeBar(b.dpe)}</div>` : ''}
+      ${b.ges ? `<div class="dpe-block"><div class="dpe-label-h">Émissions (GES)</div>${dpeBar(b.ges)}</div>` : ''}
     </div>` : '';
 
+  // Message par défaut formulaire
+  const msgDefaut = `Je suis intéressé(e) par ${titre}${ville ? ' à ' + ville : ''} et souhaite organiser une visite.`;
+
   const html = `
-    ${galerie}
-    <div class="content">
-      <div class="left">
-        <div class="prop-header">
-          ${b.badge ? `<div class="prop-badge">${b.badge}</div>` : ''}
-          <h1 class="prop-title">${b.titre}</h1>
-          <div class="prop-loc">📍 ${ville}${b.soustitre && b.soustitre !== ville ? ' — ' + b.soustitre : ''}</div>
-          <div class="prop-price-big">${b.prix}</div>
-          ${b.ref ? `<div style="font-size:11px;color:var(--text-light);margin-top:8px;letter-spacing:1px">Réf. ${b.ref}</div>` : ''}
-        </div>
-        ${tags.length ? `<div class="prop-tags">${tags.map(t=>`<div class="tag">${t}</div>`).join('')}</div>` : ''}
-        ${b.accroche ? `<p style="font-size:15px;color:var(--navy);font-style:italic;margin-bottom:20px;line-height:1.7">${b.accroche}</p>` : ''}
+    ${galHTML}
+    <div class="wrap">
+      <div>
+        ${b.badge ? `<div class="prop-badge">${b.badge}</div>` : ''}
+        <h1 class="prop-title">${titre}</h1>
+        <div class="prop-loc">📍 ${loc || ville}</div>
+        <div class="prop-price">${prix}</div>
+        ${b.rente ? `<div class="prop-ref">Rente mensuelle : ${b.rente}</div>` : ''}
+        ${b.ref ? `<div class="prop-ref">Réf. ${b.ref}</div>` : ''}
+
+        ${tags.length ? `<div class="tags">${tags.map(t=>`<div class="tag">${t}</div>`).join('')}</div>` : ''}
+
+        ${b.accroche ? `<p style="font-size:15px;font-style:italic;color:var(--navy);line-height:1.75;margin-bottom:24px">${b.accroche}</p>` : ''}
+
         ${b.description ? `<h2 class="section-h">Description</h2><p class="desc">${b.description.replace(/\n/g,'<br>')}</p>` : ''}
+
         ${equips ? `<h2 class="section-h">Équipements & prestations</h2><div class="equip-grid">${equips}</div>` : ''}
+
+        ${dpeHTML}
       </div>
-      <div class="sidebar">
-        <div class="contact-card">
-          <h3>Intéressé par ce bien ?</h3>
-          <p>Contactez-nous pour organiser une visite ou obtenir plus d'informations.</p>
-          <a href="mailto:agsimmo06@gmail.com?subject=Demande - ${encodeURIComponent(b.titre)}" class="btn-contact">Envoyer un message</a>
-          <a href="tel:+33493692828" class="btn-tel">📞 04 93 69 28 28</a>
+
+      <div>
+        <div class="sticky-card">
+          <div class="sticky-price">${prix}</div>
+          <div class="sticky-sub">${titre}${ville ? ' · ' + ville : ''}</div>
+          <form name="visite-fiche" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="envoyerVisite(event, this)">
+            <input type="hidden" name="form-name" value="visite-fiche">
+            <input type="hidden" name="bien" value="${titre} — ${prix}">
+            <input type="hidden" name="bot-field" style="display:none">
+            <div class="form-group">
+              <label>Nom & Prénom *</label>
+              <input type="text" name="nom" placeholder="Jean Dupont" required>
+            </div>
+            <div class="form-group">
+              <label>Téléphone *</label>
+              <input type="tel" name="telephone" placeholder="06 00 00 00 00" required>
+            </div>
+            <div class="form-group">
+              <label>Email *</label>
+              <input type="email" name="email" placeholder="votre@email.com" required>
+            </div>
+            <div class="form-group">
+              <label>Message</label>
+              <textarea name="message">${msgDefaut}</textarea>
+            </div>
+            <button type="submit" class="sticky-submit">Demander une visite →</button>
+            <p class="msg-ok" id="msg-ok">✓ Message envoyé ! Nous vous recontactons rapidement.</p>
+            <p class="msg-err" id="msg-err">⚠️ Erreur, veuillez réessayer.</p>
+          </form>
+          <div class="sticky-contacts">
+            <div class="sticky-contact-line">📞 <a href="tel:+33607131181">Philippe — 06 07 13 11 81</a></div>
+            <div class="sticky-contact-line">📞 <a href="tel:+33681140665">Matéo — 06 81 14 06 65</a></div>
+            <div class="sticky-contact-line">✉️ <a href="mailto:agsimmo06@gmail.com">agsimmo06@gmail.com</a></div>
+          </div>
         </div>
-        ${dpeHtml}
       </div>
     </div>`;
 
-  document.title = b.titre + ' | AGS Immobilier';
+  document.title = titre + ' | AGS Immobilier';
   document.getElementById('page-content').innerHTML = html;
+}
+
+async function envoyerVisite(e, form) {
+  e.preventDefault();
+  const data = new FormData(form);
+  try {
+    const r = await fetch('/', { method:'POST', body: data });
+    if (r.ok) {
+      document.getElementById('msg-ok').style.display = 'block';
+      form.reset();
+    } else { document.getElementById('msg-err').style.display = 'block'; }
+  } catch(err) { document.getElementById('msg-err').style.display = 'block'; }
 }
 
 chargerFiche();

@@ -47,7 +47,7 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
 .card-title { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--navy); font-weight:400; }
 .card-body { padding:24px; }
 
-.stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px; }
+.stats-row { display:grid; grid-template-columns:repeat(6,1fr); gap:16px; margin-bottom:24px; }
 .stat-card { background:white; border-radius:2px; padding:20px 24px; box-shadow:0 1px 4px rgba(0,0,0,.08); }
 .stat-num { font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:300; color:var(--navy); line-height:1; }
 .stat-label { font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#9CA3AF; margin-top:4px; }
@@ -83,7 +83,7 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
 
 .photo-zone { border:2px dashed var(--border); padding:16px; text-align:center; cursor:pointer; margin-bottom:12px; }
 .photo-zone p { font-size:12px; color:#9CA3AF; }
-.photo-preview-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:12px; }
+.photo-preview-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:8px; margin-top:12px; }
 .photo-preview-item { position:relative; aspect-ratio:4/3; }
 .photo-preview-item img { width:100%; height:100%; object-fit:cover; }
 .photo-remove { position:absolute; top:4px; right:4px; background:rgba(231,76,60,.9); color:white; border:none; width:20px; height:20px; cursor:pointer; font-size:12px; }
@@ -149,10 +149,12 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
 
   <div style="max-width:1400px;margin:0 auto;padding:24px 32px 8px;">
     <div class="stats-row">
-      <div class="stat-card"><div class="stat-num" id="stat-total">0</div><div class="stat-label">Biens total</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-total">0</div><div class="stat-label">Total</div></div>
       <div class="stat-card"><div class="stat-num" id="stat-actifs">0</div><div class="stat-label">En ligne</div></div>
-      <div class="stat-card"><div class="stat-num" id="stat-vente">0</div><div class="stat-label">En vente</div></div>
-      <div class="stat-card"><div class="stat-num" id="stat-viager">0</div><div class="stat-label">Viager</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-appart">0</div><div class="stat-label">Appartements</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-maison">0</div><div class="stat-label">Maisons</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-viager">0</div><div class="stat-label">Viagers</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-commercial">0</div><div class="stat-label">Commerciaux</div></div>
     </div>
   </div>
 
@@ -278,11 +280,29 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
                 <label class="checkbox-item"><input type="checkbox" value="Terrasse"> Terrasse</label>
                 <label class="checkbox-item"><input type="checkbox" value="Balcon"> Balcon</label>
                 <label class="checkbox-item"><input type="checkbox" value="Piscine"> Piscine</label>
+                <label class="checkbox-item"><input type="checkbox" value="Jacuzzi"> Jacuzzi</label>
                 <label class="checkbox-item"><input type="checkbox" value="Jardin"> Jardin</label>
                 <label class="checkbox-item"><input type="checkbox" value="Climatisation"> Climatisation</label>
                 <label class="checkbox-item"><input type="checkbox" value="Cuisine équipée"> Cuisine équipée</label>
+                <label class="checkbox-item"><input type="checkbox" value="Cuisine américaine"> Cuisine américaine</label>
                 <label class="checkbox-item"><input type="checkbox" value="Parquet"> Parquet</label>
+                <label class="checkbox-item"><input type="checkbox" value="Carrelage"> Carrelage</label>
                 <label class="checkbox-item"><input type="checkbox" value="Lumineux"> Lumineux</label>
+                <label class="checkbox-item"><input type="checkbox" value="Vue mer"> Vue mer</label>
+                <label class="checkbox-item"><input type="checkbox" value="Vue montagne"> Vue montagne</label>
+                <label class="checkbox-item"><input type="checkbox" value="Cheminée"> Cheminée</label>
+                <label class="checkbox-item"><input type="checkbox" value="Digicode / Interphone"> Digicode / Interphone</label>
+                <label class="checkbox-item"><input type="checkbox" value="Gardien"> Gardien</label>
+                <label class="checkbox-item"><input type="checkbox" value="Vidéosurveillance"> Vidéosurveillance</label>
+                <label class="checkbox-item"><input type="checkbox" value="Alarme"> Alarme</label>
+                <label class="checkbox-item"><input type="checkbox" value="Double vitrage"> Double vitrage</label>
+                <label class="checkbox-item"><input type="checkbox" value="Volets roulants"> Volets roulants</label>
+                <label class="checkbox-item"><input type="checkbox" value="Cellier"> Cellier</label>
+                <label class="checkbox-item"><input type="checkbox" value="Local vélos"> Local vélos</label>
+                <label class="checkbox-item"><input type="checkbox" value="Proche commerces"> Proche commerces</label>
+                <label class="checkbox-item"><input type="checkbox" value="Proche transports"> Proche transports</label>
+                <label class="checkbox-item"><input type="checkbox" value="Proche écoles"> Proche écoles</label>
+                <label class="checkbox-item"><input type="checkbox" value="Proche mer"> Proche mer</label>
               </div>
             </div>
 
@@ -561,14 +581,12 @@ async function chargerDepuisGitHub() {
     if (r.ok) {
       const d = await r.json();
       const biens = JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\n/g,'')))));
-      // Merger avec les données locales (locales = vérité)
-      const local = getBiens();
-      if (local.length === 0 && biens.length > 0) {
-        // Pas de données locales, charger depuis GitHub
+      // Toujours charger depuis GitHub (source de vérité)
+      if (Array.isArray(biens) && biens.length > 0) {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(biens));
       }
     }
-  } catch(e) {}
+  } catch(e) { console.log('Erreur chargement GitHub:', e); }
 }
 
 // ══════════════════════════════════════════
@@ -580,8 +598,10 @@ function chargerBiens() {
 
   document.getElementById('stat-total').textContent = biens.length;
   document.getElementById('stat-actifs').textContent = biens.filter(b=>b.actif).length;
-  document.getElementById('stat-vente').textContent = biens.filter(b=>['appartement','maison','commercial','terrain'].includes(b.type)).length;
+  document.getElementById('stat-appart').textContent = biens.filter(b=>b.type==='appartement').length;
+  document.getElementById('stat-maison').textContent = biens.filter(b=>['maison','villa'].includes(b.type)).length;
   document.getElementById('stat-viager').textContent = biens.filter(b=>b.type==='viager').length;
+  document.getElementById('stat-commercial').textContent = biens.filter(b=>b.type==='commercial').length;
 
   if (!biens.length) {
     container.innerHTML = '<div class="empty-state"><div class="icon">🏠</div><p>Aucun bien.<br>Cliquez sur "+ Nouveau bien" pour commencer.</p></div>';
