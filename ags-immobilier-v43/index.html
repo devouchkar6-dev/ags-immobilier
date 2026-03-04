@@ -4,66 +4,69 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style id="mobile-css">
-/* === MOBILE iOS SAFARI === */
+/* === MOBILE ONLY (max 768px) === */
 @media only screen and (max-width: 768px) {
   nav ul { display: none !important; }
   .nav-cta { display: none !important; }
   nav { padding: 12px 20px !important; }
 
-  .hero { height: auto !important; min-height: 0 !important; overflow: visible !important; padding: 90px 20px 40px !important; display: block !important; }
-  .hero-content { position: relative; z-index: 2; padding: 0; }
-  .hero h1 { font-size: 30px; line-height: 1.2; }
-  .hero-btns { flex-direction: column; gap: 10px; }
-  .btn-primary { display: block; text-align: center; width: 100%; box-sizing: border-box; }
-  .btn-ghost { display: block; text-align: center; width: 100%; box-sizing: border-box; }
-  .hero-stats { position: static; display: flex; justify-content: space-around; padding: 20px 0; margin-top: 28px; border-top: 1px solid rgba(255,255,255,.15); }
+  .hero { height: auto !important; min-height: 100svh !important; overflow: visible !important; padding: 90px 20px 40px !important; display: flex !important; flex-direction: column !important; justify-content: center !important; }
+  .hero-content { max-width: 100% !important; padding: 0 !important; }
+  .hero h1 { font-size: 36px !important; }
+  .hero-btns { flex-direction: column !important; gap: 10px !important; }
+  .btn-primary { display: block !important; text-align: center !important; width: 100% !important; box-sizing: border-box !important; padding: 14px 20px !important; }
+  .btn-ghost { display: block !important; text-align: center !important; width: 100% !important; box-sizing: border-box !important; padding: 14px 20px !important; }
+  .hero-stats { position: static !important; display: flex !important; justify-content: space-around !important; padding: 20px 0 !important; margin-top: 28px !important; border-top: 1px solid rgba(255,255,255,.15) !important; gap: 0 !important; }
 
-  .search-bar { flex-direction: column; height: auto; padding: 16px 20px; }
-  .search-field { width: 100%; border-right: none; border-bottom: 1px solid rgba(255,255,255,.1); padding: 10px 0; }
-  .search-submit { width: 100%; margin-top: 10px; }
+  .search-bar { flex-direction: column !important; height: auto !important; padding: 16px 20px !important; }
+  .search-field { width: 100% !important; border-right: none !important; border-bottom: 1px solid rgba(255,255,255,.1) !important; padding: 10px 0 !important; }
+  .search-submit { width: 100% !important; margin-top: 10px !important; }
 
-  .props-grid { grid-template-columns: 1fr; }
-  .about { grid-template-columns: 1fr; padding: 48px 18px; gap: 28px; }
-  .services-grid { grid-template-columns: 1fr; }
-  .locs-grid { grid-template-columns: 1fr 1fr; }
-  .team-grid { grid-template-columns: 1fr; }
-  .testi-grid { grid-template-columns: 1fr; }
-  .contact-wrap { grid-template-columns: 1fr; gap: 28px; }
-  .form-row { grid-template-columns: 1fr; }
-  .footer-top { grid-template-columns: 1fr; }
-  .footer-bottom { flex-direction: column; text-align: center; }
+  .props-grid { grid-template-columns: 1fr !important; }
+  .about { grid-template-columns: 1fr !important; padding: 48px 18px !important; gap: 28px !important; }
+  .services-grid { grid-template-columns: 1fr !important; }
+  .locs-grid { grid-template-columns: 1fr 1fr !important; }
+  .team-grid { grid-template-columns: 1fr !important; }
+  .testi-grid { grid-template-columns: 1fr !important; }
+  .contact-wrap { grid-template-columns: 1fr !important; gap: 28px !important; }
+  .form-row { grid-template-columns: 1fr !important; }
+  .footer-top { grid-template-columns: 1fr !important; }
+  .footer-bottom { flex-direction: column !important; text-align: center !important; }
 
-  .properties { padding: 48px 18px; }
-  .services { padding: 48px 18px; }
-  .locations { padding: 48px 18px; }
-  .team { padding: 48px 18px; }
-  .contact-section { padding: 48px 18px; }
-  footer { padding: 40px 18px 80px; }
-  .full-form { padding: 24px 16px; }
+  .properties { padding: 48px 18px !important; }
+  .services { padding: 48px 18px !important; }
+  .locations { padding: 48px 18px !important; }
+  .team { padding: 48px 18px !important; }
+  .contact-section { padding: 48px 18px !important; }
+  footer { padding: 40px 18px 80px !important; }
+  .full-form { padding: 24px 16px !important; }
 
-  body { padding-bottom: 68px; }
+  body { padding-bottom: 68px !important; }
   .mob-bottomnav {
-    display: flex;
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    height: 60px;
-    background: #0F1E36;
-    z-index: 500;
-    border-top: 1px solid rgba(255,255,255,.1);
+    display: flex !important;
+    position: fixed !important;
+    bottom: 0 !important; left: 0 !important; right: 0 !important;
+    height: 60px !important; max-height: 60px !important;
+    background: #0F1E36 !important;
+    z-index: 500 !important;
+    border-top: 1px solid rgba(255,255,255,.1) !important;
+    overflow: hidden !important;
   }
   .mob-bottomnav a {
-    flex: 1; display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    padding: 8px 2px; text-decoration: none;
-    color: rgba(255,255,255,.5); font-size: 8px;
-    letter-spacing: 1px; text-transform: uppercase; gap: 4px;
+    flex: 1 !important; display: flex !important; flex-direction: column !important;
+    align-items: center !important; justify-content: center !important;
+    padding: 8px 2px !important; text-decoration: none !important;
+    color: rgba(255,255,255,.5) !important; font-size: 8px !important;
+    letter-spacing: 1px !important; text-transform: uppercase !important; gap: 4px !important;
   }
-  .mob-bottomnav .nav-icon { font-size: 16px; }
+  .mob-bottomnav .nav-icon { font-size: 16px !important; }
 }
+/* === DESKTOP ONLY (min 769px) === */
 @media only screen and (min-width: 769px) {
-  .mob-bottomnav { display: none; }
+  .mob-bottomnav { display: none !important; }
 }
 </style>
+
 
 <title>AGS Immobilier — Agence Indépendante au Cannet</title>
 <meta name="description" content="AGS Immobilier, agence indépendante au Cannet. Vente, achat, estimation, viager sur Cannes, Mougins, Mandelieu et Vallauris. Philippe SERVAS.">
@@ -334,70 +337,6 @@
   /* ── WHATSAPP BUTTON ── */
   .whatsapp-btn { position: fixed; bottom: 28px; left: 28px; z-index: 999; width: 56px; height: 56px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,.4); text-decoration: none; transition: transform .3s, box-shadow .3s; font-size: 26px; }
   .whatsapp-btn:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,.5); }
-
-/* ═══════════════════════════════════════
-   MOBILE — max-width: 768px
-
-/* ── MOBILE ── */
-
-  nav { padding: 12px 20px !important; }
-  .logo img { height: 36px !important; }
-
-  .hero { height: auto !important; min-height: 0 !important; overflow: visible !important; display: block !important; padding: 90px 20px 36px !important; }
-  .hero-content { position: relative !important; z-index: 2 !important; padding: 0 !important; max-width: 100% !important; }
-  .hero h1 { font-size: 30px !important; line-height: 1.2 !important; }
-  .hero p { font-size: 13px !important; margin-bottom: 20px !important; }
-  .hero-btns { flex-direction: column !important; gap: 10px !important; }
-  .btn-primary, .btn-ghost { display: block !important; text-align: center !important; width: 100% !important; box-sizing: border-box !important; }
-  .hero-stats { position: relative !important; bottom: auto !important; right: auto !important; display: flex !important; justify-content: space-around !important; padding: 20px 0 !important; margin-top: 28px !important; border-top: 1px solid rgba(255,255,255,.15) !important; }
-
-  .search-bar { flex-direction: column !important; height: auto !important; padding: 16px 20px !important; }
-  .search-field { width: 100% !important; border-right: none !important; border-bottom: 1px solid rgba(255,255,255,.1) !important; padding: 10px 0 !important; }
-  .search-submit { width: 100% !important; margin-top: 10px !important; }
-
-  .properties { padding: 48px 18px !important; }
-  .props-grid { grid-template-columns: 1fr !important; }
-
-  .about { grid-template-columns: 1fr !important; padding: 48px 18px !important; gap: 28px !important; }
-  .about-imgs { height: 220px !important; }
-  .about-img-main { width: 80% !important; height: 170px !important; }
-
-  .services { padding: 48px 18px !important; }
-  .services-grid { grid-template-columns: 1fr !important; }
-
-  .locations { padding: 48px 18px !important; }
-  .locs-grid { grid-template-columns: 1fr 1fr !important; }
-
-  .team { padding: 48px 18px !important; }
-  .team-grid { grid-template-columns: 1fr !important; }
-
-  .testimonials { padding: 48px 18px !important; }
-  .testi-grid { grid-template-columns: 1fr !important; }
-
-  .contact-section { padding: 48px 18px !important; }
-  .contact-wrap { grid-template-columns: 1fr !important; gap: 28px !important; }
-  .full-form { padding: 24px 16px !important; }
-  .form-row { grid-template-columns: 1fr !important; }
-
-  footer { padding: 40px 18px 80px !important; }
-  .footer-top { grid-template-columns: 1fr !important; gap: 24px !important; }
-  .footer-bottom { flex-direction: column !important; text-align: center !important; }
-
-  body { padding-bottom: 68px !important; }
-  
-  .mob-bottomnav a {
-    flex: 1 !important; display: flex !important; flex-direction: column !important;
-    align-items: center !important; justify-content: center !important;
-    padding: 8px 2px !important; text-decoration: none !important;
-    color: rgba(255,255,255,.5) !important; font-size: 8px !important;
-    letter-spacing: 1px !important; text-transform: uppercase !important; gap: 4px !important;
-  }
-  .mob-bottomnav .nav-icon { font-size: 16px !important; }
-}
-
-/* Global : bottomnav cachée par défaut sur desktop */
-
-
 
 </style>
 <body>
@@ -881,19 +820,22 @@ const VILLE_LABELS = {
 
 // ── Chargement des biens depuis l'API ──
 async function chargerBiensAPIMO() {
-  // Charger depuis biens.json sur GitHub (mis à jour par l'admin)
+  // Lire biens.json directement depuis GitHub raw (mis à jour par l'admin)
+  const GITHUB_RAW = 'https://raw.githubusercontent.com/devouchkar6-dev/ags-immobilier/main/ags-immobilier-v44/biens.json';
   try {
-    const res = await fetch('biens.json?t=' + Date.now());
+    const res = await fetch(GITHUB_RAW + '?t=' + Date.now());
     if (res.ok) {
       const biens = await res.json();
-      if (biens.length > 0) {
+      if (Array.isArray(biens) && biens.length > 0) {
         BIENS_APIMO = biens;
         mettreAJourGrilleBiens(BIENS_APIMO);
-        console.log('✓ biens.json : ' + BIENS_APIMO.length + ' biens chargés');
+        console.log('✓ GitHub : ' + BIENS_APIMO.length + ' biens chargés');
         return true;
       }
     }
-  } catch(e) {}
+  } catch(e) {
+    console.log('Erreur chargement biens:', e);
+  }
   // Fallback : biens statiques déjà dans le HTML
   return false;
 }

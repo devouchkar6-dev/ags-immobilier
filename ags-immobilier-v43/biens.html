@@ -425,12 +425,11 @@ async function chargerBiensAPIMO() {
 
   // 2. Fallback APIMO
   try {
-    const res = await fetch('/api/biens');
-    const contentType = res.headers.get('content-type') || '';
-    if (!res.ok || !contentType.includes('application/json')) { return false; }
-    const data = await res.json();
-    if (data.error) return false;
-    BIENS_APIMO = data.biens || [];
+    const res = await fetch('https://raw.githubusercontent.com/devouchkar6-dev/ags-immobilier/main/ags-immobilier-v44/biens.json?t=' + Date.now());
+    if (!res.ok) { return false; }
+    const biens = await res.json();
+    if (!Array.isArray(biens) || biens.length === 0) { return false; }
+    BIENS_APIMO = biens;
     afficherBiens(BIENS_APIMO);
     return true;
   } catch(e) { return false; }
