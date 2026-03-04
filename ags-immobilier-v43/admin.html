@@ -7,158 +7,113 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --navy: #1B2D4F;
-  --navy-deep: #0F1E36;
-  --accent: #5B9BD5;
-  --green: #27ae60;
-  --red: #e74c3c;
-  --orange: #f39c12;
-  --light: #F8F5F0;
-  --border: rgba(27,45,79,.12);
+  --navy: #1B2D4F; --navy-deep: #0F1E36; --accent: #5B9BD5;
+  --green: #27ae60; --red: #e74c3c; --orange: #f39c12;
+  --light: #F8F5F0; --border: rgba(27,45,79,.12);
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min-height:100vh; }
 
-/* ── LOGIN ── */
-#login-screen {
-  position:fixed; inset:0; background:var(--navy-deep);
-  display:flex; align-items:center; justify-content:center; z-index:9999;
-}
-.login-box {
-  background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1);
-  padding:48px; width:360px; text-align:center;
-}
+#login-screen { position:fixed; inset:0; background:var(--navy-deep); display:flex; align-items:center; justify-content:center; z-index:9999; }
+.login-box { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); padding:48px; width:360px; text-align:center; }
 .login-box img { height:60px; margin-bottom:24px; }
 .login-box h2 { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; color:white; margin-bottom:8px; }
 .login-box p { font-size:12px; color:rgba(255,255,255,.4); letter-spacing:1px; text-transform:uppercase; margin-bottom:32px; }
-.login-box input {
-  width:100%; padding:14px 16px; background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.15); color:white; font-family:'Jost',sans-serif;
-  font-size:14px; margin-bottom:12px; outline:none;
-}
+.login-box input { width:100%; padding:14px 16px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.15); color:white; font-family:'Jost',sans-serif; font-size:14px; margin-bottom:12px; outline:none; }
 .login-box input::placeholder { color:rgba(255,255,255,.3); }
 .login-box input:focus { border-color:var(--accent); }
-.login-btn {
-  width:100%; padding:14px; background:var(--accent); color:white; border:none;
-  font-family:'Jost',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase;
-  cursor:pointer; transition:opacity .2s;
-}
-.login-btn:hover { opacity:.85; }
+.login-btn { width:100%; padding:14px; background:var(--accent); color:white; border:none; font-family:'Jost',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; }
 .login-error { color:#e74c3c; font-size:12px; margin-top:8px; display:none; }
 
-/* ── LAYOUT ── */
 #app { display:none; }
-.topbar {
-  background:var(--navy-deep); padding:0 32px; display:flex;
-  justify-content:space-between; align-items:center; height:60px;
-  box-shadow:0 2px 12px rgba(0,0,0,.3);
-}
+.topbar { background:var(--navy-deep); padding:0 32px; display:flex; justify-content:space-between; align-items:center; height:60px; box-shadow:0 2px 12px rgba(0,0,0,.3); }
 .topbar-logo { display:flex; align-items:center; gap:14px; }
 .topbar-logo img { height:36px; }
-.topbar-logo span { font-family:'Cormorant Garamond',serif; font-size:18px; color:white; font-weight:300; }
-.topbar-tag { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.3); }
-.logout-btn {
-  background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15);
-  color:rgba(255,255,255,.6); padding:8px 20px; font-size:11px; letter-spacing:1.5px;
-  text-transform:uppercase; cursor:pointer; font-family:'Jost',sans-serif; transition:all .2s;
-}
-.logout-btn:hover { background:rgba(255,255,255,.15); color:white; }
+.logout-btn { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15); color:rgba(255,255,255,.6); padding:8px 20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; font-family:'Jost',sans-serif; }
 
-.main { display:grid; grid-template-columns:1fr 400px; gap:24px; padding:28px 32px; max-width:1400px; margin:0 auto; }
+/* GITHUB CONFIG BANNER */
+.github-banner { background:#fff3cd; border:1px solid #ffc107; padding:12px 24px; display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+.github-banner.ok { background:#d4edda; border-color:#27ae60; }
+.github-banner span { font-size:13px; color:#856404; }
+.github-banner.ok span { color:#155724; }
+.github-banner input { flex:1; min-width:200px; padding:8px 12px; border:1px solid #ffc107; font-family:'Jost',sans-serif; font-size:12px; background:white; }
+.github-banner.ok input { border-color:#27ae60; }
+.btn-config { background:#856404; color:white; border:none; padding:8px 16px; font-size:11px; cursor:pointer; font-family:'Jost',sans-serif; white-space:nowrap; }
+.github-banner.ok .btn-config { background:#155724; }
 
-/* ── CARDS ── */
+.main { display:grid; grid-template-columns:1fr 420px; gap:24px; padding:24px 32px; max-width:1400px; margin:0 auto; }
 .card { background:white; border-radius:2px; box-shadow:0 1px 4px rgba(0,0,0,.08); }
 .card-header { padding:20px 24px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
 .card-title { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--navy); font-weight:400; }
 .card-body { padding:24px; }
 
-/* ── STATS ── */
 .stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px; }
 .stat-card { background:white; border-radius:2px; padding:20px 24px; box-shadow:0 1px 4px rgba(0,0,0,.08); }
 .stat-num { font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:300; color:var(--navy); line-height:1; }
 .stat-label { font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#9CA3AF; margin-top:4px; }
 
-/* ── LISTE BIENS ── */
-.bien-item {
-  border:1px solid var(--border); padding:16px; margin-bottom:12px;
-  display:grid; grid-template-columns:80px 1fr auto; gap:16px; align-items:center;
-  transition:border-color .2s; cursor:default;
-}
+.bien-item { border:1px solid var(--border); padding:16px; margin-bottom:12px; display:grid; grid-template-columns:80px 1fr auto; gap:16px; align-items:center; }
 .bien-item:hover { border-color:var(--accent); }
 .bien-thumb { width:80px; height:60px; object-fit:cover; background:#f0f2f5; }
-.bien-info h4 { font-size:14px; font-weight:400; color:var(--navy); margin-bottom:4px; }
+.bien-info h4 { font-size:14px; font-weight:400; margin-bottom:4px; }
 .bien-info p { font-size:12px; color:#6B7280; }
 .bien-badge { display:inline-block; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 8px; margin-top:6px; }
-.badge-vente { background:rgba(91,155,213,.1); color:var(--accent); }
+.badge-vente,.badge-appartement,.badge-maison { background:rgba(91,155,213,.1); color:var(--accent); }
 .badge-viager { background:rgba(243,156,18,.1); color:var(--orange); }
 .badge-commercial { background:rgba(39,174,96,.1); color:var(--green); }
-.badge-location { background:rgba(155,89,182,.1); color:#9b59b6; }
 .bien-actions { display:flex; flex-direction:column; gap:8px; }
-.btn-edit { background:var(--navy); color:white; border:none; padding:8px 16px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; font-family:'Jost',sans-serif; transition:opacity .2s; }
-.btn-edit:hover { opacity:.8; }
-.btn-delete { background:rgba(231,76,60,.1); color:var(--red); border:1px solid rgba(231,76,60,.2); padding:8px 16px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; font-family:'Jost',sans-serif; transition:all .2s; }
-.btn-delete:hover { background:var(--red); color:white; }
-.btn-toggle { padding:8px 16px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; font-family:'Jost',sans-serif; border:none; transition:all .2s; }
+.btn-edit { background:var(--navy); color:white; border:none; padding:8px 16px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; font-family:'Jost',sans-serif; }
+.btn-delete { background:rgba(231,76,60,.1); color:var(--red); border:1px solid rgba(231,76,60,.2); padding:8px 16px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; font-family:'Jost',sans-serif; }
+.btn-toggle { padding:8px 16px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; font-family:'Jost',sans-serif; border:none; }
 .btn-toggle.actif { background:rgba(39,174,96,.1); color:var(--green); border:1px solid rgba(39,174,96,.2); }
 .btn-toggle.inactif { background:rgba(231,76,60,.1); color:var(--red); border:1px solid rgba(231,76,60,.2); }
 
-/* ── FORMULAIRE ── */
-.form-section { margin-bottom:24px; }
-.form-section-title { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid var(--border); }
-.form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
+.form-section { margin-bottom:20px; }
+.form-section-title { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:10px; padding-bottom:6px; border-bottom:1px solid var(--border); }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:10px; }
 .form-row.full { grid-template-columns:1fr; }
-.form-group { display:flex; flex-direction:column; gap:6px; }
+.form-group { display:flex; flex-direction:column; gap:5px; }
 .form-group label { font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:#6B7280; }
-.form-group input, .form-group select, .form-group textarea {
-  padding:10px 12px; border:1px solid var(--border); font-family:'Jost',sans-serif;
-  font-size:13px; color:var(--navy); outline:none; transition:border-color .2s; background:white;
-}
+.form-group input, .form-group select, .form-group textarea { padding:10px 12px; border:1px solid var(--border); font-family:'Jost',sans-serif; font-size:13px; color:var(--navy); outline:none; background:white; }
 .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color:var(--accent); }
 .form-group textarea { resize:vertical; min-height:80px; }
 .checkbox-group { display:flex; flex-wrap:wrap; gap:8px; }
-.checkbox-item { display:flex; align-items:center; gap:6px; font-size:12px; cursor:pointer; padding:6px 10px; border:1px solid var(--border); transition:all .2s; }
-.checkbox-item:hover { border-color:var(--accent); }
+.checkbox-item { display:flex; align-items:center; gap:6px; font-size:12px; cursor:pointer; padding:6px 10px; border:1px solid var(--border); }
 .checkbox-item input { width:14px; height:14px; cursor:pointer; accent-color:var(--accent); }
 
-/* Photos */
-.photo-zone { border:2px dashed var(--border); padding:16px; text-align:center; cursor:pointer; transition:border-color .2s; margin-bottom:12px; }
-.photo-zone:hover { border-color:var(--accent); }
+.photo-zone { border:2px dashed var(--border); padding:16px; text-align:center; cursor:pointer; margin-bottom:12px; }
 .photo-zone p { font-size:12px; color:#9CA3AF; }
 .photo-preview-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:12px; }
 .photo-preview-item { position:relative; aspect-ratio:4/3; }
 .photo-preview-item img { width:100%; height:100%; object-fit:cover; }
-.photo-remove { position:absolute; top:4px; right:4px; background:rgba(231,76,60,.9); color:white; border:none; width:20px; height:20px; cursor:pointer; font-size:12px; display:flex; align-items:center; justify-content:center; }
+.photo-remove { position:absolute; top:4px; right:4px; background:rgba(231,76,60,.9); color:white; border:none; width:20px; height:20px; cursor:pointer; font-size:12px; }
 .photo-url-input { display:flex; gap:8px; margin-bottom:8px; }
 .photo-url-input input { flex:1; }
-.photo-url-input button { background:var(--accent); color:white; border:none; padding:10px 16px; cursor:pointer; font-size:12px; font-family:'Jost',sans-serif; white-space:nowrap; }
+.photo-url-input button { background:var(--accent); color:white; border:none; padding:10px 16px; cursor:pointer; font-size:12px; font-family:'Jost',sans-serif; }
 
-/* Boutons */
-.form-actions { display:flex; gap:12px; margin-top:24px; }
-.btn-save { flex:1; padding:14px; background:var(--navy); color:white; border:none; font-family:'Jost',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; transition:opacity .2s; }
-.btn-save:hover { opacity:.85; }
+.form-actions { display:flex; gap:12px; margin-top:20px; }
+.btn-save { flex:1; padding:14px; background:var(--navy); color:white; border:none; font-family:'Jost',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; }
 .btn-cancel { padding:14px 24px; background:transparent; border:1px solid var(--border); color:#6B7280; font-family:'Jost',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; }
-.btn-cancel:hover { border-color:var(--navy); color:var(--navy); }
-.btn-new { background:var(--accent); color:white; border:none; padding:10px 20px; font-family:'Jost',sans-serif; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; transition:opacity .2s; }
-.btn-new:hover { opacity:.85; }
+.btn-new { background:var(--accent); color:white; border:none; padding:10px 20px; font-family:'Jost',sans-serif; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; }
 
-/* Toast */
+.sync-status { font-size:11px; padding:4px 10px; border-radius:2px; }
+.sync-ok { background:#d4edda; color:#155724; }
+.sync-err { background:#f8d7da; color:#721c24; }
+.sync-pending { background:#fff3cd; color:#856404; }
+
 .toast { position:fixed; bottom:24px; right:24px; background:var(--navy); color:white; padding:14px 24px; font-size:13px; transform:translateY(80px); opacity:0; transition:all .3s; z-index:9999; }
 .toast.show { transform:translateY(0); opacity:1; }
 .toast.success { background:var(--green); }
 .toast.error { background:var(--red); }
-
-/* Empty */
 .empty-state { text-align:center; padding:48px; color:#9CA3AF; }
 .empty-state .icon { font-size:48px; margin-bottom:16px; }
-.empty-state p { font-size:13px; }
 
 @media(max-width:1024px) { .main { grid-template-columns:1fr; } }
-@media(max-width:768px) { .stats-row { grid-template-columns:1fr 1fr; } .topbar { padding:0 16px; } .main { padding:16px; } }
+@media(max-width:768px) { .stats-row { grid-template-columns:1fr 1fr; } .main { padding:16px; } }
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
 <div id="login-screen">
   <div class="login-box">
     <img src="images/logo.jpg" alt="AGS Immobilier" onerror="this.style.display='none'">
@@ -170,42 +125,38 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
   </div>
 </div>
 
-<!-- APP -->
 <div id="app">
   <div class="topbar">
     <div class="topbar-logo">
       <img src="images/logo.jpg" alt="AGS" onerror="this.style.display='none'">
       <div>
         <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:white;font-weight:300;">AGS Immobilier</div>
-        <div class="topbar-tag">Espace Administration</div>
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);">Administration</div>
       </div>
     </div>
-    <button class="logout-btn" onclick="logout()">Déconnexion</button>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <span class="sync-status sync-pending" id="sync-status">⚙️ Config GitHub requise</span>
+      <button class="logout-btn" onclick="logout()">Déconnexion</button>
+    </div>
   </div>
 
-  <div style="max-width:1400px;margin:0 auto;padding:28px 32px 8px;">
+  <!-- BANDEAU CONFIG GITHUB -->
+  <div class="github-banner" id="github-banner">
+    <span>🔗 Connectez GitHub pour que les biens soient visibles par tout le monde :</span>
+    <input type="password" id="github-token" placeholder="Token GitHub (ghp_...)" autocomplete="off">
+    <button class="btn-config" onclick="sauvegarderToken()">Connecter →</button>
+  </div>
+
+  <div style="max-width:1400px;margin:0 auto;padding:24px 32px 8px;">
     <div class="stats-row">
-      <div class="stat-card">
-        <div class="stat-num" id="stat-total">0</div>
-        <div class="stat-label">Biens total</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num" id="stat-actifs">0</div>
-        <div class="stat-label">En ligne</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num" id="stat-vente">0</div>
-        <div class="stat-label">En vente</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num" id="stat-viager">0</div>
-        <div class="stat-label">Viager</div>
-      </div>
+      <div class="stat-card"><div class="stat-num" id="stat-total">0</div><div class="stat-label">Biens total</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-actifs">0</div><div class="stat-label">En ligne</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-vente">0</div><div class="stat-label">En vente</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-viager">0</div><div class="stat-label">Viager</div></div>
     </div>
   </div>
 
   <div class="main">
-    <!-- LISTE -->
     <div>
       <div class="card">
         <div class="card-header">
@@ -213,30 +164,26 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
           <button class="btn-new" onclick="nouveauBien()">+ Nouveau bien</button>
         </div>
         <div class="card-body" id="liste-biens">
-          <div class="empty-state"><div class="icon">🏠</div><p>Aucun bien pour l'instant.<br>Cliquez sur "Nouveau bien" pour commencer.</p></div>
+          <div class="empty-state"><div class="icon">🏠</div><p>Aucun bien.<br>Cliquez sur "+ Nouveau bien" pour commencer.</p></div>
         </div>
       </div>
     </div>
 
-    <!-- FORMULAIRE -->
     <div>
       <div class="card" id="form-card">
-        <div class="card-header">
-          <span class="card-title" id="form-title">Nouveau bien</span>
-        </div>
+        <div class="card-header"><span class="card-title" id="form-title">Nouveau bien</span></div>
         <div class="card-body">
           <form id="bien-form" onsubmit="return false;">
 
-            <!-- INFOS GÉNÉRALES -->
             <div class="form-section">
               <div class="form-section-title">Informations générales</div>
               <div class="form-row full"><div class="form-group">
-                <label>Titre du bien *</label>
+                <label>Titre *</label>
                 <input type="text" id="f-titre" placeholder="Ex: Appartement 3 pièces vue mer" required>
               </div></div>
               <div class="form-row">
                 <div class="form-group">
-                  <label>Type de bien *</label>
+                  <label>Type *</label>
                   <select id="f-type">
                     <option value="appartement">Appartement</option>
                     <option value="maison">Maison / Villa</option>
@@ -247,14 +194,13 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
                   </select>
                 </div>
                 <div class="form-group">
-                  <label>Badge affiché</label>
+                  <label>Badge</label>
                   <select id="f-badge">
                     <option value="">Aucun</option>
                     <option value="Exclusivité AGS">Exclusivité AGS</option>
                     <option value="Nouveau">Nouveau</option>
                     <option value="Viager Occupé">Viager Occupé</option>
                     <option value="Viager Libre">Viager Libre</option>
-                    <option value="Local Commercial">Local Commercial</option>
                     <option value="À Rénover">À Rénover</option>
                     <option value="Coup de cœur">Coup de cœur</option>
                     <option value="Sous compromis">Sous compromis</option>
@@ -264,7 +210,6 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
               </div>
             </div>
 
-            <!-- LOCALISATION -->
             <div class="form-section">
               <div class="form-section-title">Localisation</div>
               <div class="form-row">
@@ -280,23 +225,22 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
                   </select>
                 </div>
                 <div class="form-group">
-                  <label>Quartier / Précision</label>
-                  <input type="text" id="f-quartier" placeholder="Ex: Rocheville, Centre-ville...">
+                  <label>Quartier</label>
+                  <input type="text" id="f-quartier" placeholder="Ex: Rocheville">
                 </div>
               </div>
             </div>
 
-            <!-- PRIX -->
             <div class="form-section">
               <div class="form-section-title">Prix</div>
               <div class="form-row">
                 <div class="form-group">
                   <label>Prix affiché *</label>
-                  <input type="text" id="f-prix" placeholder="Ex: 250 000 € ou Nous contacter">
+                  <input type="text" id="f-prix" placeholder="Ex: 250 000 €">
                 </div>
                 <div class="form-group">
-                  <label>Prix (chiffre, pour les filtres)</label>
-                  <input type="number" id="f-prix-brut" placeholder="Ex: 250000">
+                  <label>Prix numérique (filtres)</label>
+                  <input type="number" id="f-prix-brut" placeholder="250000">
                 </div>
               </div>
               <div class="form-row full" id="viager-fields" style="display:none;">
@@ -307,66 +251,32 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
               </div>
             </div>
 
-            <!-- CARACTÉRISTIQUES -->
             <div class="form-section">
               <div class="form-section-title">Caractéristiques</div>
               <div class="form-row">
-                <div class="form-group">
-                  <label>Surface habitable</label>
-                  <input type="text" id="f-surface" placeholder="Ex: 65 m²">
-                </div>
-                <div class="form-group">
-                  <label>Nombre de pièces</label>
-                  <input type="text" id="f-pieces" placeholder="Ex: 3 pièces">
-                </div>
+                <div class="form-group"><label>Surface</label><input type="text" id="f-surface" placeholder="65 m²"></div>
+                <div class="form-group"><label>Pièces</label><input type="text" id="f-pieces" placeholder="3 pièces"></div>
               </div>
               <div class="form-row">
-                <div class="form-group">
-                  <label>Chambres</label>
-                  <input type="text" id="f-chambres" placeholder="Ex: 2 chambres">
-                </div>
-                <div class="form-group">
-                  <label>Étage</label>
-                  <input type="text" id="f-etage" placeholder="Ex: 3ème étage / RDC">
-                </div>
+                <div class="form-group"><label>Chambres</label><input type="text" id="f-chambres" placeholder="2 chambres"></div>
+                <div class="form-group"><label>Étage</label><input type="text" id="f-etage" placeholder="3ème étage"></div>
               </div>
               <div class="form-row">
-                <div class="form-group">
-                  <label>Exposition</label>
-                  <input type="text" id="f-exposition" placeholder="Ex: Sud, Vue dégagée">
-                </div>
-                <div class="form-group">
-                  <label>Année de construction</label>
-                  <input type="text" id="f-annee" placeholder="Ex: 1975">
-                </div>
+                <div class="form-group"><label>Exposition</label><input type="text" id="f-exposition" placeholder="Sud, Vue mer"></div>
+                <div class="form-group"><label>Année</label><input type="text" id="f-annee" placeholder="1975"></div>
               </div>
               <div class="form-row">
-                <div class="form-group">
-                  <label>Classe énergétique (DPE)</label>
-                  <select id="f-dpe">
-                    <option value="">Non renseigné</option>
-                    <option value="A">A</option><option value="B">B</option>
-                    <option value="C">C</option><option value="D">D</option>
-                    <option value="E">E</option><option value="F">F</option>
-                    <option value="G">G</option>
-                  </select>
+                <div class="form-group"><label>DPE</label>
+                  <select id="f-dpe"><option value="">-</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option></select>
                 </div>
-                <div class="form-group">
-                  <label>GES</label>
-                  <select id="f-ges">
-                    <option value="">Non renseigné</option>
-                    <option value="A">A</option><option value="B">B</option>
-                    <option value="C">C</option><option value="D">D</option>
-                    <option value="E">E</option><option value="F">F</option>
-                    <option value="G">G</option>
-                  </select>
+                <div class="form-group"><label>GES</label>
+                  <select id="f-ges"><option value="">-</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option></select>
                 </div>
               </div>
             </div>
 
-            <!-- ÉQUIPEMENTS -->
             <div class="form-section">
-              <div class="form-section-title">Équipements & Prestations</div>
+              <div class="form-section-title">Équipements</div>
               <div class="checkbox-group" id="equipements-list">
                 <label class="checkbox-item"><input type="checkbox" value="Ascenseur"> Ascenseur</label>
                 <label class="checkbox-item"><input type="checkbox" value="Parking"> Parking</label>
@@ -376,59 +286,52 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
                 <label class="checkbox-item"><input type="checkbox" value="Balcon"> Balcon</label>
                 <label class="checkbox-item"><input type="checkbox" value="Piscine"> Piscine</label>
                 <label class="checkbox-item"><input type="checkbox" value="Jardin"> Jardin</label>
-                <label class="checkbox-item"><input type="checkbox" value="Digicode"> Digicode</label>
-                <label class="checkbox-item"><input type="checkbox" value="Gardien"> Gardien</label>
-                <label class="checkbox-item"><input type="checkbox" value="Interphone"> Interphone</label>
                 <label class="checkbox-item"><input type="checkbox" value="Climatisation"> Climatisation</label>
-                <label class="checkbox-item"><input type="checkbox" value="Double vitrage"> Double vitrage</label>
                 <label class="checkbox-item"><input type="checkbox" value="Cuisine équipée"> Cuisine équipée</label>
                 <label class="checkbox-item"><input type="checkbox" value="Parquet"> Parquet</label>
                 <label class="checkbox-item"><input type="checkbox" value="Lumineux"> Lumineux</label>
               </div>
             </div>
 
-            <!-- DESCRIPTION -->
             <div class="form-section">
               <div class="form-section-title">Description</div>
               <div class="form-row full"><div class="form-group">
-                <label>Description courte (accroche)</label>
-                <input type="text" id="f-accroche" placeholder="Ex: Bel appartement rénové avec vue dégagée">
+                <label>Accroche</label>
+                <input type="text" id="f-accroche" placeholder="Bel appartement rénové...">
               </div></div>
               <div class="form-row full"><div class="form-group">
                 <label>Description complète</label>
-                <textarea id="f-description" rows="5" placeholder="Description détaillée du bien..."></textarea>
+                <textarea id="f-description" rows="5"></textarea>
               </div></div>
             </div>
 
-            <!-- PHOTOS -->
             <div class="form-section">
-              <div class="form-section-title">Photos</div>
+              <div class="form-section-title">Photos (URLs)</div>
               <div class="photo-url-input">
                 <input type="text" id="photo-url-field" placeholder="Coller un lien URL de photo...">
                 <button type="button" onclick="ajouterPhotoURL()">Ajouter</button>
               </div>
               <div class="photo-zone" onclick="document.getElementById('photo-file-input').click()">
-                <p>📁 Cliquer pour uploader depuis l'ordinateur</p>
-                <p style="font-size:11px;margin-top:4px;">JPG, PNG — max 5 Mo par photo</p>
+                <p>📁 Uploader depuis l'ordinateur</p>
+                <p style="font-size:11px;margin-top:4px;">JPG, PNG</p>
               </div>
               <input type="file" id="photo-file-input" accept="image/*" multiple style="display:none" onchange="handlePhotoUpload(event)">
               <div class="photo-preview-grid" id="photo-preview-grid"></div>
             </div>
 
-            <!-- STATUT -->
             <div class="form-section">
               <div class="form-section-title">Statut</div>
               <div class="form-row">
                 <div class="form-group">
-                  <label>Visibilité sur le site</label>
+                  <label>Visibilité</label>
                   <select id="f-actif">
-                    <option value="1">✅ En ligne (visible)</option>
-                    <option value="0">⏸ Masqué (hors ligne)</option>
+                    <option value="1">✅ En ligne</option>
+                    <option value="0">⏸ Masqué</option>
                   </select>
                 </div>
                 <div class="form-group">
-                  <label>Référence interne</label>
-                  <input type="text" id="f-ref" placeholder="Ex: AGS-2024-001">
+                  <label>Référence</label>
+                  <input type="text" id="f-ref" placeholder="AGS-2024-001">
                 </div>
               </div>
             </div>
@@ -449,18 +352,30 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
 
 <script>
 // ══════════════════════════════════════════
-// AUTH
+// CONFIG
 // ══════════════════════════════════════════
 const PASSWORD = 'AGS2026!';
 const SESSION_KEY = 'ags_admin_session';
+const GITHUB_USER = 'devouchkar6-dev';
+const GITHUB_REPO = 'ags-immobilier';
+const GITHUB_FILE = 'ags-immobilier-v44/biens.json';
+const GITHUB_BRANCH = 'main';
 
+const VILLES = {
+  cannet:'Le Cannet', cannes:'Cannes', mougins:'Mougins',
+  vallauris:'Vallauris', mandelieu:'Mandelieu-la-Napoule', autre:'Autre'
+};
+
+// ══════════════════════════════════════════
+// AUTH
+// ══════════════════════════════════════════
 function checkLogin() {
   const pwd = document.getElementById('pwd-input').value;
   if (pwd === PASSWORD) {
     sessionStorage.setItem(SESSION_KEY, '1');
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('app').style.display = 'block';
-    chargerBiens();
+    init();
   } else {
     const err = document.getElementById('login-error');
     err.style.display = 'block';
@@ -474,12 +389,11 @@ function logout() {
   location.reload();
 }
 
-// Vérif session au chargement
 window.addEventListener('DOMContentLoaded', () => {
   if (sessionStorage.getItem(SESSION_KEY)) {
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('app').style.display = 'block';
-    chargerBiens();
+    init();
   }
   document.getElementById('f-type').addEventListener('change', function() {
     document.getElementById('viager-fields').style.display = this.value === 'viager' ? 'block' : 'none';
@@ -487,7 +401,56 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 // ══════════════════════════════════════════
-// STOCKAGE
+// GITHUB TOKEN
+// ══════════════════════════════════════════
+function getToken() {
+  return sessionStorage.getItem('gh_token') || '';
+}
+
+function sauvegarderToken() {
+  const token = document.getElementById('github-token').value.trim();
+  if (!token.startsWith('ghp_') && !token.startsWith('github_pat_')) {
+    showToast('Token invalide (doit commencer par ghp_)', 'error');
+    return;
+  }
+  sessionStorage.setItem('gh_token', token);
+  verifierToken();
+}
+
+async function verifierToken() {
+  const token = getToken();
+  if (!token) {
+    updateSyncStatus('pending', '⚙️ Config GitHub requise');
+    return false;
+  }
+  try {
+    const r = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}`, {
+      headers: { 'Authorization': `token ${token}` }
+    });
+    if (r.ok) {
+      updateSyncStatus('ok', '✅ GitHub connecté');
+      document.getElementById('github-banner').className = 'github-banner ok';
+      document.getElementById('github-token').value = '••••••••••••••••';
+      showToast('✅ GitHub connecté ! Les biens seront visibles par tous.', 'success');
+      return true;
+    } else {
+      updateSyncStatus('err', '❌ Token invalide');
+      return false;
+    }
+  } catch(e) {
+    updateSyncStatus('err', '❌ Erreur réseau');
+    return false;
+  }
+}
+
+function updateSyncStatus(type, msg) {
+  const el = document.getElementById('sync-status');
+  el.textContent = msg;
+  el.className = 'sync-status ' + (type === 'ok' ? 'sync-ok' : type === 'err' ? 'sync-err' : 'sync-pending');
+}
+
+// ══════════════════════════════════════════
+// STOCKAGE LOCAL + GITHUB
 // ══════════════════════════════════════════
 const STORAGE_KEY = 'ags_biens_admin';
 
@@ -496,44 +459,135 @@ function getBiens() {
   catch(e) { return []; }
 }
 
-function saveBiens(biens) {
+function sauvegarderLocal(biens) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(biens));
-  // Exporter aussi pour le site principal
-  localStorage.setItem('ags_biens_site', JSON.stringify(
-    biens.filter(b => b.actif).map(b => ({
-      id: b.id, url: `bien-${b.id}.html`,
-      titre: b.titre, soustitre: (b.quartier ? b.quartier + ' — ' : '') + VILLES[b.ville],
-      type: b.type, lieu: b.ville, villeFilter: b.ville,
-      ville: VILLES[b.ville] || b.ville,
-      prix: b.prix, prixBrut: parseInt(b.prixBrut) || 0,
-      caracteristiques: { surface: b.surface, pieces: b.pieces },
-      badge: b.badge, mainPhoto: b.photos?.[0] || '',
-      accroche: b.accroche, description: b.description,
-      equipements: b.equipements || []
-    }))
-  ));
 }
 
-const VILLES = {
-  cannet:'Le Cannet', cannes:'Cannes', mougins:'Mougins',
-  vallauris:'Vallauris', mandelieu:'Mandelieu-la-Napoule', autre:'Autre'
-};
+async function publierSurGitHub(biens) {
+  const token = getToken();
+  if (!token) {
+    showToast('⚠️ Sauvegardé localement. Connectez GitHub pour publier.', '');
+    return false;
+  }
+
+  updateSyncStatus('pending', '⏳ Publication...');
+
+  // Préparer le JSON pour le site
+  const biensPublics = biens.filter(b => b.actif).map(b => ({
+    id: b.id,
+    titre: b.titre,
+    soustitre: (b.quartier ? b.quartier + ' — ' : '') + (VILLES[b.ville] || b.ville),
+    type: b.type,
+    ville: VILLES[b.ville] || b.ville,
+    villeFilter: b.ville,
+    prix: b.prix,
+    prixBrut: parseInt(b.prixBrut) || 0,
+    badge: b.badge || '',
+    mainPhoto: b.photos?.[0] || '',
+    photos: b.photos || [],
+    caracteristiques: { surface: b.surface || '', pieces: b.pieces || '' },
+    accroche: b.accroche || '',
+    description: b.description || '',
+    equipements: b.equipements || [],
+    dpe: b.dpe || '',
+    ref: b.ref || ''
+  }));
+
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify(biensPublics, null, 2))));
+
+  try {
+    // Récupérer le SHA du fichier existant
+    let sha = '';
+    const getR = await fetch(
+      `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`,
+      { headers: { 'Authorization': `token ${token}` } }
+    );
+    if (getR.ok) {
+      const d = await getR.json();
+      sha = d.sha;
+    }
+
+    // Pousser le fichier
+    const body = {
+      message: `Mise à jour biens — ${new Date().toLocaleDateString('fr-FR')}`,
+      content,
+      branch: GITHUB_BRANCH
+    };
+    if (sha) body.sha = sha;
+
+    const putR = await fetch(
+      `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`,
+      {
+        method: 'PUT',
+        headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      }
+    );
+
+    if (putR.ok) {
+      updateSyncStatus('ok', '✅ Publié sur GitHub');
+      showToast('✅ Biens publiés ! Visible par tous dans 1 minute.', 'success');
+      return true;
+    } else {
+      const err = await putR.json();
+      updateSyncStatus('err', '❌ Erreur publication');
+      showToast('Erreur GitHub : ' + (err.message || 'inconnue'), 'error');
+      return false;
+    }
+  } catch(e) {
+    updateSyncStatus('err', '❌ Erreur réseau');
+    showToast('Erreur réseau', 'error');
+    return false;
+  }
+}
 
 // ══════════════════════════════════════════
-// AFFICHAGE LISTE
+// INIT — charger depuis GitHub d'abord
+// ══════════════════════════════════════════
+async function init() {
+  const token = getToken();
+  if (token) {
+    verifierToken();
+    await chargerDepuisGitHub();
+  }
+  chargerBiens();
+}
+
+async function chargerDepuisGitHub() {
+  const token = getToken();
+  if (!token) return;
+  try {
+    const r = await fetch(
+      `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`,
+      { headers: { 'Authorization': `token ${token}` } }
+    );
+    if (r.ok) {
+      const d = await r.json();
+      const biens = JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\n/g,'')))));
+      // Merger avec les données locales (locales = vérité)
+      const local = getBiens();
+      if (local.length === 0 && biens.length > 0) {
+        // Pas de données locales, charger depuis GitHub
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(biens));
+      }
+    }
+  } catch(e) {}
+}
+
+// ══════════════════════════════════════════
+// AFFICHAGE
 // ══════════════════════════════════════════
 function chargerBiens() {
   const biens = getBiens();
   const container = document.getElementById('liste-biens');
 
-  // Stats
   document.getElementById('stat-total').textContent = biens.length;
   document.getElementById('stat-actifs').textContent = biens.filter(b=>b.actif).length;
   document.getElementById('stat-vente').textContent = biens.filter(b=>['appartement','maison','commercial','terrain'].includes(b.type)).length;
   document.getElementById('stat-viager').textContent = biens.filter(b=>b.type==='viager').length;
 
   if (!biens.length) {
-    container.innerHTML = '<div class="empty-state"><div class="icon">🏠</div><p>Aucun bien pour l\'instant.<br>Cliquez sur "Nouveau bien" pour commencer.</p></div>';
+    container.innerHTML = '<div class="empty-state"><div class="icon">🏠</div><p>Aucun bien.<br>Cliquez sur "+ Nouveau bien" pour commencer.</p></div>';
     return;
   }
 
@@ -542,8 +596,8 @@ function chargerBiens() {
       <img class="bien-thumb" src="${b.photos?.[0] || 'images/placeholder.jpg'}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2260%22><rect fill=%22%23f0f2f5%22 width=%2280%22 height=%2260%22/><text x=%2240%22 y=%2235%22 text-anchor=%22middle%22 font-size=%2220%22>🏠</text></svg>'">
       <div class="bien-info">
         <h4>${b.titre}</h4>
-        <p>${VILLES[b.ville] || b.ville}${b.quartier ? ' · ' + b.quartier : ''} — ${b.prix}</p>
-        <span class="bien-badge badge-${b.type}">${b.badge || b.type}</span>
+        <p>${VILLES[b.ville]||b.ville}${b.quartier?' · '+b.quartier:''} — ${b.prix}</p>
+        <span class="bien-badge badge-${b.type}">${b.badge||b.type}</span>
         <span style="font-size:10px;margin-left:8px;color:${b.actif?'#27ae60':'#e74c3c'}">${b.actif?'● En ligne':'○ Masqué'}</span>
       </div>
       <div class="bien-actions">
@@ -570,45 +624,40 @@ function nouveauBien() {
 }
 
 function editerBien(id) {
-  const biens = getBiens();
-  const b = biens.find(x => x.id === id);
+  const b = getBiens().find(x => x.id === id);
   if (!b) return;
-
   document.getElementById('f-id').value = b.id;
-  document.getElementById('form-title').textContent = 'Modifier le bien';
-  document.getElementById('f-titre').value = b.titre || '';
-  document.getElementById('f-type').value = b.type || 'appartement';
-  document.getElementById('f-badge').value = b.badge || '';
-  document.getElementById('f-ville').value = b.ville || 'cannet';
-  document.getElementById('f-quartier').value = b.quartier || '';
-  document.getElementById('f-prix').value = b.prix || '';
-  document.getElementById('f-prix-brut').value = b.prixBrut || '';
-  document.getElementById('f-rente').value = b.rente || '';
-  document.getElementById('f-surface').value = b.surface || '';
-  document.getElementById('f-pieces').value = b.pieces || '';
-  document.getElementById('f-chambres').value = b.chambres || '';
-  document.getElementById('f-etage').value = b.etage || '';
-  document.getElementById('f-exposition').value = b.exposition || '';
-  document.getElementById('f-annee').value = b.annee || '';
-  document.getElementById('f-dpe').value = b.dpe || '';
-  document.getElementById('f-ges').value = b.ges || '';
-  document.getElementById('f-accroche').value = b.accroche || '';
-  document.getElementById('f-description').value = b.description || '';
-  document.getElementById('f-actif').value = b.actif ? '1' : '0';
-  document.getElementById('f-ref').value = b.ref || '';
-  document.getElementById('viager-fields').style.display = b.type === 'viager' ? 'block' : 'none';
-
-  // Équipements
+  document.getElementById('form-title').textContent = 'Modifier';
+  document.getElementById('f-titre').value = b.titre||'';
+  document.getElementById('f-type').value = b.type||'appartement';
+  document.getElementById('f-badge').value = b.badge||'';
+  document.getElementById('f-ville').value = b.ville||'cannet';
+  document.getElementById('f-quartier').value = b.quartier||'';
+  document.getElementById('f-prix').value = b.prix||'';
+  document.getElementById('f-prix-brut').value = b.prixBrut||'';
+  document.getElementById('f-rente').value = b.rente||'';
+  document.getElementById('f-surface').value = b.surface||'';
+  document.getElementById('f-pieces').value = b.pieces||'';
+  document.getElementById('f-chambres').value = b.chambres||'';
+  document.getElementById('f-etage').value = b.etage||'';
+  document.getElementById('f-exposition').value = b.exposition||'';
+  document.getElementById('f-annee').value = b.annee||'';
+  document.getElementById('f-dpe').value = b.dpe||'';
+  document.getElementById('f-ges').value = b.ges||'';
+  document.getElementById('f-accroche').value = b.accroche||'';
+  document.getElementById('f-description').value = b.description||'';
+  document.getElementById('f-actif').value = b.actif?'1':'0';
+  document.getElementById('f-ref').value = b.ref||'';
+  document.getElementById('viager-fields').style.display = b.type==='viager'?'block':'none';
   document.querySelectorAll('#equipements-list input[type=checkbox]').forEach(cb => {
-    cb.checked = (b.equipements || []).includes(cb.value);
+    cb.checked = (b.equipements||[]).includes(cb.value);
   });
-
-  currentPhotos = [...(b.photos || [])];
+  currentPhotos = [...(b.photos||[])];
   renderPhotoPreviews();
   document.getElementById('form-card').scrollIntoView({behavior:'smooth'});
 }
 
-function sauvegarderBien() {
+async function sauvegarderBien() {
   const titre = document.getElementById('f-titre').value.trim();
   const prix = document.getElementById('f-prix').value.trim();
   if (!titre) { showToast('Le titre est obligatoire', 'error'); return; }
@@ -636,8 +685,7 @@ function sauvegarderBien() {
     ges: document.getElementById('f-ges').value,
     accroche: document.getElementById('f-accroche').value,
     description: document.getElementById('f-description').value,
-    equipements,
-    photos: currentPhotos,
+    equipements, photos: currentPhotos,
     actif: document.getElementById('f-actif').value === '1',
     ref: document.getElementById('f-ref').value,
     updatedAt: new Date().toISOString()
@@ -645,13 +693,12 @@ function sauvegarderBien() {
 
   const biens = getBiens();
   const idx = biens.findIndex(x => x.id === id);
-  if (idx >= 0) biens[idx] = bien;
-  else biens.unshift(bien);
+  if (idx >= 0) biens[idx] = bien; else biens.unshift(bien);
 
-  saveBiens(biens);
+  sauvegarderLocal(biens);
   chargerBiens();
   annulerForm();
-  showToast('✅ Bien sauvegardé avec succès !', 'success');
+  await publierSurGitHub(biens);
 }
 
 function annulerForm() {
@@ -662,18 +709,24 @@ function annulerForm() {
   renderPhotoPreviews();
 }
 
-function supprimerBien(id) {
-  if (!confirm('Supprimer ce bien définitivement ?')) return;
+async function supprimerBien(id) {
+  if (!confirm('Supprimer ce bien ?')) return;
   const biens = getBiens().filter(b => b.id !== id);
-  saveBiens(biens);
+  sauvegarderLocal(biens);
   chargerBiens();
+  await publierSurGitHub(biens);
   showToast('Bien supprimé', 'error');
 }
 
-function toggleBien(id) {
+async function toggleBien(id) {
   const biens = getBiens();
   const b = biens.find(x => x.id === id);
-  if (b) { b.actif = !b.actif; saveBiens(biens); chargerBiens(); showToast(b.actif ? '✅ Bien mis en ligne' : '⏸ Bien masqué', 'success'); }
+  if (!b) return;
+  b.actif = !b.actif;
+  sauvegarderLocal(biens);
+  chargerBiens();
+  await publierSurGitHub(biens);
+  showToast(b.actif ? '✅ Bien mis en ligne' : '⏸ Bien masqué', 'success');
 }
 
 // ══════════════════════════════════════════
@@ -688,25 +741,19 @@ function ajouterPhotoURL() {
 }
 
 function handlePhotoUpload(event) {
-  const files = event.target.files;
-  Array.from(files).forEach(file => {
-    if (file.size > 5 * 1024 * 1024) { showToast('Photo trop lourde (max 5Mo)', 'error'); return; }
+  Array.from(event.target.files).forEach(file => {
     const reader = new FileReader();
     reader.onload = e => { currentPhotos.push(e.target.result); renderPhotoPreviews(); };
     reader.readAsDataURL(file);
   });
 }
 
-function supprimerPhoto(idx) {
-  currentPhotos.splice(idx, 1);
-  renderPhotoPreviews();
-}
+function supprimerPhoto(idx) { currentPhotos.splice(idx, 1); renderPhotoPreviews(); }
 
 function renderPhotoPreviews() {
-  const grid = document.getElementById('photo-preview-grid');
-  grid.innerHTML = currentPhotos.map((src, i) => `
+  document.getElementById('photo-preview-grid').innerHTML = currentPhotos.map((src, i) => `
     <div class="photo-preview-item">
-      <img src="${src}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%2275%22><rect fill=%22%23f0f2f5%22 width=%22100%25%22 height=%22100%25%22/></svg>'">
+      <img src="${src}">
       <button class="photo-remove" onclick="supprimerPhoto(${i})">×</button>
     </div>
   `).join('');
@@ -719,7 +766,7 @@ function showToast(msg, type='') {
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.className = 'toast show ' + type;
-  setTimeout(() => t.className = 'toast', 3000);
+  setTimeout(() => t.className = 'toast', 4000);
 }
 </script>
 </body>

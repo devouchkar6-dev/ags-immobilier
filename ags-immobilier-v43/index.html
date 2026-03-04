@@ -881,33 +881,21 @@ const VILLE_LABELS = {
 
 // ── Chargement des biens depuis l'API ──
 async function chargerBiensAPIMO() {
-  // 1. Priorité : biens saisis dans l'admin
+  // Charger depuis biens.json sur GitHub (mis à jour par l'admin)
   try {
-    const biensAdmin = JSON.parse(localStorage.getItem('ags_biens_site') || '[]');
-    if (biensAdmin.length > 0) {
-      BIENS_APIMO = biensAdmin;
-      mettreAJourGrilleBiens(BIENS_APIMO);
-      console.log('✓ Admin : ' + BIENS_APIMO.length + ' biens chargés');
-      return true;
+    const res = await fetch('biens.json?t=' + Date.now());
+    if (res.ok) {
+      const biens = await res.json();
+      if (biens.length > 0) {
+        BIENS_APIMO = biens;
+        mettreAJourGrilleBiens(BIENS_APIMO);
+        console.log('✓ biens.json : ' + BIENS_APIMO.length + ' biens chargés');
+        return true;
+      }
     }
   } catch(e) {}
-
-  // 2. Fallback : APIMO si configuré
-  try {
-    const res = await fetch('/api/biens');
-    const contentType = res.headers.get('content-type') || '';
-    if (!res.ok || !contentType.includes('application/json')) { return false; }
-    const data = await res.json();
-    if (data.error) return false;
-    BIENS_APIMO   = data.biens   || [];
-    FILTRES_APIMO = data.filtres || {};
-    mettreAJourFiltres(data.filtres);
-    mettreAJourGrilleBiens(BIENS_APIMO);
-    console.log('✓ APIMO : ' + BIENS_APIMO.length + ' biens chargés');
-    return true;
-  } catch(e) {
-    return false;
-  }
+  // Fallback : biens statiques déjà dans le HTML
+  return false;
 }
 
 // ── Mise à jour dynamique des <select> filtres ──
