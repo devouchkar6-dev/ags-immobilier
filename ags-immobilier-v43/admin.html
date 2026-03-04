@@ -371,7 +371,7 @@ const PASSWORD = 'AGS2026!';
 const SESSION_KEY = 'ags_admin_session';
 const GITHUB_USER = 'devouchkar6-dev';
 const GITHUB_REPO = 'ags-immobilier';
-const GITHUB_FILE = 'ags-immobilier-v44/biens.json';
+const GITHUB_FILE = 'ags-immobilier-v43/biens.json';
 const GITHUB_BRANCH = 'main';
 
 const VILLES = {
@@ -470,6 +470,14 @@ function updateSyncStatus(type, msg) {
 // STOCKAGE LOCAL + GITHUB
 // ══════════════════════════════════════════
 const STORAGE_KEY = 'ags_biens_admin';
+
+function formatPrix(val) {
+  if (!val) return '';
+  const s = String(val).replace(/[€\s]/g,'').trim();
+  const n = parseInt(s.replace(/\D/g,''));
+  if (isNaN(n)) return val;
+  return n.toLocaleString('fr-FR') + ' €';
+}
 
 function getBiens() {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
@@ -580,10 +588,11 @@ async function chargerDepuisGitHub() {
     );
     if (r.ok) {
       const d = await r.json();
-      const biens = JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\n/g,'')))));
-      // Toujours charger depuis GitHub (source de vérité)
-      if (Array.isArray(biens) && biens.length > 0) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(biens));
+      const biensGH = JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\n/g,'')))));
+      if (Array.isArray(biensGH) && biensGH.length > 0) {
+        // GitHub = source de vérité, on écrase le localStorage
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(biensGH));
+        console.log('✓ ' + biensGH.length + ' biens chargés depuis GitHub');
       }
     }
   } catch(e) { console.log('Erreur chargement GitHub:', e); }
@@ -676,7 +685,7 @@ function editerBien(id) {
 
 async function sauvegarderBien() {
   const titre = document.getElementById('f-titre').value.trim();
-  const prix = document.getElementById('f-prix').value.trim();
+  const prix = formatPrix(document.getElementById('f-prix').value.trim());
   if (!titre) { showToast('Le titre est obligatoire', 'error'); return; }
   if (!prix) { showToast('Le prix est obligatoire', 'error'); return; }
 
