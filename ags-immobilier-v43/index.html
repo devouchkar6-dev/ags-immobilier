@@ -963,28 +963,26 @@ function capitalise(str) {
 
 
 // ── Lancement au chargement de la page ──
-document.addEventListener('DOMContentLoaded', () => {
-  function remplirFiltreVilles(biens) {
-    const sel = document.getElementById('filter-lieu');
-    if (!sel) return;
-    // Collecter toutes les villes uniques
-    const villes = {};
-    biens.forEach(b => {
-      const key = (b.villeFilter || b.ville || '').toLowerCase().trim();
-      const label = b.ville || key;
-      if (key) villes[key] = label;
-    });
-    // Vider et reconstruire
-    sel.innerHTML = '<option value="">Tous les secteurs</option>';
-    Object.entries(villes).sort((a,b) => a[1].localeCompare(b[1])).forEach(([key, label]) => {
-      const opt = document.createElement('option');
-      opt.value = key;
-      opt.textContent = label;
-      sel.appendChild(opt);
-    });
-  }
+function remplirFiltreVilles(biens) {
+  const sel = document.getElementById('filter-lieu');
+  if (!sel) return;
+  const villes = {};
+  biens.forEach(b => {
+    const key = (b.villeFilter || b.ville || '').toLowerCase().trim();
+    const label = b.ville || key;
+    if (key) villes[key] = label;
+  });
+  sel.innerHTML = '<option value="">Tous les secteurs</option>';
+  Object.entries(villes).sort((a,b2) => a[1].localeCompare(b2[1])).forEach(([key, label]) => {
+    const opt = document.createElement('option');
+    opt.value = key;
+    opt.textContent = label;
+    sel.appendChild(opt);
+  });
+}
 
-  chargerBiensAPIMO(); // Tentative APIMO — fallback auto si non configuré
+document.addEventListener('DOMContentLoaded', () => {
+  chargerBiensAPIMO();
 });
 </script>
 
