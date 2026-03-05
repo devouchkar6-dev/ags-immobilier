@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demande envoyée — AGS Immobilier</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#1B2D4F; --navy-deep:#0F1E36; --accent:#5B9BD5; --cream:#F0F4F8; --stone:#C8D6E5; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Jost',sans-serif; background:var(--cream); color:var(--navy); min-height:100vh; display:flex; flex-direction:column; }
+
+  nav { background:var(--navy); display:flex; justify-content:space-between; align-items:center; padding:16px 60px; }
+  .logo img { height:48px; display:block; }
+
+  .main { flex:1; display:flex; align-items:center; justify-content:center; padding:60px 20px; }
+  .card { background:white; max-width:560px; width:100%; padding:64px 56px; text-align:center; box-shadow:0 8px 48px rgba(27,45,79,.1); }
+
+  .icon { font-size:64px; margin-bottom:24px; }
+  .check-circle { width:80px; height:80px; background:#d4edda; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 28px; }
+  .check-circle svg { width:40px; height:40px; }
+
+  h1 { font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:300; color:var(--navy); margin-bottom:12px; }
+  p { font-size:14px; color:#5A7499; line-height:1.8; font-weight:300; margin-bottom:8px; }
+  .sub { font-size:13px; color:#9CA3AF; margin-top:4px; }
+
+  .divider { width:48px; height:1px; background:var(--stone); margin:28px auto; }
+
+  .contacts { display:flex; flex-direction:column; gap:10px; margin-bottom:36px; }
+  .contact-line { font-size:13px; color:#5A7499; }
+  .contact-line a { color:var(--navy); text-decoration:none; font-weight:400; }
+  .contact-line a:hover { color:var(--accent); }
+
+  .btn { display:inline-block; background:var(--navy); color:white; padding:14px 36px; font-size:11px; letter-spacing:2.5px; text-transform:uppercase; text-decoration:none; font-family:'Jost',sans-serif; transition:background .3s; }
+  .btn:hover { background:var(--accent); }
+  .btn-outline { background:transparent; border:1px solid var(--stone); color:var(--navy); margin-left:12px; }
+  .btn-outline:hover { background:var(--navy); color:white; }
+
+  .btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+
+  footer { background:var(--navy-deep); display:flex; justify-content:space-between; align-items:center; padding:20px 60px; }
+  footer span { font-size:12px; color:rgba(255,255,255,.3); }
+  footer a { font-size:12px; color:rgba(255,255,255,.4); text-decoration:none; }
+  footer a:hover { color:var(--accent); }
+
+  @media(max-width:600px) {
+    nav { padding:12px 20px; }
+    .card { padding:40px 24px; }
+    h1 { font-size:28px; }
+    footer { padding:16px 20px; flex-direction:column; gap:8px; text-align:center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">
+    <img src="images/logo.jpg" alt="AGS Immobilier" onerror="this.style.display='none'">
+  </a>
+</nav>
+
+<div class="main">
+  <div class="card">
+
+    <div class="check-circle">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#27ae60" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </div>
+
+    <h1>Demande envoyée !</h1>
+    <p>Votre demande a bien été transmise à l'équipe AGS Immobilier.</p>
+    <p>Nous vous recontacterons dans les plus brefs délais.</p>
+
+    <div class="divider"></div>
+
+    <div class="contacts">
+      <div class="contact-line">📞 <a href="tel:+33607131181">Philippe — 06 07 13 11 81</a></div>
+      <div class="contact-line">📞 <a href="tel:+33681140665">Matéo — 06 81 14 06 65</a></div>
+      <div class="contact-line">✉️ <a href="mailto:agsimmo06@gmail.com">agsimmo06@gmail.com</a></div>
+    </div>
+
+    <div class="btns">
+      <a href="biens.html" class="btn">Voir nos biens →</a>
+      <a href="index.html" class="btn btn-outline">Accueil</a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <span>© 2024 AGS Immobilier — Le Cannet</span>
+  <a href="index.html">← Retour au site</a>
+</footer>
+
+</body>
+</html>

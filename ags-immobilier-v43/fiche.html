@@ -225,7 +225,7 @@ function afficherBien(b) {
         <div class="sticky-card">
           <div class="sticky-price">${prix}</div>
           <div class="sticky-sub">${titre}${ville ? ' · ' + ville : ''}</div>
-          <form name="visite-fiche" onsubmit="envoyerEmailJS(event,this,'template_visite')">
+          <form name="visite-fiche" onsubmit="envoyerEmailJS(event,this,'template_7o6elbd')">
             <input type="hidden" name="bien" value="${titre} — ${prix}">
             <div class="form-group">
               <label>Nom & Prénom *</label>
@@ -263,11 +263,19 @@ function afficherBien(b) {
 // EmailJS
 function envoyerEmailJS(e, form, templateId) {
   e.preventDefault();
-  const okEl = document.getElementById('msg-ok');
+  const btn = form.querySelector('button[type=submit]');
   const errEl = document.getElementById('msg-err');
+  btn.textContent = '⏳ Envoi en cours...';
+  btn.disabled = true;
   emailjs.sendForm('service_rktxwry', templateId, form)
-    .then(() => { okEl.style.display='block'; errEl.style.display='none'; form.reset(); })
-    .catch(() => { errEl.style.display='block'; okEl.style.display='none'; });
+    .then(() => {
+      window.location.href = 'merci.html';
+    })
+    .catch(() => {
+      errEl.style.display='block';
+      btn.textContent = 'Demander une visite →';
+      btn.disabled = false;
+    });
 }
 
 // Lightbox
