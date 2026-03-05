@@ -22,7 +22,6 @@
   .gallery-ph { background:#2C4A7C; display:flex; align-items:center; justify-content:center; font-size:40px; opacity:.3; }
   .gallery-count { position:absolute; bottom:12px; right:12px; background:rgba(0,0,0,.6); color:white; font-size:11px; padding:4px 10px; letter-spacing:1px; pointer-events:none; }
 
-  /* LIGHTBOX */
   .lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.92); z-index:9999; align-items:center; justify-content:center; }
   .lightbox.open { display:flex; }
   .lightbox img { max-width:90vw; max-height:88vh; object-fit:contain; border:2px solid rgba(255,255,255,.1); }
@@ -50,7 +49,6 @@
   .equip-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
   .equip-item { background:white; border:1px solid var(--stone); padding:10px 14px; font-size:12px; color:var(--navy); }
 
-  /* STICKY CARD */
   .sticky-card { position:sticky; top:24px; background:white; box-shadow:0 4px 32px rgba(27,45,79,.1); padding:36px; }
   .sticky-price { font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:300; color:var(--navy); margin-bottom:4px; }
   .sticky-sub { font-size:12px; color:var(--text-light); font-weight:300; margin-bottom:28px; padding-bottom:24px; border-bottom:1px solid var(--stone); }
@@ -117,7 +115,6 @@
 
 <a class="whatsapp-btn" href="https://wa.me/33607131181" target="_blank" title="WhatsApp">💬</a>
 
-<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
   <div class="lb-close" onclick="fermerLB()">✕</div>
   <div class="lb-prev" onclick="lbNav(-1)">‹</div>
@@ -130,19 +127,25 @@
 const GITHUB_RAW = 'https://raw.githubusercontent.com/devouchkar6-dev/ags-immobilier/main/ags-immobilier-v43/biens.json';
 const DPE_COLORS = {A:'#00a651',B:'#57b947',C:'#c4d600',D:'#fbaf17',E:'#f26522',F:'#ed1c24',G:'#be1e2d'};
 
+// ✅ FIX : appel automatique au chargement de la page
+document.addEventListener('DOMContentLoaded', chargerFiche);
+
 async function chargerFiche() {
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id');
   if (!id) { afficherErreur('Aucun bien spécifié.'); return; }
   try {
-    const res = await fetch(GITHUB_RAW + '?t=' + Date.now());
-    if (!res.ok) throw new Error('Impossible de charger les biens');
+    // ✅ FIX : bypass cache pour toujours avoir les données fraîches
+    const res = await fetch(GITHUB_RAW + '?t=' + Date.now(), {
+      cache: 'no-store'
+    });
+    if (!res.ok) throw new Error('Impossible de charger les biens (HTTP ' + res.status + ')');
     const biens = await res.json();
-    const bien = biens.find(b => b.id === id);
+    const bien = biens.find(b => String(b.id) === String(id));
     if (!bien) { afficherErreur('Ce bien n\'existe plus ou a été retiré.'); return; }
     afficherBien(bien);
   } catch(e) {
-    afficherErreur('Erreur : ' + e.message);
+    afficherErreur('Erreur de chargement : ' + e.message);
   }
 }
 
@@ -161,18 +164,20 @@ function dpeBar(lettre) {
 }
 
 function afficherBien(b) {
-  const photos = b.photos || (b.mainPhoto ? [b.mainPhoto] : []);
+  const photos = b.photos && b.photos.length ? b.photos : (b.mainPhoto ? [b.mainPhoto] : []);
   const titre = b.titre || '';
   const prix = b.prix || '';
   const ville = b.ville || '';
   const loc = [ville, b.quartier].filter(Boolean).join(' — ');
 
-  // Galerie — stocker photos globalement pour le lightbox
   window._fichPhotos = photos;
+
   const galHTML = `
     <div class="gallery">
       <div class="gallery-main" style="position:relative">
-        ${photos[0] ? `<img src="${photos[0]}" alt="${titre}" onclick="ouvrirLB(window._fichPhotos,0)" style="cursor:zoom-in">` : `<div class="gallery-ph">🏠</div>`}
+        ${photos[0]
+          ? `<img src="${photos[0]}" alt="${titre}" onclick="ouvrirLB(window._fichPhotos,0)" style="cursor:zoom-in">`
+          : `<div class="gallery-ph">🏠</div>`}
         ${photos.length > 1 ? `<div class="gallery-count">📷 ${photos.length} photos</div>` : ''}
       </div>
       ${[1,2].map(i => photos[i]
@@ -180,7 +185,6 @@ function afficherBien(b) {
         : `<div class="gallery-ph"></div>`).join('')}
     </div>`;
 
-  // Tags caractéristiques
   const tags = [
     b.surface && `📐 ${b.surface}`,
     b.pieces && `🚪 ${b.pieces}`,
@@ -190,10 +194,8 @@ function afficherBien(b) {
     b.annee && `📅 Construit en ${b.annee}`,
   ].filter(Boolean);
 
-  // Équipements
   const equips = (b.equipements || []).map(e => `<div class="equip-item">✓ ${e}</div>`).join('');
 
-  // DPE
   const dpeHTML = (b.dpe || b.ges) ? `
     <h2 class="section-h">Diagnostic énergétique</h2>
     <div class="dpe-row">
@@ -201,7 +203,6 @@ function afficherBien(b) {
       ${b.ges ? `<div class="dpe-block"><div class="dpe-label-h">Émissions (GES)</div>${dpeBar(b.ges)}</div>` : ''}
     </div>` : '';
 
-  // Message par défaut formulaire
   const msgDefaut = `Je suis intéressé(e) par ${titre}${ville ? ' à ' + ville : ''} et souhaite organiser une visite.`;
 
   const html = `
@@ -214,25 +215,19 @@ function afficherBien(b) {
         <div class="prop-price">${prix}</div>
         ${b.rente ? `<div class="prop-ref">Rente mensuelle : ${b.rente}</div>` : ''}
         ${b.ref ? `<div class="prop-ref">Réf. ${b.ref}</div>` : ''}
-
         ${tags.length ? `<div class="tags">${tags.map(t=>`<div class="tag">${t}</div>`).join('')}</div>` : ''}
-
         ${b.accroche ? `<p style="font-size:15px;font-style:italic;color:var(--navy);line-height:1.75;margin-bottom:24px">${b.accroche}</p>` : ''}
-
         ${b.description ? `<h2 class="section-h">Description</h2><p class="desc">${b.description.replace(/\n/g,'<br>')}</p>` : ''}
-
         ${equips ? `<h2 class="section-h">Équipements & prestations</h2><div class="equip-grid">${equips}</div>` : ''}
-
         ${dpeHTML}
       </div>
-
       <div>
         <div class="sticky-card">
           <div class="sticky-price">${prix}</div>
           <div class="sticky-sub">${titre}${ville ? ' · ' + ville : ''}</div>
           <form name="visite-fiche" onsubmit="envoyerEmailJS(event,this,'template_visite')">
-                        <input type="hidden" name="bien" value="${titre} — ${prix}">
-                        <div class="form-group">
+            <input type="hidden" name="bien" value="${titre} — ${prix}">
+            <div class="form-group">
               <label>Nom & Prénom *</label>
               <input type="text" name="nom" placeholder="Jean Dupont" required>
             </div>
@@ -265,7 +260,37 @@ function afficherBien(b) {
   document.getElementById('page-content').innerHTML = html;
 }
 
+// EmailJS
+function envoyerEmailJS(e, form, templateId) {
+  e.preventDefault();
+  const okEl = document.getElementById('msg-ok');
+  const errEl = document.getElementById('msg-err');
+  emailjs.sendForm('service_rktxwry', templateId, form)
+    .then(() => { okEl.style.display='block'; errEl.style.display='none'; form.reset(); })
+    .catch(() => { errEl.style.display='block'; okEl.style.display='none'; });
+}
 
+// Lightbox
+let _lbPhotos = [], _lbIdx = 0;
+function ouvrirLB(photos, idx) {
+  _lbPhotos = photos; _lbIdx = idx;
+  document.getElementById('lb-img').src = photos[idx];
+  document.getElementById('lb-counter').textContent = (idx+1) + ' / ' + photos.length;
+  document.getElementById('lightbox').classList.add('open');
+}
+function fermerLB() { document.getElementById('lightbox').classList.remove('open'); }
+function closeLightbox(e) { if (e.target === document.getElementById('lightbox')) fermerLB(); }
+function lbNav(dir) {
+  _lbIdx = (_lbIdx + dir + _lbPhotos.length) % _lbPhotos.length;
+  document.getElementById('lb-img').src = _lbPhotos[_lbIdx];
+  document.getElementById('lb-counter').textContent = (_lbIdx+1) + ' / ' + _lbPhotos.length;
+}
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'ArrowLeft') lbNav(-1);
+  if (e.key === 'ArrowRight') lbNav(1);
+  if (e.key === 'Escape') fermerLB();
+});
 </script>
 </body>
 </html>
