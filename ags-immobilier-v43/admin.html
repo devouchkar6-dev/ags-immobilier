@@ -373,12 +373,13 @@ const GITHUB_USER = 'devouchkar6-dev';
 const GITHUB_REPO = 'ags-immobilier';
 const GITHUB_FILE = 'ags-immobilier-v43/biens.json';
 const GITHUB_BRANCH = 'main';
+// ✅ FIX: clé pour token persistant dans localStorage
+const TOKEN_KEY = 'ags_gh_token';
 
 const VILLES = {
   cannet:'Le Cannet', cannes:'Cannes', mougins:'Mougins',
   vallauris:'Vallauris', mandelieu:'Mandelieu-la-Napoule', autre:'Autre'
 };
-// Résoudre le nom d'affichage d'une ville
 function villeLabel(b) {
   return b.ville || VILLES[b.villeFilter] || VILLES[b.ville] || b.ville || '';
 }
@@ -418,10 +419,11 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 // ══════════════════════════════════════════
-// GITHUB TOKEN
+// GITHUB TOKEN — ✅ FIX: persisté en localStorage
 // ══════════════════════════════════════════
 function getToken() {
-  return sessionStorage.getItem('gh_token') || '';
+  // Cherche d'abord en sessionStorage (rétrocompat), puis localStorage
+  return sessionStorage.getItem('gh_token') || localStorage.getItem(TOKEN_KEY) || '';
 }
 
 function sauvegarderToken() {
@@ -430,7 +432,9 @@ function sauvegarderToken() {
     showToast('Token invalide (doit commencer par ghp_)', 'error');
     return;
   }
-  sessionStorage.setItem('gh_token', token);
+  // ✅ FIX: sauvegarder dans localStorage pour persister entre sessions
+  localStorage.setItem(TOKEN_KEY, token);
+  sessionStorage.setItem('gh_token', token); // compat
   verifierToken();
 }
 
@@ -448,9 +452,11 @@ async function verifierToken() {
       updateSyncStatus('ok', '✅ GitHub connecté');
       document.getElementById('github-banner').className = 'github-banner ok';
       document.getElementById('github-token').value = '••••••••••••••••';
-      showToast('✅ GitHub connecté ! Les biens seront visibles par tous.', 'success');
       return true;
     } else {
+      // ✅ FIX: token invalide → on le supprime pour ne pas bloquer
+      localStorage.removeItem(TOKEN_KEY);
+      sessionStorage.removeItem('gh_token');
       updateSyncStatus('err', '❌ Token invalide');
       return false;
     }
@@ -497,8 +503,9 @@ async function publierSurGitHub(biens) {
 
   updateSyncStatus('pending', '⏳ Publication...');
 
-  // Préparer le JSON pour le site
-  const biensPublics = biens.filter(b => b.actif).map(b => ({
+  // Préparer le JSON public — ✅ FIX: inclure TOUS les biens (actifs ET masqués)
+  // Le site filtre lui-même sur actif=true, mais on garde tout pour l'admin
+  const biensPublics = biens.map(b => ({
     id: b.id,
     titre: b.titre,
     soustitre: (b.quartier ? b.quartier + ' — ' : '') + villeLabel(b),
@@ -523,13 +530,13 @@ async function publierSurGitHub(biens) {
     etage: b.etage || '',
     exposition: b.exposition || '',
     annee: b.annee || '',
-    ref: b.ref || ''
+    ref: b.ref || '',
+    actif: b.actif !== false  // ✅ préserver le statut actif/masqué
   }));
 
   const content = btoa(unescape(encodeURIComponent(JSON.stringify(biensPublics, null, 2))));
 
   try {
-    // Récupérer le SHA du fichier existant
     let sha = '';
     const getR = await fetch(
       `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`,
@@ -540,7 +547,6 @@ async function publierSurGitHub(biens) {
       sha = d.sha;
     }
 
-    // Pousser le fichier
     const body = {
       message: `Mise à jour biens — ${new Date().toLocaleDateString('fr-FR')}`,
       content,
@@ -578,30 +584,31 @@ async function publierSurGitHub(biens) {
 // INIT — charger depuis GitHub d'abord
 // ══════════════════════════════════════════
 async function init() {
-  // Vider le cache local — GitHub est la seule source de vérité
-  localStorage.removeItem(STORAGE_KEY);
   const token = getToken();
   if (token) {
-    verifierToken();
-    chargerDepuisGitHub().then(() => chargerBiens());
-  } else {
-    chargerBiens();
+    // ✅ FIX: afficher le bandeau comme connecté si token présent
+    const ok = await verifierToken();
+    if (ok) {
+      await chargerDepuisGitHub();
+    }
   }
+  chargerBiens();
 }
 
 async function chargerDepuisGitHub() {
   const token = getToken();
   if (!token) return;
   try {
+    // ✅ FIX: bypass cache avec timestamp
     const r = await fetch(
-      `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`,
-      { headers: { 'Authorization': `token ${token}` } }
+      `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}?t=${Date.now()}`,
+      { headers: { 'Authorization': `token ${token}`, 'Cache-Control': 'no-cache' } }
     );
     if (r.ok) {
       const d = await r.json();
       const biensGH = JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\n/g,'')))));
-      if (Array.isArray(biensGH) && biensGH.length > 0) {
-        // GitHub = source de vérité, on écrase le localStorage
+      if (Array.isArray(biensGH)) {
+        // ✅ FIX: GitHub = source de vérité absolue, même si tableau vide
         localStorage.setItem(STORAGE_KEY, JSON.stringify(biensGH));
         console.log('✓ ' + biensGH.length + ' biens chargés depuis GitHub');
       }
@@ -617,7 +624,7 @@ function chargerBiens() {
   const container = document.getElementById('liste-biens');
 
   document.getElementById('stat-total').textContent = biens.length;
-  document.getElementById('stat-actifs').textContent = biens.filter(b=>b.actif).length;
+  document.getElementById('stat-actifs').textContent = biens.filter(b=>b.actif !== false).length;
   document.getElementById('stat-appart').textContent = biens.filter(b=>b.type==='appartement').length;
   document.getElementById('stat-maison').textContent = biens.filter(b=>['maison','villa'].includes(b.type)).length;
   document.getElementById('stat-viager').textContent = biens.filter(b=>b.type==='viager').length;
@@ -630,16 +637,16 @@ function chargerBiens() {
 
   container.innerHTML = biens.map(b => `
     <div class="bien-item">
-      <img class="bien-thumb" src="${b.photos?.[0] || 'images/placeholder.jpg'}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2260%22><rect fill=%22%23f0f2f5%22 width=%2280%22 height=%2260%22/><text x=%2240%22 y=%2235%22 text-anchor=%22middle%22 font-size=%2220%22>🏠</text></svg>'">
+      <img class="bien-thumb" src="${b.photos?.[0] || b.mainPhoto || 'images/placeholder.jpg'}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2260%22><rect fill=%22%23f0f2f5%22 width=%2280%22 height=%2260%22/><text x=%2240%22 y=%2235%22 text-anchor=%22middle%22 font-size=%2220%22>🏠</text></svg>'">
       <div class="bien-info">
         <h4>${b.titre}</h4>
         <p>${villeLabel(b)}${b.quartier?' · '+b.quartier:''} — ${b.prix}</p>
         <span class="bien-badge badge-${b.type}">${b.badge||b.type}</span>
-        <span style="font-size:10px;margin-left:8px;color:${b.actif?'#27ae60':'#e74c3c'}">${b.actif?'● En ligne':'○ Masqué'}</span>
+        <span style="font-size:10px;margin-left:8px;color:${b.actif!==false?'#27ae60':'#e74c3c'}">${b.actif!==false?'● En ligne':'○ Masqué'}</span>
       </div>
       <div class="bien-actions">
         <button class="btn-edit" onclick="editerBien('${b.id}')">Modifier</button>
-        <button class="btn-toggle ${b.actif?'actif':'inactif'}" onclick="toggleBien('${b.id}')">${b.actif?'Masquer':'Publier'}</button>
+        <button class="btn-toggle ${b.actif!==false?'actif':'inactif'}" onclick="toggleBien('${b.id}')">${b.actif!==false?'Masquer':'Publier'}</button>
         <button class="btn-delete" onclick="supprimerBien('${b.id}')">Supprimer</button>
       </div>
     </div>
@@ -668,7 +675,7 @@ function editerBien(id) {
   document.getElementById('f-titre').value = b.titre||'';
   document.getElementById('f-type').value = b.type||'appartement';
   document.getElementById('f-badge').value = b.badge||'';
-  document.getElementById('f-ville').value = b.ville||'cannet';
+  document.getElementById('f-ville').value = b.ville||'';
   document.getElementById('f-quartier').value = b.quartier||'';
   document.getElementById('f-prix').value = b.prix||'';
   document.getElementById('f-prix-brut').value = b.prixBrut||'';
@@ -683,7 +690,7 @@ function editerBien(id) {
   document.getElementById('f-ges').value = b.ges||'';
   document.getElementById('f-accroche').value = b.accroche||'';
   document.getElementById('f-description').value = b.description||'';
-  document.getElementById('f-actif').value = b.actif?'1':'0';
+  document.getElementById('f-actif').value = b.actif!==false ? '1' : '0';
   document.getElementById('f-ref').value = b.ref||'';
   document.getElementById('viager-fields').style.display = b.type==='viager'?'block':'none';
   document.querySelectorAll('#equipements-list input[type=checkbox]').forEach(cb => {
@@ -747,19 +754,31 @@ function annulerForm() {
 }
 
 async function supprimerBien(id) {
-  if (!confirm('Supprimer ce bien ?')) return;
+  if (!confirm('Supprimer ce bien définitivement ?')) return;
+
+  // ✅ FIX: vérifier que le token est présent avant de supprimer
+  if (!getToken()) {
+    showToast('❌ Connectez GitHub avant de supprimer un bien !', 'error');
+    document.getElementById('github-banner').scrollIntoView({behavior:'smooth'});
+    return;
+  }
+
   const biens = getBiens().filter(b => b.id !== id);
   sauvegarderLocal(biens);
   chargerBiens();
-  await publierSurGitHub(biens);
-  showToast('Bien supprimé', 'error');
+  const ok = await publierSurGitHub(biens);
+  if (ok) {
+    showToast('✅ Bien supprimé et site mis à jour.', 'success');
+  } else {
+    showToast('⚠️ Supprimé localement mais erreur GitHub.', 'error');
+  }
 }
 
 async function toggleBien(id) {
   const biens = getBiens();
   const b = biens.find(x => x.id === id);
   if (!b) return;
-  b.actif = !b.actif;
+  b.actif = b.actif === false ? true : false;
   sauvegarderLocal(biens);
   chargerBiens();
   await publierSurGitHub(biens);
