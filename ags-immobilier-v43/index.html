@@ -790,6 +790,9 @@
 // ═══════════════════════════════════════════════════
 
 let BIENS_APIMO   = [];   // biens chargés depuis APIMO
+// Toujours lire depuis GitHub, jamais depuis le cache local
+localStorage.removeItem('ags_biens_site');
+localStorage.removeItem('ags_biens_admin');
 let FILTRES_APIMO = {};   // filtres dynamiques depuis APIMO
 
 // Mapping valeurs filtres → labels affichés

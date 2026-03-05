@@ -570,12 +570,15 @@ async function publierSurGitHub(biens) {
 // INIT — charger depuis GitHub d'abord
 // ══════════════════════════════════════════
 async function init() {
+  // Vider le cache local — GitHub est la seule source de vérité
+  localStorage.removeItem(STORAGE_KEY);
   const token = getToken();
   if (token) {
     verifierToken();
-    await chargerDepuisGitHub();
+    chargerDepuisGitHub().then(() => chargerBiens());
+  } else {
+    chargerBiens();
   }
-  chargerBiens();
 }
 
 async function chargerDepuisGitHub() {

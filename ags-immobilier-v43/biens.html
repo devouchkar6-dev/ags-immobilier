@@ -397,6 +397,9 @@ const VILLE_LABELS = { cannet:'Le Cannet', cannes:'Cannes', mougins:'Mougins', m
 
 
 let BIENS_APIMO = [];
+// Toujours lire depuis GitHub, jamais depuis le cache local
+localStorage.removeItem('ags_biens_site');
+localStorage.removeItem('ags_biens_admin');
 
 window.addEventListener('scroll', () => {
   document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
