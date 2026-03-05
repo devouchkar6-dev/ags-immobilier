@@ -72,10 +72,10 @@
 <meta name="description" content="AGS Immobilier, agence indépendante au Cannet. Vente, achat, estimation, viager sur Cannes, Mougins, Mandelieu et Vallauris. Philippe SERVAS.">
 <!-- Open Graph / partage réseaux sociaux -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://bespoke-kelpie-8efae8.netlify.app/">
+<meta property="og:url" content="https://ags-immo.vercel.app/">
 <meta property="og:title" content="AGS Immobilier — Agence Indépendante au Cannet">
 <meta property="og:description" content="Agence indépendante au Cannet. Vente, achat, estimation et viager sur la Côte d'Azur.">
-<meta property="og:image" content="https://bespoke-kelpie-8efae8.netlify.app/images/og-image.jpg">
+<meta property="og:image" content="https://ags-immo.vercel.app/images/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="fr_FR">
@@ -83,7 +83,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="AGS Immobilier — Agence Indépendante au Cannet">
 <meta name="twitter:description" content="Agence indépendante au Cannet. Vente, achat, estimation et viager sur la Côte d'Azur.">
-<meta name="twitter:image" content="https://bespoke-kelpie-8efae8.netlify.app/images/og-image.jpg">
+<meta name="twitter:image" content="https://ags-immo.vercel.app/images/og-image.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -587,13 +587,8 @@
     </div>
     <form class="full-form reveal reveal-delay-1"
           name="contact-ags"
-          method="POST"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
-          onsubmit="netlifySubmit(event)">
-      <input type="hidden" name="form-name" value="contact-ags">
-      <input type="hidden" name="bot-field" style="display:none">
-      <div class="form-row">
+          onsubmit="envoyerEmailJS(event,this,'template_contact')">
+                  <div class="form-row">
         <div class="form-group">
           <label>Nom &amp; Prénom *</label>
           <input type="text" name="nom" placeholder="Jean Dupont" required>
@@ -719,33 +714,7 @@
     }, 200);
   }
 
-  function netlifySubmit(e) {
-    e.preventDefault();
-    const form = e.target;
-    const btn = form.querySelector('button[type=submit]');
-    const msg = document.getElementById('form-msg');
-    btn.textContent = 'Envoi en cours…';
-    btn.style.opacity = '.6';
-    btn.disabled = true;
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(new FormData(form)).toString()
-    }).then(() => {
-      btn.textContent = '✓ Message envoyé !';
-      btn.style.background = '#4A6FA5';
-      btn.style.opacity = '1';
-      btn.disabled = false;
-      if (msg) { msg.textContent = 'Merci ! Philippe ou Matéo vous contactera très rapidement.'; msg.style.color = '#4A6FA5'; }
-      form.reset();
-    }).catch(() => {
-      btn.textContent = 'Réessayez';
-      btn.style.background = '#c0392b';
-      btn.style.opacity = '1';
-      btn.disabled = false;
-      if (msg) { msg.textContent = "Problème d'envoi. Appelez-nous directement."; msg.style.color = '#c0392b'; }
-    });
-  }
+  
 </script>
 
 <script>

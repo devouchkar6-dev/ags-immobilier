@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta property="og:image" content="https://bespoke-kelpie-8efae8.netlify.app/images/og-image.jpg">
+<meta property="og:image" content="https://ags-immo.vercel.app/images/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://bespoke-kelpie-8efae8.netlify.app/images/og-image.jpg">
+<meta name="twitter:image" content="https://ags-immo.vercel.app/images/og-image.jpg">
   <title>Honoraires – AGS Immobilier Le Cannet</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
   <style>
@@ -261,6 +261,30 @@
   section, .section { padding-left: 18px !important; padding-right: 18px !important; }
 }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+function envoyerEmailJS(e, formEl, templateId) {
+  e.preventDefault();
+  const btn = formEl.querySelector('button[type=submit]');
+  const msgEl = formEl.querySelector('#form-msg, #card-msg, #msg-ok, #honoraires-msg');
+  if (btn) { btn.textContent = 'Envoi…'; btn.disabled = true; btn.style.opacity = '.6'; }
+  
+  const params = {};
+  new FormData(formEl).forEach((v,k) => params[k] = v);
+  
+  emailjs.send('service_rktxwry', templateId || 'template_contact', params)
+    .then(() => {
+      if (btn) { btn.textContent = '✓ Envoyé !'; btn.style.background = '#4A6FA5'; btn.style.opacity = '1'; btn.disabled = false; }
+      if (msgEl) { msgEl.textContent = 'Merci ! Nous vous recontactons rapidement.'; msgEl.style.color = '#4A6FA5'; msgEl.style.display = 'block'; }
+      formEl.reset();
+    })
+    .catch(() => {
+      if (btn) { btn.textContent = 'Réessayez'; btn.style.background = '#c0392b'; btn.style.opacity = '1'; btn.disabled = false; }
+      if (msgEl) { msgEl.textContent = 'Erreur — appelez le 06 07 13 11 81'; msgEl.style.color = '#c0392b'; msgEl.style.display = 'block'; }
+    });
+}
+
+</script>
+<script>emailjs.init("7m1BlSj4clGb0I9tl");</script>
 </head>
 <body>
 

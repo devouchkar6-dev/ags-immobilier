@@ -96,6 +96,8 @@
     footer { padding:16px 20px; flex-direction:column; gap:8px; text-align:center; }
   }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>emailjs.init("7m1BlSj4clGb0I9tl");</script>
 </head>
 <body>
 
@@ -228,11 +230,9 @@ function afficherBien(b) {
         <div class="sticky-card">
           <div class="sticky-price">${prix}</div>
           <div class="sticky-sub">${titre}${ville ? ' · ' + ville : ''}</div>
-          <form name="visite-fiche" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="envoyerVisite(event, this)">
-            <input type="hidden" name="form-name" value="visite-fiche">
-            <input type="hidden" name="bien" value="${titre} — ${prix}">
-            <input type="hidden" name="bot-field" style="display:none">
-            <div class="form-group">
+          <form name="visite-fiche" onsubmit="envoyerEmailJS(event,this,'template_visite')">
+                        <input type="hidden" name="bien" value="${titre} — ${prix}">
+                        <div class="form-group">
               <label>Nom & Prénom *</label>
               <input type="text" name="nom" placeholder="Jean Dupont" required>
             </div>
@@ -265,45 +265,7 @@ function afficherBien(b) {
   document.getElementById('page-content').innerHTML = html;
 }
 
-async function envoyerVisite(e, form) {
-  e.preventDefault();
-  const data = new FormData(form);
-  try {
-    const r = await fetch('/', { method:'POST', body: data });
-    if (r.ok) {
-      document.getElementById('msg-ok').style.display = 'block';
-      form.reset();
-    } else { document.getElementById('msg-err').style.display = 'block'; }
-  } catch(err) { document.getElementById('msg-err').style.display = 'block'; }
-}
 
-chargerFiche();
-
-// LIGHTBOX
-let lbPhotos = [], lbIdx = 0;
-function ouvrirLB(photos, idx) {
-  lbPhotos = photos; lbIdx = idx;
-  document.getElementById('lb-img').src = photos[idx];
-  document.getElementById('lb-counter').textContent = (idx+1) + ' / ' + photos.length;
-  document.getElementById('lightbox').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function fermerLB() {
-  document.getElementById('lightbox').classList.remove('open');
-  document.body.style.overflow = '';
-}
-function closeLightbox(e) { if (e.target === document.getElementById('lightbox')) fermerLB(); }
-function lbNav(dir) {
-  lbIdx = (lbIdx + dir + lbPhotos.length) % lbPhotos.length;
-  document.getElementById('lb-img').src = lbPhotos[lbIdx];
-  document.getElementById('lb-counter').textContent = (lbIdx+1) + ' / ' + lbPhotos.length;
-}
-document.addEventListener('keydown', e => {
-  if (!document.getElementById('lightbox').classList.contains('open')) return;
-  if (e.key === 'Escape') fermerLB();
-  if (e.key === 'ArrowLeft') lbNav(-1);
-  if (e.key === 'ArrowRight') lbNav(1);
-});
 </script>
 </body>
 </html>
