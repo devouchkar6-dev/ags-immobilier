@@ -165,16 +165,16 @@ function afficherBien(b) {
   const ville = b.ville || '';
   const loc = [ville, b.quartier].filter(Boolean).join(' — ');
 
-  // Galerie
-  const photosJS = JSON.stringify(photos).replace(/'/g,"\\'");
+  // Galerie — stocker photos globalement pour le lightbox
+  window._fichPhotos = photos;
   const galHTML = `
     <div class="gallery">
       <div class="gallery-main" style="position:relative">
-        ${photos[0] ? `<img src="${photos[0]}" alt="${titre}" onclick="ouvrirLB(${photosJS},0)">` : `<div class="gallery-ph">🏠</div>`}
+        ${photos[0] ? `<img src="${photos[0]}" alt="${titre}" onclick="ouvrirLB(window._fichPhotos,0)" style="cursor:zoom-in">` : `<div class="gallery-ph">🏠</div>`}
         ${photos.length > 1 ? `<div class="gallery-count">📷 ${photos.length} photos</div>` : ''}
       </div>
       ${[1,2].map(i => photos[i]
-        ? `<div><img src="${photos[i]}" alt="${titre}" onclick="ouvrirLB(${photosJS},${i})"></div>`
+        ? `<div><img src="${photos[i]}" alt="${titre}" onclick="ouvrirLB(window._fichPhotos,${i})" style="cursor:zoom-in"></div>`
         : `<div class="gallery-ph"></div>`).join('')}
     </div>`;
 
