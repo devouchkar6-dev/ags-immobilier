@@ -869,11 +869,13 @@ function mettreAJourGrilleBiens(biens) {
   const grid = document.getElementById('props-grid');
   if (!grid || !biens.length) return;
 
-  grid.innerHTML = biens.map((b, i) => {
+  // Afficher les 6 derniers biens ajoutés (roulement automatique)
+  const biensVitrine = [...biens].reverse().slice(0, 6);
+  grid.innerHTML = biensVitrine.map((b, i) => {
     const delay = i === 0 ? '' : i === 1 ? ' reveal-delay-1' : ' reveal-delay-2';
     const featured = i === 0 ? ' featured' : '';
     return `
-    <div class="prop-card${featured} reveal${delay}" onclick="window.location='bien-${b.id}.html'" style="cursor:pointer">
+    <div class="prop-card${featured} reveal${delay}" onclick="window.location='fiche.html?id=${b.id}'" style="cursor:pointer">
       <img class="prop-img" src="${b.mainPhoto || 'images/placeholder.jpg'}" alt="${b.titre}" loading="${i < 2 ? 'eager' : 'lazy'}">
       <div class="prop-overlay"></div>
       <div class="prop-info">
