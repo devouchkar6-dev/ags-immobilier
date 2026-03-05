@@ -31,7 +31,6 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
 .topbar-logo img { height:36px; }
 .logout-btn { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15); color:rgba(255,255,255,.6); padding:8px 20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; font-family:'Jost',sans-serif; }
 
-/* GITHUB CONFIG BANNER */
 .github-banner { background:#fff3cd; border:1px solid #ffc107; padding:12px 24px; display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
 .github-banner.ok { background:#d4edda; border-color:#27ae60; }
 .github-banner span { font-size:13px; color:#856404; }
@@ -41,7 +40,7 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
 .btn-config { background:#856404; color:white; border:none; padding:8px 16px; font-size:11px; cursor:pointer; font-family:'Jost',sans-serif; white-space:nowrap; }
 .github-banner.ok .btn-config { background:#155724; }
 
-.main { display:grid; grid-template-columns:1fr 420px; gap:24px; padding:24px 32px; max-width:1400px; margin:0 auto; }
+.main { display:grid; grid-template-columns:1fr 440px; gap:24px; padding:24px 32px; max-width:1400px; margin:0 auto; }
 .card { background:white; border-radius:2px; box-shadow:0 1px 4px rgba(0,0,0,.08); }
 .card-header { padding:20px 24px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
 .card-title { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--navy); font-weight:400; }
@@ -81,15 +80,30 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
 .checkbox-item { display:flex; align-items:center; gap:6px; font-size:12px; cursor:pointer; padding:6px 10px; border:1px solid var(--border); }
 .checkbox-item input { width:14px; height:14px; cursor:pointer; accent-color:var(--accent); }
 
-.photo-zone { border:2px dashed var(--border); padding:16px; text-align:center; cursor:pointer; margin-bottom:12px; }
-.photo-zone p { font-size:12px; color:#9CA3AF; }
-.photo-preview-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:8px; margin-top:12px; }
-.photo-preview-item { position:relative; aspect-ratio:4/3; }
-.photo-preview-item img { width:100%; height:100%; object-fit:cover; }
-.photo-remove { position:absolute; top:4px; right:4px; background:rgba(231,76,60,.9); color:white; border:none; width:20px; height:20px; cursor:pointer; font-size:12px; }
+/* PHOTOS */
 .photo-url-input { display:flex; gap:8px; margin-bottom:8px; }
 .photo-url-input input { flex:1; }
-.photo-url-input button { background:var(--accent); color:white; border:none; padding:10px 16px; cursor:pointer; font-size:12px; font-family:'Jost',sans-serif; }
+.photo-url-input button { background:var(--accent); color:white; border:none; padding:10px 16px; cursor:pointer; font-size:12px; font-family:'Jost',sans-serif; white-space:nowrap; }
+.photo-zone { border:2px dashed var(--border); padding:16px; text-align:center; cursor:pointer; margin-bottom:8px; transition:border-color .2s; }
+.photo-zone:hover { border-color:var(--accent); }
+.photo-zone p { font-size:12px; color:#9CA3AF; }
+.photo-warn { background:#fff3cd; border:1px solid #f39c12; padding:8px 12px; font-size:11px; color:#856404; margin-bottom:8px; display:none; }
+.photo-cover-hint { font-size:11px; color:#6B7280; margin:6px 0; display:none; }
+
+.photo-preview-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:8px; }
+.photo-item { position:relative; aspect-ratio:4/3; border:2px solid transparent; }
+.photo-item.is-cover { border-color:var(--orange); }
+.photo-item img { width:100%; height:100%; object-fit:cover; display:block; }
+.photo-cover-label { position:absolute; top:4px; left:4px; background:var(--orange); color:white; font-size:9px; letter-spacing:.5px; text-transform:uppercase; padding:2px 6px; pointer-events:none; }
+.photo-num { position:absolute; top:4px; right:4px; background:rgba(0,0,0,.55); color:white; font-size:9px; padding:2px 5px; }
+.photo-type { position:absolute; top:22px; right:4px; font-size:9px; padding:2px 5px; }
+.photo-btns { position:absolute; bottom:0; left:0; right:0; display:flex; }
+.photo-btns button { flex:1; padding:5px 2px; font-size:10px; cursor:pointer; font-family:'Jost',sans-serif; border:none; letter-spacing:0; }
+.pbtn-cover { background:rgba(243,156,18,.9); color:white; }
+.pbtn-l { background:rgba(27,45,79,.75); color:white; }
+.pbtn-r { background:rgba(27,45,79,.75); color:white; }
+.pbtn-del { background:rgba(231,76,60,.9); color:white; }
+.pbtn-cover:disabled,.pbtn-l:disabled,.pbtn-r:disabled { opacity:.3; cursor:default; }
 
 .form-actions { display:flex; gap:12px; margin-top:20px; }
 .btn-save { flex:1; padding:14px; background:var(--navy); color:white; border:none; font-family:'Jost',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; }
@@ -101,10 +115,11 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
 .sync-err { background:#f8d7da; color:#721c24; }
 .sync-pending { background:#fff3cd; color:#856404; }
 
-.toast { position:fixed; bottom:24px; right:24px; background:var(--navy); color:white; padding:14px 24px; font-size:13px; transform:translateY(80px); opacity:0; transition:all .3s; z-index:9999; }
+.toast { position:fixed; bottom:24px; right:24px; background:var(--navy); color:white; padding:14px 24px; font-size:13px; transform:translateY(80px); opacity:0; transition:all .3s; z-index:9999; max-width:400px; line-height:1.4; }
 .toast.show { transform:translateY(0); opacity:1; }
 .toast.success { background:var(--green); }
 .toast.error { background:var(--red); }
+.toast.warning { background:var(--orange); }
 .empty-state { text-align:center; padding:48px; color:#9CA3AF; }
 .empty-state .icon { font-size:48px; margin-bottom:16px; }
 
@@ -140,7 +155,6 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
     </div>
   </div>
 
-  <!-- BANDEAU CONFIG GITHUB -->
   <div class="github-banner" id="github-banner">
     <span>🔗 Connectez GitHub pour que les biens soient visibles par tout le monde :</span>
     <input type="password" id="github-token" placeholder="Token GitHub (ghp_...)" autocomplete="off">
@@ -318,17 +332,31 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
               </div></div>
             </div>
 
+            <!-- PHOTOS AVEC GESTION COUVERTURE -->
             <div class="form-section">
-              <div class="form-section-title">Photos (URLs)</div>
+              <div class="form-section-title">Photos</div>
+
               <div class="photo-url-input">
-                <input type="text" id="photo-url-field" placeholder="Coller un lien URL de photo...">
-                <button type="button" onclick="ajouterPhotoURL()">Ajouter</button>
+                <input type="text" id="photo-url-field" placeholder="Coller un lien URL de photo (recommandé)...">
+                <button type="button" onclick="ajouterPhotoURL()">+ URL</button>
               </div>
+
               <div class="photo-zone" onclick="document.getElementById('photo-file-input').click()">
                 <p>📁 Uploader depuis l'ordinateur</p>
-                <p style="font-size:11px;margin-top:4px;">JPG, PNG</p>
+                <p style="font-size:11px;margin-top:3px;color:#e67e22;">⚠️ Les liens URL sont préférables pour le site public</p>
               </div>
               <input type="file" id="photo-file-input" accept="image/*" multiple style="display:none" onchange="handlePhotoUpload(event)">
+
+              <div class="photo-warn" id="photo-warn">
+                ⚠️ <strong>Photos depuis ordinateur détectées</strong> — Ces photos ne seront pas visibles sur le site public (trop lourdes pour GitHub).
+                Pour les afficher sur le site, utilisez des <strong>liens URL</strong> (ex: imgbb.com, Google Photos, Dropbox...).
+              </div>
+
+              <div class="photo-cover-hint" id="photo-cover-hint">
+                La photo avec le badge <strong style="color:var(--orange);">⭐ Couverture</strong> est affichée en premier sur le site.
+                Cliquez sur <strong>⭐</strong> pour changer la couverture. Utilisez <strong>◀ ▶</strong> pour réordonner.
+              </div>
+
               <div class="photo-preview-grid" id="photo-preview-grid"></div>
             </div>
 
@@ -364,17 +392,14 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
 <div class="toast" id="toast"></div>
 
 <script>
-// ══════════════════════════════════════════
-// CONFIG
-// ══════════════════════════════════════════
 const PASSWORD = 'AGS2026!';
 const SESSION_KEY = 'ags_admin_session';
 const GITHUB_USER = 'devouchkar6-dev';
 const GITHUB_REPO = 'ags-immobilier';
 const GITHUB_FILE = 'ags-immobilier-v43/biens.json';
 const GITHUB_BRANCH = 'main';
-// ✅ FIX: clé pour token persistant dans localStorage
 const TOKEN_KEY = 'ags_gh_token';
+const STORAGE_KEY = 'ags_biens_admin';
 
 const VILLES = {
   cannet:'Le Cannet', cannes:'Cannes', mougins:'Mougins',
@@ -384,9 +409,7 @@ function villeLabel(b) {
   return b.ville || VILLES[b.villeFilter] || VILLES[b.ville] || b.ville || '';
 }
 
-// ══════════════════════════════════════════
 // AUTH
-// ══════════════════════════════════════════
 function checkLogin() {
   const pwd = document.getElementById('pwd-input').value;
   if (pwd === PASSWORD) {
@@ -401,11 +424,7 @@ function checkLogin() {
     setTimeout(() => err.style.display = 'none', 3000);
   }
 }
-
-function logout() {
-  sessionStorage.removeItem(SESSION_KEY);
-  location.reload();
-}
+function logout() { sessionStorage.removeItem(SESSION_KEY); location.reload(); }
 
 window.addEventListener('DOMContentLoaded', () => {
   if (sessionStorage.getItem(SESSION_KEY)) {
@@ -418,32 +437,22 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// ══════════════════════════════════════════
-// GITHUB TOKEN — ✅ FIX: persisté en localStorage
-// ══════════════════════════════════════════
+// GITHUB TOKEN
 function getToken() {
-  // Cherche d'abord en sessionStorage (rétrocompat), puis localStorage
   return sessionStorage.getItem('gh_token') || localStorage.getItem(TOKEN_KEY) || '';
 }
-
 function sauvegarderToken() {
   const token = document.getElementById('github-token').value.trim();
   if (!token.startsWith('ghp_') && !token.startsWith('github_pat_')) {
-    showToast('Token invalide (doit commencer par ghp_)', 'error');
-    return;
+    showToast('Token invalide (doit commencer par ghp_)', 'error'); return;
   }
-  // ✅ FIX: sauvegarder dans localStorage pour persister entre sessions
   localStorage.setItem(TOKEN_KEY, token);
-  sessionStorage.setItem('gh_token', token); // compat
+  sessionStorage.setItem('gh_token', token);
   verifierToken();
 }
-
 async function verifierToken() {
   const token = getToken();
-  if (!token) {
-    updateSyncStatus('pending', '⚙️ Config GitHub requise');
-    return false;
-  }
+  if (!token) { updateSyncStatus('pending', '⚙️ Config GitHub requise'); return false; }
   try {
     const r = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}`, {
       headers: { 'Authorization': `token ${token}` }
@@ -454,118 +463,88 @@ async function verifierToken() {
       document.getElementById('github-token').value = '••••••••••••••••';
       return true;
     } else {
-      // ✅ FIX: token invalide → on le supprime pour ne pas bloquer
-      localStorage.removeItem(TOKEN_KEY);
-      sessionStorage.removeItem('gh_token');
-      updateSyncStatus('err', '❌ Token invalide');
-      return false;
+      localStorage.removeItem(TOKEN_KEY); sessionStorage.removeItem('gh_token');
+      updateSyncStatus('err', '❌ Token invalide'); return false;
     }
-  } catch(e) {
-    updateSyncStatus('err', '❌ Erreur réseau');
-    return false;
-  }
+  } catch(e) { updateSyncStatus('err', '❌ Erreur réseau'); return false; }
 }
-
 function updateSyncStatus(type, msg) {
   const el = document.getElementById('sync-status');
   el.textContent = msg;
-  el.className = 'sync-status ' + (type === 'ok' ? 'sync-ok' : type === 'err' ? 'sync-err' : 'sync-pending');
+  el.className = 'sync-status ' + (type==='ok'?'sync-ok':type==='err'?'sync-err':'sync-pending');
 }
 
-// ══════════════════════════════════════════
-// STOCKAGE LOCAL + GITHUB
-// ══════════════════════════════════════════
-const STORAGE_KEY = 'ags_biens_admin';
-
+// DATA
 function formatPrix(val) {
   if (!val) return '';
-  const s = String(val).replace(/[€\s]/g,'').trim();
-  const n = parseInt(s.replace(/\D/g,''));
-  if (isNaN(n)) return val;
-  return n.toLocaleString('fr-FR') + ' €';
+  const n = parseInt(String(val).replace(/[€\s]/g,'').replace(/\D/g,''));
+  return isNaN(n) ? val : n.toLocaleString('fr-FR') + ' €';
 }
-
 function getBiens() {
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
-  catch(e) { return []; }
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch(e) { return []; }
 }
+function sauvegarderLocal(biens) { localStorage.setItem(STORAGE_KEY, JSON.stringify(biens)); }
 
-function sauvegarderLocal(biens) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(biens));
+// ✅ FIX CRITIQUE: filtrer les photos base64 pour le JSON public
+// Les base64 rendent biens.json énorme → chargement infini sur la page détail
+function filtrerPhotosPublic(photos) {
+  return (photos || []).filter(p => p && !p.startsWith('data:'));
 }
 
 async function publierSurGitHub(biens) {
   const token = getToken();
-  if (!token) {
-    showToast('⚠️ Sauvegardé localement. Connectez GitHub pour publier.', '');
-    return false;
-  }
-
+  if (!token) { showToast('⚠️ Sauvegardé localement. Connectez GitHub pour publier.', ''); return false; }
   updateSyncStatus('pending', '⏳ Publication...');
 
-  // Préparer le JSON public — ✅ FIX: inclure TOUS les biens (actifs ET masqués)
-  // Le site filtre lui-même sur actif=true, mais on garde tout pour l'admin
-  const biensPublics = biens.map(b => ({
-    id: b.id,
-    titre: b.titre,
-    soustitre: (b.quartier ? b.quartier + ' — ' : '') + villeLabel(b),
-    type: b.type,
-    ville: VILLES[b.ville] || b.ville,
-    villeFilter: b.ville,
-    prix: b.prix,
-    prixBrut: parseInt(b.prixBrut) || 0,
-    badge: b.badge || '',
-    mainPhoto: b.photos?.[0] || '',
-    photos: b.photos || [],
-    caracteristiques: { surface: b.surface || '', pieces: b.pieces || '' },
-    accroche: b.accroche || '',
-    description: b.description || '',
-    equipements: b.equipements || [],
-    dpe: b.dpe || '',
-    ges: b.ges || '',
-    rente: b.rente || '',
-    surface: b.surface || '',
-    pieces: b.pieces || '',
-    chambres: b.chambres || '',
-    etage: b.etage || '',
-    exposition: b.exposition || '',
-    annee: b.annee || '',
-    ref: b.ref || '',
-    actif: b.actif !== false  // ✅ préserver le statut actif/masqué
-  }));
+  const hasBase64 = biens.some(b => (b.photos||[]).some(p => p && p.startsWith('data:')));
+
+  const biensPublics = biens.map(b => {
+    const photosOk = filtrerPhotosPublic(b.photos);
+    return {
+      id: b.id,
+      titre: b.titre,
+      soustitre: (b.quartier ? b.quartier + ' — ' : '') + villeLabel(b),
+      type: b.type,
+      ville: VILLES[b.ville] || b.ville,
+      villeFilter: b.ville,
+      prix: b.prix,
+      prixBrut: parseInt(b.prixBrut) || 0,
+      badge: b.badge || '',
+      mainPhoto: photosOk[0] || '',  // ✅ 1ère photo valide = couverture
+      photos: photosOk,              // ✅ toutes photos valides
+      caracteristiques: { surface: b.surface||'', pieces: b.pieces||'' },
+      accroche: b.accroche || '',
+      description: b.description || '',
+      equipements: b.equipements || [],
+      dpe: b.dpe||'', ges: b.ges||'', rente: b.rente||'',
+      surface: b.surface||'', pieces: b.pieces||'', chambres: b.chambres||'',
+      etage: b.etage||'', exposition: b.exposition||'', annee: b.annee||'',
+      ref: b.ref||'',
+      actif: b.actif !== false
+    };
+  });
 
   const content = btoa(unescape(encodeURIComponent(JSON.stringify(biensPublics, null, 2))));
-
   try {
     let sha = '';
     const getR = await fetch(
       `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`,
       { headers: { 'Authorization': `token ${token}` } }
     );
-    if (getR.ok) {
-      const d = await getR.json();
-      sha = d.sha;
-    }
-
-    const body = {
-      message: `Mise à jour biens — ${new Date().toLocaleDateString('fr-FR')}`,
-      content,
-      branch: GITHUB_BRANCH
-    };
+    if (getR.ok) { const d = await getR.json(); sha = d.sha; }
+    const body = { message: `Mise à jour biens — ${new Date().toLocaleDateString('fr-FR')}`, content, branch: GITHUB_BRANCH };
     if (sha) body.sha = sha;
-
     const putR = await fetch(
       `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`,
-      {
-        method: 'PUT',
-        headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
-      }
+      { method:'PUT', headers:{'Authorization':`token ${token}`,'Content-Type':'application/json'}, body:JSON.stringify(body) }
     );
-
     if (putR.ok) {
       updateSyncStatus('ok', '✅ Publié sur GitHub');
-      showToast('✅ Biens publiés ! Visible par tous dans 1 minute.', 'success');
+      if (hasBase64) {
+        showToast('✅ Publié ! Note : les photos uploadées depuis l\'ordi ne sont pas visibles sur le site. Utilisez des liens URL.', 'warning');
+      } else {
+        showToast('✅ Biens publiés ! Visible par tous dans 1 minute.', 'success');
+      }
       return true;
     } else {
       const err = await putR.json();
@@ -573,33 +552,22 @@ async function publierSurGitHub(biens) {
       showToast('Erreur GitHub : ' + (err.message || 'inconnue'), 'error');
       return false;
     }
-  } catch(e) {
-    updateSyncStatus('err', '❌ Erreur réseau');
-    showToast('Erreur réseau', 'error');
-    return false;
-  }
+  } catch(e) { updateSyncStatus('err', '❌ Erreur réseau'); showToast('Erreur réseau', 'error'); return false; }
 }
 
-// ══════════════════════════════════════════
-// INIT — charger depuis GitHub d'abord
-// ══════════════════════════════════════════
+// INIT
 async function init() {
   const token = getToken();
   if (token) {
-    // ✅ FIX: afficher le bandeau comme connecté si token présent
     const ok = await verifierToken();
-    if (ok) {
-      await chargerDepuisGitHub();
-    }
+    if (ok) await chargerDepuisGitHub();
   }
   chargerBiens();
 }
-
 async function chargerDepuisGitHub() {
   const token = getToken();
   if (!token) return;
   try {
-    // ✅ FIX: bypass cache avec timestamp
     const r = await fetch(
       `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}?t=${Date.now()}`,
       { headers: { 'Authorization': `token ${token}`, 'Cache-Control': 'no-cache' } }
@@ -608,7 +576,6 @@ async function chargerDepuisGitHub() {
       const d = await r.json();
       const biensGH = JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\n/g,'')))));
       if (Array.isArray(biensGH)) {
-        // ✅ FIX: GitHub = source de vérité absolue, même si tableau vide
         localStorage.setItem(STORAGE_KEY, JSON.stringify(biensGH));
         console.log('✓ ' + biensGH.length + ' biens chargés depuis GitHub');
       }
@@ -616,15 +583,12 @@ async function chargerDepuisGitHub() {
   } catch(e) { console.log('Erreur chargement GitHub:', e); }
 }
 
-// ══════════════════════════════════════════
 // AFFICHAGE
-// ══════════════════════════════════════════
 function chargerBiens() {
   const biens = getBiens();
   const container = document.getElementById('liste-biens');
-
   document.getElementById('stat-total').textContent = biens.length;
-  document.getElementById('stat-actifs').textContent = biens.filter(b=>b.actif !== false).length;
+  document.getElementById('stat-actifs').textContent = biens.filter(b=>b.actif!==false).length;
   document.getElementById('stat-appart').textContent = biens.filter(b=>b.type==='appartement').length;
   document.getElementById('stat-maison').textContent = biens.filter(b=>['maison','villa'].includes(b.type)).length;
   document.getElementById('stat-viager').textContent = biens.filter(b=>b.type==='viager').length;
@@ -634,10 +598,13 @@ function chargerBiens() {
     container.innerHTML = '<div class="empty-state"><div class="icon">🏠</div><p>Aucun bien.<br>Cliquez sur "+ Nouveau bien" pour commencer.</p></div>';
     return;
   }
-
-  container.innerHTML = biens.map(b => `
+  const placeholder = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="60"><rect fill="%23f0f2f5" width="80" height="60"/><text x="40" y="38" text-anchor="middle" font-size="22">🏠</text></svg>';
+  container.innerHTML = biens.map(b => {
+    // Utiliser la 1ère photo non-base64 comme vignette (= photo de couverture publique)
+    const thumb = (b.photos||[]).find(p => p && !p.startsWith('data:')) || b.mainPhoto || '';
+    return `
     <div class="bien-item">
-      <img class="bien-thumb" src="${b.photos?.[0] || b.mainPhoto || 'images/placeholder.jpg'}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2260%22><rect fill=%22%23f0f2f5%22 width=%2280%22 height=%2260%22/><text x=%2240%22 y=%2235%22 text-anchor=%22middle%22 font-size=%2220%22>🏠</text></svg>'">
+      <img class="bien-thumb" src="${thumb||placeholder}" onerror="this.src='${placeholder}'">
       <div class="bien-info">
         <h4>${b.titre}</h4>
         <p>${villeLabel(b)}${b.quartier?' · '+b.quartier:''} — ${b.prix}</p>
@@ -649,13 +616,11 @@ function chargerBiens() {
         <button class="btn-toggle ${b.actif!==false?'actif':'inactif'}" onclick="toggleBien('${b.id}')">${b.actif!==false?'Masquer':'Publier'}</button>
         <button class="btn-delete" onclick="supprimerBien('${b.id}')">Supprimer</button>
       </div>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 }
 
-// ══════════════════════════════════════════
 // FORMULAIRE
-// ══════════════════════════════════════════
 let currentPhotos = [];
 
 function nouveauBien() {
@@ -666,12 +631,11 @@ function nouveauBien() {
   renderPhotoPreviews();
   document.getElementById('form-card').scrollIntoView({behavior:'smooth'});
 }
-
 function editerBien(id) {
   const b = getBiens().find(x => x.id === id);
   if (!b) return;
   document.getElementById('f-id').value = b.id;
-  document.getElementById('form-title').textContent = 'Modifier';
+  document.getElementById('form-title').textContent = 'Modifier — ' + b.titre;
   document.getElementById('f-titre').value = b.titre||'';
   document.getElementById('f-type').value = b.type||'appartement';
   document.getElementById('f-badge').value = b.badge||'';
@@ -690,7 +654,7 @@ function editerBien(id) {
   document.getElementById('f-ges').value = b.ges||'';
   document.getElementById('f-accroche').value = b.accroche||'';
   document.getElementById('f-description').value = b.description||'';
-  document.getElementById('f-actif').value = b.actif!==false ? '1' : '0';
+  document.getElementById('f-actif').value = b.actif!==false?'1':'0';
   document.getElementById('f-ref').value = b.ref||'';
   document.getElementById('viager-fields').style.display = b.type==='viager'?'block':'none';
   document.querySelectorAll('#equipements-list input[type=checkbox]').forEach(cb => {
@@ -700,16 +664,13 @@ function editerBien(id) {
   renderPhotoPreviews();
   document.getElementById('form-card').scrollIntoView({behavior:'smooth'});
 }
-
 async function sauvegarderBien() {
   const titre = document.getElementById('f-titre').value.trim();
   const prix = formatPrix(document.getElementById('f-prix').value.trim());
   if (!titre) { showToast('Le titre est obligatoire', 'error'); return; }
   if (!prix) { showToast('Le prix est obligatoire', 'error'); return; }
-
   const equipements = [];
   document.querySelectorAll('#equipements-list input[type=checkbox]:checked').forEach(cb => equipements.push(cb.value));
-
   const id = document.getElementById('f-id').value || ('bien-' + Date.now());
   const bien = {
     id, titre,
@@ -729,22 +690,20 @@ async function sauvegarderBien() {
     ges: document.getElementById('f-ges').value,
     accroche: document.getElementById('f-accroche').value,
     description: document.getElementById('f-description').value,
-    equipements, photos: currentPhotos,
+    equipements,
+    photos: currentPhotos,
     actif: document.getElementById('f-actif').value === '1',
     ref: document.getElementById('f-ref').value,
     updatedAt: new Date().toISOString()
   };
-
   const biens = getBiens();
   const idx = biens.findIndex(x => x.id === id);
   if (idx >= 0) biens[idx] = bien; else biens.unshift(bien);
-
   sauvegarderLocal(biens);
   chargerBiens();
   annulerForm();
   await publierSurGitHub(biens);
 }
-
 function annulerForm() {
   document.getElementById('bien-form').reset();
   document.getElementById('f-id').value = '';
@@ -752,33 +711,25 @@ function annulerForm() {
   currentPhotos = [];
   renderPhotoPreviews();
 }
-
 async function supprimerBien(id) {
   if (!confirm('Supprimer ce bien définitivement ?')) return;
-
-  // ✅ FIX: vérifier que le token est présent avant de supprimer
   if (!getToken()) {
     showToast('❌ Connectez GitHub avant de supprimer un bien !', 'error');
     document.getElementById('github-banner').scrollIntoView({behavior:'smooth'});
     return;
   }
-
   const biens = getBiens().filter(b => b.id !== id);
   sauvegarderLocal(biens);
   chargerBiens();
   const ok = await publierSurGitHub(biens);
-  if (ok) {
-    showToast('✅ Bien supprimé et site mis à jour.', 'success');
-  } else {
-    showToast('⚠️ Supprimé localement mais erreur GitHub.', 'error');
-  }
+  if (ok) showToast('✅ Bien supprimé et site mis à jour.', 'success');
+  else showToast('⚠️ Supprimé localement mais erreur GitHub.', 'error');
 }
-
 async function toggleBien(id) {
   const biens = getBiens();
   const b = biens.find(x => x.id === id);
   if (!b) return;
-  b.actif = b.actif === false ? true : false;
+  b.actif = b.actif === false;
   sauvegarderLocal(biens);
   chargerBiens();
   await publierSurGitHub(biens);
@@ -786,43 +737,88 @@ async function toggleBien(id) {
 }
 
 // ══════════════════════════════════════════
-// PHOTOS
+// PHOTOS — GESTION COUVERTURE + ORDRE
+// La 1ère photo du tableau = photo de couverture
 // ══════════════════════════════════════════
 function ajouterPhotoURL() {
   const url = document.getElementById('photo-url-field').value.trim();
   if (!url) return;
+  if (!url.startsWith('http')) { showToast('URL invalide — doit commencer par http', 'error'); return; }
   currentPhotos.push(url);
   document.getElementById('photo-url-field').value = '';
   renderPhotoPreviews();
 }
-
 function handlePhotoUpload(event) {
   Array.from(event.target.files).forEach(file => {
     const reader = new FileReader();
     reader.onload = e => { currentPhotos.push(e.target.result); renderPhotoPreviews(); };
     reader.readAsDataURL(file);
   });
+  event.target.value = ''; // reset pour pouvoir re-uploader le même fichier
 }
 
-function supprimerPhoto(idx) { currentPhotos.splice(idx, 1); renderPhotoPreviews(); }
+// ⭐ Définir comme couverture = déplacer en position 0
+function setCover(idx) {
+  if (idx === 0) return;
+  const [photo] = currentPhotos.splice(idx, 1);
+  currentPhotos.unshift(photo);
+  renderPhotoPreviews();
+  showToast('⭐ Photo de couverture mise à jour !', 'success');
+}
+function moveLeft(idx) {
+  if (idx === 0) return;
+  [currentPhotos[idx-1], currentPhotos[idx]] = [currentPhotos[idx], currentPhotos[idx-1]];
+  renderPhotoPreviews();
+}
+function moveRight(idx) {
+  if (idx >= currentPhotos.length - 1) return;
+  [currentPhotos[idx], currentPhotos[idx+1]] = [currentPhotos[idx+1], currentPhotos[idx]];
+  renderPhotoPreviews();
+}
+function supprimerPhoto(idx) {
+  currentPhotos.splice(idx, 1);
+  renderPhotoPreviews();
+}
 
 function renderPhotoPreviews() {
-  document.getElementById('photo-preview-grid').innerHTML = currentPhotos.map((src, i) => `
-    <div class="photo-preview-item">
-      <img src="${src}">
-      <button class="photo-remove" onclick="supprimerPhoto(${i})">×</button>
-    </div>
-  `).join('');
+  const grid = document.getElementById('photo-preview-grid');
+  const hint = document.getElementById('photo-cover-hint');
+  const warn = document.getElementById('photo-warn');
+  const hasBase64 = currentPhotos.some(p => p && p.startsWith('data:'));
+  warn.style.display = hasBase64 ? 'block' : 'none';
+  hint.style.display = currentPhotos.length > 0 ? 'block' : 'none';
+
+  if (!currentPhotos.length) { grid.innerHTML = ''; return; }
+
+  grid.innerHTML = currentPhotos.map((src, i) => {
+    const isCover = i === 0;
+    const isBase64 = src.startsWith('data:');
+    const typeColor = isBase64 ? '#e67e22' : '#27ae60';
+    const typeLabel = isBase64 ? '💻' : '🔗';
+    const n = currentPhotos.length;
+    return `<div class="photo-item${isCover?' is-cover':''}">
+      <img src="${src}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%2290%22><rect fill=%22%23f0f2f5%22 width=%22120%22 height=%2290%22/><text x=%2260%22 y=%2252%22 text-anchor=%22middle%22 font-size=%2224%22>❌</text></svg>'">
+      ${isCover?'<div class="photo-cover-label">⭐ Couverture</div>':''}
+      <div class="photo-num">#${i+1}</div>
+      <div class="photo-type" style="background:rgba(0,0,0,.5);color:${typeColor}">${typeLabel}</div>
+      <div class="photo-btns">
+        ${isCover
+          ? '<button class="pbtn-cover" disabled style="opacity:.5;cursor:default;">⭐ Cover</button>'
+          : `<button class="pbtn-cover" onclick="setCover(${i})">⭐</button>`}
+        <button class="pbtn-l" onclick="moveLeft(${i})" ${i===0?'disabled':''}>◀</button>
+        <button class="pbtn-r" onclick="moveRight(${i})" ${i===n-1?'disabled':''}>▶</button>
+        <button class="pbtn-del" onclick="supprimerPhoto(${i})">✕</button>
+      </div>
+    </div>`;
+  }).join('');
 }
 
-// ══════════════════════════════════════════
 // TOAST
-// ══════════════════════════════════════════
 function showToast(msg, type='') {
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.className = 'toast show ' + type;
-  setTimeout(() => t.className = 'toast', 4000);
+  setTimeout(() => t.className = 'toast', 5000);
 }
 </script>
 </body>
