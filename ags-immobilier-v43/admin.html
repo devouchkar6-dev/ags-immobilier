@@ -575,8 +575,27 @@ async function chargerDepuisGitHub() {
       const d = await r.json();
       const biensGH = JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\n/g,'')))));
       if (Array.isArray(biensGH)) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(biensGH));
-        console.log('✓ ' + biensGH.length + ' biens chargés depuis GitHub');
+        // ✅ FIX : fusionner GitHub + localStorage (GitHub = source de vérité)
+        // Les biens locaux non encore publiés sont conservés
+        const biensLocaux = getBiens();
+        const map = {};
+        // 1. Partir de GitHub
+        biensGH.forEach(b => map[b.id] = b);
+        // 2. Ajouter/écraser avec les biens locaux plus récents (updatedAt)
+        biensLocaux.forEach(b => {
+          if (!map[b.id]) {
+            // Bien local pas encore sur GitHub → le garder
+            map[b.id] = b;
+          } else {
+            // Bien présent des deux côtés → garder le plus récent
+            const ghDate = new Date(map[b.id].updatedAt || 0);
+            const localDate = new Date(b.updatedAt || 0);
+            if (localDate > ghDate) map[b.id] = b;
+          }
+        });
+        const merged = Object.values(map);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+        console.log('✓ ' + merged.length + ' biens (GitHub: ' + biensGH.length + ', local: ' + biensLocaux.length + ')');
       }
     }
   } catch(e) { console.log('Erreur chargement GitHub:', e); }
