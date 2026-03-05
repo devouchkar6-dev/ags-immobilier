@@ -343,7 +343,7 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
 
               <div class="photo-zone" onclick="document.getElementById('photo-file-input').click()">
                 <p>📁 Uploader depuis l'ordinateur</p>
-                <p style="font-size:11px;margin-top:3px;color:#e67e22;">⚠️ Les liens URL sont préférables pour le site public</p>
+                <p style="font-size:11px;margin-top:3px;color:#27ae60;">✅ Upload automatique vers Cloudinary</p>
               </div>
               <input type="file" id="photo-file-input" accept="image/*" multiple style="display:none" onchange="handlePhotoUpload(event)">
 
@@ -400,6 +400,11 @@ const GITHUB_FILE = 'ags-immobilier-v43/biens.json';
 const GITHUB_BRANCH = 'main';
 const TOKEN_KEY = 'ags_gh_token';
 const STORAGE_KEY = 'ags_biens_admin';
+
+// CLOUDINARY
+const CLOUDINARY_CLOUD = 'df15yd65n';
+const CLOUDINARY_PRESET = 'AGS IMMO';
+const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`;
 
 const VILLES = {
   cannet:'Le Cannet', cannes:'Cannes', mougins:'Mougins',
@@ -496,10 +501,8 @@ async function publierSurGitHub(biens) {
   if (!token) { showToast('⚠️ Sauvegardé localement. Connectez GitHub pour publier.', ''); return false; }
   updateSyncStatus('pending', '⏳ Publication...');
 
-  const hasBase64 = biens.some(b => (b.photos||[]).some(p => p && p.startsWith('data:')));
-
   const biensPublics = biens.map(b => {
-    const photosOk = filtrerPhotosPublic(b.photos);
+    const photosOk = (b.photos||[]).filter(p => p && p.trim());
     return {
       id: b.id,
       titre: b.titre,
@@ -540,11 +543,7 @@ async function publierSurGitHub(biens) {
     );
     if (putR.ok) {
       updateSyncStatus('ok', '✅ Publié sur GitHub');
-      if (hasBase64) {
-        showToast('✅ Publié ! Note : les photos uploadées depuis l\'ordi ne sont pas visibles sur le site. Utilisez des liens URL.', 'warning');
-      } else {
         showToast('✅ Biens publiés ! Visible par tous dans 1 minute.', 'success');
-      }
       return true;
     } else {
       const err = await putR.json();
@@ -748,13 +747,31 @@ function ajouterPhotoURL() {
   document.getElementById('photo-url-field').value = '';
   renderPhotoPreviews();
 }
-function handlePhotoUpload(event) {
-  Array.from(event.target.files).forEach(file => {
-    const reader = new FileReader();
-    reader.onload = e => { currentPhotos.push(e.target.result); renderPhotoPreviews(); };
-    reader.readAsDataURL(file);
-  });
-  event.target.value = ''; // reset pour pouvoir re-uploader le même fichier
+async function handlePhotoUpload(event) {
+  const files = Array.from(event.target.files);
+  event.target.value = '';
+  if (!files.length) return;
+
+  showToast('⏳ Upload en cours sur Cloudinary...', '');
+
+  for (const file of files) {
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', CLOUDINARY_PRESET);
+
+      const r = await fetch(CLOUDINARY_UPLOAD_URL, { method: 'POST', body: formData });
+      if (!r.ok) throw new Error('Erreur Cloudinary ' + r.status);
+      const data = await r.json();
+      const url = data.secure_url;
+      currentPhotos.push(url);
+      renderPhotoPreviews();
+      showToast('✅ Photo uploadée sur Cloudinary !', 'success');
+    } catch(e) {
+      showToast('❌ Erreur upload : ' + e.message, 'error');
+      console.error(e);
+    }
+  }
 }
 
 // ⭐ Définir comme couverture = déplacer en position 0
