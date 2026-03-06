@@ -89,6 +89,7 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
 .photo-zone p { font-size:12px; color:#9CA3AF; }
 .photo-warn { background:#fff3cd; border:1px solid #f39c12; padding:8px 12px; font-size:11px; color:#856404; margin-bottom:8px; display:none; }
 .photo-cover-hint { font-size:11px; color:#6B7280; margin:6px 0; display:none; }
+
 .photo-preview-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:8px; }
 .photo-item { position:relative; aspect-ratio:4/3; border:2px solid transparent; }
 .photo-item.is-cover { border-color:var(--orange); }
@@ -122,43 +123,8 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
 .empty-state { text-align:center; padding:48px; color:#9CA3AF; }
 .empty-state .icon { font-size:48px; margin-bottom:16px; }
 
-/* ===== AVIS STYLES ===== */
-.avis-section { max-width:1400px; margin:0 auto; padding:0 32px 32px; }
-.avis-tabs { display:flex; gap:0; border-bottom:2px solid var(--border); margin-bottom:20px; }
-.avis-tab { padding:10px 20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; border:none; background:transparent; color:#9CA3AF; font-family:'Jost',sans-serif; position:relative; transition:color .2s; }
-.avis-tab.active { color:var(--navy); }
-.avis-tab.active::after { content:''; position:absolute; bottom:-2px; left:0; right:0; height:2px; background:var(--accent); }
-.avis-tab .badge-count { display:inline-flex; align-items:center; justify-content:center; background:var(--red); color:white; border-radius:50%; width:18px; height:18px; font-size:10px; margin-left:6px; }
-.avis-tab .badge-count.green { background:var(--green); }
-.avis-tab .badge-count.grey { background:#9CA3AF; }
-.avis-list { display:flex; flex-direction:column; gap:12px; }
-.avis-card { border:1px solid var(--border); padding:16px 20px; background:white; border-radius:2px; }
-.avis-card.pending { border-left:3px solid var(--orange); }
-.avis-card.approved { border-left:3px solid var(--green); }
-.avis-card.rejected { border-left:3px solid var(--red); opacity:.7; }
-.avis-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px; }
-.avis-author { font-size:14px; font-weight:500; color:var(--navy); }
-.avis-stars { color:#f39c12; font-size:16px; letter-spacing:2px; }
-.avis-meta { font-size:11px; color:#9CA3AF; margin-top:2px; }
-.avis-text { font-size:13px; color:#374151; line-height:1.6; margin:8px 0; font-style:italic; }
-.avis-context { font-size:11px; color:#6B7280; margin-bottom:4px; }
-.avis-actions { display:flex; gap:8px; margin-top:12px; }
-.btn-approve { background:rgba(39,174,96,.1); color:var(--green); border:1px solid rgba(39,174,96,.3); padding:7px 16px; font-size:11px; letter-spacing:1px; text-transform:uppercase; cursor:pointer; font-family:'Jost',sans-serif; }
-.btn-approve:hover { background:var(--green); color:white; }
-.btn-reject { background:rgba(231,76,60,.08); color:var(--red); border:1px solid rgba(231,76,60,.2); padding:7px 16px; font-size:11px; letter-spacing:1px; text-transform:uppercase; cursor:pointer; font-family:'Jost',sans-serif; }
-.btn-reject:hover { background:var(--red); color:white; }
-.btn-delete-avis { background:transparent; color:#9CA3AF; border:1px solid var(--border); padding:7px 12px; font-size:11px; cursor:pointer; font-family:'Jost',sans-serif; }
-.avis-status-badge { font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 8px; border-radius:2px; }
-.avis-status-badge.pending { background:rgba(243,156,18,.1); color:var(--orange); }
-.avis-status-badge.approved { background:rgba(39,174,96,.1); color:var(--green); }
-.avis-status-badge.rejected { background:rgba(231,76,60,.1); color:var(--red); }
-.avis-empty { text-align:center; padding:32px; color:#9CA3AF; font-size:13px; }
-
-/* Notif badge sur le titre avis */
-.avis-notif { display:inline-flex; align-items:center; justify-content:center; background:var(--red); color:white; border-radius:50%; width:20px; height:20px; font-size:11px; font-weight:600; margin-left:8px; vertical-align:middle; }
-
 @media(max-width:1024px) { .main { grid-template-columns:1fr; } }
-@media(max-width:768px) { .stats-row { grid-template-columns:1fr 1fr; } .main { padding:16px; } .avis-section { padding:0 16px 24px; } }
+@media(max-width:768px) { .stats-row { grid-template-columns:1fr 1fr; } .main { padding:16px; } }
 </style>
 </head>
 <body>
@@ -224,6 +190,7 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
         <div class="card-header"><span class="card-title" id="form-title">Nouveau bien</span></div>
         <div class="card-body">
           <form id="bien-form" onsubmit="return false;">
+
             <div class="form-section">
               <div class="form-section-title">Informations générales</div>
               <div class="form-row full"><div class="form-group">
@@ -365,26 +332,31 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
               </div></div>
             </div>
 
-            <!-- PHOTOS -->
+            <!-- PHOTOS AVEC GESTION COUVERTURE -->
             <div class="form-section">
               <div class="form-section-title">Photos</div>
+
               <div class="photo-url-input">
                 <input type="text" id="photo-url-field" placeholder="Coller un lien URL de photo (recommandé)...">
                 <button type="button" onclick="ajouterPhotoURL()">+ URL</button>
               </div>
+
               <div class="photo-zone" onclick="document.getElementById('photo-file-input').click()">
                 <p>📁 Uploader depuis l'ordinateur</p>
                 <p style="font-size:11px;margin-top:3px;color:#27ae60;">✅ Upload automatique vers Cloudinary</p>
               </div>
               <input type="file" id="photo-file-input" accept="image/*" multiple style="display:none" onchange="handlePhotoUpload(event)">
+
               <div class="photo-warn" id="photo-warn">
-                ⚠️ <strong>Photos depuis ordinateur détectées</strong> — Ces photos ne seront pas visibles sur le site public.
-                Utilisez des <strong>liens URL</strong> (ex: imgbb.com, Google Photos, Dropbox...).
+                ⚠️ <strong>Photos depuis ordinateur détectées</strong> — Ces photos ne seront pas visibles sur le site public (trop lourdes pour GitHub).
+                Pour les afficher sur le site, utilisez des <strong>liens URL</strong> (ex: imgbb.com, Google Photos, Dropbox...).
               </div>
+
               <div class="photo-cover-hint" id="photo-cover-hint">
-                La photo avec le badge <strong style="color:var(--orange);">⭐ Couverture</strong> est affichée en premier.
-                Cliquez sur <strong>⭐</strong> pour changer. Utilisez <strong>◀ ▶</strong> pour réordonner.
+                La photo avec le badge <strong style="color:var(--orange);">⭐ Couverture</strong> est affichée en premier sur le site.
+                Cliquez sur <strong>⭐</strong> pour changer la couverture. Utilisez <strong>◀ ▶</strong> pour réordonner.
               </div>
+
               <div class="photo-preview-grid" id="photo-preview-grid"></div>
             </div>
 
@@ -415,36 +387,36 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
       </div>
     </div>
   </div>
+</div>
 
-  <!-- ===== SECTION AVIS ===== -->
-  <div class="avis-section">
-    <div class="card">
-      <div class="card-header">
-        <span class="card-title">
-          ⭐ Gestion des avis clients
-          <span class="avis-notif" id="avis-pending-notif" style="display:none;">0</span>
-        </span>
-        <button class="btn-new" onclick="chargerAvis()" style="background:transparent;color:var(--accent);border:1px solid var(--accent);">↺ Actualiser</button>
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION GESTION DES AVIS -->
+<!-- ══════════════════════════════════════════ -->
+<div style="padding:24px 32px 40px;">
+  <div class="card">
+    <div class="card-header" style="display:flex;justify-content:space-between;align-items:center;">
+      <span class="card-title">⭐ Avis clients</span>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <span id="avis-badge-attente" style="display:none;background:#e74c3c;color:white;font-size:10px;letter-spacing:1px;padding:3px 10px;border-radius:20px;"></span>
+        <button onclick="chargerAvisAdmin()" style="background:var(--navy);color:white;border:none;padding:7px 16px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;">↺ Actualiser</button>
       </div>
-      <div class="card-body">
-        <div class="avis-tabs">
-          <button class="avis-tab active" onclick="switchAvisTab('pending', this)">
-            En attente <span class="badge-count" id="tab-count-pending">0</span>
-          </button>
-          <button class="avis-tab" onclick="switchAvisTab('approved', this)">
-            Approuvés <span class="badge-count green" id="tab-count-approved">0</span>
-          </button>
-          <button class="avis-tab" onclick="switchAvisTab('rejected', this)">
-            Refusés <span class="badge-count grey" id="tab-count-rejected">0</span>
-          </button>
-        </div>
-        <div class="avis-list" id="avis-list">
-          <div class="avis-empty">⏳ Chargement des avis...</div>
-        </div>
+    </div>
+    <div class="card-body" style="padding:0;">
+
+      <!-- Tabs -->
+      <div style="display:flex;border-bottom:1px solid var(--border);">
+        <button class="avis-tab active" data-tab="en_attente" onclick="filtrerAvis('en_attente')" style="flex:1;padding:12px;border:none;background:none;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;color:var(--text-light);transition:all .2s;">En attente</button>
+        <button class="avis-tab" data-tab="approuve" onclick="filtrerAvis('approuve')" style="flex:1;padding:12px;border:none;background:none;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;color:var(--text-light);transition:all .2s;">Approuvés</button>
+        <button class="avis-tab" data-tab="refuse" onclick="filtrerAvis('refuse')" style="flex:1;padding:12px;border:none;background:none;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;color:var(--text-light);transition:all .2s;">Refusés</button>
+        <button class="avis-tab" data-tab="tous" onclick="filtrerAvis('tous')" style="flex:1;padding:12px;border:none;background:none;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;color:var(--text-light);transition:all .2s;">Tous</button>
+      </div>
+
+      <!-- Liste -->
+      <div id="avis-liste" style="padding:20px;">
+        <div class="empty-state"><div class="icon">⭐</div><p>Chargement des avis…</p></div>
       </div>
     </div>
   </div>
-
 </div>
 
 <div class="toast" id="toast"></div>
@@ -455,11 +427,11 @@ const SESSION_KEY = 'ags_admin_session';
 const GITHUB_USER = 'devouchkar6-dev';
 const GITHUB_REPO = 'ags-immobilier';
 const GITHUB_FILE = 'ags-immobilier-v43/biens.json';
-const GITHUB_AVIS_FILE = 'ags-immobilier-v43/avis.json';
 const GITHUB_BRANCH = 'main';
 const TOKEN_KEY = 'ags_gh_token';
 const STORAGE_KEY = 'ags_biens_admin';
 
+// CLOUDINARY
 const CLOUDINARY_CLOUD = 'df15yd65n';
 const CLOUDINARY_PRESET = 'AGS IMMO';
 const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`;
@@ -472,7 +444,7 @@ function villeLabel(b) {
   return b.ville || VILLES[b.villeFilter] || VILLES[b.ville] || b.ville || '';
 }
 
-// ─── AUTH ───────────────────────────────────────────────────────────────────
+// AUTH
 function checkLogin() {
   const pwd = document.getElementById('pwd-input').value;
   if (pwd === PASSWORD) {
@@ -500,7 +472,7 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// ─── GITHUB TOKEN ────────────────────────────────────────────────────────────
+// GITHUB TOKEN
 function getToken() {
   return sessionStorage.getItem('gh_token') || localStorage.getItem(TOKEN_KEY) || '';
 }
@@ -537,7 +509,7 @@ function updateSyncStatus(type, msg) {
   el.className = 'sync-status ' + (type==='ok'?'sync-ok':type==='err'?'sync-err':'sync-pending');
 }
 
-// ─── BIENS DATA ───────────────────────────────────────────────────────────────
+// DATA
 function formatPrix(val) {
   if (!val) return '';
   const n = parseInt(String(val).replace(/[€\s]/g,'').replace(/\D/g,''));
@@ -548,37 +520,67 @@ function getBiens() {
 }
 function sauvegarderLocal(biens) { localStorage.setItem(STORAGE_KEY, JSON.stringify(biens)); }
 
+// ✅ FIX CRITIQUE: filtrer les photos base64 pour le JSON public
+// Les base64 rendent biens.json énorme → chargement infini sur la page détail
+function filtrerPhotosPublic(photos) {
+  return (photos || []).filter(p => p && !p.startsWith('data:'));
+}
+
 async function publierSurGitHub(biens) {
   const token = getToken();
   if (!token) { showToast('⚠️ Sauvegardé localement. Connectez GitHub pour publier.', ''); return false; }
   updateSyncStatus('pending', '⏳ Publication...');
 
-  const biensPublics = biens.map(b => {
-    const photosOk = (b.photos||[]).filter(p => p && p.trim());
-    return {
-      id: b.id, titre: b.titre,
-      soustitre: (b.quartier ? b.quartier + ' — ' : '') + villeLabel(b),
-      type: b.type, ville: VILLES[b.ville] || b.ville, villeFilter: b.ville,
-      prix: b.prix, prixBrut: parseInt(b.prixBrut) || 0, badge: b.badge || '',
-      mainPhoto: photosOk[0] || '', photos: photosOk,
-      caracteristiques: { surface: b.surface||'', pieces: b.pieces||'' },
-      accroche: b.accroche || '', description: b.description || '',
-      equipements: b.equipements || [],
-      dpe: b.dpe||'', ges: b.ges||'', rente: b.rente||'',
-      surface: b.surface||'', pieces: b.pieces||'', chambres: b.chambres||'',
-      etage: b.etage||'', exposition: b.exposition||'', annee: b.annee||'',
-      ref: b.ref||'', actif: b.actif !== false
-    };
-  });
-
-  const content = btoa(unescape(encodeURIComponent(JSON.stringify(biensPublics, null, 2))));
   try {
+    // ✅ FIX CRITIQUE : toujours lire GitHub en premier pour récupérer SHA + biens existants
     let sha = '';
+    let biensGH = [];
     const getR = await fetch(
       `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`,
-      { headers: { 'Authorization': `token ${token}` } }
+      { headers: { 'Authorization': `token ${token}`, 'Cache-Control': 'no-cache' } }
     );
-    if (getR.ok) { const d = await getR.json(); sha = d.sha; }
+    if (getR.ok) {
+      const d = await getR.json();
+      sha = d.sha;
+      try { biensGH = JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\n/g,''))))); } catch(e) {}
+    }
+
+    // ✅ Fusionner : partir des biens GitHub, écraser/ajouter avec les biens locaux
+    const map = {};
+    biensGH.forEach(b => map[b.id] = b);
+    biens.forEach(b => map[b.id] = b);  // les biens passés en param priment toujours
+    const biensFusionnes = Object.values(map);
+
+    // ✅ Mettre à jour le localStorage avec la liste fusionnée
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(biensFusionnes));
+
+    const biensPublics = biensFusionnes.map(b => {
+      const photosOk = (b.photos||[]).filter(p => p && p.trim());
+      return {
+        id: b.id,
+        titre: b.titre,
+        soustitre: (b.quartier ? b.quartier + ' — ' : '') + villeLabel(b),
+        type: b.type,
+        ville: VILLES[b.ville] || b.ville,
+        villeFilter: b.ville,
+        prix: b.prix,
+        prixBrut: parseInt(b.prixBrut) || 0,
+        badge: b.badge || '',
+        mainPhoto: photosOk[0] || '',
+        photos: photosOk,
+        caracteristiques: { surface: b.surface||'', pieces: b.pieces||'' },
+        accroche: b.accroche || '',
+        description: b.description || '',
+        equipements: b.equipements || [],
+        dpe: b.dpe||'', ges: b.ges||'', rente: b.rente||'',
+        surface: b.surface||'', pieces: b.pieces||'', chambres: b.chambres||'',
+        etage: b.etage||'', exposition: b.exposition||'', annee: b.annee||'',
+        ref: b.ref||'',
+        actif: b.actif !== false
+      };
+    });
+
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(biensPublics, null, 2))));
     const body = { message: `Mise à jour biens — ${new Date().toLocaleDateString('fr-FR')}`, content, branch: GITHUB_BRANCH };
     if (sha) body.sha = sha;
     const putR = await fetch(
@@ -598,7 +600,7 @@ async function publierSurGitHub(biens) {
   } catch(e) { updateSyncStatus('err', '❌ Erreur réseau'); showToast('Erreur réseau', 'error'); return false; }
 }
 
-// ─── INIT ─────────────────────────────────────────────────────────────────────
+// INIT
 async function init() {
   const token = getToken();
   if (token) {
@@ -606,9 +608,7 @@ async function init() {
     if (ok) await chargerDepuisGitHub();
   }
   chargerBiens();
-  chargerAvis();
 }
-
 async function chargerDepuisGitHub() {
   const token = getToken();
   if (!token) return;
@@ -621,12 +621,19 @@ async function chargerDepuisGitHub() {
       const d = await r.json();
       const biensGH = JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\n/g,'')))));
       if (Array.isArray(biensGH)) {
+        // ✅ FIX : fusionner GitHub + localStorage (GitHub = source de vérité)
+        // Les biens locaux non encore publiés sont conservés
         const biensLocaux = getBiens();
         const map = {};
+        // 1. Partir de GitHub
         biensGH.forEach(b => map[b.id] = b);
+        // 2. Ajouter/écraser avec les biens locaux plus récents (updatedAt)
         biensLocaux.forEach(b => {
-          if (!map[b.id]) { map[b.id] = b; }
-          else {
+          if (!map[b.id]) {
+            // Bien local pas encore sur GitHub → le garder
+            map[b.id] = b;
+          } else {
+            // Bien présent des deux côtés → garder le plus récent
             const ghDate = new Date(map[b.id].updatedAt || 0);
             const localDate = new Date(b.updatedAt || 0);
             if (localDate > ghDate) map[b.id] = b;
@@ -634,12 +641,13 @@ async function chargerDepuisGitHub() {
         });
         const merged = Object.values(map);
         localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+        console.log('✓ ' + merged.length + ' biens (GitHub: ' + biensGH.length + ', local: ' + biensLocaux.length + ')');
       }
     }
   } catch(e) { console.log('Erreur chargement GitHub:', e); }
 }
 
-// ─── BIENS AFFICHAGE ──────────────────────────────────────────────────────────
+// AFFICHAGE
 function chargerBiens() {
   const biens = getBiens();
   const container = document.getElementById('liste-biens');
@@ -656,6 +664,7 @@ function chargerBiens() {
   }
   const placeholder = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="60"><rect fill="%23f0f2f5" width="80" height="60"/><text x="40" y="38" text-anchor="middle" font-size="22">🏠</text></svg>';
   container.innerHTML = biens.map(b => {
+    // Utiliser la 1ère photo non-base64 comme vignette (= photo de couverture publique)
     const thumb = (b.photos||[]).find(p => p && !p.startsWith('data:')) || b.mainPhoto || '';
     return `
     <div class="bien-item">
@@ -675,7 +684,7 @@ function chargerBiens() {
   }).join('');
 }
 
-// ─── FORMULAIRE ───────────────────────────────────────────────────────────────
+// FORMULAIRE
 let currentPhotos = [];
 
 function nouveauBien() {
@@ -728,7 +737,8 @@ async function sauvegarderBien() {
   document.querySelectorAll('#equipements-list input[type=checkbox]:checked').forEach(cb => equipements.push(cb.value));
   const id = document.getElementById('f-id').value || ('bien-' + Date.now());
   const bien = {
-    id, titre, type: document.getElementById('f-type').value,
+    id, titre,
+    type: document.getElementById('f-type').value,
     badge: document.getElementById('f-badge').value,
     ville: document.getElementById('f-ville').value,
     quartier: document.getElementById('f-quartier').value,
@@ -744,11 +754,14 @@ async function sauvegarderBien() {
     ges: document.getElementById('f-ges').value,
     accroche: document.getElementById('f-accroche').value,
     description: document.getElementById('f-description').value,
-    equipements, photos: currentPhotos,
+    equipements,
+    photos: currentPhotos,
     actif: document.getElementById('f-actif').value === '1',
     ref: document.getElementById('f-ref').value,
     updatedAt: new Date().toISOString()
   };
+  // ✅ FIX : lire GitHub d'abord pour ne jamais écraser les autres biens
+  await chargerDepuisGitHub();
   const biens = getBiens();
   const idx = biens.findIndex(x => x.id === id);
   if (idx >= 0) biens[idx] = bien; else biens.unshift(bien);
@@ -771,6 +784,8 @@ async function supprimerBien(id) {
     document.getElementById('github-banner').scrollIntoView({behavior:'smooth'});
     return;
   }
+  // ✅ FIX : lire GitHub d'abord pour ne supprimer QUE ce bien, pas perdre les autres
+  await chargerDepuisGitHub();
   const biens = getBiens().filter(b => b.id !== id);
   sauvegarderLocal(biens);
   chargerBiens();
@@ -779,6 +794,8 @@ async function supprimerBien(id) {
   else showToast('⚠️ Supprimé localement mais erreur GitHub.', 'error');
 }
 async function toggleBien(id) {
+  // ✅ FIX : lire GitHub d'abord pour ne modifier QUE ce bien
+  await chargerDepuisGitHub();
   const biens = getBiens();
   const b = biens.find(x => x.id === id);
   if (!b) return;
@@ -789,7 +806,10 @@ async function toggleBien(id) {
   showToast(b.actif ? '✅ Bien mis en ligne' : '⏸ Bien masqué', 'success');
 }
 
-// ─── PHOTOS ───────────────────────────────────────────────────────────────────
+// ══════════════════════════════════════════
+// PHOTOS — GESTION COUVERTURE + ORDRE
+// La 1ère photo du tableau = photo de couverture
+// ══════════════════════════════════════════
 function ajouterPhotoURL() {
   const url = document.getElementById('photo-url-field').value.trim();
   if (!url) return;
@@ -802,21 +822,30 @@ async function handlePhotoUpload(event) {
   const files = Array.from(event.target.files);
   event.target.value = '';
   if (!files.length) return;
+
   showToast('⏳ Upload en cours sur Cloudinary...', '');
+
   for (const file of files) {
     try {
       const formData = new FormData();
       formData.append('file', file);
       formData.append('upload_preset', CLOUDINARY_PRESET);
+
       const r = await fetch(CLOUDINARY_UPLOAD_URL, { method: 'POST', body: formData });
       if (!r.ok) throw new Error('Erreur Cloudinary ' + r.status);
       const data = await r.json();
-      currentPhotos.push(data.secure_url);
+      const url = data.secure_url;
+      currentPhotos.push(url);
       renderPhotoPreviews();
       showToast('✅ Photo uploadée sur Cloudinary !', 'success');
-    } catch(e) { showToast('❌ Erreur upload : ' + e.message, 'error'); }
+    } catch(e) {
+      showToast('❌ Erreur upload : ' + e.message, 'error');
+      console.error(e);
+    }
   }
 }
+
+// ⭐ Définir comme couverture = déplacer en position 0
 function setCover(idx) {
   if (idx === 0) return;
   const [photo] = currentPhotos.splice(idx, 1);
@@ -834,7 +863,10 @@ function moveRight(idx) {
   [currentPhotos[idx], currentPhotos[idx+1]] = [currentPhotos[idx+1], currentPhotos[idx]];
   renderPhotoPreviews();
 }
-function supprimerPhoto(idx) { currentPhotos.splice(idx, 1); renderPhotoPreviews(); }
+function supprimerPhoto(idx) {
+  currentPhotos.splice(idx, 1);
+  renderPhotoPreviews();
+}
 
 function renderPhotoPreviews() {
   const grid = document.getElementById('photo-preview-grid');
@@ -843,7 +875,9 @@ function renderPhotoPreviews() {
   const hasBase64 = currentPhotos.some(p => p && p.startsWith('data:'));
   warn.style.display = hasBase64 ? 'block' : 'none';
   hint.style.display = currentPhotos.length > 0 ? 'block' : 'none';
+
   if (!currentPhotos.length) { grid.innerHTML = ''; return; }
+
   grid.innerHTML = currentPhotos.map((src, i) => {
     const isCover = i === 0;
     const isBase64 = src.startsWith('data:');
@@ -867,155 +901,7 @@ function renderPhotoPreviews() {
   }).join('');
 }
 
-// ═══════════════════════════════════════════════════════════════════════════════
-// SYSTÈME D'AVIS — MODÉRATION
-// ═══════════════════════════════════════════════════════════════════════════════
-let allAvis = [];
-let currentAvisTab = 'pending';
-
-async function chargerAvis() {
-  const token = getToken();
-  if (!token) {
-    document.getElementById('avis-list').innerHTML = '<div class="avis-empty">🔒 Connectez GitHub pour gérer les avis.</div>';
-    return;
-  }
-  document.getElementById('avis-list').innerHTML = '<div class="avis-empty">⏳ Chargement...</div>';
-  try {
-    const r = await fetch(
-      `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_AVIS_FILE}?t=${Date.now()}`,
-      { headers: { 'Authorization': `token ${token}`, 'Cache-Control': 'no-cache' } }
-    );
-    if (r.status === 404) {
-      allAvis = [];
-      renderAvis();
-      return;
-    }
-    if (!r.ok) throw new Error('Erreur GitHub ' + r.status);
-    const d = await r.json();
-    allAvis = JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\n/g,'')))));
-    if (!Array.isArray(allAvis)) allAvis = [];
-  } catch(e) {
-    allAvis = [];
-    document.getElementById('avis-list').innerHTML = '<div class="avis-empty">❌ Erreur chargement : ' + e.message + '</div>';
-    return;
-  }
-  renderAvis();
-}
-
-function renderAvis() {
-  const pending = allAvis.filter(a => a.statut === 'en_attente');
-  const approved = allAvis.filter(a => a.statut === 'approuve');
-  const rejected = allAvis.filter(a => a.statut === 'refuse');
-
-  document.getElementById('tab-count-pending').textContent = pending.length;
-  document.getElementById('tab-count-approved').textContent = approved.length;
-  document.getElementById('tab-count-rejected').textContent = rejected.length;
-
-  // Badge rouge en_attente dans le titre
-  const notif = document.getElementById('avis-pending-notif');
-  if (pending.length > 0) {
-    notif.textContent = pending.length;
-    notif.style.display = 'inline-flex';
-  } else {
-    notif.style.display = 'none';
-  }
-
-  let filtered;
-  if (currentAvisTab === 'pending') filtered = pending;
-  else if (currentAvisTab === 'approved') filtered = approved;
-  else filtered = rejected;
-
-  const list = document.getElementById('avis-list');
-  if (!filtered.length) {
-    list.innerHTML = '<div class="avis-empty">' +
-      (currentAvisTab === 'pending' ? '✅ Aucun avis en attente.' :
-       currentAvisTab === 'approved' ? '📭 Aucun avis approuvé.' :
-       '📭 Aucun avis refusé.') + '</div>';
-    return;
-  }
-
-  list.innerHTML = filtered.map(a => {
-    const stars = '★'.repeat(a.note || 5) + '☆'.repeat(5 - (a.note || 5));
-    const date = a.date ? new Date(a.date).toLocaleDateString('fr-FR', {day:'2-digit', month:'long', year:'numeric'}) : '';
-    const isPending = a.statut === 'en_attente';
-    const isApproved = a.statut === 'approuve';
-    return `<div class="avis-card ${a.statut === 'en_attente' ? 'pending' : a.statut === 'approuve' ? 'approved' : 'rejected'}">
-      <div class="avis-header">
-        <div>
-          <div class="avis-author">${escHtml(a.prenom)} ${escHtml(a.nom_initial || '')}</div>
-          <div class="avis-stars">${stars}</div>
-          <div class="avis-meta">${date}${a.contexte ? ' · ' + escHtml(a.contexte) : ''}</div>
-        </div>
-        <span class="avis-status-badge ${a.statut === 'en_attente' ? 'pending' : a.statut === 'approuve' ? 'approved' : 'rejected'}">
-          ${a.statut === 'en_attente' ? '⏳ En attente' : a.statut === 'approuve' ? '✅ Approuvé' : '❌ Refusé'}
-        </span>
-      </div>
-      <div class="avis-text">"${escHtml(a.commentaire)}"</div>
-      <div class="avis-actions">
-        ${!isApproved ? `<button class="btn-approve" onclick="modererAvis('${a.id}', 'approuve')">✅ Approuver</button>` : ''}
-        ${isPending ? `<button class="btn-reject" onclick="modererAvis('${a.id}', 'refuse')">❌ Refuser</button>` : ''}
-        ${isApproved ? `<button class="btn-reject" onclick="modererAvis('${a.id}', 'refuse')">Retirer</button>` : ''}
-        <button class="btn-delete-avis" onclick="supprimerAvis('${a.id}')">🗑 Supprimer</button>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-function switchAvisTab(tab, el) {
-  currentAvisTab = tab;
-  document.querySelectorAll('.avis-tab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-  renderAvis();
-}
-
-async function modererAvis(id, statut) {
-  const avis = allAvis.find(a => a.id === id);
-  if (!avis) return;
-  avis.statut = statut;
-  avis.modifiedAt = new Date().toISOString();
-  await sauvegarderAvisSurGitHub();
-  renderAvis();
-  showToast(statut === 'approuve' ? '✅ Avis approuvé et publié !' : '❌ Avis refusé.', statut === 'approuve' ? 'success' : '');
-}
-
-async function supprimerAvis(id) {
-  if (!confirm('Supprimer cet avis définitivement ?')) return;
-  allAvis = allAvis.filter(a => a.id !== id);
-  await sauvegarderAvisSurGitHub();
-  renderAvis();
-  showToast('🗑 Avis supprimé.', '');
-}
-
-async function sauvegarderAvisSurGitHub() {
-  const token = getToken();
-  if (!token) { showToast('❌ Connectez GitHub pour sauvegarder.', 'error'); return false; }
-  const content = btoa(unescape(encodeURIComponent(JSON.stringify(allAvis, null, 2))));
-  try {
-    let sha = '';
-    const getR = await fetch(
-      `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_AVIS_FILE}`,
-      { headers: { 'Authorization': `token ${token}` } }
-    );
-    if (getR.ok) { const d = await getR.json(); sha = d.sha; }
-    const body = {
-      message: `Modération avis — ${new Date().toLocaleDateString('fr-FR')}`,
-      content, branch: GITHUB_BRANCH
-    };
-    if (sha) body.sha = sha;
-    const putR = await fetch(
-      `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_AVIS_FILE}`,
-      { method:'PUT', headers:{'Authorization':`token ${token}`,'Content-Type':'application/json'}, body:JSON.stringify(body) }
-    );
-    return putR.ok;
-  } catch(e) { showToast('Erreur réseau', 'error'); return false; }
-}
-
-function escHtml(str) {
-  if (!str) return '';
-  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
-// ─── TOAST ────────────────────────────────────────────────────────────────────
+// TOAST
 function showToast(msg, type='') {
   const t = document.getElementById('toast');
   t.textContent = msg;
@@ -1025,3 +911,140 @@ function showToast(msg, type='') {
 </script>
 </body>
 </html>
+<script>
+// ════════════════════════════════════════════════
+// GESTION DES AVIS — ADMIN
+// ════════════════════════════════════════════════
+const AVIS_GH_PATH = 'ags-immobilier-v43/avis.json';
+let tousLesAvis = [];
+let tabActif = 'en_attente';
+
+async function chargerAvisAdmin() {
+  const token = getToken();
+  if (!token) {
+    document.getElementById('avis-liste').innerHTML = '<div class="empty-state"><div class="icon">🔒</div><p>Connectez GitHub pour gérer les avis.</p></div>';
+    return;
+  }
+  document.getElementById('avis-liste').innerHTML = '<div class="empty-state"><div class="icon">⏳</div><p>Chargement…</p></div>';
+  try {
+    const r = await fetch(
+      `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${AVIS_GH_PATH}?t=${Date.now()}`,
+      { headers: { 'Authorization': `token ${token}`, 'Cache-Control': 'no-cache' } }
+    );
+    if (!r.ok) {
+      document.getElementById('avis-liste').innerHTML = '<div class="empty-state"><div class="icon">📭</div><p>Aucun avis pour l'instant.<br><small>Le fichier avis.json n'existe pas encore.</small></p></div>';
+      return;
+    }
+    const d = await r.json();
+    tousLesAvis = JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\n/g,'')))));
+    const nbAttente = tousLesAvis.filter(a => a.statut === 'en_attente').length;
+    const badge = document.getElementById('avis-badge-attente');
+    if (nbAttente > 0) { badge.textContent = nbAttente + ' en attente'; badge.style.display = 'inline'; }
+    else badge.style.display = 'none';
+    afficherAvis(tabActif);
+  } catch(e) {
+    document.getElementById('avis-liste').innerHTML = '<div class="empty-state"><div class="icon">❌</div><p>Erreur de chargement.</p></div>';
+  }
+}
+
+function filtrerAvis(tab) {
+  tabActif = tab;
+  document.querySelectorAll('.avis-tab').forEach(t => {
+    const isActive = t.dataset.tab === tab;
+    t.style.borderBottomColor = isActive ? 'var(--navy)' : 'transparent';
+    t.style.color = isActive ? 'var(--navy)' : 'var(--text-light)';
+    t.style.fontWeight = isActive ? '500' : '300';
+  });
+  afficherAvis(tab);
+}
+
+function afficherAvis(tab) {
+  const liste = document.getElementById('avis-liste');
+  const filtered = tab === 'tous' ? tousLesAvis : tousLesAvis.filter(a => a.statut === tab);
+  if (!filtered.length) {
+    const msgs = { en_attente: 'Aucun avis en attente. ✅', approuve: 'Aucun avis approuvé.', refuse: 'Aucun avis refusé.', tous: 'Aucun avis.' };
+    liste.innerHTML = `<div class="empty-state"><div class="icon">⭐</div><p>${msgs[tab]}</p></div>`;
+    return;
+  }
+  const STATUT_COLORS = { en_attente: '#f39c12', approuve: '#27ae60', refuse: '#e74c3c' };
+  const STATUT_LABELS = { en_attente: 'En attente', approuve: 'Approuvé', refuse: 'Refusé' };
+  liste.innerHTML = filtered.map(a => {
+    const etoiles = '★'.repeat(a.note) + '☆'.repeat(5 - a.note);
+    const color = STATUT_COLORS[a.statut] || '#999';
+    const label = STATUT_LABELS[a.statut] || a.statut;
+    return `
+    <div style="border:1px solid var(--border);padding:18px 20px;margin-bottom:12px;background:white;position:relative;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
+        <div>
+          <div style="font-weight:500;color:var(--navy);font-size:14px;">${a.prenom} ${a.nom}</div>
+          <div style="font-size:11px;color:var(--text-light);margin-top:2px;">${a.contexte || '—'} · ${a.date}</div>
+          <div style="color:#F5A623;font-size:16px;margin-top:4px;">${etoiles}</div>
+        </div>
+        <span style="font-size:9px;letter-spacing:1px;text-transform:uppercase;background:${color}20;color:${color};padding:3px 10px;border:1px solid ${color}40;white-space:nowrap;">${label}</span>
+      </div>
+      <p style="font-size:13px;color:#444;line-height:1.7;font-style:italic;margin-bottom:14px;">"${a.texte}"</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        ${a.statut !== 'approuve' ? `<button onclick="changerStatutAvis('${a.id}','approuve')" style="background:#27ae60;color:white;border:none;padding:7px 16px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">✓ Approuver</button>` : ''}
+        ${a.statut !== 'refuse' ? `<button onclick="changerStatutAvis('${a.id}','refuse')" style="background:#e74c3c;color:white;border:none;padding:7px 16px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">✗ Refuser</button>` : ''}
+        <button onclick="supprimerAvis('${a.id}')" style="background:none;color:#999;border:1px solid #ddd;padding:7px 16px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">🗑 Supprimer</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+async function changerStatutAvis(id, newStatut) {
+  const token = getToken();
+  if (!token) return;
+  const avis = tousLesAvis.find(a => a.id === id);
+  if (!avis) return;
+  avis.statut = newStatut;
+  await sauvegarderAvis();
+  showToast(newStatut === 'approuve' ? '✅ Avis approuvé et publié !' : '⛔ Avis refusé.', newStatut === 'approuve' ? 'success' : '');
+}
+
+async function supprimerAvis(id) {
+  if (!confirm('Supprimer cet avis définitivement ?')) return;
+  tousLesAvis = tousLesAvis.filter(a => a.id !== id);
+  await sauvegarderAvis();
+  showToast('🗑 Avis supprimé.', 'success');
+}
+
+async function sauvegarderAvis() {
+  const token = getToken();
+  // Récupérer le SHA actuel
+  const getR = await fetch(
+    `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${AVIS_GH_PATH}`,
+    { headers: { 'Authorization': `token ${token}` } }
+  );
+  let sha = null;
+  if (getR.ok) { const d = await getR.json(); sha = d.sha; }
+  const body = {
+    message: 'Modération avis client',
+    content: btoa(unescape(encodeURIComponent(JSON.stringify(tousLesAvis, null, 2))))
+  };
+  if (sha) body.sha = sha;
+  await fetch(
+    `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${AVIS_GH_PATH}`,
+    { method: 'PUT', headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' }, body: JSON.stringify(body) }
+  );
+  const nbAttente = tousLesAvis.filter(a => a.statut === 'en_attente').length;
+  const badge = document.getElementById('avis-badge-attente');
+  if (nbAttente > 0) { badge.textContent = nbAttente + ' en attente'; badge.style.display = 'inline'; }
+  else badge.style.display = 'none';
+  afficherAvis(tabActif);
+}
+
+// Auto-charger les avis après login
+const _origInit = typeof init === 'function' ? init : null;
+document.addEventListener('DOMContentLoaded', () => {
+  // Charger les avis dès que GitHub est connecté
+  const observer = new MutationObserver(() => {
+    if (getToken()) { chargerAvisAdmin(); observer.disconnect(); }
+  });
+  observer.observe(document.body, { subtree: true, childList: true });
+  // Si déjà connecté
+  if (getToken()) chargerAvisAdmin();
+});
+</script>
+
+</body>
