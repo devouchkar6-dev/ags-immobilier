@@ -940,7 +940,7 @@ async function chargerAvisAdmin() {
       { headers: { 'Authorization': `token ${token}`, 'Cache-Control': 'no-cache' } }
     );
     if (!r.ok) {
-      document.getElementById('avis-liste').innerHTML = '<div class="empty-state"><div class="icon">📭</div><p>Aucun avis pour l'instant.<br><small>Le fichier avis.json n'existe pas encore.</small></p></div>';
+      document.getElementById('avis-liste').innerHTML = '<div class="empty-state"><div class="icon">📭</div><p>Aucun avis pour le moment.<br><small>Le fichier avis.json n\'existe pas encore.</small></p></div>';
       return;
     }
     const d = await r.json();
