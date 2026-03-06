@@ -483,7 +483,12 @@ function sauvegarderToken() {
   }
   localStorage.setItem(TOKEN_KEY, token);
   sessionStorage.setItem('gh_token', token);
-  verifierToken();
+  verifierToken().then(ok => {
+    if (ok) {
+      chargerDepuisGitHub().then(() => chargerBiens());
+      chargerAvisAdmin();
+    }
+  });
 }
 async function verifierToken() {
   const token = getToken();
