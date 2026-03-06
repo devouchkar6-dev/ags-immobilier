@@ -610,7 +610,10 @@ async function init() {
   const token = getToken();
   if (token) {
     const ok = await verifierToken();
-    if (ok) await chargerDepuisGitHub();
+    if (ok) {
+      await chargerDepuisGitHub();
+      chargerAvisAdmin();
+    }
   }
   chargerBiens();
 }
