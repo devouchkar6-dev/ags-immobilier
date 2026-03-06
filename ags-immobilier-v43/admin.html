@@ -542,7 +542,7 @@ async function publierSurGitHub(biens) {
     let biensGH = [];
     const getR = await fetch(
       `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`,
-      { headers: { 'Authorization': `token ${token}`, 'Cache-Control': 'no-cache' } }
+      { headers: { 'Authorization': `token ${token}` } }
     );
     if (getR.ok) {
       const d = await getR.json();
@@ -623,7 +623,7 @@ async function chargerDepuisGitHub() {
   try {
     const r = await fetch(
       `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}?t=${Date.now()}`,
-      { headers: { 'Authorization': `token ${token}`, 'Cache-Control': 'no-cache' } }
+      { headers: { 'Authorization': `token ${token}` } }
     );
     if (r.ok) {
       const d = await r.json();
@@ -937,7 +937,7 @@ async function chargerAvisAdmin() {
   try {
     const r = await fetch(
       `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${AVIS_GH_PATH}?t=${Date.now()}`,
-      { headers: { 'Authorization': `token ${token}`, 'Cache-Control': 'no-cache' } }
+      { headers: { 'Authorization': `token ${token}` } }
     );
     if (!r.ok) {
       document.getElementById('avis-liste').innerHTML = '<div class="empty-state"><div class="icon">📭</div><p>Aucun avis pour le moment.<br><small>Le fichier avis.json n\'existe pas encore.</small></p></div>';
