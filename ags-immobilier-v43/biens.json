@@ -1,1 +1,59 @@
-[]
+[
+  {
+    "id": "bien-1772819589059",
+    "titre": "À VENDRE – MAISON DE CHARME EN VIAGER OCCUPÉ – MOUGINS",
+    "soustitre": "Quartier du Château — Mougins",
+    "type": "viager",
+    "ville": "Mougins",
+    "villeFilter": "Mougins",
+    "prix": "290 000 €",
+    "prixBrut": 0,
+    "badge": "Viager Occupé",
+    "mainPhoto": "https://res.cloudinary.com/df15yd65n/image/upload/v1772819517/lxvv8hl5fakxpvffjavd.png",
+    "photos": [
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1772819517/lxvv8hl5fakxpvffjavd.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1772819570/nqvulv20pqb11mjnmkdv.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1772819573/sxyziso15cswz8xtswqa.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1772819575/qbw9hbhrfmnu7tpyios5.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1772819578/lrknrvuwobx5ydue6ir8.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1772819583/fj109hwzz5iiqwtfczaq.png"
+    ],
+    "caracteristiques": {
+      "surface": "161 m2",
+      "pieces": "6"
+    },
+    "accroche": "À VENDRE – MAISON DE CHARME EN VIAGER OCCUPÉ – MOUGINS",
+    "description": "Mougins\n\nCadre privilégié\nSituée dans un environnement calme avec vue dégagée sur les collines, cette maison de 161 m² offre un cadre de vie agréable, alliant confort et prestations de qualité.\n\nÀ proximité immédiate :\nAccès autoroute\nBus et route principale\nCentre-ville et commerces\nÉcoles primaire et secondaire\nSupermarché, médecin, salle de sport\n\nDes atouts clés pour votre investissement :\n\n161 m² habitables\n6 pièces – 4 chambres\nExposition Ouest\nSéjour spacieux\nCuisine américaine\nCheminée\nClimatisation\nDouble vitrage et fenêtres coulissantes\nPiscine\nEspace cinéma\nVéranda\nGarage 43 m²\nJardin clos avec barbecue\nVidéosurveillance\n\nInformations pratiques :\nViager occupé\nApport : 290 000 €\nRente mensuelle : 400 €\nAge du couple : Monsieur : 72 ans Madame : 73 ans\n\nValeur vénale du bien : 770 000 €\nHonoraires à la charge du vendeur.\n\nStanding : bon état\nConstruction en béton armé\nEau chaude individuelle\nChauffage : électrique, bois, radiateurs, climatisation, cheminée\n\nTaxe foncière : environ 2000 euros\n\nPerformance énergétique :\nDPE D – 189,6 kWhEP/m²/an\nConsommation finale : 126,4 kWhEF/m²/an (C)\nGES B – 6,9 kg CO₂/m²/an\nDépenses énergétiques estimées : entre 1 830 € et 2 490 € par an\nAnnée de référence des prix de l’énergie : 2021\n\nLes informations sur les risques naturels et technologiques auxquels ce bien est exposé sont disponibles sur le site Géorisques.\n\nIntéressé(e) ? Contactez-nous pour une visite ou pour plus d’information.",
+    "equipements": [
+      "Parking",
+      "Garage",
+      "Cave",
+      "Terrasse",
+      "Piscine",
+      "Jardin",
+      "Climatisation",
+      "Cuisine équipée",
+      "Cuisine américaine",
+      "Lumineux",
+      "Vue montagne",
+      "Cheminée",
+      "Vidéosurveillance",
+      "Alarme",
+      "Double vitrage",
+      "Proche commerces",
+      "Proche transports",
+      "Proche écoles"
+    ],
+    "dpe": "D",
+    "ges": "B",
+    "rente": "400 €",
+    "surface": "161 m2",
+    "pieces": "6",
+    "chambres": "4",
+    "etage": "",
+    "exposition": "Ouest",
+    "annee": "",
+    "ref": "AGS-26-53",
+    "actif": true
+  }
+]
