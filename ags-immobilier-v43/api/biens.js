@@ -1,0 +1,104 @@
+// api/biens.js
+// Proxy Vercel — récupère les biens APIMO et les formate pour le site AGS
+
+const APIMO_TOKEN = process.env.APIMO_TOKEN;
+const AGENCY_ID = '4685';
+
+module.exports = async function handler(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  if (req.method === 'OPTIONS') return res.status(200).end();
+
+  try {
+    const r = await fetch(
+      `https://api.apimo.pro/agencies/${AGENCY_ID}/properties`,
+      {
+        headers: {
+          'Authorization': 'Basic ' + Buffer.from(`${AGENCY_ID}:${APIMO_TOKEN}`).toString('base64'),
+          'Accept': 'application/json'
+        }
+      }
+    );
+
+    if (!r.ok) {
+      const err = await r.text();
+      return res.status(r.status).json({ error: 'Erreur APIMO', detail: err });
+    }
+
+    const data = await r.json();
+    const properties = data.properties || [];
+
+    // Formater les biens pour le site AGS
+    const biens = properties.map(p => {
+      // Photos
+      const photos = (p.pictures || []).map(pic => pic.url).filter(Boolean);
+
+      // Type
+      const typeMap = {
+        1: 'appartement', 2: 'maison', 3: 'villa', 4: 'terrain',
+        5: 'commercial', 6: 'garage', 7: 'immeuble', 8: 'viager'
+      };
+      const type = typeMap[p.category] || 'appartement';
+
+      // Prix
+      const prix = p.price ? new Intl.NumberFormat('fr-FR').format(p.price) + ' €' : '';
+
+      // Ville
+      const ville = p.city?.name || '';
+
+      // Surface
+      const surface = p.area?.total ? p.area.total + ' m²' : '';
+
+      // Pièces
+      const pieces = p.rooms || '';
+
+      // Chambres
+      const chambres = p.bedrooms || '';
+
+      // DPE
+      const dpeMap = { 1:'A', 2:'B', 3:'C', 4:'D', 5:'E', 6:'F', 7:'G' };
+      const dpe = dpeMap[p.energy?.consumption] || '';
+      const ges = dpeMap[p.energy?.emission] || '';
+
+      // Badge
+      let badge = '';
+      if (p.flag === 1) badge = 'Nouveau';
+      else if (p.flag === 2) badge = 'Exclusivité';
+      else if (p.flag === 3) badge = 'Coup de cœur';
+
+      return {
+        id: String(p.id),
+        titre: p.name || `${type.charAt(0).toUpperCase() + type.slice(1)} - ${ville}`,
+        soustitre: (p.area?.name ? p.area.name + ' — ' : '') + ville,
+        type,
+        ville,
+        villeFilter: ville.toLowerCase().replace(/\s+/g, '-'),
+        prix,
+        prixBrut: p.price || 0,
+        badge,
+        mainPhoto: photos[0] || '',
+        photos,
+        caracteristiques: { surface, pieces: String(pieces) },
+        surface,
+        pieces: String(pieces),
+        chambres: String(chambres),
+        etage: p.floor ? String(p.floor) : '',
+        exposition: '',
+        annee: p.construction_year ? String(p.construction_year) : '',
+        dpe,
+        ges,
+        accroche: p.comment?.title || '',
+        description: p.comment?.text || '',
+        equipements: (p.features || []).map(f => f.name).filter(Boolean),
+        ref: p.reference || String(p.id),
+        actif: p.status === 1,
+        rente: ''
+      };
+    }).filter(b => b.actif);
+
+    return res.status(200).json({ biens, total: biens.length });
+
+  } catch (e) {
+    return res.status(500).json({ error: e.message });
+  }
+};
