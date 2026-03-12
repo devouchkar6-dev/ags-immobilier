@@ -2,6 +2,7 @@
 // Proxy Vercel — récupère les biens APIMO et les formate pour le site AGS
 
 const APIMO_TOKEN = process.env.APIMO_TOKEN;
+const LOGIN_ID = '4685';
 const AGENCY_ID = '25313';
 
 module.exports = async function handler(req, res) {
@@ -14,7 +15,7 @@ module.exports = async function handler(req, res) {
       `https://api.apimo.pro/agencies/${AGENCY_ID}/properties`,
       {
         headers: {
-          'Authorization': 'Basic ' + Buffer.from(`${AGENCY_ID}:${APIMO_TOKEN}`).toString('base64'),
+          'Authorization': 'Basic ' + Buffer.from(`${LOGIN_ID}:${APIMO_TOKEN}`).toString('base64'),
           'Accept': 'application/json'
         }
       }
