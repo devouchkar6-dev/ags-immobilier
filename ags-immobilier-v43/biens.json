@@ -1,5 +1,5 @@
 // api/biens.js
-const APIMO_TOKEN = process.env.APIMO_TOKEN;
+const APIMO_TOKEN = process.env.APIMO_TOKEN || '754afbdaafd2b26297379d7ccbff4cb1e012f678';
 const LOGIN_ID = '4685';
 const AGENCY_ID = '4685';
 
