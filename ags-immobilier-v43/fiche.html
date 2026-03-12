@@ -9,19 +9,16 @@
   :root { --navy:#1B2D4F; --navy-deep:#0F1E36; --blue-mid:#2C4A7C; --blue-light:#4A6FA5; --accent:#5B9BD5; --cream:#F0F4F8; --stone:#C8D6E5; --text:#1B2D4F; --text-light:#5A7499; }
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:'Jost',sans-serif; background:var(--cream); color:var(--text); }
-
   nav { background:var(--navy); display:flex; justify-content:space-between; align-items:center; padding:16px 60px; }
   .logo img { height:48px; width:auto; display:block; }
   .nav-back { color:rgba(255,255,255,.7); text-decoration:none; font-size:11px; letter-spacing:2px; text-transform:uppercase; display:flex; align-items:center; gap:8px; transition:color .3s; }
   .nav-back:hover { color:var(--accent); }
-
   .gallery { display:grid; grid-template-columns:2fr 1fr 1fr; grid-template-rows:1fr 1fr; gap:4px; height:520px; background:#1B2D4F; }
   .gallery-main { grid-row:span 2; overflow:hidden; position:relative; }
   .gallery img { width:100%; height:100%; object-fit:cover; display:block; cursor:pointer; transition:transform .5s; }
   .gallery img:hover { transform:scale(1.03); }
   .gallery-ph { background:#2C4A7C; display:flex; align-items:center; justify-content:center; font-size:40px; opacity:.3; }
   .gallery-count { position:absolute; bottom:12px; right:12px; background:rgba(0,0,0,.6); color:white; font-size:11px; padding:4px 10px; letter-spacing:1px; pointer-events:none; }
-
   .lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.92); z-index:9999; align-items:center; justify-content:center; }
   .lightbox.open { display:flex; }
   .lightbox img { max-width:90vw; max-height:88vh; object-fit:contain; border:2px solid rgba(255,255,255,.1); }
@@ -29,26 +26,20 @@
   .lb-close:hover { opacity:1; }
   .lb-prev, .lb-next { position:absolute; top:50%; transform:translateY(-50%); color:white; font-size:44px; cursor:pointer; opacity:.6; padding:10px; user-select:none; }
   .lb-prev:hover, .lb-next:hover { opacity:1; }
-  .lb-prev { left:16px; }
-  .lb-next { right:16px; }
+  .lb-prev { left:16px; } .lb-next { right:16px; }
   .lb-counter { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); color:rgba(255,255,255,.5); font-size:12px; letter-spacing:2px; }
-
   .wrap { max-width:1200px; margin:0 auto; padding:56px 40px; display:grid; grid-template-columns:1fr 400px; gap:56px; align-items:start; }
-
   .prop-badge { display:inline-block; background:var(--blue-mid); color:white; font-size:9px; letter-spacing:2px; text-transform:uppercase; padding:5px 14px; margin-bottom:14px; }
   .prop-title { font-family:'Cormorant Garamond',serif; font-size:38px; font-weight:300; color:var(--navy); line-height:1.15; margin-bottom:8px; }
   .prop-loc { font-size:13px; color:var(--text-light); font-weight:300; margin-bottom:20px; }
   .prop-price { font-family:'Cormorant Garamond',serif; font-size:44px; font-weight:300; color:var(--navy); }
   .prop-ref { font-size:11px; color:var(--text-light); margin-top:6px; letter-spacing:1px; }
-
   .tags { display:flex; flex-wrap:wrap; gap:10px; margin:28px 0; }
   .tag { background:white; border:1px solid var(--stone); padding:8px 16px; font-size:12px; color:var(--navy); font-weight:300; }
-
   .section-h { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:400; color:var(--navy); margin:36px 0 16px; padding-bottom:10px; border-bottom:1px solid var(--stone); }
   .desc { font-size:14px; line-height:1.9; color:var(--text-light); font-weight:300; }
   .equip-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
   .equip-item { background:white; border:1px solid var(--stone); padding:10px 14px; font-size:12px; color:var(--navy); }
-
   .sticky-card { position:sticky; top:24px; background:white; box-shadow:0 4px 32px rgba(27,45,79,.1); padding:36px; }
   .sticky-price { font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:300; color:var(--navy); margin-bottom:4px; }
   .sticky-sub { font-size:12px; color:var(--text-light); font-weight:300; margin-bottom:28px; padding-bottom:24px; border-bottom:1px solid var(--stone); }
@@ -65,30 +56,24 @@
   .sticky-contact-line a:hover { color:var(--accent); }
   .msg-ok { color:#27ae60; font-size:13px; margin-top:10px; display:none; }
   .msg-err { color:#e74c3c; font-size:13px; margin-top:10px; display:none; }
-
   .dpe-row { display:flex; gap:24px; margin-top:16px; }
   .dpe-block { flex:1; }
   .dpe-label-h { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-light); margin-bottom:8px; }
   .dpe-letters { display:flex; gap:4px; align-items:flex-end; }
   .dpe-l { width:28px; font-size:10px; font-weight:500; color:white; display:flex; align-items:center; justify-content:center; border-radius:2px; }
-
   .loading { text-align:center; padding:120px 40px; font-size:16px; color:var(--text-light); }
-
   footer { background:var(--navy-deep); display:flex; justify-content:space-between; align-items:center; padding:20px 60px; }
-  footer span { font-size:12px; color:rgba(255,255,255,.3); }
-  footer a { font-size:12px; color:rgba(255,255,255,.4); text-decoration:none; }
+  footer span { font-size:12px; color:rgba(255,255,255,.6); }
+  footer a { font-size:12px; color:rgba(255,255,255,.6); text-decoration:none; }
   footer a:hover { color:var(--accent); }
-
   .whatsapp-btn { position:fixed; bottom:28px; left:28px; z-index:999; width:56px; height:56px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(37,211,102,.4); text-decoration:none; font-size:26px; }
-
   @media(max-width:768px) {
     nav { padding:12px 20px; }
     .gallery { grid-template-columns:1fr; grid-template-rows:260px; height:260px; }
     .gallery > *:not(.gallery-main) { display:none; }
     .gallery-main { grid-row:span 1; }
     .wrap { grid-template-columns:1fr; padding:24px 16px; gap:24px; }
-    .prop-title { font-size:28px; }
-    .prop-price { font-size:32px; }
+    .prop-title { font-size:28px; } .prop-price { font-size:32px; }
     .equip-grid { grid-template-columns:1fr 1fr; }
     .sticky-card { position:static; }
     footer { padding:16px 20px; flex-direction:column; gap:8px; text-align:center; }
@@ -124,52 +109,62 @@
 </div>
 
 <script>
+const APIMO_API  = 'https://ags-immobilier.vercel.app/api/biens';
 const GITHUB_RAW = 'https://raw.githubusercontent.com/devouchkar6-dev/ags-immobilier/main/ags-immobilier-v43/biens.json';
 const DPE_COLORS = {A:'#00a651',B:'#57b947',C:'#c4d600',D:'#fbaf17',E:'#f26522',F:'#ed1c24',G:'#be1e2d'};
 
-// ✅ FIX : appel automatique au chargement de la page
 document.addEventListener('DOMContentLoaded', chargerFiche);
 
 async function chargerFiche() {
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id');
   if (!id) { afficherErreur('Aucun bien spécifié.'); return; }
+
+  let bien = null;
+
+  // 1. Essai APIMO via proxy Vercel
   try {
-    // ✅ FIX : bypass cache pour toujours avoir les données fraîches
-    const res = await fetch(GITHUB_RAW + '?t=' + Date.now(), {
-      cache: 'no-store'
-    });
-    if (!res.ok) throw new Error('Impossible de charger les biens (HTTP ' + res.status + ')');
-    const biens = await res.json();
-    const bien = biens.find(b => String(b.id) === String(id));
-    if (!bien) { afficherErreur('Ce bien n\'existe plus ou a été retiré.'); return; }
-    afficherBien(bien);
-  } catch(e) {
-    afficherErreur('Erreur de chargement : ' + e.message);
+    const res = await fetch(APIMO_API + '?t=' + Date.now());
+    if (res.ok) {
+      const data = await res.json();
+      bien = (data.biens || []).find(b => String(b.id) === String(id));
+    }
+  } catch(e) {}
+
+  // 2. Fallback biens.json GitHub (biens admin manuels)
+  if (!bien) {
+    try {
+      const res = await fetch(GITHUB_RAW + '?t=' + Date.now(), { cache:'no-store' });
+      if (res.ok) {
+        const biens = await res.json();
+        bien = biens.find(b => String(b.id) === String(id));
+      }
+    } catch(e) {}
   }
+
+  if (!bien) { afficherErreur('Ce bien n\'existe plus ou a été retiré.'); return; }
+  afficherBien(bien);
 }
 
 function afficherErreur(msg) {
-  document.getElementById('page-content').innerHTML = `
-    <div class="loading">⚠️ ${msg}<br><br>
-    <a href="biens.html" style="color:var(--accent);font-size:13px;">← Retour aux biens</a></div>`;
+  document.getElementById('page-content').innerHTML =
+    `<div class="loading">⚠️ ${msg}<br><br><a href="biens.html" style="color:var(--accent);font-size:13px;">← Retour aux biens</a></div>`;
 }
 
 function dpeBar(lettre) {
   if (!lettre) return '';
   const lettres = ['A','B','C','D','E','F','G'];
-  return `<div class="dpe-letters">
-    ${lettres.map((l,i) => `<div class="dpe-l" style="height:${18+i*5}px;background:${DPE_COLORS[l]};${lettre===l?'outline:3px solid #333;transform:scale(1.15)':''}">${l}</div>`).join('')}
-  </div>`;
+  return `<div class="dpe-letters">${lettres.map((l,i) =>
+    `<div class="dpe-l" style="height:${18+i*5}px;background:${DPE_COLORS[l]};${lettre===l?'outline:3px solid #333;transform:scale(1.15)':''}">${l}</div>`
+  ).join('')}</div>`;
 }
 
 function afficherBien(b) {
   const photos = b.photos && b.photos.length ? b.photos : (b.mainPhoto ? [b.mainPhoto] : []);
-  const titre = b.titre || '';
-  const prix = b.prix || '';
-  const ville = b.ville || '';
-  const loc = [ville, b.quartier].filter(Boolean).join(' — ');
-
+  const titre  = b.titre || '';
+  const prix   = b.prix  || '';
+  const ville  = b.ville || '';
+  const loc    = [b.quartier, ville].filter(Boolean).join(' — ') || ville;
   window._fichPhotos = photos;
 
   const galHTML = `
@@ -186,16 +181,15 @@ function afficherBien(b) {
     </div>`;
 
   const tags = [
-    b.surface && `📐 ${b.surface}`,
-    b.pieces && `🚪 ${b.pieces}`,
-    b.chambres && `🛏 ${b.chambres}`,
-    b.etage && `🏢 ${b.etage}`,
+    b.surface    && `📐 ${b.surface}`,
+    b.pieces     && `🚪 ${b.pieces} pièces`,
+    b.chambres   && `🛏 ${b.chambres} chambres`,
+    b.etage      && `🏢 Étage ${b.etage}`,
     b.exposition && `🌅 ${b.exposition}`,
-    b.annee && `📅 Construit en ${b.annee}`,
+    b.annee      && `📅 Construit en ${b.annee}`,
   ].filter(Boolean);
 
-  const equips = (b.equipements || []).map(e => `<div class="equip-item">✓ ${e}</div>`).join('');
-
+  const equips  = (b.equipements || []).map(e => `<div class="equip-item">✓ ${e}</div>`).join('');
   const dpeHTML = (b.dpe || b.ges) ? `
     <h2 class="section-h">Diagnostic énergétique</h2>
     <div class="dpe-row">
@@ -205,20 +199,21 @@ function afficherBien(b) {
 
   const msgDefaut = `Je suis intéressé(e) par ${titre}${ville ? ' à ' + ville : ''} et souhaite organiser une visite.`;
 
-  const html = `
+  document.title = titre + ' | AGS Immobilier';
+  document.getElementById('page-content').innerHTML = `
     ${galHTML}
     <div class="wrap">
       <div>
-        ${b.badge ? `<div class="prop-badge">${b.badge}</div>` : ''}
+        ${b.badge       ? `<div class="prop-badge">${b.badge}</div>` : ''}
         <h1 class="prop-title">${titre}</h1>
-        <div class="prop-loc">📍 ${loc || ville}</div>
+        <div class="prop-loc">📍 ${loc}</div>
         <div class="prop-price">${prix}</div>
-        ${b.rente ? `<div class="prop-ref">Rente mensuelle : ${b.rente}</div>` : ''}
-        ${b.ref ? `<div class="prop-ref">Réf. ${b.ref}</div>` : ''}
-        ${tags.length ? `<div class="tags">${tags.map(t=>`<div class="tag">${t}</div>`).join('')}</div>` : ''}
-        ${b.accroche ? `<p style="font-size:15px;font-style:italic;color:var(--navy);line-height:1.75;margin-bottom:24px">${b.accroche}</p>` : ''}
+        ${b.rente       ? `<div class="prop-ref">Rente mensuelle : ${b.rente}</div>` : ''}
+        ${b.ref         ? `<div class="prop-ref">Réf. ${b.ref}</div>` : ''}
+        ${tags.length   ? `<div class="tags">${tags.map(t=>`<div class="tag">${t}</div>`).join('')}</div>` : ''}
+        ${b.accroche    ? `<p style="font-size:15px;font-style:italic;color:var(--navy);line-height:1.75;margin-bottom:24px">${b.accroche}</p>` : ''}
         ${b.description ? `<h2 class="section-h">Description</h2><p class="desc">${b.description.replace(/\n/g,'<br>')}</p>` : ''}
-        ${equips ? `<h2 class="section-h">Équipements & prestations</h2><div class="equip-grid">${equips}</div>` : ''}
+        ${equips        ? `<h2 class="section-h">Équipements & prestations</h2><div class="equip-grid">${equips}</div>` : ''}
         ${dpeHTML}
       </div>
       <div>
@@ -250,35 +245,27 @@ function afficherBien(b) {
           <div class="sticky-contacts">
             <div class="sticky-contact-line">📞 <a href="tel:+33607131181">Philippe — 06 07 13 11 81</a></div>
             <div class="sticky-contact-line">📞 <a href="tel:+33681140665">Matéo — 06 81 14 06 65</a></div>
-            <div class="sticky-contact-line">✉️ <a href="mailto:agsimmo06@gmail.com">agsimmo06@gmail.com</a></div>
+            <div class="sticky-contact-line">✉️ <a href="#" onclick="this.href='mailto:agsimmo06@gmail.com';return false;">agsimmo06&#64;gmail.com</a></div>
           </div>
         </div>
       </div>
     </div>`;
-
-  document.title = titre + ' | AGS Immobilier';
-  document.getElementById('page-content').innerHTML = html;
 }
 
-// EmailJS
 function envoyerEmailJS(e, form, templateId) {
   e.preventDefault();
   const btn = form.querySelector('button[type=submit]');
-  const errEl = document.getElementById('msg-err');
   btn.textContent = '⏳ Envoi en cours...';
   btn.disabled = true;
   emailjs.sendForm('service_rktxwry', templateId, form)
-    .then(() => {
-      window.location.href = 'merci.html';
-    })
+    .then(() => { window.location.href = 'merci.html'; })
     .catch(() => {
-      errEl.style.display='block';
+      document.getElementById('msg-err').style.display = 'block';
       btn.textContent = 'Demander une visite →';
       btn.disabled = false;
     });
 }
 
-// Lightbox
 let _lbPhotos = [], _lbIdx = 0;
 function ouvrirLB(photos, idx) {
   _lbPhotos = photos; _lbIdx = idx;
@@ -295,9 +282,9 @@ function lbNav(dir) {
 }
 document.addEventListener('keydown', e => {
   if (!document.getElementById('lightbox').classList.contains('open')) return;
-  if (e.key === 'ArrowLeft') lbNav(-1);
+  if (e.key === 'ArrowLeft')  lbNav(-1);
   if (e.key === 'ArrowRight') lbNav(1);
-  if (e.key === 'Escape') fermerLB();
+  if (e.key === 'Escape')     fermerLB();
 });
 </script>
 </body>

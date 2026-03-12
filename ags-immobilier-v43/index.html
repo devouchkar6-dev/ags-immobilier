@@ -754,9 +754,23 @@ localStorage.removeItem('ags_biens_site');
 localStorage.removeItem('ags_biens_admin');
 
 async function chargerBiensAPIMO() {
-  const GITHUB_RAW = 'https://raw.githubusercontent.com/devouchkar6-dev/ags-immobilier/main/ags-immobilier-v43/biens.json';
   try {
-    const res = await fetch(GITHUB_RAW + '?t=' + Date.now());
+    // ✅ Chargement direct depuis APIMO via proxy Vercel
+    const res = await fetch('https://ags-immobilier.vercel.app/api/biens?t=' + Date.now());
+    if (res.ok) {
+      const data = await res.json();
+      const biens = data.biens || [];
+      if (biens.length > 0) {
+        BIENS_APIMO = biens;
+        mettreAJourGrilleBiens(BIENS_APIMO);
+        remplirFiltreVilles(BIENS_APIMO);
+        return true;
+      }
+    }
+  } catch(e) {}
+  // Fallback → biens.json GitHub si APIMO indisponible
+  try {
+    const res = await fetch('https://raw.githubusercontent.com/devouchkar6-dev/ags-immobilier/main/ags-immobilier-v43/biens.json?t=' + Date.now());
     if (res.ok) {
       const biens = await res.json();
       if (Array.isArray(biens) && biens.length > 0) {
