@@ -1,7 +1,7 @@
 // api/biens.js
 const APIMO_TOKEN = process.env.APIMO_TOKEN;
-const LOGIN_ID = 'philippe.servas';
-const AGENCY_ID = '25313';
+const LOGIN_ID = '4685';
+const AGENCY_ID = '4685';
 
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
