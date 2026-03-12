@@ -1,6 +1,4 @@
 // api/biens.js
-// Proxy Vercel — récupère les biens APIMO et les formate pour le site AGS
-
 const APIMO_TOKEN = process.env.APIMO_TOKEN;
 const LOGIN_ID = '4685';
 const AGENCY_ID = '25313';
@@ -11,57 +9,50 @@ module.exports = async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
 
   try {
+    const credentials = LOGIN_ID + ':' + APIMO_TOKEN;
+    const encoded = Buffer.from(credentials).toString('base64');
+
     const r = await fetch(
       `https://api.apimo.pro/agencies/${AGENCY_ID}/properties`,
       {
+        method: 'GET',
         headers: {
-          'Authorization': 'Basic ' + Buffer.from(`${LOGIN_ID}:${APIMO_TOKEN}`).toString('base64'),
-          'Accept': 'application/json'
+          'Authorization': 'Basic ' + encoded,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
         }
       }
     );
 
+    const responseText = await r.text();
+
     if (!r.ok) {
-      const err = await r.text();
-      return res.status(r.status).json({ error: 'Erreur APIMO', detail: err });
+      return res.status(r.status).json({
+        error: 'Erreur APIMO',
+        detail: responseText,
+        credentials_used: LOGIN_ID + ':' + APIMO_TOKEN.substring(0, 8) + '...',
+        url_used: `https://api.apimo.pro/agencies/${AGENCY_ID}/properties`
+      });
     }
 
-    const data = await r.json();
+    const data = JSON.parse(responseText);
     const properties = data.properties || [];
 
-    // Formater les biens pour le site AGS
     const biens = properties.map(p => {
-      // Photos
       const photos = (p.pictures || []).map(pic => pic.url).filter(Boolean);
-
-      // Type
       const typeMap = {
         1: 'appartement', 2: 'maison', 3: 'villa', 4: 'terrain',
         5: 'commercial', 6: 'garage', 7: 'immeuble', 8: 'viager'
       };
       const type = typeMap[p.category] || 'appartement';
-
-      // Prix
       const prix = p.price ? new Intl.NumberFormat('fr-FR').format(p.price) + ' €' : '';
-
-      // Ville
       const ville = p.city?.name || '';
-
-      // Surface
       const surface = p.area?.total ? p.area.total + ' m²' : '';
-
-      // Pièces
       const pieces = p.rooms || '';
-
-      // Chambres
       const chambres = p.bedrooms || '';
-
-      // DPE
       const dpeMap = { 1:'A', 2:'B', 3:'C', 4:'D', 5:'E', 6:'F', 7:'G' };
       const dpe = dpeMap[p.energy?.consumption] || '';
       const ges = dpeMap[p.energy?.emission] || '';
-
-      // Badge
       let badge = '';
       if (p.flag === 1) badge = 'Nouveau';
       else if (p.flag === 2) badge = 'Exclusivité';
@@ -98,8 +89,7 @@ module.exports = async function handler(req, res) {
     }).filter(b => b.actif);
 
     return res.status(200).json({ biens, total: biens.length });
-
   } catch (e) {
-    return res.status(500).json({ error: e.message });
+    return res.status(500).json({ error: e.message, stack: e.stack });
   }
 };
