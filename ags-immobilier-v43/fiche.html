@@ -67,6 +67,8 @@
   footer a { font-size:12px; color:rgba(255,255,255,.6); text-decoration:none; }
   footer a:hover { color:var(--accent); }
   .whatsapp-btn { position:fixed; bottom:28px; left:28px; z-index:999; width:56px; height:56px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(37,211,102,.4); text-decoration:none; font-size:26px; }
+  /* ── BOTTOM NAV MOBILE ── */
+  .mob-bottomnav { display:none; }
   @media(max-width:768px) {
     nav { padding:12px 20px; }
     .gallery { grid-template-columns:1fr; grid-template-rows:260px; height:260px; }
@@ -76,7 +78,25 @@
     .prop-title { font-size:28px; } .prop-price { font-size:32px; }
     .equip-grid { grid-template-columns:1fr 1fr; }
     .sticky-card { position:static; }
-    footer { padding:16px 20px; flex-direction:column; gap:8px; text-align:center; }
+    footer { padding:16px 20px 80px; flex-direction:column; gap:8px; text-align:center; }
+    body { padding-bottom:68px; }
+    .mob-bottomnav {
+      display:flex !important;
+      position:fixed; bottom:0; left:0; right:0;
+      height:60px; max-height:60px;
+      background:#0F1E36;
+      border-top:1px solid rgba(255,255,255,.08);
+      z-index:500;
+    }
+    .mob-bottomnav a {
+      flex:1; display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      padding:8px 2px; text-decoration:none;
+      color:rgba(255,255,255,.5); font-size:8px;
+      letter-spacing:1px; text-transform:uppercase; gap:4px;
+    }
+    .mob-bottomnav a:hover { color:#5B9BD5; }
+    .mob-bottomnav .nav-icon { font-size:16px; }
   }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
@@ -108,6 +128,15 @@
   <div class="lb-counter" id="lb-counter"></div>
 </div>
 
+<!-- BARRE NAV MOBILE BAS -->
+<div class="mob-bottomnav">
+  <a href="index.html"><span class="nav-icon">🏠</span>Accueil</a>
+  <a href="biens.html"><span class="nav-icon">🔍</span>Biens</a>
+  <a href="honoraires.html"><span class="nav-icon">💶</span>Honoraires</a>
+  <a href="index.html#contact"><span class="nav-icon">✉️</span>Contact</a>
+  <a href="tel:+33607131181"><span class="nav-icon">📞</span>Appeler</a>
+</div>
+
 <script>
 const APIMO_API  = 'https://ags-immobilier.vercel.app/api/biens';
 const GITHUB_RAW = 'https://raw.githubusercontent.com/devouchkar6-dev/ags-immobilier/main/ags-immobilier-v43/biens.json';
@@ -119,10 +148,7 @@ async function chargerFiche() {
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id');
   if (!id) { afficherErreur('Aucun bien spécifié.'); return; }
-
   let bien = null;
-
-  // 1. Essai APIMO via proxy Vercel
   try {
     const res = await fetch(APIMO_API + '?t=' + Date.now());
     if (res.ok) {
@@ -130,8 +156,6 @@ async function chargerFiche() {
       bien = (data.biens || []).find(b => String(b.id) === String(id));
     }
   } catch(e) {}
-
-  // 2. Fallback biens.json GitHub (biens admin manuels)
   if (!bien) {
     try {
       const res = await fetch(GITHUB_RAW + '?t=' + Date.now(), { cache:'no-store' });
@@ -141,8 +165,7 @@ async function chargerFiche() {
       }
     } catch(e) {}
   }
-
-  if (!bien) { afficherErreur('Ce bien n\'existe plus ou a été retiré.'); return; }
+  if (!bien) { afficherErreur('Ce bien n'existe plus ou a été retiré.'); return; }
   afficherBien(bien);
 }
 
