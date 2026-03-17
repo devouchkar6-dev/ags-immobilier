@@ -242,99 +242,6 @@ function afficherBien(b) {
         ${b.accroche    ? `<p style="font-size:15px;font-style:italic;color:var(--navy);line-height:1.75;margin-bottom:24px">${b.accroche}</p>` : ''}
         ${b.description ? `<h2 class="section-h">Description</h2><p class="desc">${b.description.replace(/\n/g,'<br>')}</p>` : ''}
         ${equips        ? `<h2 class="section-h">Équipements & prestations</h2><div class="equip-grid">${equips}</div>` : ''}
-
-      <!-- ── SIMULATEUR FINANCEMENT ── -->
-      <div id="simulateur" style="margin-top:40px;">
-        <h2 class="section-h">Simulateur de financement</h2>
-        <div style="background:white;border:1px solid var(--stone);padding:28px 32px;">
-
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;">
-
-            <div>
-              <label style="display:block;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:6px;">Prix du bien</label>
-              <input id="sim-prix" type="number" readonly
-                style="width:100%;border:1px solid var(--stone);background:var(--cream);padding:11px 14px;font-family:'Jost',sans-serif;font-size:14px;color:var(--navy);font-weight:400;outline:none;">
-            </div>
-
-            <div>
-              <label style="display:block;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:6px;">Apport personnel (€)</label>
-              <input id="sim-apport" type="number" value="50000" min="0"
-                oninput="calculerFinancement()"
-                style="width:100%;border:1px solid var(--stone);background:white;padding:11px 14px;font-family:'Jost',sans-serif;font-size:14px;color:var(--navy);font-weight:400;outline:none;transition:border-color .3s;"
-                onfocus="this.style.borderColor='var(--blue-light)'" onblur="this.style.borderColor='var(--stone)'">
-            </div>
-
-            <div>
-              <label style="display:block;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:6px;">Taux d'intérêt annuel (%)</label>
-              <input id="sim-taux" type="number" value="3.5" min="0" max="20" step="0.1"
-                oninput="calculerFinancement()"
-                style="width:100%;border:1px solid var(--stone);background:white;padding:11px 14px;font-family:'Jost',sans-serif;font-size:14px;color:var(--navy);font-weight:400;outline:none;transition:border-color .3s;"
-                onfocus="this.style.borderColor='var(--blue-light)'" onblur="this.style.borderColor='var(--stone)'">
-            </div>
-
-            <div>
-              <label style="display:block;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:6px;">Durée du prêt (années)</label>
-              <input id="sim-duree" type="number" value="20" min="1" max="30"
-                oninput="calculerFinancement()"
-                style="width:100%;border:1px solid var(--stone);background:white;padding:11px 14px;font-family:'Jost',sans-serif;font-size:14px;color:var(--navy);font-weight:400;outline:none;transition:border-color .3s;"
-                onfocus="this.style.borderColor='var(--blue-light)'" onblur="this.style.borderColor='var(--stone)'">
-            </div>
-
-            <div>
-              <label style="display:block;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:6px;">Frais de notaire (%)</label>
-              <input id="sim-notaire" type="number" value="7.5" min="0" max="15" step="0.1"
-                oninput="calculerFinancement()"
-                style="width:100%;border:1px solid var(--stone);background:white;padding:11px 14px;font-family:'Jost',sans-serif;font-size:14px;color:var(--navy);font-weight:400;outline:none;transition:border-color .3s;"
-                onfocus="this.style.borderColor='var(--blue-light)'" onblur="this.style.borderColor='var(--stone)'">
-            </div>
-
-            <div>
-              <label style="display:block;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:6px;">Frais d'agence (€)</label>
-              <input id="sim-agence" type="number" value="0" min="0"
-                oninput="calculerFinancement()"
-                style="width:100%;border:1px solid var(--stone);background:white;padding:11px 14px;font-family:'Jost',sans-serif;font-size:14px;color:var(--navy);font-weight:400;outline:none;transition:border-color .3s;"
-                onfocus="this.style.borderColor='var(--blue-light)'" onblur="this.style.borderColor='var(--stone)'">
-            </div>
-
-          </div>
-
-          <!-- Résultats -->
-          <div style="background:var(--navy);padding:24px 28px;margin-top:8px;">
-            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:20px;margin-bottom:20px;">
-              <div style="text-align:center;padding:0 12px;border-right:1px solid rgba(255,255,255,.08);">
-                <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">Mensualité estimée</div>
-                <div id="res-mensualite" style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:white;">—</div>
-              </div>
-              <div style="text-align:center;padding:0 12px;border-right:1px solid rgba(255,255,255,.08);">
-                <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">Coût total du crédit</div>
-                <div id="res-cout-credit" style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:white;">—</div>
-              </div>
-              <div style="text-align:center;padding:0 12px;">
-                <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">Coût total acquisition</div>
-                <div id="res-cout-total" style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:white;">—</div>
-              </div>
-            </div>
-            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;">
-              <div style="text-align:center;padding:0 12px;border-right:1px solid rgba(255,255,255,.08);">
-                <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:6px;">Montant emprunté</div>
-                <div id="res-emprunt" style="font-size:16px;font-weight:300;color:rgba(255,255,255,.7);">—</div>
-              </div>
-              <div style="text-align:center;padding:0 12px;border-right:1px solid rgba(255,255,255,.08);">
-                <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:6px;">Frais de notaire</div>
-                <div id="res-notaire" style="font-size:16px;font-weight:300;color:rgba(255,255,255,.7);">—</div>
-              </div>
-              <div style="text-align:center;padding:0 12px;">
-                <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:6px;">Total intérêts</div>
-                <div id="res-interets" style="font-size:16px;font-weight:300;color:rgba(255,255,255,.7);">—</div>
-              </div>
-            </div>
-          </div>
-
-          <p style="font-size:11px;color:var(--text-light);margin-top:12px;font-weight:300;">
-            * Simulation indicative, hors assurance emprunteur. Contactez-nous pour une étude personnalisée.
-          </p>
-        </div>
-      </div>
         ${dpeHTML}
       </div>
       <div>
@@ -367,6 +274,73 @@ function afficherBien(b) {
             <div class="sticky-contact-line">📞 <a href="tel:+33607131181">Philippe — 06 07 13 11 81</a></div>
             <div class="sticky-contact-line">📞 <a href="tel:+33681140665">Matéo — 06 81 14 06 65</a></div>
             <div class="sticky-contact-line">✉️ <a href="#" onclick="this.href='mailto:agsimmo06@gmail.com';return false;">agsimmo06&#64;gmail.com</a></div>
+          </div>
+          <div style="margin-top:24px;padding-top:24px;border-top:1px solid var(--stone);">
+            <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--navy);font-weight:500;margin-bottom:16px;">📊 Simulateur de financement</div>
+
+            <div style="display:flex;flex-direction:column;gap:10px;">
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                <div>
+                  <div style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:4px;">Prix (€)</div>
+                  <input id="sim-prix" type="number" min="0" oninput="calculerFinancement()"
+                    style="width:100%;border:1px solid var(--stone);background:var(--cream);padding:9px 10px;font-family:'Jost',sans-serif;font-size:13px;color:var(--navy);outline:none;">
+                </div>
+                <div>
+                  <div style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:4px;">Apport (€)</div>
+                  <input id="sim-apport" type="number" value="50000" min="0" oninput="calculerFinancement()"
+                    style="width:100%;border:1px solid var(--stone);background:white;padding:9px 10px;font-family:'Jost',sans-serif;font-size:13px;color:var(--navy);outline:none;">
+                </div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+                <div>
+                  <div style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:4px;">Taux (%)</div>
+                  <input id="sim-taux" type="number" value="3.5" min="0" max="20" step="0.1" oninput="calculerFinancement()"
+                    style="width:100%;border:1px solid var(--stone);background:white;padding:9px 10px;font-family:'Jost',sans-serif;font-size:13px;color:var(--navy);outline:none;">
+                </div>
+                <div>
+                  <div style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:4px;">Durée (ans)</div>
+                  <input id="sim-duree" type="number" value="20" min="1" max="30" oninput="calculerFinancement()"
+                    style="width:100%;border:1px solid var(--stone);background:white;padding:9px 10px;font-family:'Jost',sans-serif;font-size:13px;color:var(--navy);outline:none;">
+                </div>
+                <div>
+                  <div style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:4px;">Notaire (%)</div>
+                  <input id="sim-notaire" type="number" value="7.5" min="0" max="15" step="0.1" oninput="calculerFinancement()"
+                    style="width:100%;border:1px solid var(--stone);background:white;padding:9px 10px;font-family:'Jost',sans-serif;font-size:13px;color:var(--navy);outline:none;">
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Résultats -->
+            <div style="background:var(--navy);padding:16px;margin-top:12px;">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.08);">
+                <div style="text-align:center;">
+                  <div style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:4px;">Mensualité</div>
+                  <div id="res-mensualite" style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:white;">—</div>
+                </div>
+                <div style="text-align:center;">
+                  <div style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:4px;">Coût total</div>
+                  <div id="res-cout-total" style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:white;">—</div>
+                </div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+                <div style="text-align:center;">
+                  <div style="font-size:7px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:3px;">Emprunt</div>
+                  <div id="res-emprunt" style="font-size:12px;font-weight:300;color:rgba(255,255,255,.6);">—</div>
+                </div>
+                <div style="text-align:center;">
+                  <div style="font-size:7px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:3px;">Notaire</div>
+                  <div id="res-notaire" style="font-size:12px;font-weight:300;color:rgba(255,255,255,.6);">—</div>
+                </div>
+                <div style="text-align:center;">
+                  <div style="font-size:7px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:3px;">Intérêts</div>
+                  <div id="res-interets" style="font-size:12px;font-weight:300;color:rgba(255,255,255,.6);">—</div>
+                </div>
+              </div>
+            </div>
+            <p style="font-size:10px;color:var(--text-light);margin-top:8px;font-weight:300;">* Simulation indicative, hors assurance.</p>
           </div>
         </div>
       </div>
@@ -429,7 +403,7 @@ function calculerFinancement() {
 
 function initSimulateur(prixBrut) {
   const el = document.getElementById('sim-prix');
-  if (el) { el.value = prixBrut || 0; calculerFinancement(); }
+  if (el && prixBrut) { el.value = prixBrut; calculerFinancement(); }
 }
 
 let _lbPhotos = [], _lbIdx = 0;
