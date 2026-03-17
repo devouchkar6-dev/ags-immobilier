@@ -394,7 +394,6 @@ function calculerFinancement() {
   }
 
   document.getElementById('res-mensualite').textContent  = mensualite ? fmt(mensualite) + '/mois' : '—';
-  document.getElementById('res-cout-credit').textContent = coutCredit ? fmt(coutCredit) : '—';
   document.getElementById('res-cout-total').textContent  = fmt(coutTotal + totalInterets);
   document.getElementById('res-emprunt').textContent     = fmt(emprunt);
   document.getElementById('res-notaire').textContent     = fmt(fraisNotaire);
