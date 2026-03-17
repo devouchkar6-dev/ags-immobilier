@@ -165,7 +165,7 @@ async function chargerFiche() {
       }
     } catch(e) {}
   }
-  if (!bien) { afficherErreur('Ce bien n'existe plus ou a été retiré.'); return; }
+  if (!bien) { afficherErreur("Ce bien n'existe plus ou a été retiré."); return; }
   afficherBien(bien);
 }
 
