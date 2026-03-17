@@ -1,95 +1,49 @@
-// api/biens.js
-const APIMO_TOKEN = process.env.APIMO_TOKEN || '754afbdaafd2b26297379d7ccbff4cb1e012f678';
-const LOGIN_ID = '4685';
-const AGENCY_ID = '4685';
-
-module.exports = async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-  if (req.method === 'OPTIONS') return res.status(200).end();
-
-  try {
-    const credentials = LOGIN_ID + ':' + APIMO_TOKEN;
-    const encoded = Buffer.from(credentials).toString('base64');
-
-    const r = await fetch(
-      `https://api.apimo.pro/agencies/${AGENCY_ID}/properties`,
-      {
-        method: 'GET',
-        headers: {
-          'Authorization': 'Basic ' + encoded,
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-      }
-    );
-
-    const responseText = await r.text();
-
-    if (!r.ok) {
-      return res.status(r.status).json({
-        error: 'Erreur APIMO',
-        detail: responseText,
-        credentials_used: LOGIN_ID + ':' + APIMO_TOKEN.substring(0, 8) + '...',
-        url_used: `https://api.apimo.pro/agencies/${AGENCY_ID}/properties`
-      });
-    }
-
-    const data = JSON.parse(responseText);
-    const properties = data.properties || [];
-
-    const biens = properties.map(p => {
-      const photos = (p.pictures || []).map(pic => pic.url).filter(Boolean);
-      const typeMap = {
-        1: 'appartement', 2: 'maison', 3: 'villa', 4: 'terrain',
-        5: 'commercial', 6: 'garage', 7: 'immeuble', 8: 'viager'
-      };
-      const type = typeMap[p.category] || 'appartement';
-      const prix = p.price ? new Intl.NumberFormat('fr-FR').format(p.price) + ' €' : '';
-      const ville = p.city?.name || '';
-      const surface = p.area?.total ? p.area.total + ' m²' : '';
-      const pieces = p.rooms || '';
-      const chambres = p.bedrooms || '';
-      const dpeMap = { 1:'A', 2:'B', 3:'C', 4:'D', 5:'E', 6:'F', 7:'G' };
-      const dpe = dpeMap[p.energy?.consumption] || '';
-      const ges = dpeMap[p.energy?.emission] || '';
-      let badge = '';
-      if (p.flag === 1) badge = 'Nouveau';
-      else if (p.flag === 2) badge = 'Exclusivité';
-      else if (p.flag === 3) badge = 'Coup de cœur';
-
-      return {
-        id: String(p.id),
-        titre: p.name || `${type.charAt(0).toUpperCase() + type.slice(1)} - ${ville}`,
-        soustitre: (p.area?.name ? p.area.name + ' — ' : '') + ville,
-        type,
-        ville,
-        villeFilter: ville.toLowerCase().replace(/\s+/g, '-'),
-        prix,
-        prixBrut: p.price || 0,
-        badge,
-        mainPhoto: photos[0] || '',
-        photos,
-        caracteristiques: { surface, pieces: String(pieces) },
-        surface,
-        pieces: String(pieces),
-        chambres: String(chambres),
-        etage: p.floor ? String(p.floor) : '',
-        exposition: '',
-        annee: p.construction_year ? String(p.construction_year) : '',
-        dpe,
-        ges,
-        accroche: p.comment?.title || '',
-        description: p.comment?.text || '',
-        equipements: (p.features || []).map(f => f.name).filter(Boolean),
-        ref: p.reference || String(p.id),
-        actif: p.status === 1,
-        rente: ''
-      };
-    }).filter(b => b.actif);
-
-    return res.status(200).json({ biens, total: biens.length });
-  } catch (e) {
-    return res.status(500).json({ error: e.message, stack: e.stack });
+[
+  {
+    "id": "bien-1773740790002",
+    "titre": "Studio en Viager à Marina Baie des Anges",
+    "soustitre": "Marina Baie des Anges — Villeneuve-Loubet",
+    "type": "viager",
+    "ville": "Villeneuve-Loubet",
+    "villeFilter": "Villeneuve-Loubet",
+    "prix": "22 000 €",
+    "prixBrut": 0,
+    "badge": "Exclusivité AGS",
+    "mainPhoto": "https://res.cloudinary.com/df15yd65n/image/upload/v1773740767/xcpikrunno3lxu7dzhlr.jpg",
+    "photos": [
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773740767/xcpikrunno3lxu7dzhlr.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773740768/zbkiswqraimwnxnqa9sx.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773740768/srmrgcyqhloypnoxyozo.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773740769/dsxdu0jgdqmtveebgegv.jpg"
+    ],
+    "caracteristiques": {
+      "surface": "18 m2",
+      "pieces": "1"
+    },
+    "accroche": "À VENDRE – STUDIO EN VIAGER OCCUPÉ – MARINA BAIE DES ANGES",
+    "description": "Villeneuve-Loubet – Marina Baie des Anges\n\n📍 Emplacement prestigieux\nSitué au sein du complexe emblématique de Marina Baie des Anges, ce studio de 17,91 m² en rez-de-jardin bénéficie d’une exposition plein sud et d’un cadre de vie recherché sur la Côte d’Azur.\n\n🔹 À proximité immédiate :\n✅ Port et plages\n✅ Commerces et centre-ville\n✅ Accès rapide autoroute, gare et aéroport\n✅ Bus, taxi, écoles, supermarché\n\n🏢 Des atouts clés pour votre investissement :\n\n✔ Studio fonctionnel de 17,91 m² (Loi Carrez)\n✔ Rez-de-jardin\n✔ Exposition Sud\n✔ Kitchenette aménagée\n✔ Chauffage électrique individuel\n✔ Eau chaude individuelle\n✔ Une cave\n✔ Résidence emblématique en béton armé\n\n📊 Informations pratiques :\n\n🔸 Homme de 78 ans\n🔸 Viager occupé\n🔸 Valeur vénale : 110 000 €\n🔸 Apport : 22 000 € HAI\n🔸 Rente mensuelle : 400 €\n🔸 Copropriété : 118 lots\n🔸 Charges : 188,53 € / trimestre\n🔸 Charges et Taxe foncière à la charge de l'acquéreur\n🔸 Tout-à-l’égout\n\n🔎 Performance énergétique :\n✔ DPE E – 373 kWhEP/m²/an\n✔ GES B – 11 kg CO₂/m²/an\n✔ Dépenses énergétiques estimées : entre 604 € et 816 € / an\n\nLes informations sur les risques naturels et technologiques auxquels ce bien est exposé sont disponibles sur Géorisques.\n\n📞 Intéressé(e) ? Contactez-nous pour une visite ou avoir plus d'informations.",
+    "equipements": [
+      "Cave",
+      "Lumineux",
+      "Digicode / Interphone",
+      "Gardien",
+      "Vidéosurveillance",
+      "Volets roulants",
+      "Local vélos",
+      "Proche commerces",
+      "Proche transports",
+      "Proche mer"
+    ],
+    "dpe": "E",
+    "ges": "B",
+    "rente": "400 €",
+    "surface": "18 m2",
+    "pieces": "1",
+    "chambres": "1",
+    "etage": "Rez de quai",
+    "exposition": "Sud",
+    "annee": "",
+    "ref": "AGS-25-51",
+    "actif": true
   }
-};
+]
