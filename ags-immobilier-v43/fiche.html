@@ -184,9 +184,9 @@ function dpeBar(lettre) {
 
 function afficherBien(b) {
   const photos = b.photos && b.photos.length ? b.photos : (b.mainPhoto ? [b.mainPhoto] : []);
-  const titre  = b.titre || '';
+  const titre  = (b.titre || '').replace(/'/g, "&#39;").replace(/"/g, "&quot;");
   const prix   = b.prix  || '';
-  const ville  = b.ville || '';
+  const ville  = (b.ville || '').replace(/'/g, "&#39;");
   const loc    = [b.quartier, ville].filter(Boolean).join(' — ') || ville;
   window._fichPhotos = photos;
 
@@ -220,9 +220,14 @@ function afficherBien(b) {
       ${b.ges ? `<div class="dpe-block"><div class="dpe-label-h">Émissions (GES)</div>${dpeBar(b.ges)}</div>` : ''}
     </div>` : '';
 
-  const msgDefaut = `Je suis intéressé(e) par ${titre}${ville ? ' à ' + ville : ''} et souhaite organiser une visite.`;
+  const msgDefaut = `Je suis intéressé(e) par ${b.titre || ''}${b.ville ? ' à ' + b.ville : ''} et souhaite organiser une visite.`;
 
-  document.title = titre + ' | AGS Immobilier';
+  document.title = (b.titre || '') + ' | AGS Immobilier';
+  setTimeout(() => {
+    initSimulateur(b.prixBrut || 0);
+    const ta = document.getElementById('msg-visite');
+    if (ta) ta.value = `Je suis intéressé(e) par ${b.titre || ''} et souhaite organiser une visite.`;
+  }, 50);
   document.getElementById('page-content').innerHTML = `
     ${galHTML}
     <div class="wrap">
@@ -237,6 +242,99 @@ function afficherBien(b) {
         ${b.accroche    ? `<p style="font-size:15px;font-style:italic;color:var(--navy);line-height:1.75;margin-bottom:24px">${b.accroche}</p>` : ''}
         ${b.description ? `<h2 class="section-h">Description</h2><p class="desc">${b.description.replace(/\n/g,'<br>')}</p>` : ''}
         ${equips        ? `<h2 class="section-h">Équipements & prestations</h2><div class="equip-grid">${equips}</div>` : ''}
+
+      <!-- ── SIMULATEUR FINANCEMENT ── -->
+      <div id="simulateur" style="margin-top:40px;">
+        <h2 class="section-h">Simulateur de financement</h2>
+        <div style="background:white;border:1px solid var(--stone);padding:28px 32px;">
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;">
+
+            <div>
+              <label style="display:block;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:6px;">Prix du bien</label>
+              <input id="sim-prix" type="number" readonly
+                style="width:100%;border:1px solid var(--stone);background:var(--cream);padding:11px 14px;font-family:'Jost',sans-serif;font-size:14px;color:var(--navy);font-weight:400;outline:none;">
+            </div>
+
+            <div>
+              <label style="display:block;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:6px;">Apport personnel (€)</label>
+              <input id="sim-apport" type="number" value="50000" min="0"
+                oninput="calculerFinancement()"
+                style="width:100%;border:1px solid var(--stone);background:white;padding:11px 14px;font-family:'Jost',sans-serif;font-size:14px;color:var(--navy);font-weight:400;outline:none;transition:border-color .3s;"
+                onfocus="this.style.borderColor='var(--blue-light)'" onblur="this.style.borderColor='var(--stone)'">
+            </div>
+
+            <div>
+              <label style="display:block;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:6px;">Taux d'intérêt annuel (%)</label>
+              <input id="sim-taux" type="number" value="3.5" min="0" max="20" step="0.1"
+                oninput="calculerFinancement()"
+                style="width:100%;border:1px solid var(--stone);background:white;padding:11px 14px;font-family:'Jost',sans-serif;font-size:14px;color:var(--navy);font-weight:400;outline:none;transition:border-color .3s;"
+                onfocus="this.style.borderColor='var(--blue-light)'" onblur="this.style.borderColor='var(--stone)'">
+            </div>
+
+            <div>
+              <label style="display:block;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:6px;">Durée du prêt (années)</label>
+              <input id="sim-duree" type="number" value="20" min="1" max="30"
+                oninput="calculerFinancement()"
+                style="width:100%;border:1px solid var(--stone);background:white;padding:11px 14px;font-family:'Jost',sans-serif;font-size:14px;color:var(--navy);font-weight:400;outline:none;transition:border-color .3s;"
+                onfocus="this.style.borderColor='var(--blue-light)'" onblur="this.style.borderColor='var(--stone)'">
+            </div>
+
+            <div>
+              <label style="display:block;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:6px;">Frais de notaire (%)</label>
+              <input id="sim-notaire" type="number" value="7.5" min="0" max="15" step="0.1"
+                oninput="calculerFinancement()"
+                style="width:100%;border:1px solid var(--stone);background:white;padding:11px 14px;font-family:'Jost',sans-serif;font-size:14px;color:var(--navy);font-weight:400;outline:none;transition:border-color .3s;"
+                onfocus="this.style.borderColor='var(--blue-light)'" onblur="this.style.borderColor='var(--stone)'">
+            </div>
+
+            <div>
+              <label style="display:block;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:6px;">Frais d'agence (€)</label>
+              <input id="sim-agence" type="number" value="0" min="0"
+                oninput="calculerFinancement()"
+                style="width:100%;border:1px solid var(--stone);background:white;padding:11px 14px;font-family:'Jost',sans-serif;font-size:14px;color:var(--navy);font-weight:400;outline:none;transition:border-color .3s;"
+                onfocus="this.style.borderColor='var(--blue-light)'" onblur="this.style.borderColor='var(--stone)'">
+            </div>
+
+          </div>
+
+          <!-- Résultats -->
+          <div style="background:var(--navy);padding:24px 28px;margin-top:8px;">
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:20px;margin-bottom:20px;">
+              <div style="text-align:center;padding:0 12px;border-right:1px solid rgba(255,255,255,.08);">
+                <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">Mensualité estimée</div>
+                <div id="res-mensualite" style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:white;">—</div>
+              </div>
+              <div style="text-align:center;padding:0 12px;border-right:1px solid rgba(255,255,255,.08);">
+                <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">Coût total du crédit</div>
+                <div id="res-cout-credit" style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:white;">—</div>
+              </div>
+              <div style="text-align:center;padding:0 12px;">
+                <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">Coût total acquisition</div>
+                <div id="res-cout-total" style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:white;">—</div>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;">
+              <div style="text-align:center;padding:0 12px;border-right:1px solid rgba(255,255,255,.08);">
+                <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:6px;">Montant emprunté</div>
+                <div id="res-emprunt" style="font-size:16px;font-weight:300;color:rgba(255,255,255,.7);">—</div>
+              </div>
+              <div style="text-align:center;padding:0 12px;border-right:1px solid rgba(255,255,255,.08);">
+                <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:6px;">Frais de notaire</div>
+                <div id="res-notaire" style="font-size:16px;font-weight:300;color:rgba(255,255,255,.7);">—</div>
+              </div>
+              <div style="text-align:center;padding:0 12px;">
+                <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:6px;">Total intérêts</div>
+                <div id="res-interets" style="font-size:16px;font-weight:300;color:rgba(255,255,255,.7);">—</div>
+              </div>
+            </div>
+          </div>
+
+          <p style="font-size:11px;color:var(--text-light);margin-top:12px;font-weight:300;">
+            * Simulation indicative, hors assurance emprunteur. Contactez-nous pour une étude personnalisée.
+          </p>
+        </div>
+      </div>
         ${dpeHTML}
       </div>
       <div>
@@ -244,7 +342,7 @@ function afficherBien(b) {
           <div class="sticky-price">${prix}</div>
           <div class="sticky-sub">${titre}${ville ? ' · ' + ville : ''}</div>
           <form name="visite-fiche" onsubmit="envoyerEmailJS(event,this,'template_7o6elbd')">
-            <input type="hidden" name="bien" value="${titre} — ${prix}">
+            <input type="hidden" name="bien" value="${b.titre || ''} — ${prix}">
             <div class="form-group">
               <label>Nom & Prénom *</label>
               <input type="text" name="nom" placeholder="Jean Dupont" required>
@@ -259,7 +357,7 @@ function afficherBien(b) {
             </div>
             <div class="form-group">
               <label>Message</label>
-              <textarea name="message">${msgDefaut}</textarea>
+              <textarea name="message" id="msg-visite"></textarea>
             </div>
             <button type="submit" class="sticky-submit">Demander une visite →</button>
             <p class="msg-ok" id="msg-ok">✓ Message envoyé ! Nous vous recontactons rapidement.</p>
@@ -287,6 +385,51 @@ function envoyerEmailJS(e, form, templateId) {
       btn.textContent = 'Demander une visite →';
       btn.disabled = false;
     });
+}
+
+
+// ── SIMULATEUR FINANCEMENT ──
+function calculerFinancement() {
+  const prix    = parseFloat(document.getElementById('sim-prix')?.value) || 0;
+  const apport  = parseFloat(document.getElementById('sim-apport')?.value) || 0;
+  const taux    = parseFloat(document.getElementById('sim-taux')?.value) || 0;
+  const duree   = parseInt(document.getElementById('sim-duree')?.value) || 20;
+  const notairePct = parseFloat(document.getElementById('sim-notaire')?.value) || 7.5;
+  const agence  = parseFloat(document.getElementById('sim-agence')?.value) || 0;
+
+  if (!prix) return;
+
+  const fraisNotaire = prix * notairePct / 100;
+  const emprunt = Math.max(0, prix - apport + agence);
+  const coutTotal = prix + fraisNotaire + agence;
+
+  const fmt = v => new Intl.NumberFormat('fr-FR', { style:'currency', currency:'EUR', maximumFractionDigits:0 }).format(v);
+
+  let mensualite = 0, totalInterets = 0, coutCredit = 0;
+
+  if (emprunt > 0 && taux > 0) {
+    const tauxMensuel = taux / 100 / 12;
+    const n = duree * 12;
+    mensualite = emprunt * tauxMensuel * Math.pow(1 + tauxMensuel, n) / (Math.pow(1 + tauxMensuel, n) - 1);
+    coutCredit = mensualite * n;
+    totalInterets = coutCredit - emprunt;
+  } else if (emprunt > 0) {
+    mensualite = emprunt / (duree * 12);
+    coutCredit = emprunt;
+    totalInterets = 0;
+  }
+
+  document.getElementById('res-mensualite').textContent  = mensualite ? fmt(mensualite) + '/mois' : '—';
+  document.getElementById('res-cout-credit').textContent = coutCredit ? fmt(coutCredit) : '—';
+  document.getElementById('res-cout-total').textContent  = fmt(coutTotal + totalInterets);
+  document.getElementById('res-emprunt').textContent     = fmt(emprunt);
+  document.getElementById('res-notaire').textContent     = fmt(fraisNotaire);
+  document.getElementById('res-interets').textContent    = totalInterets ? fmt(totalInterets) : '0 €';
+}
+
+function initSimulateur(prixBrut) {
+  const el = document.getElementById('sim-prix');
+  if (el) { el.value = prixBrut || 0; calculerFinancement(); }
 }
 
 let _lbPhotos = [], _lbIdx = 0;
