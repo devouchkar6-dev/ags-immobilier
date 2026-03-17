@@ -223,11 +223,6 @@ function afficherBien(b) {
   const msgDefaut = `Je suis intéressé(e) par ${b.titre || ''}${b.ville ? ' à ' + b.ville : ''} et souhaite organiser une visite.`;
 
   document.title = (b.titre || '') + ' | AGS Immobilier';
-  setTimeout(() => {
-    initSimulateur(b.prixBrut || 0);
-    const ta = document.getElementById('msg-visite');
-    if (ta) ta.value = `Je suis intéressé(e) par ${b.titre || ''} et souhaite organiser une visite.`;
-  }, 50);
   document.getElementById('page-content').innerHTML = `
     ${galHTML}
     <div class="wrap">
@@ -345,6 +340,11 @@ function afficherBien(b) {
         </div>
       </div>
     </div>`;
+
+  // Initialiser simulateur après injection HTML
+  initSimulateur(b.prixBrut || 0);
+  const ta = document.getElementById('msg-visite');
+  if (ta) ta.value = 'Je suis intéressé(e) par ' + (b.titre || '') + ' et souhaite organiser une visite.';
 }
 
 function envoyerEmailJS(e, form, templateId) {
