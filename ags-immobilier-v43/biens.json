@@ -49,7 +49,7 @@
   {
     "id": "bien-1773941844054",
     "titre": "À VENDRE – STUDIO EN VIAGER OCCUPÉ – MARINA BAIE DES ANGES",
-    "soustitre": "Rocheville — Le Cannet",
+    "soustitre": "Le Cannet",
     "type": "appartement",
     "ville": "Le Cannet",
     "villeFilter": "Le Cannet",
@@ -95,6 +95,46 @@
     "exposition": "Nord, Est",
     "annee": "1969",
     "ref": "AGS-26-51",
+    "actif": true
+  },
+  {
+    "id": "bien-1773942052991",
+    "titre": "À VENDRE – LOCAL COMMERCIAL MODERNE",
+    "soustitre": "Rocheville — Le Cannet",
+    "type": "commercial",
+    "ville": "Le Cannet",
+    "villeFilter": "Le Cannet",
+    "prix": "159 000 €",
+    "prixBrut": 159000,
+    "badge": "Vendu",
+    "mainPhoto": "https://res.cloudinary.com/df15yd65n/image/upload/v1773942006/leia82pcwfoflomc8jpw.png",
+    "photos": [
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773942006/leia82pcwfoflomc8jpw.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773942009/hlgd3jno675lx8yjp0aa.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773942012/h3qoeptj96z8ntcfvxcg.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773942014/adqd9thfq8kfva5nditb.png"
+    ],
+    "caracteristiques": {
+      "surface": "42 m2",
+      "pieces": ""
+    },
+    "accroche": "À VENDRE – LOCAL COMMERCIAL MODERNE",
+    "description": "Situé dans la charmante ville du Cannet, cet espace À VENDRE – LOCAL COMMERCIAL MODERNE – 159 000 € CC\nLe Cannet Rocheville – Proche Stade Maurice Jeanpierre\n\n📍 Emplacement stratégique\nSitué dans un quartier dynamique du Cannet Rocheville, ce local commercial de 42,60 m² bénéficie d’une exposition plein sud et d’une luminosité optimale, tout en étant abrité dans une galerie commerciale ouverte sur des espaces verts.\n\n🔹 À proximité immédiate :\n✅ Accès direct à l’autoroute A8\n✅ Centre commercial et pharmacie à deux pas\n✅ Stade Maurice Jeanpierre et commodités\n\n🏢 Des atouts clés pour votre activité :\n\n✔ 2 belles vitrines pour une visibilité maximale\n\n✔ Climatisation réversible pour un confort optimal\n\n✔ État impeccable – Prêt à accueillir votre commerce.\n\n✔ DPE C (126 kWh/m²/an) – GES B (4 kg CO₂/m²/an) – Performances énergétiques satisfaisantes\n\n✔ Diagnostics réalisés le 04/02/2026 – Transparence totale.\n\n📊 Informations pratiques :\n🔸 Copropriété construite en 1978 : 255 lots – Aucune procédure en cours\n🔸 Charges annuelles : ~1 500 €\n🔸 Taxe foncière : 881 €\n🔸 Dépenses énergétiques annuelles (2025) : 697 €\n\n💰 Prix de vente : 159 000 € CC\n✅ Honoraires d’agence inclus (réglés par le vendeur)\n\nLes informations sur les risques naturels et technologiques auxquels ce bien est exposé sont disponibles sur Géorisques.\n\n📞 Intéressé(e) ? Contactez-nous pour une visite ou pour plus d'informations",
+    "equipements": [
+      "Proche commerces",
+      "Proche transports",
+      "Proche écoles"
+    ],
+    "dpe": "C",
+    "ges": "A",
+    "rente": "",
+    "surface": "42 m2",
+    "pieces": "",
+    "chambres": "",
+    "etage": "",
+    "exposition": "Sud",
+    "annee": "",
+    "ref": "AGS-26-52",
     "actif": true
   }
 ]
