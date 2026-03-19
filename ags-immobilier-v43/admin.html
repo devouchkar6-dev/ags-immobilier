@@ -6,14 +6,9 @@
 <title>Admin — AGS Immobilier</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --navy: #1B2D4F; --navy-deep: #0F1E36; --accent: #5B9BD5;
-  --green: #27ae60; --red: #e74c3c; --orange: #f39c12;
-  --light: #F8F5F0; --border: rgba(27,45,79,.12);
-}
+:root { --navy:#1B2D4F; --navy-deep:#0F1E36; --accent:#5B9BD5; --green:#27ae60; --red:#e74c3c; --orange:#f39c12; --light:#F8F5F0; --border:rgba(27,45,79,.12); }
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min-height:100vh; }
-
 #login-screen { position:fixed; inset:0; background:var(--navy-deep); display:flex; align-items:center; justify-content:center; z-index:9999; }
 .login-box { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); padding:48px; width:360px; text-align:center; }
 .login-box img { height:60px; margin-bottom:24px; }
@@ -24,13 +19,11 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
 .login-box input:focus { border-color:var(--accent); }
 .login-btn { width:100%; padding:14px; background:var(--accent); color:white; border:none; font-family:'Jost',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; }
 .login-error { color:#e74c3c; font-size:12px; margin-top:8px; display:none; }
-
 #app { display:none; }
 .topbar { background:var(--navy-deep); padding:0 32px; display:flex; justify-content:space-between; align-items:center; height:60px; box-shadow:0 2px 12px rgba(0,0,0,.3); }
 .topbar-logo { display:flex; align-items:center; gap:14px; }
 .topbar-logo img { height:36px; }
 .logout-btn { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15); color:rgba(255,255,255,.6); padding:8px 20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; font-family:'Jost',sans-serif; }
-
 .github-banner { background:#fff3cd; border:1px solid #ffc107; padding:12px 24px; display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
 .github-banner.ok { background:#d4edda; border-color:#27ae60; }
 .github-banner span { font-size:13px; color:#856404; }
@@ -39,25 +32,22 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
 .github-banner.ok input { border-color:#27ae60; }
 .btn-config { background:#856404; color:white; border:none; padding:8px 16px; font-size:11px; cursor:pointer; font-family:'Jost',sans-serif; white-space:nowrap; }
 .github-banner.ok .btn-config { background:#155724; }
-
 .main { display:grid; grid-template-columns:1fr 440px; gap:24px; padding:24px 32px; max-width:1400px; margin:0 auto; }
 .card { background:white; border-radius:2px; box-shadow:0 1px 4px rgba(0,0,0,.08); }
 .card-header { padding:20px 24px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
 .card-title { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--navy); font-weight:400; }
 .card-body { padding:24px; }
-
 .stats-row { display:grid; grid-template-columns:repeat(6,1fr); gap:16px; margin-bottom:24px; }
 .stat-card { background:white; border-radius:2px; padding:20px 24px; box-shadow:0 1px 4px rgba(0,0,0,.08); }
 .stat-num { font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:300; color:var(--navy); line-height:1; }
 .stat-label { font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:#9CA3AF; margin-top:4px; }
-
 .bien-item { border:1px solid var(--border); padding:16px; margin-bottom:12px; display:grid; grid-template-columns:80px 1fr auto; gap:16px; align-items:center; }
 .bien-item:hover { border-color:var(--accent); }
 .bien-thumb { width:80px; height:60px; object-fit:cover; background:#f0f2f5; }
 .bien-info h4 { font-size:14px; font-weight:400; margin-bottom:4px; }
 .bien-info p { font-size:12px; color:#6B7280; }
 .bien-badge { display:inline-block; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:3px 8px; margin-top:6px; }
-.badge-vente,.badge-appartement,.badge-maison { background:rgba(91,155,213,.1); color:var(--accent); }
+.badge-appartement,.badge-maison { background:rgba(91,155,213,.1); color:var(--accent); }
 .badge-viager { background:rgba(243,156,18,.1); color:var(--orange); }
 .badge-commercial { background:rgba(39,174,96,.1); color:var(--green); }
 .bien-actions { display:flex; flex-direction:column; gap:8px; }
@@ -66,21 +56,18 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
 .btn-toggle { padding:8px 16px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; font-family:'Jost',sans-serif; border:none; }
 .btn-toggle.actif { background:rgba(39,174,96,.1); color:var(--green); border:1px solid rgba(39,174,96,.2); }
 .btn-toggle.inactif { background:rgba(231,76,60,.1); color:var(--red); border:1px solid rgba(231,76,60,.2); }
-
 .form-section { margin-bottom:20px; }
 .form-section-title { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:10px; padding-bottom:6px; border-bottom:1px solid var(--border); }
 .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:10px; }
 .form-row.full { grid-template-columns:1fr; }
 .form-group { display:flex; flex-direction:column; gap:5px; }
 .form-group label { font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:#6B7280; }
-.form-group input, .form-group select, .form-group textarea { padding:10px 12px; border:1px solid var(--border); font-family:'Jost',sans-serif; font-size:13px; color:var(--navy); outline:none; background:white; }
-.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color:var(--accent); }
+.form-group input,.form-group select,.form-group textarea { padding:10px 12px; border:1px solid var(--border); font-family:'Jost',sans-serif; font-size:13px; color:var(--navy); outline:none; background:white; }
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus { border-color:var(--accent); }
 .form-group textarea { resize:vertical; min-height:80px; }
 .checkbox-group { display:flex; flex-wrap:wrap; gap:8px; }
 .checkbox-item { display:flex; align-items:center; gap:6px; font-size:12px; cursor:pointer; padding:6px 10px; border:1px solid var(--border); }
 .checkbox-item input { width:14px; height:14px; cursor:pointer; accent-color:var(--accent); }
-
-/* PHOTOS */
 .photo-url-input { display:flex; gap:8px; margin-bottom:8px; }
 .photo-url-input input { flex:1; }
 .photo-url-input button { background:var(--accent); color:white; border:none; padding:10px 16px; cursor:pointer; font-size:12px; font-family:'Jost',sans-serif; white-space:nowrap; }
@@ -89,7 +76,6 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
 .photo-zone p { font-size:12px; color:#9CA3AF; }
 .photo-warn { background:#fff3cd; border:1px solid #f39c12; padding:8px 12px; font-size:11px; color:#856404; margin-bottom:8px; display:none; }
 .photo-cover-hint { font-size:11px; color:#6B7280; margin:6px 0; display:none; }
-
 .photo-preview-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:8px; }
 .photo-item { position:relative; aspect-ratio:4/3; border:2px solid transparent; }
 .photo-item.is-cover { border-color:var(--orange); }
@@ -100,21 +86,17 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
 .photo-btns { position:absolute; bottom:0; left:0; right:0; display:flex; }
 .photo-btns button { flex:1; padding:5px 2px; font-size:10px; cursor:pointer; font-family:'Jost',sans-serif; border:none; letter-spacing:0; }
 .pbtn-cover { background:rgba(243,156,18,.9); color:white; }
-.pbtn-l { background:rgba(27,45,79,.75); color:white; }
-.pbtn-r { background:rgba(27,45,79,.75); color:white; }
+.pbtn-l,.pbtn-r { background:rgba(27,45,79,.75); color:white; }
 .pbtn-del { background:rgba(231,76,60,.9); color:white; }
 .pbtn-cover:disabled,.pbtn-l:disabled,.pbtn-r:disabled { opacity:.3; cursor:default; }
-
 .form-actions { display:flex; gap:12px; margin-top:20px; }
 .btn-save { flex:1; padding:14px; background:var(--navy); color:white; border:none; font-family:'Jost',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; }
 .btn-cancel { padding:14px 24px; background:transparent; border:1px solid var(--border); color:#6B7280; font-family:'Jost',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; }
 .btn-new { background:var(--accent); color:white; border:none; padding:10px 20px; font-family:'Jost',sans-serif; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; }
-
 .sync-status { font-size:11px; padding:4px 10px; border-radius:2px; }
 .sync-ok { background:#d4edda; color:#155724; }
 .sync-err { background:#f8d7da; color:#721c24; }
 .sync-pending { background:#fff3cd; color:#856404; }
-
 .toast { position:fixed; bottom:24px; right:24px; background:var(--navy); color:white; padding:14px 24px; font-size:13px; transform:translateY(80px); opacity:0; transition:all .3s; z-index:9999; max-width:400px; line-height:1.4; }
 .toast.show { transform:translateY(0); opacity:1; }
 .toast.success { background:var(--green); }
@@ -122,7 +104,6 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
 .toast.warning { background:var(--orange); }
 .empty-state { text-align:center; padding:48px; color:#9CA3AF; }
 .empty-state .icon { font-size:48px; margin-bottom:16px; }
-
 @media(max-width:1024px) { .main { grid-template-columns:1fr; } }
 @media(max-width:768px) { .stats-row { grid-template-columns:1fr 1fr; } .main { padding:16px; } }
 </style>
@@ -190,16 +171,11 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
         <div class="card-header"><span class="card-title" id="form-title">Nouveau bien</span></div>
         <div class="card-body">
           <form id="bien-form" onsubmit="return false;">
-
             <div class="form-section">
               <div class="form-section-title">Informations générales</div>
-              <div class="form-row full"><div class="form-group">
-                <label>Titre *</label>
-                <input type="text" id="f-titre" placeholder="Ex: Appartement 3 pièces vue mer" required>
-              </div></div>
+              <div class="form-row full"><div class="form-group"><label>Titre *</label><input type="text" id="f-titre" placeholder="Ex: Appartement 3 pièces vue mer" required></div></div>
               <div class="form-row">
-                <div class="form-group">
-                  <label>Type *</label>
+                <div class="form-group"><label>Type *</label>
                   <select id="f-type">
                     <option value="appartement">Appartement</option>
                     <option value="maison">Maison / Villa</option>
@@ -209,8 +185,7 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
                     <option value="location">Location</option>
                   </select>
                 </div>
-                <div class="form-group">
-                  <label>Badge</label>
+                <div class="form-group"><label>Badge</label>
                   <select id="f-badge">
                     <option value="">Aucun</option>
                     <option value="Exclusivité AGS">Exclusivité AGS</option>
@@ -229,34 +204,22 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
             <div class="form-section">
               <div class="form-section-title">Localisation</div>
               <div class="form-row">
-                <div class="form-group">
-                  <label>Ville *</label>
-                  <input type="text" id="f-ville" placeholder="Ex: Pégomas, Mougins, Cannes...">
-                </div>
-                <div class="form-group">
-                  <label>Quartier</label>
-                  <input type="text" id="f-quartier" placeholder="Ex: Rocheville">
-                </div>
+                <div class="form-group"><label>Ville *</label><input type="text" id="f-ville" placeholder="Ex: Mougins, Cannes..."></div>
+                <div class="form-group"><label>Quartier</label><input type="text" id="f-quartier" placeholder="Ex: Rocheville"></div>
               </div>
             </div>
 
             <div class="form-section">
               <div class="form-section-title">Prix</div>
               <div class="form-row">
-                <div class="form-group">
-                  <label>Prix affiché *</label>
-                  <input type="text" id="f-prix" placeholder="Ex: 250 000 €">
-                </div>
+                <div class="form-group"><label>Prix affiché *</label><input type="text" id="f-prix" placeholder="Ex: 250 000 €"></div>
                 <div class="form-group">
                   <label>Prix numérique (filtres)</label>
                   <input type="number" id="f-prix-brut" placeholder="250000">
                 </div>
               </div>
               <div class="form-row full" id="viager-fields" style="display:none;">
-                <div class="form-group">
-                  <label>Rente mensuelle</label>
-                  <input type="text" id="f-rente" placeholder="Ex: 400 €/mois">
-                </div>
+                <div class="form-group"><label>Rente mensuelle</label><input type="text" id="f-rente" placeholder="Ex: 400 €/mois"></div>
               </div>
             </div>
 
@@ -272,7 +235,7 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
               </div>
               <div class="form-row">
                 <div class="form-group"><label>Exposition</label><input type="text" id="f-exposition" placeholder="Sud, Vue mer"></div>
-                <div class="form-group"><label>Année</label><input type="text" id="f-annee" placeholder="1975"></div>
+                <div class="form-group"><label>Année de construction</label><input type="text" id="f-annee" placeholder="1975"></div>
               </div>
               <div class="form-row">
                 <div class="form-group"><label>DPE</label>
@@ -322,58 +285,36 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
 
             <div class="form-section">
               <div class="form-section-title">Description</div>
-              <div class="form-row full"><div class="form-group">
-                <label>Accroche</label>
-                <input type="text" id="f-accroche" placeholder="Bel appartement rénové...">
-              </div></div>
-              <div class="form-row full"><div class="form-group">
-                <label>Description complète</label>
-                <textarea id="f-description" rows="5"></textarea>
-              </div></div>
+              <div class="form-row full"><div class="form-group"><label>Accroche</label><input type="text" id="f-accroche" placeholder="Bel appartement rénové..."></div></div>
+              <div class="form-row full"><div class="form-group"><label>Description complète</label><textarea id="f-description" rows="5"></textarea></div></div>
             </div>
 
-            <!-- PHOTOS AVEC GESTION COUVERTURE -->
             <div class="form-section">
               <div class="form-section-title">Photos</div>
-
               <div class="photo-url-input">
-                <input type="text" id="photo-url-field" placeholder="Coller un lien URL de photo (recommandé)...">
+                <input type="text" id="photo-url-field" placeholder="Coller un lien URL de photo...">
                 <button type="button" onclick="ajouterPhotoURL()">+ URL</button>
               </div>
-
               <div class="photo-zone" onclick="document.getElementById('photo-file-input').click()">
                 <p>📁 Uploader depuis l'ordinateur</p>
                 <p style="font-size:11px;margin-top:3px;color:#27ae60;">✅ Upload automatique vers Cloudinary</p>
               </div>
               <input type="file" id="photo-file-input" accept="image/*" multiple style="display:none" onchange="handlePhotoUpload(event)">
-
-              <div class="photo-warn" id="photo-warn">
-                ⚠️ <strong>Photos depuis ordinateur détectées</strong> — Ces photos ne seront pas visibles sur le site public (trop lourdes pour GitHub).
-                Pour les afficher sur le site, utilisez des <strong>liens URL</strong> (ex: imgbb.com, Google Photos, Dropbox...).
-              </div>
-
-              <div class="photo-cover-hint" id="photo-cover-hint">
-                La photo avec le badge <strong style="color:var(--orange);">⭐ Couverture</strong> est affichée en premier sur le site.
-                Cliquez sur <strong>⭐</strong> pour changer la couverture. Utilisez <strong>◀ ▶</strong> pour réordonner.
-              </div>
-
+              <div class="photo-warn" id="photo-warn">⚠️ Photos locales détectées — utilisez des URLs pour les afficher sur le site.</div>
+              <div class="photo-cover-hint" id="photo-cover-hint">La photo ⭐ est affichée en couverture. Utilisez ◀ ▶ pour réordonner.</div>
               <div class="photo-preview-grid" id="photo-preview-grid"></div>
             </div>
 
             <div class="form-section">
               <div class="form-section-title">Statut</div>
               <div class="form-row">
-                <div class="form-group">
-                  <label>Visibilité</label>
+                <div class="form-group"><label>Visibilité</label>
                   <select id="f-actif">
-                    <option value="1">✅ En ligne</option>
-                    <option value="0">⏸ Masqué</option>
+                    <option value="1">✅ En ligne (visible sur le site)</option>
+                    <option value="0">⏸ Masqué (invisible sur le site)</option>
                   </select>
                 </div>
-                <div class="form-group">
-                  <label>Référence</label>
-                  <input type="text" id="f-ref" placeholder="AGS-2024-001">
-                </div>
+                <div class="form-group"><label>Référence</label><input type="text" id="f-ref" placeholder="AGS-2024-001"></div>
               </div>
             </div>
 
@@ -389,12 +330,10 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════ -->
-<!-- SECTION GESTION DES AVIS -->
-<!-- ══════════════════════════════════════════ -->
+<!-- AVIS -->
 <div style="padding:24px 32px 40px;">
   <div class="card">
-    <div class="card-header" style="display:flex;justify-content:space-between;align-items:center;">
+    <div class="card-header">
       <span class="card-title">⭐ Avis clients</span>
       <div style="display:flex;gap:8px;align-items:center;">
         <span id="avis-badge-attente" style="display:none;background:#e74c3c;color:white;font-size:10px;letter-spacing:1px;padding:3px 10px;border-radius:20px;"></span>
@@ -402,19 +341,13 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
       </div>
     </div>
     <div class="card-body" style="padding:0;">
-
-      <!-- Tabs -->
       <div style="display:flex;border-bottom:1px solid var(--border);">
-        <button class="avis-tab active" data-tab="en_attente" onclick="filtrerAvis('en_attente')" style="flex:1;padding:12px;border:none;background:none;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;color:var(--text-light);transition:all .2s;">En attente</button>
-        <button class="avis-tab" data-tab="approuve" onclick="filtrerAvis('approuve')" style="flex:1;padding:12px;border:none;background:none;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;color:var(--text-light);transition:all .2s;">Approuvés</button>
-        <button class="avis-tab" data-tab="refuse" onclick="filtrerAvis('refuse')" style="flex:1;padding:12px;border:none;background:none;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;color:var(--text-light);transition:all .2s;">Refusés</button>
-        <button class="avis-tab" data-tab="tous" onclick="filtrerAvis('tous')" style="flex:1;padding:12px;border:none;background:none;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;color:var(--text-light);transition:all .2s;">Tous</button>
+        <button class="avis-tab" data-tab="en_attente" onclick="filtrerAvis('en_attente')" style="flex:1;padding:12px;border:none;background:none;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;color:#6B7280;">En attente</button>
+        <button class="avis-tab" data-tab="approuve" onclick="filtrerAvis('approuve')" style="flex:1;padding:12px;border:none;background:none;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;color:#6B7280;">Approuvés</button>
+        <button class="avis-tab" data-tab="refuse" onclick="filtrerAvis('refuse')" style="flex:1;padding:12px;border:none;background:none;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;color:#6B7280;">Refusés</button>
+        <button class="avis-tab" data-tab="tous" onclick="filtrerAvis('tous')" style="flex:1;padding:12px;border:none;background:none;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;color:#6B7280;">Tous</button>
       </div>
-
-      <!-- Liste -->
-      <div id="avis-liste" style="padding:20px;">
-        <div class="empty-state"><div class="icon">⭐</div><p>Chargement des avis…</p></div>
-      </div>
+      <div id="avis-liste" style="padding:20px;"><div class="empty-state"><div class="icon">⭐</div><p>Chargement des avis…</p></div></div>
     </div>
   </div>
 </div>
@@ -430,21 +363,14 @@ const GITHUB_FILE = 'ags-immobilier-v43/biens.json';
 const GITHUB_BRANCH = 'main';
 const TOKEN_KEY = 'ags_gh_token';
 const STORAGE_KEY = 'ags_biens_admin';
-
-// CLOUDINARY
 const CLOUDINARY_CLOUD = 'df15yd65n';
 const CLOUDINARY_PRESET = 'AGS IMMO';
 const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`;
+const VILLES = { cannet:'Le Cannet', cannes:'Cannes', mougins:'Mougins', vallauris:'Vallauris', mandelieu:'Mandelieu-la-Napoule', autre:'Autre' };
 
-const VILLES = {
-  cannet:'Le Cannet', cannes:'Cannes', mougins:'Mougins',
-  vallauris:'Vallauris', mandelieu:'Mandelieu-la-Napoule', autre:'Autre'
-};
-function villeLabel(b) {
-  return b.ville || VILLES[b.villeFilter] || VILLES[b.ville] || b.ville || '';
-}
+function villeLabel(b) { return b.ville || VILLES[b.villeFilter] || ''; }
 
-// AUTH
+// ── AUTH ──
 function checkLogin() {
   const pwd = document.getElementById('pwd-input').value;
   if (pwd === PASSWORD) {
@@ -472,31 +398,22 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// GITHUB TOKEN
-function getToken() {
-  return sessionStorage.getItem('gh_token') || localStorage.getItem(TOKEN_KEY) || '';
-}
+// ── TOKEN ──
+function getToken() { return sessionStorage.getItem('gh_token') || localStorage.getItem(TOKEN_KEY) || ''; }
+
 function sauvegarderToken() {
   const token = document.getElementById('github-token').value.trim();
-  if (!token.startsWith('ghp_') && !token.startsWith('github_pat_')) {
-    showToast('Token invalide (doit commencer par ghp_)', 'error'); return;
-  }
+  if (!token.startsWith('ghp_') && !token.startsWith('github_pat_')) { showToast('Token invalide', 'error'); return; }
   localStorage.setItem(TOKEN_KEY, token);
   sessionStorage.setItem('gh_token', token);
-  verifierToken().then(ok => {
-    if (ok) {
-      chargerDepuisGitHub().then(() => chargerBiens());
-      chargerAvisAdmin();
-    }
-  });
+  verifierToken().then(ok => { if (ok) { chargerDepuisGitHub().then(() => chargerBiens()); chargerAvisAdmin(); } });
 }
+
 async function verifierToken() {
   const token = getToken();
   if (!token) { updateSyncStatus('pending', '⚙️ Config GitHub requise'); return false; }
   try {
-    const r = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}`, {
-      headers: { 'Authorization': `token ${token}` }
-    });
+    const r = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}`, { headers: { 'Authorization': `token ${token}` } });
     if (r.ok) {
       updateSyncStatus('ok', '✅ GitHub connecté');
       document.getElementById('github-banner').className = 'github-banner ok';
@@ -508,115 +425,88 @@ async function verifierToken() {
     }
   } catch(e) { updateSyncStatus('err', '❌ Erreur réseau'); return false; }
 }
+
 function updateSyncStatus(type, msg) {
   const el = document.getElementById('sync-status');
   el.textContent = msg;
   el.className = 'sync-status ' + (type==='ok'?'sync-ok':type==='err'?'sync-err':'sync-pending');
 }
 
-// DATA
+// ── DATA ──
 function formatPrix(val) {
   if (!val) return '';
   const n = parseInt(String(val).replace(/[€\s]/g,'').replace(/\D/g,''));
   return isNaN(n) ? val : n.toLocaleString('fr-FR') + ' €';
 }
-function getBiens() {
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch(e) { return []; }
-}
+function getBiens() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch(e) { return []; } }
 function sauvegarderLocal(biens) { localStorage.setItem(STORAGE_KEY, JSON.stringify(biens)); }
 
-// ✅ FIX CRITIQUE: filtrer les photos base64 pour le JSON public
-// Les base64 rendent biens.json énorme → chargement infini sur la page détail
-function filtrerPhotosPublic(photos) {
-  return (photos || []).filter(p => p && !p.startsWith('data:'));
-}
-
+// ── PUBLICATION GITHUB ──
+// ✅ RÈGLE CLÉ : on publie TOUS les biens dans GitHub (actifs ET masqués)
+// mais le site ne lit QUE les biens avec actif:true
+// Ainsi un bien masqué reste dans l'admin mais n'apparaît pas sur le site
 async function publierSurGitHub(biens) {
   const token = getToken();
   if (!token) { showToast('⚠️ Sauvegardé localement. Connectez GitHub pour publier.', ''); return false; }
   updateSyncStatus('pending', '⏳ Publication...');
-
   try {
-    // ✅ FIX CRITIQUE : toujours lire GitHub en premier pour récupérer SHA + biens existants
     let sha = '';
-    let biensGH = [];
     const getR = await fetch(
       `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`,
       { headers: { 'Authorization': `token ${token}` } }
     );
-    if (getR.ok) {
-      const d = await getR.json();
-      sha = d.sha;
-      try { biensGH = JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\n/g,''))))); } catch(e) {}
-    }
+    if (getR.ok) { const d = await getR.json(); sha = d.sha; }
 
-    // ✅ Fusionner : partir des biens GitHub, écraser/ajouter avec les biens locaux
-    const map = {};
-    biensGH.forEach(b => map[b.id] = b);
-    biens.forEach(b => map[b.id] = b);  // les biens passés en param priment toujours
-    const biensFusionnes = Object.values(map);
-
-    // ✅ Mettre à jour le localStorage avec la liste fusionnée
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(biensFusionnes));
-
-    const biensPublics = biensFusionnes.filter(b => b.actif !== false).map(b => {
-      const photosOk = (b.photos||[]).filter(p => p && p.trim());
+    // ✅ TOUS les biens publiés sur GitHub (actifs + masqués)
+    // Le site filtre lui-même avec actif:true
+    const biensPublics = biens.map(b => {
+      const photosOk = (b.photos||[]).filter(p => p && p.trim() && !p.startsWith('data:'));
       return {
-        id: b.id,
-        titre: b.titre,
+        id: b.id, titre: b.titre,
         soustitre: (b.quartier ? b.quartier + ' — ' : '') + villeLabel(b),
-        type: b.type,
-        ville: VILLES[b.ville] || b.ville,
-        villeFilter: b.ville,
-        prix: b.prix,
-        prixBrut: parseInt(b.prixBrut) || 0,
+        type: b.type, ville: VILLES[b.ville] || b.ville, villeFilter: b.ville,
+        prix: b.prix, prixBrut: parseInt(b.prixBrut) || 0,
         badge: b.badge || '',
-        mainPhoto: photosOk[0] || '',
-        photos: photosOk,
+        mainPhoto: photosOk[0] || '', photos: photosOk,
         caracteristiques: { surface: b.surface||'', pieces: b.pieces||'' },
-        accroche: b.accroche || '',
-        description: b.description || '',
-        equipements: b.equipements || [],
+        accroche: b.accroche||'', description: b.description||'',
+        equipements: b.equipements||[],
         dpe: b.dpe||'', ges: b.ges||'', rente: b.rente||'',
         surface: b.surface||'', pieces: b.pieces||'', chambres: b.chambres||'',
         etage: b.etage||'', exposition: b.exposition||'', annee: b.annee||'',
         ref: b.ref||'',
-        actif: b.actif !== false
+        actif: b.actif !== false  // ✅ CHAMP CLÉ : false = masqué, true = visible
       };
     });
 
     const content = btoa(unescape(encodeURIComponent(JSON.stringify(biensPublics, null, 2))));
     const body = { message: `Mise à jour biens — ${new Date().toLocaleDateString('fr-FR')}`, content, branch: GITHUB_BRANCH };
     if (sha) body.sha = sha;
+
     const putR = await fetch(
       `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`,
       { method:'PUT', headers:{'Authorization':`token ${token}`,'Content-Type':'application/json'}, body:JSON.stringify(body) }
     );
     if (putR.ok) {
       updateSyncStatus('ok', '✅ Publié sur GitHub');
-      showToast('✅ Biens publiés ! Visible par tous dans 1 minute.', 'success');
+      showToast('✅ Biens publiés ! Visible dans 1 minute.', 'success');
       return true;
     } else {
       const err = await putR.json();
       updateSyncStatus('err', '❌ Erreur publication');
-      showToast('Erreur GitHub : ' + (err.message || 'inconnue'), 'error');
+      showToast('Erreur GitHub : ' + (err.message||'inconnue'), 'error');
       return false;
     }
   } catch(e) { updateSyncStatus('err', '❌ Erreur réseau'); showToast('Erreur réseau', 'error'); return false; }
 }
 
-// INIT
+// ── INIT ──
 async function init() {
   const token = getToken();
-  if (token) {
-    const ok = await verifierToken();
-    if (ok) {
-      await chargerDepuisGitHub();
-      chargerAvisAdmin();
-    }
-  }
+  if (token) { const ok = await verifierToken(); if (ok) { await chargerDepuisGitHub(); chargerAvisAdmin(); } }
   chargerBiens();
 }
+
 async function chargerDepuisGitHub() {
   const token = getToken();
   if (!token) return;
@@ -629,33 +519,24 @@ async function chargerDepuisGitHub() {
       const d = await r.json();
       const biensGH = JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\n/g,'')))));
       if (Array.isArray(biensGH)) {
-        // ✅ FIX : fusionner GitHub + localStorage (GitHub = source de vérité)
-        // Les biens locaux non encore publiés sont conservés
         const biensLocaux = getBiens();
         const map = {};
-        // 1. Partir de GitHub
         biensGH.forEach(b => map[b.id] = b);
-        // 2. Ajouter/écraser avec les biens locaux plus récents (updatedAt)
         biensLocaux.forEach(b => {
-          if (!map[b.id]) {
-            // Bien local pas encore sur GitHub → le garder
-            map[b.id] = b;
-          } else {
-            // Bien présent des deux côtés → garder le plus récent
+          if (!map[b.id]) { map[b.id] = b; }
+          else {
             const ghDate = new Date(map[b.id].updatedAt || 0);
             const localDate = new Date(b.updatedAt || 0);
             if (localDate > ghDate) map[b.id] = b;
           }
         });
-        const merged = Object.values(map);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
-        console.log('✓ ' + merged.length + ' biens (GitHub: ' + biensGH.length + ', local: ' + biensLocaux.length + ')');
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(Object.values(map)));
       }
     }
-  } catch(e) { console.log('Erreur chargement GitHub:', e); }
+  } catch(e) { console.log('Erreur GitHub:', e); }
 }
 
-// AFFICHAGE
+// ── AFFICHAGE ──
 function chargerBiens() {
   const biens = getBiens();
   const container = document.getElementById('liste-biens');
@@ -665,36 +546,30 @@ function chargerBiens() {
   document.getElementById('stat-maison').textContent = biens.filter(b=>['maison','villa'].includes(b.type)).length;
   document.getElementById('stat-viager').textContent = biens.filter(b=>b.type==='viager').length;
   document.getElementById('stat-commercial').textContent = biens.filter(b=>b.type==='commercial').length;
-
-  if (!biens.length) {
-    container.innerHTML = '<div class="empty-state"><div class="icon">🏠</div><p>Aucun bien.<br>Cliquez sur "+ Nouveau bien" pour commencer.</p></div>';
-    return;
-  }
+  if (!biens.length) { container.innerHTML = '<div class="empty-state"><div class="icon">🏠</div><p>Aucun bien.<br>Cliquez sur "+ Nouveau bien" pour commencer.</p></div>'; return; }
   const placeholder = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="60"><rect fill="%23f0f2f5" width="80" height="60"/><text x="40" y="38" text-anchor="middle" font-size="22">🏠</text></svg>';
   container.innerHTML = biens.map(b => {
-    // Utiliser la 1ère photo non-base64 comme vignette (= photo de couverture publique)
     const thumb = (b.photos||[]).find(p => p && !p.startsWith('data:')) || b.mainPhoto || '';
-    return `
-    <div class="bien-item">
+    const isActif = b.actif !== false;
+    return `<div class="bien-item" style="${!isActif?'opacity:.7;':''}">
       <img class="bien-thumb" src="${thumb||placeholder}" onerror="this.src='${placeholder}'">
       <div class="bien-info">
         <h4>${b.titre}</h4>
         <p>${villeLabel(b)}${b.quartier?' · '+b.quartier:''} — ${b.prix}</p>
         <span class="bien-badge badge-${b.type}">${b.badge||b.type}</span>
-        <span style="font-size:10px;margin-left:8px;color:${b.actif!==false?'#27ae60':'#e74c3c'}">${b.actif!==false?'● En ligne':'○ Masqué'}</span>
+        <span style="font-size:10px;margin-left:8px;color:${isActif?'#27ae60':'#e74c3c'}">${isActif?'● En ligne':'○ Masqué'}</span>
       </div>
       <div class="bien-actions">
         <button class="btn-edit" onclick="editerBien('${b.id}')">Modifier</button>
-        <button class="btn-toggle ${b.actif!==false?'actif':'inactif'}" onclick="toggleBien('${b.id}')">${b.actif!==false?'Masquer':'Publier'}</button>
+        <button class="btn-toggle ${isActif?'actif':'inactif'}" onclick="toggleBien('${b.id}')">${isActif?'Masquer':'Publier'}</button>
         <button class="btn-delete" onclick="supprimerBien('${b.id}')">Supprimer</button>
       </div>
     </div>`;
   }).join('');
 }
 
-// FORMULAIRE
+// ── FORMULAIRE ──
 let currentPhotos = [];
-
 function nouveauBien() {
   document.getElementById('f-id').value = '';
   document.getElementById('form-title').textContent = 'Nouveau bien';
@@ -703,6 +578,7 @@ function nouveauBien() {
   renderPhotoPreviews();
   document.getElementById('form-card').scrollIntoView({behavior:'smooth'});
 }
+
 function editerBien(id) {
   const b = getBiens().find(x => x.id === id);
   if (!b) return;
@@ -729,13 +605,12 @@ function editerBien(id) {
   document.getElementById('f-actif').value = b.actif!==false?'1':'0';
   document.getElementById('f-ref').value = b.ref||'';
   document.getElementById('viager-fields').style.display = b.type==='viager'?'block':'none';
-  document.querySelectorAll('#equipements-list input[type=checkbox]').forEach(cb => {
-    cb.checked = (b.equipements||[]).includes(cb.value);
-  });
+  document.querySelectorAll('#equipements-list input[type=checkbox]').forEach(cb => { cb.checked = (b.equipements||[]).includes(cb.value); });
   currentPhotos = [...(b.photos||[])];
   renderPhotoPreviews();
   document.getElementById('form-card').scrollIntoView({behavior:'smooth'});
 }
+
 async function sauvegarderBien() {
   const titre = document.getElementById('f-titre').value.trim();
   const prix = formatPrix(document.getElementById('f-prix').value.trim());
@@ -745,8 +620,7 @@ async function sauvegarderBien() {
   document.querySelectorAll('#equipements-list input[type=checkbox]:checked').forEach(cb => equipements.push(cb.value));
   const id = document.getElementById('f-id').value || ('bien-' + Date.now());
   const bien = {
-    id, titre,
-    type: document.getElementById('f-type').value,
+    id, titre, type: document.getElementById('f-type').value,
     badge: document.getElementById('f-badge').value,
     ville: document.getElementById('f-ville').value,
     quartier: document.getElementById('f-quartier').value,
@@ -762,13 +636,11 @@ async function sauvegarderBien() {
     ges: document.getElementById('f-ges').value,
     accroche: document.getElementById('f-accroche').value,
     description: document.getElementById('f-description').value,
-    equipements,
-    photos: currentPhotos,
+    equipements, photos: currentPhotos,
     actif: document.getElementById('f-actif').value === '1',
     ref: document.getElementById('f-ref').value,
     updatedAt: new Date().toISOString()
   };
-  // ✅ FIX : lire GitHub d'abord pour ne jamais écraser les autres biens
   await chargerDepuisGitHub();
   const biens = getBiens();
   const idx = biens.findIndex(x => x.id === id);
@@ -778,129 +650,85 @@ async function sauvegarderBien() {
   annulerForm();
   await publierSurGitHub(biens);
 }
+
 function annulerForm() {
   document.getElementById('bien-form').reset();
   document.getElementById('f-id').value = '';
   document.getElementById('form-title').textContent = 'Nouveau bien';
-  currentPhotos = [];
-  renderPhotoPreviews();
+  currentPhotos = []; renderPhotoPreviews();
 }
+
 async function supprimerBien(id) {
   if (!confirm('Supprimer ce bien définitivement ?')) return;
-  if (!getToken()) {
-    showToast('❌ Connectez GitHub avant de supprimer un bien !', 'error');
-    document.getElementById('github-banner').scrollIntoView({behavior:'smooth'});
-    return;
-  }
-  // ✅ FIX : lire GitHub d'abord pour ne supprimer QUE ce bien, pas perdre les autres
+  if (!getToken()) { showToast('❌ Connectez GitHub avant de supprimer !', 'error'); return; }
   await chargerDepuisGitHub();
   const biens = getBiens().filter(b => b.id !== id);
-  sauvegarderLocal(biens);
-  chargerBiens();
+  sauvegarderLocal(biens); chargerBiens();
   const ok = await publierSurGitHub(biens);
-  if (ok) showToast('✅ Bien supprimé et site mis à jour.', 'success');
-  else showToast('⚠️ Supprimé localement mais erreur GitHub.', 'error');
+  if (ok) showToast('✅ Bien supprimé.', 'success');
 }
+
 async function toggleBien(id) {
-  // ✅ FIX : lire GitHub d'abord pour ne modifier QUE ce bien
   await chargerDepuisGitHub();
   const biens = getBiens();
   const b = biens.find(x => x.id === id);
   if (!b) return;
-  b.actif = b.actif === false;
-  sauvegarderLocal(biens);
-  chargerBiens();
+  b.actif = b.actif === false; // toggle
+  b.updatedAt = new Date().toISOString();
+  sauvegarderLocal(biens); chargerBiens();
   await publierSurGitHub(biens);
-  showToast(b.actif ? '✅ Bien mis en ligne' : '⏸ Bien masqué', 'success');
+  showToast(b.actif ? '✅ Bien mis en ligne' : '⏸ Bien masqué — invisible sur le site', b.actif ? 'success' : 'warning');
 }
 
-// ══════════════════════════════════════════
-// PHOTOS — GESTION COUVERTURE + ORDRE
-// La 1ère photo du tableau = photo de couverture
-// ══════════════════════════════════════════
+// ── PHOTOS ──
 function ajouterPhotoURL() {
   const url = document.getElementById('photo-url-field').value.trim();
-  if (!url) return;
-  if (!url.startsWith('http')) { showToast('URL invalide — doit commencer par http', 'error'); return; }
+  if (!url || !url.startsWith('http')) { showToast('URL invalide', 'error'); return; }
   currentPhotos.push(url);
   document.getElementById('photo-url-field').value = '';
   renderPhotoPreviews();
 }
+
 async function handlePhotoUpload(event) {
   const files = Array.from(event.target.files);
   event.target.value = '';
   if (!files.length) return;
-
-  showToast('⏳ Upload en cours sur Cloudinary...', '');
-
+  showToast('⏳ Upload Cloudinary...', '');
   for (const file of files) {
     try {
-      const formData = new FormData();
-      formData.append('file', file);
-      formData.append('upload_preset', CLOUDINARY_PRESET);
-
-      const r = await fetch(CLOUDINARY_UPLOAD_URL, { method: 'POST', body: formData });
-      if (!r.ok) throw new Error('Erreur Cloudinary ' + r.status);
+      const fd = new FormData();
+      fd.append('file', file);
+      fd.append('upload_preset', CLOUDINARY_PRESET);
+      const r = await fetch(CLOUDINARY_UPLOAD_URL, { method:'POST', body:fd });
+      if (!r.ok) throw new Error('Erreur ' + r.status);
       const data = await r.json();
-      const url = data.secure_url;
-      currentPhotos.push(url);
+      currentPhotos.push(data.secure_url);
       renderPhotoPreviews();
-      showToast('✅ Photo uploadée sur Cloudinary !', 'success');
-    } catch(e) {
-      showToast('❌ Erreur upload : ' + e.message, 'error');
-      console.error(e);
-    }
+      showToast('✅ Photo uploadée !', 'success');
+    } catch(e) { showToast('❌ Erreur upload : ' + e.message, 'error'); }
   }
 }
 
-// ⭐ Définir comme couverture = déplacer en position 0
-function setCover(idx) {
-  if (idx === 0) return;
-  const [photo] = currentPhotos.splice(idx, 1);
-  currentPhotos.unshift(photo);
-  renderPhotoPreviews();
-  showToast('⭐ Photo de couverture mise à jour !', 'success');
-}
-function moveLeft(idx) {
-  if (idx === 0) return;
-  [currentPhotos[idx-1], currentPhotos[idx]] = [currentPhotos[idx], currentPhotos[idx-1]];
-  renderPhotoPreviews();
-}
-function moveRight(idx) {
-  if (idx >= currentPhotos.length - 1) return;
-  [currentPhotos[idx], currentPhotos[idx+1]] = [currentPhotos[idx+1], currentPhotos[idx]];
-  renderPhotoPreviews();
-}
-function supprimerPhoto(idx) {
-  currentPhotos.splice(idx, 1);
-  renderPhotoPreviews();
-}
+function setCover(idx) { if (idx===0) return; const [p]=currentPhotos.splice(idx,1); currentPhotos.unshift(p); renderPhotoPreviews(); showToast('⭐ Couverture mise à jour !', 'success'); }
+function moveLeft(idx) { if (idx===0) return; [currentPhotos[idx-1],currentPhotos[idx]]=[currentPhotos[idx],currentPhotos[idx-1]]; renderPhotoPreviews(); }
+function moveRight(idx) { if (idx>=currentPhotos.length-1) return; [currentPhotos[idx],currentPhotos[idx+1]]=[currentPhotos[idx+1],currentPhotos[idx]]; renderPhotoPreviews(); }
+function supprimerPhoto(idx) { currentPhotos.splice(idx,1); renderPhotoPreviews(); }
 
 function renderPhotoPreviews() {
-  const grid = document.getElementById('photo-preview-grid');
-  const hint = document.getElementById('photo-cover-hint');
-  const warn = document.getElementById('photo-warn');
-  const hasBase64 = currentPhotos.some(p => p && p.startsWith('data:'));
-  warn.style.display = hasBase64 ? 'block' : 'none';
-  hint.style.display = currentPhotos.length > 0 ? 'block' : 'none';
-
-  if (!currentPhotos.length) { grid.innerHTML = ''; return; }
-
-  grid.innerHTML = currentPhotos.map((src, i) => {
-    const isCover = i === 0;
-    const isBase64 = src.startsWith('data:');
-    const typeColor = isBase64 ? '#e67e22' : '#27ae60';
-    const typeLabel = isBase64 ? '💻' : '🔗';
-    const n = currentPhotos.length;
+  const grid=document.getElementById('photo-preview-grid');
+  document.getElementById('photo-cover-hint').style.display=currentPhotos.length>0?'block':'none';
+  document.getElementById('photo-warn').style.display=currentPhotos.some(p=>p&&p.startsWith('data:'))?'block':'none';
+  if (!currentPhotos.length) { grid.innerHTML=''; return; }
+  const n=currentPhotos.length;
+  grid.innerHTML=currentPhotos.map((src,i)=>{
+    const isCover=i===0, isBase64=src.startsWith('data:');
     return `<div class="photo-item${isCover?' is-cover':''}">
       <img src="${src}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%2290%22><rect fill=%22%23f0f2f5%22 width=%22120%22 height=%2290%22/><text x=%2260%22 y=%2252%22 text-anchor=%22middle%22 font-size=%2224%22>❌</text></svg>'">
       ${isCover?'<div class="photo-cover-label">⭐ Couverture</div>':''}
       <div class="photo-num">#${i+1}</div>
-      <div class="photo-type" style="background:rgba(0,0,0,.5);color:${typeColor}">${typeLabel}</div>
+      <div class="photo-type" style="background:rgba(0,0,0,.5);color:${isBase64?'#e67e22':'#27ae60'}">${isBase64?'💻':'🔗'}</div>
       <div class="photo-btns">
-        ${isCover
-          ? '<button class="pbtn-cover" disabled style="opacity:.5;cursor:default;">⭐ Cover</button>'
-          : `<button class="pbtn-cover" onclick="setCover(${i})">⭐</button>`}
+        ${isCover?'<button class="pbtn-cover" disabled>⭐</button>':`<button class="pbtn-cover" onclick="setCover(${i})">⭐</button>`}
         <button class="pbtn-l" onclick="moveLeft(${i})" ${i===0?'disabled':''}>◀</button>
         <button class="pbtn-r" onclick="moveRight(${i})" ${i===n-1?'disabled':''}>▶</button>
         <button class="pbtn-del" onclick="supprimerPhoto(${i})">✕</button>
@@ -909,150 +737,92 @@ function renderPhotoPreviews() {
   }).join('');
 }
 
-// TOAST
 function showToast(msg, type='') {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast show ' + type;
-  setTimeout(() => t.className = 'toast', 5000);
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.className='toast show '+type;
+  setTimeout(()=>t.className='toast',5000);
 }
 </script>
-</body>
-</html>
+
+<!-- AVIS SCRIPT -->
 <script>
-// ════════════════════════════════════════════════
-// GESTION DES AVIS — ADMIN
-// ════════════════════════════════════════════════
 const AVIS_GH_PATH = 'ags-immobilier-v43/avis.json';
-let tousLesAvis = [];
-let tabActif = 'en_attente';
+let tousLesAvis = [], tabActif = 'en_attente';
 
 async function chargerAvisAdmin() {
   const token = getToken();
-  if (!token) {
-    document.getElementById('avis-liste').innerHTML = '<div class="empty-state"><div class="icon">🔒</div><p>Connectez GitHub pour gérer les avis.</p></div>';
-    return;
-  }
-  document.getElementById('avis-liste').innerHTML = '<div class="empty-state"><div class="icon">⏳</div><p>Chargement…</p></div>';
+  if (!token) { document.getElementById('avis-liste').innerHTML='<div class="empty-state"><div class="icon">🔒</div><p>Connectez GitHub pour gérer les avis.</p></div>'; return; }
+  document.getElementById('avis-liste').innerHTML='<div class="empty-state"><div class="icon">⏳</div><p>Chargement…</p></div>';
   try {
-    const r = await fetch(
-      `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${AVIS_GH_PATH}?t=${Date.now()}`,
-      { headers: { 'Authorization': `token ${token}` } }
-    );
-    if (!r.ok) {
-      document.getElementById('avis-liste').innerHTML = '<div class="empty-state"><div class="icon">📭</div><p>Aucun avis pour le moment.<br><small>Le fichier avis.json n\'existe pas encore.</small></p></div>';
-      return;
-    }
+    const r = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${AVIS_GH_PATH}?t=${Date.now()}`, { headers:{'Authorization':`token ${token}`} });
+    if (!r.ok) { document.getElementById('avis-liste').innerHTML='<div class="empty-state"><div class="icon">📭</div><p>Aucun avis pour le moment.</p></div>'; return; }
     const d = await r.json();
     tousLesAvis = JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\n/g,'')))));
-    const nbAttente = tousLesAvis.filter(a => a.statut === 'en_attente').length;
+    const nb = tousLesAvis.filter(a=>a.statut==='en_attente').length;
     const badge = document.getElementById('avis-badge-attente');
-    if (nbAttente > 0) { badge.textContent = nbAttente + ' en attente'; badge.style.display = 'inline'; }
-    else badge.style.display = 'none';
-    afficherAvis(tabActif);
-  } catch(e) {
-    document.getElementById('avis-liste').innerHTML = '<div class="empty-state"><div class="icon">❌</div><p>Erreur de chargement.</p></div>';
-  }
+    badge.textContent = nb + ' en attente'; badge.style.display = nb > 0 ? 'inline' : 'none';
+    filtrerAvis(tabActif);
+  } catch(e) { document.getElementById('avis-liste').innerHTML='<div class="empty-state"><div class="icon">❌</div><p>Erreur de chargement.</p></div>'; }
 }
 
 function filtrerAvis(tab) {
   tabActif = tab;
   document.querySelectorAll('.avis-tab').forEach(t => {
-    const isActive = t.dataset.tab === tab;
-    t.style.borderBottomColor = isActive ? 'var(--navy)' : 'transparent';
-    t.style.color = isActive ? 'var(--navy)' : 'var(--text-light)';
-    t.style.fontWeight = isActive ? '500' : '300';
+    const active = t.dataset.tab === tab;
+    t.style.borderBottomColor = active ? 'var(--navy)' : 'transparent';
+    t.style.color = active ? 'var(--navy)' : '#6B7280';
+    t.style.fontWeight = active ? '500' : '300';
   });
-  afficherAvis(tab);
-}
-
-function afficherAvis(tab) {
   const liste = document.getElementById('avis-liste');
-  const filtered = tab === 'tous' ? tousLesAvis : tousLesAvis.filter(a => a.statut === tab);
-  if (!filtered.length) {
-    const msgs = { en_attente: 'Aucun avis en attente. ✅', approuve: 'Aucun avis approuvé.', refuse: 'Aucun avis refusé.', tous: 'Aucun avis.' };
-    liste.innerHTML = `<div class="empty-state"><div class="icon">⭐</div><p>${msgs[tab]}</p></div>`;
-    return;
-  }
-  const STATUT_COLORS = { en_attente: '#f39c12', approuve: '#27ae60', refuse: '#e74c3c' };
-  const STATUT_LABELS = { en_attente: 'En attente', approuve: 'Approuvé', refuse: 'Refusé' };
+  const filtered = tab==='tous' ? tousLesAvis : tousLesAvis.filter(a=>a.statut===tab);
+  if (!filtered.length) { const msgs={en_attente:'Aucun avis en attente. ✅',approuve:'Aucun avis approuvé.',refuse:'Aucun avis refusé.',tous:'Aucun avis.'}; liste.innerHTML=`<div class="empty-state"><div class="icon">⭐</div><p>${msgs[tab]}</p></div>`; return; }
+  const SC={en_attente:'#f39c12',approuve:'#27ae60',refuse:'#e74c3c'};
+  const SL={en_attente:'En attente',approuve:'Approuvé',refuse:'Refusé'};
   liste.innerHTML = filtered.map(a => {
-    const etoiles = '★'.repeat(a.note) + '☆'.repeat(5 - a.note);
-    const color = STATUT_COLORS[a.statut] || '#999';
-    const label = STATUT_LABELS[a.statut] || a.statut;
-    return `
-    <div style="border:1px solid var(--border);padding:18px 20px;margin-bottom:12px;background:white;position:relative;">
+    const stars='★'.repeat(a.note)+'☆'.repeat(5-a.note), c=SC[a.statut]||'#999', l=SL[a.statut]||a.statut;
+    return `<div style="border:1px solid var(--border);padding:18px 20px;margin-bottom:12px;background:white;">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
         <div>
           <div style="font-weight:500;color:var(--navy);font-size:14px;">${a.prenom} ${a.nom}</div>
-          <div style="font-size:11px;color:var(--text-light);margin-top:2px;">${a.contexte || '—'} · ${a.date}</div>
-          <div style="color:#F5A623;font-size:16px;margin-top:4px;">${etoiles}</div>
+          <div style="font-size:11px;color:#6B7280;margin-top:2px;">${a.contexte||'—'} · ${a.date}</div>
+          <div style="color:#F5A623;font-size:16px;margin-top:4px;">${stars}</div>
         </div>
-        <span style="font-size:9px;letter-spacing:1px;text-transform:uppercase;background:${color}20;color:${color};padding:3px 10px;border:1px solid ${color}40;white-space:nowrap;">${label}</span>
+        <span style="font-size:9px;letter-spacing:1px;text-transform:uppercase;background:${c}20;color:${c};padding:3px 10px;border:1px solid ${c}40;">${l}</span>
       </div>
       <p style="font-size:13px;color:#444;line-height:1.7;font-style:italic;margin-bottom:14px;">"${a.texte}"</p>
       <div style="display:flex;gap:8px;flex-wrap:wrap;">
-        ${a.statut !== 'approuve' ? `<button onclick="changerStatutAvis('${a.id}','approuve')" style="background:#27ae60;color:white;border:none;padding:7px 16px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">✓ Approuver</button>` : ''}
-        ${a.statut !== 'refuse' ? `<button onclick="changerStatutAvis('${a.id}','refuse')" style="background:#e74c3c;color:white;border:none;padding:7px 16px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">✗ Refuser</button>` : ''}
+        ${a.statut!=='approuve'?`<button onclick="changerStatutAvis('${a.id}','approuve')" style="background:#27ae60;color:white;border:none;padding:7px 16px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">✓ Approuver</button>`:''}
+        ${a.statut!=='refuse'?`<button onclick="changerStatutAvis('${a.id}','refuse')" style="background:#e74c3c;color:white;border:none;padding:7px 16px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">✗ Refuser</button>`:''}
         <button onclick="supprimerAvis('${a.id}')" style="background:none;color:#999;border:1px solid #ddd;padding:7px 16px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">🗑 Supprimer</button>
       </div>
     </div>`;
   }).join('');
 }
 
-async function changerStatutAvis(id, newStatut) {
-  const token = getToken();
-  if (!token) return;
-  const avis = tousLesAvis.find(a => a.id === id);
-  if (!avis) return;
-  avis.statut = newStatut;
-  await sauvegarderAvis();
-  showToast(newStatut === 'approuve' ? '✅ Avis approuvé et publié !' : '⛔ Avis refusé.', newStatut === 'approuve' ? 'success' : '');
+async function changerStatutAvis(id, statut) {
+  const a = tousLesAvis.find(x=>x.id===id); if (!a) return;
+  a.statut = statut; await sauvegarderAvis();
+  showToast(statut==='approuve'?'✅ Avis approuvé !':'⛔ Avis refusé.', statut==='approuve'?'success':'');
 }
-
 async function supprimerAvis(id) {
-  if (!confirm('Supprimer cet avis définitivement ?')) return;
-  tousLesAvis = tousLesAvis.filter(a => a.id !== id);
-  await sauvegarderAvis();
+  if (!confirm('Supprimer cet avis ?')) return;
+  tousLesAvis = tousLesAvis.filter(a=>a.id!==id); await sauvegarderAvis();
   showToast('🗑 Avis supprimé.', 'success');
 }
-
 async function sauvegarderAvis() {
   const token = getToken();
-  // Récupérer le SHA actuel
-  const getR = await fetch(
-    `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${AVIS_GH_PATH}`,
-    { headers: { 'Authorization': `token ${token}` } }
-  );
-  let sha = null;
-  if (getR.ok) { const d = await getR.json(); sha = d.sha; }
-  const body = {
-    message: 'Modération avis client',
-    content: btoa(unescape(encodeURIComponent(JSON.stringify(tousLesAvis, null, 2))))
-  };
+  const getR = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${AVIS_GH_PATH}`, { headers:{'Authorization':`token ${token}`} });
+  let sha = null; if (getR.ok) { const d=await getR.json(); sha=d.sha; }
+  const body = { message:'Modération avis', content:btoa(unescape(encodeURIComponent(JSON.stringify(tousLesAvis,null,2)))) };
   if (sha) body.sha = sha;
-  await fetch(
-    `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${AVIS_GH_PATH}`,
-    { method: 'PUT', headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' }, body: JSON.stringify(body) }
-  );
-  const nbAttente = tousLesAvis.filter(a => a.statut === 'en_attente').length;
+  await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${AVIS_GH_PATH}`, { method:'PUT', headers:{'Authorization':`token ${token}`,'Content-Type':'application/json'}, body:JSON.stringify(body) });
+  const nb = tousLesAvis.filter(a=>a.statut==='en_attente').length;
   const badge = document.getElementById('avis-badge-attente');
-  if (nbAttente > 0) { badge.textContent = nbAttente + ' en attente'; badge.style.display = 'inline'; }
-  else badge.style.display = 'none';
-  afficherAvis(tabActif);
+  badge.textContent = nb + ' en attente'; badge.style.display = nb > 0 ? 'inline' : 'none';
+  filtrerAvis(tabActif);
 }
 
-// Auto-charger les avis après login
-const _origInit = typeof init === 'function' ? init : null;
-document.addEventListener('DOMContentLoaded', () => {
-  // Charger les avis dès que GitHub est connecté
-  const observer = new MutationObserver(() => {
-    if (getToken()) { chargerAvisAdmin(); observer.disconnect(); }
-  });
-  observer.observe(document.body, { subtree: true, childList: true });
-  // Si déjà connecté
-  if (getToken()) chargerAvisAdmin();
-});
+document.addEventListener('DOMContentLoaded', () => { if (getToken()) chargerAvisAdmin(); });
 </script>
-
 </body>
+</html>
