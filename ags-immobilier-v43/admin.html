@@ -559,7 +559,7 @@ async function publierSurGitHub(biens) {
     // ✅ Mettre à jour le localStorage avec la liste fusionnée
     localStorage.setItem(STORAGE_KEY, JSON.stringify(biensFusionnes));
 
-    const biensPublics = biensFusionnes.map(b => {
+    const biensPublics = biensFusionnes.filter(b => b.actif !== false).map(b => {
       const photosOk = (b.photos||[]).filter(p => p && p.trim());
       return {
         id: b.id,
