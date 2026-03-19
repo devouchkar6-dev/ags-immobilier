@@ -45,5 +45,56 @@
     "annee": "",
     "ref": "AGS-25-51",
     "actif": true
+  },
+  {
+    "id": "bien-1773941844054",
+    "titre": "À VENDRE – STUDIO EN VIAGER OCCUPÉ – MARINA BAIE DES ANGES",
+    "soustitre": "Rocheville — Le Cannet",
+    "type": "appartement",
+    "ville": "Le Cannet",
+    "villeFilter": "Le Cannet",
+    "prix": "140 000 €",
+    "prixBrut": 140000,
+    "badge": "Vendu",
+    "mainPhoto": "https://res.cloudinary.com/df15yd65n/image/upload/v1773941713/gfxa8zf4xxbnic4deyfp.jpg",
+    "photos": [
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773941713/gfxa8zf4xxbnic4deyfp.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773941712/ygfelkjb43wuh3ettwlj.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773941714/yxrqj79bsvhtjlkrw4k3.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773941715/xx4uhhellgetrmgdtfrp.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773941718/oe8cjgbaqvg1bl5gqacq.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773941716/xac7fsdcnh0bzmslhxh4.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773941721/uhdp6qmojiwbc1dk0mmh.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773941717/apekus7nmetvxjgmbpdr.jpg"
+    ],
+    "caracteristiques": {
+      "surface": "43 m2",
+      "pieces": "2p"
+    },
+    "accroche": "À VENDRE – STUDIO EN VIAGER OCCUPÉ – MARINA BAIE DES ANGES",
+    "description": "Le Cannet – Rocheville\n\n📍 Emplacement recherché\nSitué dans le quartier de Rocheville, cet appartement de 43.41 m² loi Carrez offre un fort potentiel après rénovation, dans un environnement pratique et bien desservi.\n\n🔹 À proximité immédiate :\n✅ Autoroute\n✅ Bus et axes principaux\n✅ Centre-ville et commerces\n✅ École secondaire\n✅ Supermarché et médecins\n✅ Parc, piscine publique\n✅ Salle de sport, tennis\n\n🏢 Des atouts clés pour votre projet :\n\n✔ Appartement 2 pièces de 43.41 m² (Loi Carrez)\n✔ 2ème étage sur 6\n✔ Ascenseur\n✔ Parking collectif\n✔ Une cave\n✔ Interphone\n✔ Chauffage collectif gaz (central)\n✔ Eau chaude collective\n✔ Immeuble en béton construit en 1969\n\n📊 Informations pratiques :\n\n🔸 Bien libre\n🔸 État : à rénover\n🔸 Coût estimatif rénovation : 40 000 €\n🔸 Charges annuelles : 1 500 €\n🔸 Standing : normal\n\n🔎 Performance énergétique :\n✔ DPE D – 194 kWhEP/m²/an\n✔ GES D – 42 kg CO₂/m²/an\n✔ Dépenses énergétiques estimées : entre 704 € et 952 € / an\n✔ Référence Ademe : 2606EF\n\nLes informations sur les risques naturels et technologiques auxquels ce bien est exposé sont disponibles sur Géorisques.\n\n💶 Prix de vente : 140 000 € HAI\n\n📞 Intéressé(e) ? Contactez-nous pour organiser une visite ou obtenir davantage d’informations.",
+    "equipements": [
+      "Ascenseur",
+      "Parking",
+      "Cave",
+      "Digicode / Interphone",
+      "Vidéosurveillance",
+      "Volets roulants",
+      "Local vélos",
+      "Proche commerces",
+      "Proche transports",
+      "Proche écoles"
+    ],
+    "dpe": "D",
+    "ges": "D",
+    "rente": "400",
+    "surface": "43 m2",
+    "pieces": "2p",
+    "chambres": "1",
+    "etage": "2",
+    "exposition": "Nord, Est",
+    "annee": "1969",
+    "ref": "AGS-26-51",
+    "actif": true
   }
 ]
