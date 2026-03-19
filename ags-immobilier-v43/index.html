@@ -4,12 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style id="mobile-css">
-/* === MOBILE ONLY (max 768px) === */
 @media only screen and (max-width: 768px) {
   nav ul { display: none !important; }
   .nav-cta { display: none !important; }
   nav { padding: 12px 20px !important; }
-
   .hero { height: auto !important; min-height: 100svh !important; overflow: visible !important; padding: 90px 20px 40px !important; display: flex !important; flex-direction: column !important; justify-content: center !important; }
   .hero-content { max-width: 100% !important; padding: 0 !important; }
   .hero h1 { font-size: 36px !important; }
@@ -17,40 +15,35 @@
   .btn-primary { display: block !important; text-align: center !important; width: 100% !important; box-sizing: border-box !important; padding: 14px 20px !important; }
   .btn-ghost { display: block !important; text-align: center !important; width: 100% !important; box-sizing: border-box !important; padding: 14px 20px !important; }
   .hero-stats { position: static !important; display: flex !important; justify-content: space-around !important; padding: 20px 0 !important; margin-top: 28px !important; border-top: 1px solid rgba(255,255,255,.15) !important; gap: 0 !important; }
-
   .search-bar { flex-direction: column !important; height: auto !important; padding: 16px 20px !important; }
   .search-field { width: 100% !important; border-right: none !important; border-bottom: 1px solid rgba(255,255,255,.1) !important; padding: 10px 0 !important; }
   .search-submit { width: 100% !important; margin-top: 10px !important; }
-
   .props-grid { grid-template-columns: 1fr !important; }
   .about { grid-template-columns: 1fr !important; padding: 48px 18px !important; gap: 28px !important; }
   .services-grid { grid-template-columns: 1fr !important; }
   .locs-grid { grid-template-columns: 1fr 1fr !important; }
   .team-grid { grid-template-columns: 1fr !important; }
   .testi-grid { grid-template-columns: 1fr !important; }
+  .partenaires-grid { grid-template-columns: 1fr !important; }
   .contact-wrap { grid-template-columns: 1fr !important; gap: 28px !important; }
   .form-row { grid-template-columns: 1fr !important; }
   .footer-top { grid-template-columns: 1fr !important; }
   .footer-bottom { flex-direction: column !important; text-align: center !important; }
-
   .properties { padding: 48px 18px !important; }
   .services { padding: 48px 18px !important; }
   .locations { padding: 48px 18px !important; }
   .team { padding: 48px 18px !important; }
+  .partenaires { padding: 48px 18px !important; }
   .contact-section { padding: 48px 18px !important; }
   footer { padding: 40px 18px 80px !important; }
   .full-form { padding: 24px 16px !important; }
-
   body { padding-bottom: 68px !important; }
   .mob-bottomnav {
-    display: flex !important;
-    position: fixed !important;
+    display: flex !important; position: fixed !important;
     bottom: 0 !important; left: 0 !important; right: 0 !important;
     height: 60px !important; max-height: 60px !important;
-    background: #0F1E36 !important;
-    z-index: 500 !important;
-    border-top: 1px solid rgba(255,255,255,.1) !important;
-    overflow: hidden !important;
+    background: #0F1E36 !important; z-index: 500 !important;
+    border-top: 1px solid rgba(255,255,255,.1) !important; overflow: hidden !important;
   }
   .mob-bottomnav a {
     flex: 1 !important; display: flex !important; flex-direction: column !important;
@@ -61,255 +54,192 @@
   }
   .mob-bottomnav .nav-icon { font-size: 16px !important; }
 }
-/* === DESKTOP ONLY (min 769px) === */
 @media only screen and (min-width: 769px) {
   .mob-bottomnav { display: none !important; }
 }
 </style>
-
-
 <title>AGS Immobilier — Agence Indépendante au Cannet</title>
 <meta name="description" content="AGS Immobilier, agence indépendante au Cannet. Vente, achat, estimation, viager sur Cannes, Mougins, Mandelieu et Vallauris. Philippe SERVAS.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://ags-immo.vercel.app/">
+<meta property="og:url" content="https://ags-immobilier.vercel.app/">
 <meta property="og:title" content="AGS Immobilier — Agence Indépendante au Cannet">
 <meta property="og:description" content="Agence indépendante au Cannet. Vente, achat, estimation et viager sur la Côte d'Azur.">
-<meta property="og:image" content="https://ags-immo.vercel.app/images/og-image.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:image" content="https://ags-immobilier.vercel.app/images/og-image.jpg">
 <meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AGS Immobilier — Agence Indépendante au Cannet">
-<meta name="twitter:description" content="Agence indépendante au Cannet. Vente, achat, estimation et viager sur la Côte d'Azur.">
-<meta name="twitter:image" content="https://ags-immo.vercel.app/images/og-image.jpg">
+<meta name="twitter:image" content="https://ags-immobilier.vercel.app/images/og-image.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #1B2D4F;
-    --navy-deep: #0F1E36;
-    --blue-mid: #2C4A7C;
-    --blue-light: #4A6FA5;
-    --accent: #5B9BD5;
-    --cream: #F0F4F8;
-    --stone: #C8D6E5;
-    --text: #1B2D4F;
-    --text-light: #5A7499;
-    --white: #ffffff;
+    --navy:#1B2D4F; --navy-deep:#0F1E36; --blue-mid:#2C4A7C; --blue-light:#4A6FA5;
+    --accent:#5B9BD5; --cream:#F0F4F8; --stone:#C8D6E5; --text:#1B2D4F; --text-light:#5A7499; --white:#ffffff;
   }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 14px 60px; background: var(--navy); transition: all .4s ease;
-  }
-  nav.scrolled {
-    background: rgba(255,255,255,.97); backdrop-filter: blur(12px);
-    box-shadow: 0 1px 0 rgba(27,45,79,.1);
-  }
-  .logo img { height: 52px; width: auto; display: block; }
-
-  nav ul { list-style: none; display: flex; gap: 36px; }
-  nav ul a { text-decoration: none; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 300; color: rgba(255,255,255,.9); transition: color .3s; }
-  nav.scrolled ul a { color: var(--text-light); }
-  nav ul a:hover { color: var(--accent) !important; }
-  .nav-cta { border: 1px solid rgba(255,255,255,.5); padding: 10px 24px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: white !important; text-decoration: none; transition: all .3s; font-family: 'Jost', sans-serif; font-weight: 300; white-space: nowrap; }
-  nav.scrolled .nav-cta { border-color: var(--navy); color: var(--navy) !important; }
-  .nav-cta:hover { background: var(--navy) !important; color: white !important; border-color: var(--navy) !important; }
-
-  /* ── HERO ── */
-  .hero {
-    height: 100vh; position: relative; display: flex; align-items: center; overflow: hidden;
-    visibility: visible;
-  }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(10,22,45,.88) 0%, rgba(15,30,54,.82) 40%, rgba(15,30,54,.75) 70%, rgba(15,30,54,.72) 100%),
-      url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=80') center/cover no-repeat;
-    animation: slowzoom 18s ease-in-out infinite alternate;
-  }
-  .hero::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: 
-      radial-gradient(ellipse 60% 80% at 80% 50%, rgba(74,111,165,.18) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(15,30,54,.4) 0%, transparent 50%);
-    pointer-events: none; z-index: 1;
-  }
-  @keyframes slowzoom { from { transform: scale(1.03); } to { transform: scale(1.1); } }
-  .hero-content { position: relative; z-index: 2; padding: 0 60px; max-width: 680px; animation: fadeUp .8s ease both; }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
-  .hero-tag { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
-  .hero-tag::before { content: ''; display: block; width: 40px; height: 1px; background: var(--accent); }
-  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 5.5vw, 72px); font-weight: 300; color: white; line-height: 1.1; margin-bottom: 24px; }
-  .hero h1 em { font-style: italic; color: #A8C0DC; }
-  .hero p { color: rgba(255,255,255,.65); font-size: 15px; font-weight: 300; line-height: 1.85; margin-bottom: 44px; max-width: 460px; }
-  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
-  .btn-primary { background: var(--navy); color: white; padding: 15px 38px; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; text-decoration: none; font-weight: 400; transition: all .3s; display: inline-block; border: 1px solid var(--navy); }
-  .btn-primary:hover { background: var(--blue-light); border-color: var(--blue-light); }
-  .btn-ghost { border: 1px solid rgba(255,255,255,.4); color: white; padding: 15px 38px; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; text-decoration: none; font-weight: 300; transition: all .3s; display: inline-block; }
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-  .hero-stats { position: absolute; bottom: 50px; right: 60px; display: flex; gap: 44px; z-index: 2; animation: fadeUp .8s .3s ease both; }
-  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 300; color: white; line-height: 1; }
-  .stat-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.7); margin-top: 4px; }
-
-  /* ── SEARCH BAR ── */
-  .search-bar { background: var(--navy); padding: 0 60px; display: flex; align-items: stretch; height: 76px; }
-  .search-field { display: flex; align-items: center; gap: 10px; flex: 1; border-right: 1px solid rgba(255,255,255,.08); padding-right: 28px; }
-  .search-field + .search-field { padding-left: 28px; }
-  .search-field label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); white-space: nowrap; min-width: 60px; }
-  .search-field select, .search-field input { background: none; border: none; color: rgba(255,255,255,.75); font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 300; width: 100%; outline: none; }
-  .search-field select option { background: var(--navy); }
-  .search-submit { background: var(--blue-light); border: none; padding: 0 36px; font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: white; font-family: 'Jost', sans-serif; cursor: pointer; transition: background .3s; white-space: nowrap; margin-left: 28px; }
-  .search-submit:hover { background: var(--blue-mid); }
-
-  /* ── SECTION HEADERS ── */
-  .section-header { text-align: center; margin-bottom: 60px; }
-  .section-tag { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--blue-light); margin-bottom: 14px; display: flex; align-items: center; justify-content: center; gap: 12px; }
-  .section-tag::before, .section-tag::after { content: ''; display: block; width: 28px; height: 1px; background: var(--blue-light); }
-  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(34px, 3.5vw, 48px); font-weight: 300; color: var(--navy); line-height: 1.15; }
-  .section-title em { font-style: italic; color: var(--blue-light); }
-
-  /* ── PROPERTIES ── */
-  .properties { padding: 90px 60px; background: white; }
-  .props-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-  .prop-card { position: relative; overflow: hidden; cursor: pointer; }
-  .prop-card.featured { grid-column: span 2; grid-row: span 2; }
-  .prop-img { width: 100%; height: 280px; object-fit: cover; display: block; transition: transform .7s ease; }
-  .prop-card.featured .prop-img { height: 562px; }
-  .prop-card:hover .prop-img { transform: scale(1.05); }
-  .prop-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,30,54,.88) 0%, transparent 55%); }
-  .prop-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px; transform: translateY(6px); transition: transform .4s ease; }
-  .prop-card:hover .prop-info { transform: none; }
-  .prop-type { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
-  .prop-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; color: white; line-height: 1.2; margin-bottom: 4px; }
-  .prop-card.featured .prop-name { font-size: 30px; }
-  .prop-loc { font-size: 12px; color: rgba(255,255,255,.5); font-weight: 300; margin-bottom: 12px; }
-  .prop-price { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: #A8C0DC; font-weight: 300; }
-  .prop-details { display: flex; gap: 16px; margin-top: 10px; opacity: 0; transition: opacity .4s; }
-  .prop-card:hover .prop-details { opacity: 1; }
-  .prop-detail { font-size: 11px; color: rgba(255,255,255,.6); }
-  .prop-badge { position: absolute; top: 18px; left: 18px; background: var(--blue-mid); color: white; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 5px 12px; }
-  .prop-badge.new { background: var(--accent); }
-
-  /* ── ABOUT ── */
-  .about { padding: 100px 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; background: var(--cream); }
-  .about-imgs { position: relative; height: 620px; }
-  .about-img-main { width: 68%; height: 420px; object-fit: cover; position: absolute; top: 0; left: 0; }
-  .about-img-accent { width: 46%; aspect-ratio: 1/1; object-fit: cover; object-position: center top; position: absolute; bottom: 0; right: 0; border: 8px solid var(--cream); }
-  .about-text .section-header { text-align: left; }
-  .about-text .section-tag { justify-content: flex-start; }
-  .about-text .section-tag::after { display: none; }
-  .about-text p { color: var(--text-light); font-size: 15px; line-height: 1.9; font-weight: 300; margin-bottom: 18px; }
-  .about-values { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
-  .value-item { border-top: 1px solid var(--stone); padding-top: 18px; }
-  .value-num { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 300; color: var(--blue-light); line-height: 1; }
-  .value-label { font-size: 11px; color: var(--text-light); font-weight: 300; margin-top: 4px; }
-
-  /* ── SERVICES ── */
-  .services { padding: 90px 60px; background: var(--navy-deep); position: relative; overflow: hidden; }
-  .services::before { content: 'AGS'; position: absolute; font-family: 'Cormorant Garamond', serif; font-size: 280px; font-weight: 300; color: rgba(255,255,255,.03); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; white-space: nowrap; }
-  .services .section-title { color: white; }
-  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 56px; }
-  .service-card { background: rgba(255,255,255,.04); padding: 44px 36px; border: 1px solid rgba(255,255,255,.06); transition: all .3s; position: relative; overflow: hidden; }
-  .service-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--accent); transition: width .4s; }
-  .service-card:hover { background: rgba(255,255,255,.07); }
-  .service-card:hover::after { width: 100%; }
-  .service-icon { font-size: 28px; margin-bottom: 20px; }
-  .service-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: white; margin-bottom: 14px; }
-  .service-desc { font-size: 13px; color: rgba(255,255,255,.7); font-weight: 300; line-height: 1.8; }
-
-  /* ── LOCATIONS ── */
-  .locations { padding: 90px 60px; background: white; }
-  .locs-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 56px; }
-  .loc-card { position: relative; overflow: hidden; cursor: pointer; }
-  .loc-img { width: 100%; height: 300px; object-fit: cover; display: block; transition: transform .6s ease; filter: saturate(.8); }
-  .loc-card:hover .loc-img { transform: scale(1.07); filter: saturate(1); }
-  .loc-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,30,54,.82) 30%, transparent); }
-  .loc-info { position: absolute; bottom: 20px; left: 20px; right: 20px; }
-  .loc-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: white; }
-  .loc-sub { font-size: 11px; color: var(--accent); letter-spacing: 1px; margin-top: 3px; }
-
-  /* ── TEAM ── */
-  .team { padding: 90px 60px; background: var(--cream); }
-  .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 56px; max-width: 860px; margin-left: auto; margin-right: auto; }
-  .team-card { display: flex; flex-direction: column; align-items: center; text-align: center; }
-  .team-photo-wrap { width: 240px; height: 300px; overflow: hidden; position: relative; background: white; margin-bottom: 28px; }
-  .team-photo { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; transition: transform .5s ease; }
-  .team-card:hover .team-photo { transform: scale(1.03); }
-  .team-photo-wrap::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--blue-light); transform: scaleX(0); transition: transform .4s; transform-origin: left; }
-  .team-card:hover .team-photo-wrap::after { transform: scaleX(1); }
-  .team-name { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--navy); margin-bottom: 5px; }
-  .team-role { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--blue-light); margin-bottom: 14px; }
-  .team-bio { font-size: 13px; color: var(--text-light); line-height: 1.8; font-weight: 300; margin-bottom: 18px; max-width: 300px; }
-  .team-tel { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--navy); text-decoration: none; font-weight: 400; border-bottom: 1px solid var(--stone); padding-bottom: 3px; transition: all .3s; }
-  .team-tel:hover { color: var(--blue-light); border-color: var(--blue-light); }
-
-  /* ── TESTIMONIALS ── */
-  .testimonials { padding: 90px 60px; background: white; }
-  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 56px; }
-  .testi-card { background: var(--cream); padding: 40px 36px; position: relative; }
-  .testi-quote { font-family: 'Cormorant Garamond', serif; font-size: 72px; color: var(--blue-light); opacity: .2; position: absolute; top: 16px; left: 28px; line-height: 1; }
-  .testi-text { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 300; font-style: italic; color: var(--text); line-height: 1.7; margin-bottom: 28px; position: relative; z-index: 1; }
-  .testi-name { font-size: 13px; font-weight: 500; color: var(--navy); }
-  .testi-role { font-size: 11px; color: var(--text-light); font-weight: 300; margin-top: 2px; }
-
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Jost',sans-serif; background:var(--cream); color:var(--text); overflow-x:hidden; }
+  nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; justify-content:space-between; align-items:center; padding:14px 60px; background:var(--navy); transition:all .4s ease; }
+  nav.scrolled { background:rgba(255,255,255,.97); backdrop-filter:blur(12px); box-shadow:0 1px 0 rgba(27,45,79,.1); }
+  .logo img { height:52px; width:auto; display:block; }
+  nav ul { list-style:none; display:flex; gap:36px; }
+  nav ul a { text-decoration:none; font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:300; color:rgba(255,255,255,.9); transition:color .3s; }
+  nav.scrolled ul a { color:var(--text-light); }
+  nav ul a:hover { color:var(--accent) !important; }
+  .nav-cta { border:1px solid rgba(255,255,255,.5); padding:10px 24px; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:white !important; text-decoration:none; transition:all .3s; font-family:'Jost',sans-serif; font-weight:300; white-space:nowrap; }
+  nav.scrolled .nav-cta { border-color:var(--navy); color:var(--navy) !important; }
+  .nav-cta:hover { background:var(--navy) !important; color:white !important; border-color:var(--navy) !important; }
+  .hero { height:100vh; position:relative; display:flex; align-items:center; overflow:hidden; }
+  .hero-bg { position:absolute; inset:0; background:linear-gradient(135deg,rgba(10,22,45,.88) 0%,rgba(15,30,54,.82) 40%,rgba(15,30,54,.75) 70%,rgba(15,30,54,.72) 100%), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=80') center/cover no-repeat; animation:slowzoom 18s ease-in-out infinite alternate; }
+  .hero::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(74,111,165,.18) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 20% 80%,rgba(15,30,54,.4) 0%,transparent 50%); pointer-events:none; z-index:1; }
+  @keyframes slowzoom { from{transform:scale(1.03)} to{transform:scale(1.1)} }
+  .hero-content { position:relative; z-index:2; padding:0 60px; max-width:680px; animation:fadeUp .8s ease both; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:none} }
+  .hero-tag { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--accent); margin-bottom:20px; display:flex; align-items:center; gap:12px; }
+  .hero-tag::before { content:''; display:block; width:40px; height:1px; background:var(--accent); }
+  .hero h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(44px,5.5vw,72px); font-weight:300; color:white; line-height:1.1; margin-bottom:24px; }
+  .hero h1 em { font-style:italic; color:#A8C0DC; }
+  .hero p { color:rgba(255,255,255,.65); font-size:15px; font-weight:300; line-height:1.85; margin-bottom:44px; max-width:460px; }
+  .hero-btns { display:flex; gap:16px; flex-wrap:wrap; }
+  .btn-primary { background:var(--navy); color:white; padding:15px 38px; font-size:11px; letter-spacing:2.5px; text-transform:uppercase; text-decoration:none; font-weight:400; transition:all .3s; display:inline-block; border:1px solid var(--navy); }
+  .btn-primary:hover { background:var(--blue-light); border-color:var(--blue-light); }
+  .btn-ghost { border:1px solid rgba(255,255,255,.4); color:white; padding:15px 38px; font-size:11px; letter-spacing:2.5px; text-transform:uppercase; text-decoration:none; font-weight:300; transition:all .3s; display:inline-block; }
+  .btn-ghost:hover { border-color:var(--accent); color:var(--accent); }
+  .hero-stats { position:absolute; bottom:50px; right:60px; display:flex; gap:44px; z-index:2; animation:fadeUp .8s .3s ease both; }
+  .stat-num { font-family:'Cormorant Garamond',serif; font-size:38px; font-weight:300; color:white; line-height:1; }
+  .stat-label { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.7); margin-top:4px; }
+  .search-bar { background:var(--navy); padding:0 60px; display:flex; align-items:stretch; height:76px; }
+  .search-field { display:flex; align-items:center; gap:10px; flex:1; border-right:1px solid rgba(255,255,255,.08); padding-right:28px; }
+  .search-field + .search-field { padding-left:28px; }
+  .search-field label { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--accent); white-space:nowrap; min-width:60px; }
+  .search-field select { background:none; border:none; color:rgba(255,255,255,.75); font-family:'Jost',sans-serif; font-size:13px; font-weight:300; width:100%; outline:none; }
+  .search-field select option { background:var(--navy); }
+  .search-submit { background:var(--blue-light); border:none; padding:0 36px; font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:white; font-family:'Jost',sans-serif; cursor:pointer; transition:background .3s; white-space:nowrap; margin-left:28px; }
+  .search-submit:hover { background:var(--blue-mid); }
+  .section-header { text-align:center; margin-bottom:60px; }
+  .section-tag { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--blue-light); margin-bottom:14px; display:flex; align-items:center; justify-content:center; gap:12px; }
+  .section-tag::before,.section-tag::after { content:''; display:block; width:28px; height:1px; background:var(--blue-light); }
+  .section-title { font-family:'Cormorant Garamond',serif; font-size:clamp(34px,3.5vw,48px); font-weight:300; color:var(--navy); line-height:1.15; }
+  .section-title em { font-style:italic; color:var(--blue-light); }
+  .properties { padding:90px 60px; background:white; }
+  .props-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
+  .prop-card { position:relative; overflow:hidden; cursor:pointer; }
+  .prop-card.featured { grid-column:span 2; grid-row:span 2; }
+  .prop-img { width:100%; height:280px; object-fit:cover; display:block; transition:transform .7s ease; }
+  .prop-card.featured .prop-img { height:562px; }
+  .prop-card:hover .prop-img { transform:scale(1.05); }
+  .prop-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(15,30,54,.88) 0%,transparent 55%); }
+  .prop-info { position:absolute; bottom:0; left:0; right:0; padding:28px; transform:translateY(6px); transition:transform .4s ease; }
+  .prop-card:hover .prop-info { transform:none; }
+  .prop-type { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--accent); margin-bottom:6px; }
+  .prop-name { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:400; color:white; line-height:1.2; margin-bottom:4px; }
+  .prop-card.featured .prop-name { font-size:30px; }
+  .prop-loc { font-size:12px; color:rgba(255,255,255,.5); font-weight:300; margin-bottom:12px; }
+  .prop-price { font-family:'Cormorant Garamond',serif; font-size:18px; color:#A8C0DC; font-weight:300; }
+  .about { padding:100px 60px; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; background:var(--cream); }
+  .about-imgs { position:relative; height:620px; }
+  .about-img-main { width:68%; height:420px; object-fit:cover; position:absolute; top:0; left:0; }
+  .about-img-accent { width:46%; aspect-ratio:1/1; object-fit:cover; object-position:center top; position:absolute; bottom:0; right:0; border:8px solid var(--cream); }
+  .about-text .section-header { text-align:left; }
+  .about-text .section-tag { justify-content:flex-start; }
+  .about-text .section-tag::after { display:none; }
+  .about-text p { color:var(--text-light); font-size:15px; line-height:1.9; font-weight:300; margin-bottom:18px; }
+  .about-values { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:36px; }
+  .value-item { border-top:1px solid var(--stone); padding-top:18px; }
+  .value-num { font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:300; color:var(--blue-light); line-height:1; }
+  .value-label { font-size:11px; color:var(--text-light); font-weight:300; margin-top:4px; }
+  .services { padding:90px 60px; background:var(--navy-deep); position:relative; overflow:hidden; }
+  .services::before { content:'AGS'; position:absolute; font-family:'Cormorant Garamond',serif; font-size:280px; font-weight:300; color:rgba(255,255,255,.03); top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; white-space:nowrap; }
+  .services .section-title { color:white; }
+  .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:56px; }
+  .service-card { background:rgba(255,255,255,.04); padding:44px 36px; border:1px solid rgba(255,255,255,.06); transition:all .3s; position:relative; overflow:hidden; }
+  .service-card::after { content:''; position:absolute; bottom:0; left:0; width:0; height:2px; background:var(--accent); transition:width .4s; }
+  .service-card:hover { background:rgba(255,255,255,.07); }
+  .service-card:hover::after { width:100%; }
+  .service-icon { font-size:28px; margin-bottom:20px; }
+  .service-title { font-family:'Cormorant Garamond',serif; font-size:22px; color:white; margin-bottom:14px; }
+  .service-desc { font-size:13px; color:rgba(255,255,255,.7); font-weight:300; line-height:1.8; }
+  .locations { padding:90px 60px; background:white; }
+  .locs-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:56px; }
+  .loc-card { position:relative; overflow:hidden; cursor:pointer; }
+  .loc-img { width:100%; height:300px; object-fit:cover; display:block; transition:transform .6s ease; filter:saturate(.8); }
+  .loc-card:hover .loc-img { transform:scale(1.07); filter:saturate(1); }
+  .loc-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(15,30,54,.82) 30%,transparent); }
+  .loc-info { position:absolute; bottom:20px; left:20px; right:20px; }
+  .loc-name { font-family:'Cormorant Garamond',serif; font-size:20px; color:white; }
+  .loc-sub { font-size:11px; color:var(--accent); letter-spacing:1px; margin-top:3px; }
+  .team { padding:90px 60px; background:var(--cream); }
+  .team-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; margin-top:56px; max-width:860px; margin-left:auto; margin-right:auto; }
+  .team-card { display:flex; flex-direction:column; align-items:center; text-align:center; }
+  .team-photo-wrap { width:240px; height:300px; overflow:hidden; position:relative; background:white; margin-bottom:28px; }
+  .team-photo { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; transition:transform .5s ease; }
+  .team-card:hover .team-photo { transform:scale(1.03); }
+  .team-photo-wrap::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:var(--blue-light); transform:scaleX(0); transition:transform .4s; transform-origin:left; }
+  .team-card:hover .team-photo-wrap::after { transform:scaleX(1); }
+  .team-name { font-family:'Cormorant Garamond',serif; font-size:24px; color:var(--navy); margin-bottom:5px; }
+  .team-role { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--blue-light); margin-bottom:14px; }
+  .team-bio { font-size:13px; color:var(--text-light); line-height:1.8; font-weight:300; margin-bottom:18px; max-width:300px; }
+  .team-tel { display:inline-flex; align-items:center; gap:8px; font-size:13px; color:var(--navy); text-decoration:none; font-weight:400; border-bottom:1px solid var(--stone); padding-bottom:3px; transition:all .3s; }
+  .team-tel:hover { color:var(--blue-light); border-color:var(--blue-light); }
+  .testimonials { padding:90px 60px; background:white; }
+  .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; margin-top:56px; }
+  .testi-card { background:var(--cream); padding:40px 36px; position:relative; }
+  .testi-quote { font-family:'Cormorant Garamond',serif; font-size:72px; color:var(--blue-light); opacity:.2; position:absolute; top:16px; left:28px; line-height:1; }
+  .testi-text { font-family:'Cormorant Garamond',serif; font-size:17px; font-weight:300; font-style:italic; color:var(--text); line-height:1.7; margin-bottom:28px; position:relative; z-index:1; }
+  .testi-name { font-size:13px; font-weight:500; color:var(--navy); }
+  .testi-role { font-size:11px; color:var(--text-light); font-weight:300; margin-top:2px; }
+  /* ── PARTENAIRES ── */
+  .partenaires { padding:80px 60px; background:var(--navy-deep); }
+  .partenaires-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; margin-top:56px; max-width:860px; margin-left:auto; margin-right:auto; }
+  .partenaire-card { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); padding:36px; display:flex; flex-direction:column; gap:14px; transition:all .3s; text-decoration:none; }
+  .partenaire-card:hover { background:rgba(255,255,255,.08); border-color:var(--accent); transform:translateY(-2px); }
+  .partenaire-icon { font-size:32px; }
+  .partenaire-name { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:300; color:white; }
+  .partenaire-desc { font-size:13px; color:rgba(255,255,255,.6); line-height:1.85; font-weight:300; }
+  .partenaire-tag { display:inline-block; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--accent); border:1px solid rgba(91,155,213,.3); padding:4px 12px; }
+  .partenaire-promo { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); padding:8px 14px; font-size:11px; color:rgba(255,255,255,.7); display:inline-block; }
+  .partenaire-link { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-top:auto; display:flex; align-items:center; gap:6px; transition:gap .2s; }
+  .partenaire-card:hover .partenaire-link { gap:10px; }
   /* ── CONTACT ── */
-  .contact-section { padding: 90px 60px; background: var(--cream); }
-  .contact-wrap { display: grid; grid-template-columns: 1fr 1.5fr; gap: 72px; align-items: start; max-width: 1060px; margin: 56px auto 0; }
-  .contact-info-block h3 { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 300; color: var(--navy); margin-bottom: 14px; line-height: 1.25; }
-  .contact-info-block > p { font-size: 14px; color: var(--text-light); line-height: 1.9; font-weight: 300; margin-bottom: 32px; }
-  .contact-detail { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 20px; }
-  .contact-detail-icon { width: 40px; height: 40px; background: var(--navy); display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
-  .contact-detail-text a { display: block; font-size: 14px; color: var(--navy); text-decoration: none; font-weight: 400; transition: color .3s; }
-  .contact-detail-text a:hover { color: var(--blue-light); }
-  .contact-detail-text span { display: block; font-size: 10px; color: var(--text-light); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 3px; }
-  .full-form { background: white; padding: 44px; box-shadow: 0 4px 32px rgba(27,45,79,.07); }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .form-group { margin-bottom: 18px; }
-  .form-group label { display: block; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-light); margin-bottom: 7px; }
-  .form-group input, .form-group select, .form-group textarea { width: 100%; border: 1px solid var(--stone); background: var(--cream); padding: 13px 15px; font-family: 'Jost', sans-serif; font-size: 13px; color: var(--navy); font-weight: 300; outline: none; transition: border-color .3s; appearance: none; }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--blue-light); }
-  .form-group textarea { resize: vertical; min-height: 110px; }
-  .form-submit { width: 100%; background: var(--navy); color: white; border: none; padding: 16px; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: background .3s; margin-top: 6px; }
-  .form-submit:hover { background: var(--blue-light); }
-  #form-msg { font-size: 13px; text-align: center; margin-top: 14px; min-height: 20px; font-weight: 300; }
-  .form-note { font-size: 11px; color: var(--text-light); text-align: center; margin-top: 10px; font-weight: 300; }
-
-  /* ── FOOTER ── */
-  footer { background: var(--navy-deep); padding: 72px 60px 36px; }
-  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 52px; margin-bottom: 52px; padding-bottom: 52px; border-bottom: 1px solid rgba(255,255,255,.06); }
-  .footer-logo img { height: 52px; width: auto; display: block; margin-bottom: 18px; }
-  .footer-desc { font-size: 13px; line-height: 1.8; font-weight: 300; color: rgba(255,255,255,.7); margin-bottom: 10px; }
-  .footer-contact-line { font-size: 12px; color: rgba(255,255,255,.65); font-weight: 300; margin-bottom: 5px; }
-  .footer-contact-line a { color: rgba(255,255,255,.7); text-decoration: none; transition: color .3s; }
-  .footer-contact-line a:hover { color: var(--accent); }
-  .footer-social { display: flex; gap: 10px; margin-top: 20px; }
-  .social-link { width: 34px; height: 34px; border: 1px solid rgba(255,255,255,.12); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.7); text-decoration: none; font-size: 12px; transition: all .3s; }
-  .social-link:hover { border-color: var(--accent); color: var(--accent); }
-  .footer-col h4 { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,.8); margin-bottom: 20px; font-weight: 400; }
-  .footer-col ul { list-style: none; }
-  .footer-col ul li { margin-bottom: 10px; }
-  .footer-col ul a { text-decoration: none; font-size: 13px; color: rgba(255,255,255,.65); font-weight: 300; transition: color .3s; }
-  .footer-col ul a:hover { color: var(--accent); }
-  .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: rgba(255,255,255,.8); font-weight: 300; }
-
-  /* ── ANIMATIONS ── */
-  .reveal { opacity: 1; transform: none; }
-  .reveal.visible { opacity: 1; transform: none; }
-
-  /* ── WHATSAPP BUTTON ── */
-  .whatsapp-btn { position: fixed; bottom: 28px; left: 28px; z-index: 999; width: 56px; height: 56px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,.4); text-decoration: none; transition: transform .3s, box-shadow .3s; font-size: 26px; }
-  .whatsapp-btn:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,.5); }
-
+  .contact-section { padding:90px 60px; background:var(--cream); }
+  .contact-wrap { display:grid; grid-template-columns:1fr 1.5fr; gap:72px; align-items:start; max-width:1060px; margin:56px auto 0; }
+  .contact-info-block h3 { font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:300; color:var(--navy); margin-bottom:14px; line-height:1.25; }
+  .contact-info-block > p { font-size:14px; color:var(--text-light); line-height:1.9; font-weight:300; margin-bottom:32px; }
+  .contact-detail { display:flex; align-items:flex-start; gap:14px; margin-bottom:20px; }
+  .contact-detail-icon { width:40px; height:40px; background:var(--navy); display:flex; align-items:center; justify-content:center; font-size:15px; flex-shrink:0; }
+  .contact-detail-text a { display:block; font-size:14px; color:var(--navy); text-decoration:none; font-weight:400; transition:color .3s; }
+  .contact-detail-text a:hover { color:var(--blue-light); }
+  .contact-detail-text span { display:block; font-size:10px; color:var(--text-light); letter-spacing:1px; text-transform:uppercase; margin-bottom:3px; }
+  .full-form { background:white; padding:44px; box-shadow:0 4px 32px rgba(27,45,79,.07); }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .form-group { margin-bottom:18px; }
+  .form-group label { display:block; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--text-light); margin-bottom:7px; }
+  .form-group input,.form-group select,.form-group textarea { width:100%; border:1px solid var(--stone); background:var(--cream); padding:13px 15px; font-family:'Jost',sans-serif; font-size:13px; color:var(--navy); font-weight:300; outline:none; transition:border-color .3s; appearance:none; }
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus { border-color:var(--blue-light); }
+  .form-group textarea { resize:vertical; min-height:110px; }
+  .form-submit { width:100%; background:var(--navy); color:white; border:none; padding:16px; font-family:'Jost',sans-serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; cursor:pointer; transition:background .3s; margin-top:6px; }
+  .form-submit:hover { background:var(--blue-light); }
+  #form-msg { font-size:13px; text-align:center; margin-top:14px; min-height:20px; font-weight:300; }
+  .form-note { font-size:11px; color:var(--text-light); text-align:center; margin-top:10px; font-weight:300; }
+  footer { background:var(--navy-deep); padding:72px 60px 36px; }
+  .footer-top { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:52px; margin-bottom:52px; padding-bottom:52px; border-bottom:1px solid rgba(255,255,255,.06); }
+  .footer-logo img { height:52px; width:auto; display:block; margin-bottom:18px; }
+  .footer-desc { font-size:13px; line-height:1.8; font-weight:300; color:rgba(255,255,255,.7); margin-bottom:10px; }
+  .footer-contact-line { font-size:12px; color:rgba(255,255,255,.65); font-weight:300; margin-bottom:5px; }
+  .footer-contact-line a { color:rgba(255,255,255,.7); text-decoration:none; transition:color .3s; }
+  .footer-contact-line a:hover { color:var(--accent); }
+  .footer-social { display:flex; gap:10px; margin-top:20px; }
+  .social-link { width:34px; height:34px; border:1px solid rgba(255,255,255,.12); display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.7); text-decoration:none; font-size:12px; transition:all .3s; }
+  .social-link:hover { border-color:var(--accent); color:var(--accent); }
+  .footer-col h4 { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,.8); margin-bottom:20px; font-weight:400; }
+  .footer-col ul { list-style:none; }
+  .footer-col ul li { margin-bottom:10px; }
+  .footer-col ul a { text-decoration:none; font-size:13px; color:rgba(255,255,255,.65); font-weight:300; transition:color .3s; }
+  .footer-col ul a:hover { color:var(--accent); }
+  .footer-bottom { display:flex; justify-content:space-between; align-items:center; font-size:11px; color:rgba(255,255,255,.8); font-weight:300; }
+  .reveal { opacity:1; transform:none; }
+  .whatsapp-btn { position:fixed; bottom:28px; left:28px; z-index:999; width:56px; height:56px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(37,211,102,.4); text-decoration:none; transition:transform .3s,box-shadow .3s; font-size:26px; }
+  .whatsapp-btn:hover { transform:scale(1.1); box-shadow:0 6px 28px rgba(37,211,102,.5); }
 </style>
 <body>
-
-<!-- NAV -->
 <nav id="nav">
   <div class="logo"><img src="images/logo.jpg" alt="AGS Immobilier" id="logo-img"></div>
   <ul>
@@ -362,9 +292,7 @@
   </div>
   <div class="search-field">
     <label>Secteur</label>
-    <select id="filter-lieu">
-      <option value="">Tous les secteurs</option>
-    </select>
+    <select id="filter-lieu"><option value="">Tous les secteurs</option></select>
   </div>
   <div class="search-field">
     <label>Budget</label>
@@ -380,21 +308,21 @@
   <button class="search-submit" onclick="rechercherBiens()">Rechercher →</button>
 </div>
 
-<!-- RÉSULTATS DE RECHERCHE -->
-<div id="search-results" style="display:none; background:var(--navy-deep); padding:40px 60px;">
-  <div style="max-width:1200px; margin:0 auto;">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+<!-- RÉSULTATS -->
+<div id="search-results" style="display:none;background:var(--navy-deep);padding:40px 60px;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
       <div>
-        <div id="results-count" style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:6px;"></div>
-        <div id="results-title" style="font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; color:white;"></div>
+        <div id="results-count" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:6px;"></div>
+        <div id="results-title" style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:white;"></div>
       </div>
-      <button onclick="fermerResultats()" style="background:none; border:1px solid rgba(255,255,255,.2); color:rgba(255,255,255,.6); padding:8px 20px; font-family:'Jost',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; transition:all .3s;" onmouseover="this.style.borderColor='white'; this.style.color='white'" onmouseout="this.style.borderColor='rgba(255,255,255,.2)'; this.style.color='rgba(255,255,255,.6)'">✕ Effacer</button>
+      <button onclick="fermerResultats()" style="background:none;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.6);padding:8px 20px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;">✕ Effacer</button>
     </div>
-    <div id="results-grid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:20px;"></div>
-    <div id="no-results" style="display:none; text-align:center; padding:40px;">
-      <div style="font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:300; color:rgba(255,255,255,.5); margin-bottom:12px;">Aucun bien trouvé</div>
-      <div style="font-size:13px; color:rgba(255,255,255,.3); font-weight:300; margin-bottom:24px;">Aucun bien ne correspond à vos critères actuellement.<br>Contactez-nous, nous trouvons pour vous !</div>
-      <a href="tel:+33607131181" style="display:inline-block; background:var(--blue-light); color:white; padding:12px 32px; font-size:11px; letter-spacing:2px; text-transform:uppercase; text-decoration:none;">Nous contacter →</a>
+    <div id="results-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;"></div>
+    <div id="no-results" style="display:none;text-align:center;padding:40px;">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:rgba(255,255,255,.5);margin-bottom:12px;">Aucun bien trouvé</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.3);font-weight:300;margin-bottom:24px;">Contactez-nous, nous trouvons pour vous !</div>
+      <a href="tel:+33607131181" style="display:inline-block;background:var(--blue-light);color:white;padding:12px 32px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;">Nous contacter →</a>
     </div>
   </div>
 </div>
@@ -406,11 +334,9 @@
     <h2 class="section-title">Nos <em>biens</em></h2>
   </div>
   <div class="props-grid" id="props-grid">
-    <div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text-light);font-size:14px;font-weight:300;">
-      ⏳ Chargement des biens…
-    </div>
+    <div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text-light);font-size:14px;font-weight:300;">⏳ Chargement des biens…</div>
   </div>
-  <div style="text-align:center; margin-top:48px;">
+  <div style="text-align:center;margin-top:48px;">
     <a href="biens.html" class="btn-primary">Voir tous nos biens →</a>
   </div>
 </section>
@@ -421,7 +347,7 @@
     <img class="about-img-main" src="images/logo_bg.jpg" alt="Agence AGS Immobilier" style="object-fit:cover;">
     <img class="about-img-accent" src="images/equipe_duo.jpg" alt="Philippe et Matéo — AGS Immobilier">
   </div>
-  <div class="about-text reveal reveal-delay-1">
+  <div class="about-text reveal">
     <div class="section-header">
       <div class="section-tag">Notre histoire</div>
       <h2 class="section-title">Une agence <em>indépendante</em><br>ancrée localement</h2>
@@ -442,18 +368,18 @@
   <div class="section-header reveal">
     <div class="section-tag">Notre approche</div>
     <h2 class="section-title">Un accompagnement<br><em>sur-mesure</em></h2>
-    <p style="margin-top:20px; padding:22px 28px; background:rgba(255,255,255,.06); border-left:3px solid var(--accent); font-size:14px; color:rgba(255,255,255,.75); font-weight:300; line-height:1.9; max-width:680px;">
-      <em style="color:var(--accent); font-style:normal; font-family:'Cormorant Garamond',serif; font-size:16px;">Chez AGS Immobilier,</em><br>
-      L'estimation de votre bien est <strong style="color:white; font-weight:400;">offerte</strong> dans le cadre de la signature d'un mandat, et les diagnostics sont <strong style="color:white; font-weight:400;">remboursés</strong> en cas de mandat exclusif abouti.
+    <p style="margin-top:20px;padding:22px 28px;background:rgba(255,255,255,.06);border-left:3px solid var(--accent);font-size:14px;color:rgba(255,255,255,.75);font-weight:300;line-height:1.9;max-width:680px;">
+      <em style="color:var(--accent);font-style:normal;font-family:'Cormorant Garamond',serif;font-size:16px;">Chez AGS Immobilier,</em><br>
+      L'estimation de votre bien est <strong style="color:white;font-weight:400;">offerte</strong> dans le cadre de la signature d'un mandat, et les diagnostics sont <strong style="color:white;font-weight:400;">remboursés</strong> en cas de mandat exclusif abouti.
     </p>
   </div>
   <div class="services-grid">
     <div class="service-card reveal"><div class="service-icon">📊</div><div class="service-title">Estimation précise</div><p class="service-desc">Une estimation cohérente et argumentée, basée sur une analyse rigoureuse du marché local et des transactions récentes dans votre secteur.</p></div>
-    <div class="service-card reveal reveal-delay-1"><div class="service-icon">🎯</div><div class="service-title">Stratégie ciblée</div><p class="service-desc">Une stratégie de commercialisation personnalisée : sélection des canaux, positionnement prix, mise en valeur adaptée à votre profil d'acquéreurs.</p></div>
-    <div class="service-card reveal reveal-delay-2"><div class="service-icon">📸</div><div class="service-title">Communication soignée</div><p class="service-desc">Photos professionnelles, diffusion sur les portails immobiliers, réseaux sociaux et réseau local pour maximiser la visibilité de votre bien.</p></div>
-    <div class="service-card reveal reveal-delay-1"><div class="service-icon">🔍</div><div class="service-title">Suivi rigoureux</div><p class="service-desc">Un suivi transparent et régulier à chaque étape, de la première visite jusqu'à la signature chez le notaire.</p></div>
-    <div class="service-card reveal reveal-delay-2"><div class="service-icon">🤝</div><div class="service-title">Accompagnement acheteurs</div><p class="service-desc">Nous identifions les biens correspondant à vos critères et vous guidons dans votre décision avec un conseil honnête et personnalisé.</p></div>
-    <div class="service-card reveal reveal-delay-3"><div class="service-icon">💼</div><div class="service-title">Investissement locatif</div><p class="service-desc">Nous vous aidons à identifier les meilleures opportunités sur la Côte d'Azur et à optimiser la rentabilité de votre placement.</p></div>
+    <div class="service-card reveal"><div class="service-icon">🎯</div><div class="service-title">Stratégie ciblée</div><p class="service-desc">Une stratégie de commercialisation personnalisée : sélection des canaux, positionnement prix, mise en valeur adaptée à votre profil d'acquéreurs.</p></div>
+    <div class="service-card reveal"><div class="service-icon">📸</div><div class="service-title">Communication soignée</div><p class="service-desc">Photos professionnelles, diffusion sur les portails immobiliers, réseaux sociaux et réseau local pour maximiser la visibilité de votre bien.</p></div>
+    <div class="service-card reveal"><div class="service-icon">🔍</div><div class="service-title">Suivi rigoureux</div><p class="service-desc">Un suivi transparent et régulier à chaque étape, de la première visite jusqu'à la signature chez le notaire.</p></div>
+    <div class="service-card reveal"><div class="service-icon">🤝</div><div class="service-title">Accompagnement acheteurs</div><p class="service-desc">Nous identifions les biens correspondant à vos critères et vous guidons dans votre décision avec un conseil honnête et personnalisé.</p></div>
+    <div class="service-card reveal"><div class="service-icon">💼</div><div class="service-title">Investissement locatif</div><p class="service-desc">Nous vous aidons à identifier les meilleures opportunités sur la Côte d'Azur et à optimiser la rentabilité de votre placement.</p></div>
   </div>
 </section>
 
@@ -465,9 +391,9 @@
   </div>
   <div class="locs-grid">
     <div class="loc-card reveal"><img class="loc-img" src="images/loc_cannet.jpg" alt="Le Cannet"><div class="loc-overlay"></div><div class="loc-info"><div class="loc-name">Le Cannet</div><div class="loc-sub">Notre cœur de marché</div></div></div>
-    <div class="loc-card reveal reveal-delay-1"><img class="loc-img" src="images/loc_cannes.jpg" alt="Cannes"><div class="loc-overlay"></div><div class="loc-info"><div class="loc-name">Cannes</div><div class="loc-sub">Prestige &amp; bord de mer</div></div></div>
-    <div class="loc-card reveal reveal-delay-2"><img class="loc-img" src="images/loc_mougins.jpg" alt="Mougins"><div class="loc-overlay"></div><div class="loc-info"><div class="loc-name">Mougins</div><div class="loc-sub">Village &amp; villas</div></div></div>
-    <div class="loc-card reveal reveal-delay-3"><img class="loc-img" src="images/loc_mandelieu.jpg" alt="Vallauris Mandelieu"><div class="loc-overlay"></div><div class="loc-info"><div class="loc-name">Vallauris &amp; Mandelieu</div><div class="loc-sub">Résidentiel &amp; calme</div></div></div>
+    <div class="loc-card reveal"><img class="loc-img" src="images/loc_cannes.jpg" alt="Cannes"><div class="loc-overlay"></div><div class="loc-info"><div class="loc-name">Cannes</div><div class="loc-sub">Prestige &amp; bord de mer</div></div></div>
+    <div class="loc-card reveal"><img class="loc-img" src="images/loc_mougins.jpg" alt="Mougins"><div class="loc-overlay"></div><div class="loc-info"><div class="loc-name">Mougins</div><div class="loc-sub">Village &amp; villas</div></div></div>
+    <div class="loc-card reveal"><img class="loc-img" src="images/loc_mandelieu.jpg" alt="Vallauris Mandelieu"><div class="loc-overlay"></div><div class="loc-info"><div class="loc-name">Vallauris &amp; Mandelieu</div><div class="loc-sub">Résidentiel &amp; calme</div></div></div>
   </div>
 </section>
 
@@ -479,18 +405,14 @@
   </div>
   <div class="team-grid">
     <div class="team-card reveal">
-      <div class="team-photo-wrap">
-        <img class="team-photo" src="images/philippe.jpg" alt="Philippe Servas">
-      </div>
+      <div class="team-photo-wrap"><img class="team-photo" src="images/philippe.jpg" alt="Philippe Servas"></div>
       <div class="team-name">Philippe Servas</div>
       <div class="team-role">Gérant de l'agence</div>
       <p class="team-bio">Fort d'une longue expérience dans l'immobilier local, Philippe met son expertise et sa connaissance parfaite du marché local au service de chaque client.</p>
       <a class="team-tel" href="tel:+33607131181">📞 06 07 13 11 81</a>
     </div>
-    <div class="team-card reveal reveal-delay-1">
-      <div class="team-photo-wrap">
-        <img class="team-photo" src="images/mateo.jpg" alt="Matéo Courrègelongue">
-      </div>
+    <div class="team-card reveal">
+      <div class="team-photo-wrap"><img class="team-photo" src="images/mateo.jpg" alt="Matéo Courrègelongue"></div>
       <div class="team-name">Matéo Courrègelongue</div>
       <div class="team-role">Responsable commercial</div>
       <p class="team-bio">Dynamique et à l'écoute, Matéo assure la relation client au quotidien et coordonne la stratégie commerciale avec réactivité et engagement.</p>
@@ -505,84 +427,80 @@
     <div class="section-tag">Témoignages</div>
     <h2 class="section-title">Ce que disent<br>nos <em>clients</em></h2>
   </div>
-
-  <!-- Grille des avis approuvés (chargée dynamiquement) -->
   <div class="testi-grid" id="testi-grid">
-    <!-- Avis statiques par défaut, remplacés si des avis approuvés existent -->
     <div class="testi-card reveal"><div class="testi-quote">"</div><p class="testi-text">AGS Immobilier a vendu notre appartement au Cannet en moins de trois semaines, au prix demandé. Un suivi impeccable et une vraie réactivité. Je recommande sans hésiter.</p><div><div class="testi-name">Martine &amp; François D.</div><div class="testi-role">Vendeurs — Appartement Le Cannet</div></div></div>
-    <div class="testi-card reveal reveal-delay-1"><div class="testi-quote">"</div><p class="testi-text">Nous cherchions une maison sur Mougins depuis plusieurs mois. L'équipe d'AGS a parfaitement cerné nos attentes et nous a proposé le bien idéal dès la deuxième visite.</p><div><div class="testi-name">Thomas &amp; Julie R.</div><div class="testi-role">Acquéreurs — Maison à Mougins</div></div></div>
-    <div class="testi-card reveal reveal-delay-2"><div class="testi-quote">"</div><p class="testi-text">Très satisfait de l'estimation réalisée par AGS Immobilier. Sérieuse, argumentée, et parfaitement en phase avec le marché. La vente s'est conclue rapidement.</p><div><div class="testi-name">Claire M.</div><div class="testi-role">Vendeuse — Studio à Cannes</div></div></div>
+    <div class="testi-card reveal"><div class="testi-quote">"</div><p class="testi-text">Nous cherchions une maison sur Mougins depuis plusieurs mois. L'équipe d'AGS a parfaitement cerné nos attentes et nous a proposé le bien idéal dès la deuxième visite.</p><div><div class="testi-name">Thomas &amp; Julie R.</div><div class="testi-role">Acquéreurs — Maison à Mougins</div></div></div>
+    <div class="testi-card reveal"><div class="testi-quote">"</div><p class="testi-text">Très satisfait de l'estimation réalisée par AGS Immobilier. Sérieuse, argumentée, et parfaitement en phase avec le marché. La vente s'est conclue rapidement.</p><div><div class="testi-name">Claire M.</div><div class="testi-role">Vendeuse — Studio à Cannes</div></div></div>
   </div>
-
-  <!-- ── FORMULAIRE LAISSER UN AVIS ── -->
+  <!-- FORMULAIRE AVIS -->
   <div id="avis-form-section" style="max-width:680px;margin:64px auto 0;background:var(--cream);border:1px solid var(--stone);padding:48px 44px;">
     <div style="text-align:center;margin-bottom:32px;">
       <div class="section-tag" style="justify-content:center;">Votre expérience</div>
       <h3 style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--navy);margin-top:10px;">Laissez votre <em style="font-style:italic;color:var(--blue-light);">avis</em></h3>
       <p style="font-size:13px;color:var(--text-light);font-weight:300;margin-top:8px;line-height:1.7;">Votre témoignage sera examiné par notre équipe avant publication.</p>
     </div>
-
-    <!-- Étoiles -->
     <div style="margin-bottom:24px;">
       <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:10px;">Votre note *</div>
-      <div id="star-rating" style="display:flex;gap:8px;align-items:center;" role="group" aria-label="Note sur 5">
-        <span class="star" data-v="1" style="font-size:34px;cursor:pointer;color:#C8D6E5;transition:color .15s,transform .15s;line-height:1;" title="1 étoile">★</span>
-        <span class="star" data-v="2" style="font-size:34px;cursor:pointer;color:#C8D6E5;transition:color .15s,transform .15s;line-height:1;" title="2 étoiles">★</span>
-        <span class="star" data-v="3" style="font-size:34px;cursor:pointer;color:#C8D6E5;transition:color .15s,transform .15s;line-height:1;" title="3 étoiles">★</span>
-        <span class="star" data-v="4" style="font-size:34px;cursor:pointer;color:#C8D6E5;transition:color .15s,transform .15s;line-height:1;" title="4 étoiles">★</span>
-        <span class="star" data-v="5" style="font-size:34px;cursor:pointer;color:#C8D6E5;transition:color .15s,transform .15s;line-height:1;" title="5 étoiles">★</span>
+      <div id="star-rating" style="display:flex;gap:8px;align-items:center;">
+        <span class="star" data-v="1" style="font-size:34px;cursor:pointer;color:#C8D6E5;transition:color .15s,transform .15s;line-height:1;">★</span>
+        <span class="star" data-v="2" style="font-size:34px;cursor:pointer;color:#C8D6E5;transition:color .15s,transform .15s;line-height:1;">★</span>
+        <span class="star" data-v="3" style="font-size:34px;cursor:pointer;color:#C8D6E5;transition:color .15s,transform .15s;line-height:1;">★</span>
+        <span class="star" data-v="4" style="font-size:34px;cursor:pointer;color:#C8D6E5;transition:color .15s,transform .15s;line-height:1;">★</span>
+        <span class="star" data-v="5" style="font-size:34px;cursor:pointer;color:#C8D6E5;transition:color .15s,transform .15s;line-height:1;">★</span>
         <span id="star-label" style="font-size:12px;color:var(--text-light);font-weight:300;margin-left:8px;"></span>
       </div>
       <input type="hidden" id="avis-note" value="0">
     </div>
-
-    <!-- Nom & Prénom -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;">
       <div>
         <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:7px;">Prénom *</div>
-        <input id="avis-prenom" type="text" placeholder="Marie" maxlength="40"
-          style="width:100%;border:1px solid var(--stone);background:white;padding:13px 15px;font-family:'Jost',sans-serif;font-size:13px;color:var(--navy);font-weight:300;outline:none;transition:border-color .3s;box-sizing:border-box;"
-          onfocus="this.style.borderColor='var(--blue-light)'" onblur="this.style.borderColor='var(--stone)'">
+        <input id="avis-prenom" type="text" placeholder="Marie" maxlength="40" style="width:100%;border:1px solid var(--stone);background:white;padding:13px 15px;font-family:'Jost',sans-serif;font-size:13px;color:var(--navy);font-weight:300;outline:none;box-sizing:border-box;">
       </div>
       <div>
         <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:7px;">Nom (initiale) *</div>
-        <input id="avis-nom" type="text" placeholder="D." maxlength="40"
-          style="width:100%;border:1px solid var(--stone);background:white;padding:13px 15px;font-family:'Jost',sans-serif;font-size:13px;color:var(--navy);font-weight:300;outline:none;transition:border-color .3s;box-sizing:border-box;"
-          onfocus="this.style.borderColor='var(--blue-light)'" onblur="this.style.borderColor='var(--stone)'">
+        <input id="avis-nom" type="text" placeholder="D." maxlength="40" style="width:100%;border:1px solid var(--stone);background:white;padding:13px 15px;font-family:'Jost',sans-serif;font-size:13px;color:var(--navy);font-weight:300;outline:none;box-sizing:border-box;">
       </div>
     </div>
-
-    <!-- Contexte (optionnel) -->
     <div style="margin-bottom:18px;">
       <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:7px;">Contexte (optionnel)</div>
-      <input id="avis-contexte" type="text" placeholder="ex : Acheteur — Appartement à Le Cannet" maxlength="80"
-        style="width:100%;border:1px solid var(--stone);background:white;padding:13px 15px;font-family:'Jost',sans-serif;font-size:13px;color:var(--navy);font-weight:300;outline:none;transition:border-color .3s;box-sizing:border-box;"
-        onfocus="this.style.borderColor='var(--blue-light)'" onblur="this.style.borderColor='var(--stone)'">
+      <input id="avis-contexte" type="text" placeholder="ex : Acheteur — Appartement à Le Cannet" maxlength="80" style="width:100%;border:1px solid var(--stone);background:white;padding:13px 15px;font-family:'Jost',sans-serif;font-size:13px;color:var(--navy);font-weight:300;outline:none;box-sizing:border-box;">
     </div>
-
-    <!-- Commentaire -->
     <div style="margin-bottom:24px;">
       <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:7px;">Votre témoignage *</div>
-      <textarea id="avis-texte" placeholder="Partagez votre expérience avec AGS Immobilier…" maxlength="600" rows="4"
-        style="width:100%;border:1px solid var(--stone);background:white;padding:13px 15px;font-family:'Jost',sans-serif;font-size:13px;color:var(--navy);font-weight:300;outline:none;transition:border-color .3s;resize:vertical;box-sizing:border-box;"
-        onfocus="this.style.borderColor='var(--blue-light)'" onblur="this.style.borderColor='var(--stone)'"></textarea>
+      <textarea id="avis-texte" placeholder="Partagez votre expérience avec AGS Immobilier…" maxlength="600" rows="4" style="width:100%;border:1px solid var(--stone);background:white;padding:13px 15px;font-family:'Jost',sans-serif;font-size:13px;color:var(--navy);font-weight:300;outline:none;resize:vertical;box-sizing:border-box;"></textarea>
       <div style="font-size:11px;color:var(--text-light);text-align:right;margin-top:4px;font-weight:300;"><span id="char-count">0</span>/600</div>
     </div>
-
-    <!-- Consentement -->
     <div style="margin-bottom:24px;display:flex;gap:12px;align-items:flex-start;">
       <input type="checkbox" id="avis-consent" style="margin-top:2px;flex-shrink:0;cursor:pointer;width:16px;height:16px;accent-color:var(--navy);">
-      <label for="avis-consent" style="font-size:12px;color:var(--text-light);font-weight:300;line-height:1.6;cursor:pointer;">
-        J'accepte que mon prénom et mon témoignage soient publiés sur le site AGS Immobilier après validation. Mon nom complet ne sera pas affiché.
-      </label>
+      <label for="avis-consent" style="font-size:12px;color:var(--text-light);font-weight:300;line-height:1.6;cursor:pointer;">J'accepte que mon prénom et mon témoignage soient publiés sur le site AGS Immobilier après validation.</label>
     </div>
-
-    <button onclick="soumettreAvis()" id="avis-btn"
-      style="width:100%;background:var(--navy);color:white;border:none;padding:16px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:background .3s;"
-      onmouseover="this.style.background='var(--blue-light)'" onmouseout="this.style.background='var(--navy)'">
-      Envoyer mon avis →
-    </button>
+    <button onclick="soumettreAvis()" id="avis-btn" style="width:100%;background:var(--navy);color:white;border:none;padding:16px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;">Envoyer mon avis →</button>
     <div id="avis-msg" style="text-align:center;margin-top:16px;font-size:13px;font-weight:300;min-height:20px;"></div>
+  </div>
+</section>
+
+<!-- PARTENAIRES -->
+<section class="partenaires" id="partenaires">
+  <div class="section-header reveal">
+    <div class="section-tag" style="color:rgba(255,255,255,.5);">Ils nous font confiance</div>
+    <h2 class="section-title" style="color:white;">Nos <em>partenaires</em></h2>
+  </div>
+  <div class="partenaires-grid">
+    <a class="partenaire-card reveal" href="https://www.loisiroscope.fr/" target="_blank" rel="noopener">
+      <div class="partenaire-icon">🎭</div>
+      <div class="partenaire-name">Le Loisiroscope</div>
+      <p class="partenaire-desc">Agenda culturel de référence sur la Côte d'Azur — spectacles, événements et fêtes locales. Un outil précieux pour découvrir et s'intégrer dans notre belle région.</p>
+      <div class="partenaire-tag">Culture &amp; Événements</div>
+      <div class="partenaire-link">Visiter le site →</div>
+    </a>
+    <a class="partenaire-card reveal" href="https://www.stratege.com/" target="_blank" rel="noopener">
+      <div class="partenaire-icon">🔬</div>
+      <div class="partenaire-name">Stratège</div>
+      <p class="partenaire-desc">Diagnostiqueur certifié, partenaire d'AGS Immobilier. Bénéficiez d'un code promo exclusif disponible sur demande auprès de notre agence.</p>
+      <div class="partenaire-tag">Diagnostic immobilier</div>
+      <div class="partenaire-promo">🎁 Code promo disponible sur demande</div>
+      <div class="partenaire-link">Visiter le site →</div>
+    </a>
   </div>
 </section>
 
@@ -598,77 +516,45 @@
       <p>Nous sommes à votre écoute pour vous conseiller avec sérieux et engagement sur Le Cannet, Cannes, Mougins, Vallauris et Mandelieu.</p>
       <div class="contact-detail">
         <div class="contact-detail-icon">📍</div>
-        <div class="contact-detail-text">
-          <span>Adresse</span>
-          <a href="https://maps.google.com/?q=46+avenue+Maurice+Jeanpierre+Le+Cannet" target="_blank">46 avenue Maurice Jeanpierre<br>06110 Le Cannet</a>
-        </div>
+        <div class="contact-detail-text"><span>Adresse</span><a href="https://maps.google.com/?q=46+avenue+Maurice+Jeanpierre+Le+Cannet" target="_blank">46 avenue Maurice Jeanpierre<br>06110 Le Cannet</a></div>
       </div>
       <div class="contact-detail">
         <div class="contact-detail-icon">📞</div>
-        <div class="contact-detail-text">
-          <span>Philippe Servas — Gérant</span>
-          <a href="tel:+33607131181">06 07 13 11 81</a>
-        </div>
+        <div class="contact-detail-text"><span>Philippe Servas — Gérant</span><a href="tel:+33607131181">06 07 13 11 81</a></div>
       </div>
       <div class="contact-detail">
         <div class="contact-detail-icon">📞</div>
-        <div class="contact-detail-text">
-          <span>Matéo Courrègelongue — Commercial</span>
-          <a href="tel:+33681140665">06 81 14 06 65</a>
-        </div>
+        <div class="contact-detail-text"><span>Matéo Courrègelongue — Commercial</span><a href="tel:+33681140665">06 81 14 06 65</a></div>
       </div>
       <div class="contact-detail">
         <div class="contact-detail-icon">✉️</div>
-        <div class="contact-detail-text">
-          <span>Email</span>
-          <a href="#" onclick="this.href='mailto:agsimmo06@gmail.com';return false;" style="color:inherit;">agsimmo06&#64;gmail.com</a>
-        </div>
+        <div class="contact-detail-text"><span>Email</span><a href="#" onclick="this.href='mailto:agsimmo06@gmail.com';return false;" style="color:inherit;">agsimmo06&#64;gmail.com</a></div>
       </div>
     </div>
-    <form class="full-form reveal reveal-delay-1"
-          name="contact-ags"
-          onsubmit="envoyerEmailJS(event,this,'template_contact')">
+    <form class="full-form reveal" name="contact-ags" onsubmit="envoyerEmailJS(event,this,'template_contact')">
       <div class="form-row">
-        <div class="form-group">
-          <label>Nom &amp; Prénom *</label>
-          <input type="text" name="nom" placeholder="Jean Dupont" required>
-        </div>
-        <div class="form-group">
-          <label>Téléphone *</label>
-          <input type="tel" name="telephone" placeholder="06 00 00 00 00" required>
-        </div>
+        <div class="form-group"><label>Nom &amp; Prénom *</label><input type="text" name="nom" placeholder="Jean Dupont" required></div>
+        <div class="form-group"><label>Téléphone *</label><input type="tel" name="telephone" placeholder="06 00 00 00 00" required></div>
       </div>
-      <div class="form-group">
-        <label>Email *</label>
-        <input type="email" name="email" placeholder="votre@email.com" required>
-      </div>
+      <div class="form-group"><label>Email *</label><input type="email" name="email" placeholder="votre@email.com" required></div>
       <div class="form-row">
-        <div class="form-group">
-          <label>Type de projet *</label>
+        <div class="form-group"><label>Type de projet *</label>
           <select name="projet" required>
             <option value="" disabled selected>Sélectionnez...</option>
-            <option>Vente d'un bien</option>
-            <option>Achat d'un bien</option>
-            <option>Investissement locatif</option>
-            <option>Estimation gratuite</option>
+            <option>Vente d'un bien</option><option>Achat d'un bien</option>
+            <option>Investissement locatif</option><option>Estimation gratuite</option>
           </select>
         </div>
-        <div class="form-group">
-          <label>Budget</label>
+        <div class="form-group"><label>Budget</label>
           <select name="budget">
             <option value="" disabled selected>Sélectionnez...</option>
-            <option>Moins de 200 000 €</option>
-            <option>200 000 — 400 000 €</option>
-            <option>400 000 — 700 000 €</option>
-            <option>700 000 — 1 000 000 €</option>
+            <option>Moins de 200 000 €</option><option>200 000 — 400 000 €</option>
+            <option>400 000 — 700 000 €</option><option>700 000 — 1 000 000 €</option>
             <option>Plus de 1 000 000 €</option>
           </select>
         </div>
       </div>
-      <div class="form-group">
-        <label>Votre message</label>
-        <textarea name="message" placeholder="Décrivez votre projet, vos critères, vos questions…"></textarea>
-      </div>
+      <div class="form-group"><label>Votre message</label><textarea name="message" placeholder="Décrivez votre projet, vos critères, vos questions…"></textarea></div>
       <button type="submit" class="form-submit">Envoyer ma demande →</button>
       <p id="form-msg"></p>
       <p class="form-note">Nous vous répondons sous 24h · Vos données restent confidentielles</p>
@@ -691,34 +577,9 @@
         <a class="social-link" href="https://www.facebook.com/profile.php?id=100090291204330&locale=fr_FR" target="_blank">fb</a>
       </div>
     </div>
-    <div class="footer-col">
-      <h4>Propriétés</h4>
-      <ul>
-        <li><a href="biens.html">Appartements</a></li>
-        <li><a href="biens.html">Maisons &amp; Villas</a></li>
-        <li><a href="biens.html">Studios</a></li>
-        <li><a href="biens.html">Terrains</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Secteurs</h4>
-      <ul>
-        <li><a href="biens.html">Le Cannet</a></li>
-        <li><a href="biens.html">Cannes</a></li>
-        <li><a href="biens.html">Mougins</a></li>
-        <li><a href="biens.html">Vallauris</a></li>
-        <li><a href="biens.html">Mandelieu</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>L'agence</h4>
-      <ul>
-        <li><a href="#about">Qui sommes-nous</a></li>
-        <li><a href="#services">Nos services</a></li>
-        <li><a href="#contact">Estimation gratuite</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </div>
+    <div class="footer-col"><h4>Propriétés</h4><ul><li><a href="biens.html">Appartements</a></li><li><a href="biens.html">Maisons &amp; Villas</a></li><li><a href="biens.html">Studios</a></li><li><a href="biens.html">Terrains</a></li></ul></div>
+    <div class="footer-col"><h4>Secteurs</h4><ul><li><a href="biens.html">Le Cannet</a></li><li><a href="biens.html">Cannes</a></li><li><a href="biens.html">Mougins</a></li><li><a href="biens.html">Vallauris</a></li><li><a href="biens.html">Mandelieu</a></li></ul></div>
+    <div class="footer-col"><h4>L'agence</h4><ul><li><a href="#about">Qui sommes-nous</a></li><li><a href="#services">Nos services</a></li><li><a href="#partenaires">Partenaires</a></li><li><a href="#contact">Contact</a></li></ul></div>
   </div>
   <div class="footer-bottom">
     <span>© 2024 AGS Immobilier — Le Cannet · Tous droits réservés</span>
@@ -726,425 +587,174 @@
   </div>
 </footer>
 
-<!-- WHATSAPP -->
 <a class="whatsapp-btn" href="https://wa.me/33607131181" target="_blank" title="Nous contacter sur WhatsApp">💬</a>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  const nav = document.getElementById('nav');
-  function updateNav() {
-    if (window.scrollY > window.innerHeight - 80) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
-  }
-  window.addEventListener('scroll', updateNav);
-  updateNav();
-
-  document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > window.innerHeight - 80); });
+document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
 </script>
 
 <script>
-// ═══════════════════════════════════════════════════
-// SYSTÈME APIMO — CHARGEMENT AUTOMATIQUE DES BIENS
-// ═══════════════════════════════════════════════════
-
 let BIENS_APIMO = [];
 localStorage.removeItem('ags_biens_site');
 localStorage.removeItem('ags_biens_admin');
 
 async function chargerBiensAPIMO() {
   try {
-    // ✅ Chargement direct depuis APIMO via proxy Vercel
     const res = await fetch('https://ags-immobilier.vercel.app/api/biens?t=' + Date.now());
     if (res.ok) {
       const data = await res.json();
-      const biens = data.biens || [];
-      if (biens.length > 0) {
-        BIENS_APIMO = biens;
-        mettreAJourGrilleBiens(BIENS_APIMO);
-        remplirFiltreVilles(BIENS_APIMO);
-        return true;
-      }
+      const biens = (data.biens || []).filter(b => (b.badge || '').toLowerCase() !== 'vendu');
+      if (biens.length > 0) { BIENS_APIMO = biens; mettreAJourGrilleBiens(biens); remplirFiltreVilles(biens); return; }
     }
   } catch(e) {}
-  // Fallback → biens.json GitHub si APIMO indisponible
   try {
     const res = await fetch('https://raw.githubusercontent.com/devouchkar6-dev/ags-immobilier/main/ags-immobilier-v43/biens.json?t=' + Date.now());
     if (res.ok) {
-      const biens = await res.json();
-      if (Array.isArray(biens) && biens.length > 0) {
-        BIENS_APIMO = biens;
-        mettreAJourGrilleBiens(BIENS_APIMO);
-        remplirFiltreVilles(BIENS_APIMO);
-        return true;
-      }
+      const biens = (await res.json()).filter(b => (b.badge || '').toLowerCase() !== 'vendu');
+      if (biens.length > 0) { BIENS_APIMO = biens; mettreAJourGrilleBiens(biens); remplirFiltreVilles(biens); }
     }
   } catch(e) {}
-  return false;
 }
 
 function mettreAJourGrilleBiens(biens) {
   const grid = document.getElementById('props-grid');
   if (!grid || !biens.length) return;
-  const biensVitrine = [...biens].reverse().slice(0, 6);
-  grid.innerHTML = biensVitrine.map((b, i) => {
-    const delay = i === 0 ? '' : i === 1 ? ' reveal-delay-1' : ' reveal-delay-2';
-    const featured = i === 0 ? ' featured' : '';
-    return `
-    <div class="prop-card${featured} reveal${delay}" onclick="window.location='fiche.html?id=${b.id}'" style="cursor:pointer">
-      <img class="prop-img" src="${b.mainPhoto || 'images/placeholder.jpg'}" alt="${b.titre}" loading="${i < 2 ? 'eager' : 'lazy'}">
+  grid.innerHTML = [...biens].reverse().slice(0,6).map((b,i) => `
+    <div class="prop-card${i===0?' featured':''} reveal" onclick="window.location='fiche.html?id=${b.id}'" style="cursor:pointer">
+      <img class="prop-img" src="${b.mainPhoto||'images/placeholder.jpg'}" alt="${b.titre}" loading="${i<2?'eager':'lazy'}">
       <div class="prop-overlay"></div>
       <div class="prop-info">
-        <div class="prop-type">${b.typeLabel || capitalise(b.type)}</div>
+        <div class="prop-type">${capitalise(b.type)}</div>
         <div class="prop-name">${b.titre}</div>
         <div class="prop-loc">📍 ${b.ville}</div>
         <div class="prop-price">${b.prix}</div>
-        <div class="prop-details">${b.caracteristiques?.surface || ''} ${b.caracteristiques?.pieces ? '· ' + b.caracteristiques.pieces : ''}</div>
       </div>
-    </div>`;
-  }).join('');
+    </div>`).join('');
 }
 
 function rechercherBiens() {
-  const type   = document.getElementById('filter-type').value;
-  const lieu   = document.getElementById('filter-lieu').value;
-  const budget = document.getElementById('filter-budget').value;
-
-  if (!type && !lieu && !budget) {
-    const section = document.getElementById('search-results');
-    if (section) section.style.display = 'none';
-    return;
-  }
-
-  const source = BIENS_APIMO;
-  let resultats = source.filter(b => {
-    if (type && b.type !== type) return false;
-    if (lieu && b.villeFilter !== lieu && b.lieu !== lieu) return false;
+  const type=document.getElementById('filter-type').value, lieu=document.getElementById('filter-lieu').value, budget=document.getElementById('filter-budget').value;
+  if (!type&&!lieu&&!budget) { document.getElementById('search-results').style.display='none'; return; }
+  const res = BIENS_APIMO.filter(b => {
+    if (type && b.type!==type) return false;
+    if (lieu && b.villeFilter!==lieu) return false;
     if (budget) {
-      const p = b.prixBrut || b.prix || 0;
-      if (budget === 'viager'  && b.type !== 'viager') return false;
-      if (budget === '0-200'   && (p >= 200000  || b.type === 'viager')) return false;
-      if (budget === '200-400' && (p < 200000   || p >= 400000)) return false;
-      if (budget === '400-700' && (p < 400000   || p >= 700000)) return false;
-      if (budget === '700+'    && p < 700000) return false;
+      const p=b.prixBrut||0;
+      if (budget==='viager'&&b.type!=='viager') return false;
+      if (budget==='0-200'&&(p>=200000||b.type==='viager')) return false;
+      if (budget==='200-400'&&(p<200000||p>=400000)) return false;
+      if (budget==='400-700'&&(p<400000||p>=700000)) return false;
+      if (budget==='700+'&&p<700000) return false;
     }
     return true;
   });
-
-  afficherResultats(resultats, type, lieu, budget);
+  afficherResultats(res, type, lieu, budget);
 }
 
-function afficherResultats(resultats, type, lieu, budget) {
-  const section   = document.getElementById('search-results');
-  const grid      = document.getElementById('results-grid');
-  const noResults = document.getElementById('no-results');
-  const count     = document.getElementById('results-count');
-  const titleEl   = document.getElementById('results-title');
-
-  const TYPE_LABELS = { 'appartement':'Appartements','maison':'Maisons / Villas','commercial':'Locaux commerciaux','viager':'Viager' };
-  const VILLE_LABELS = { 'cannet':'Le Cannet','cannes':'Cannes','mougins':'Mougins','mandelieu':'Mandelieu','vallauris':'Vallauris' };
-
-  let labels = [];
-  if (type) labels.push(TYPE_LABELS[type] || type);
-  if (lieu) labels.push(VILLE_LABELS[lieu] || lieu);
-  if (budget && budget !== 'viager') {
-    const bl = {'0-200':'< 200 000 €','200-400':'200–400k €','400-700':'400–700k €','700+':'> 700 000 €'};
-    labels.push(bl[budget]);
+function afficherResultats(res, type, lieu, budget) {
+  const TL={'appartement':'Appartements','maison':'Maisons','commercial':'Commerciaux','viager':'Viager'};
+  const bl={'0-200':'< 200k €','200-400':'200–400k €','400-700':'400–700k €','700+':'> 700k €'};
+  const labels=[type&&(TL[type]||type), lieu, budget&&budget!=='viager'&&bl[budget]].filter(Boolean);
+  document.getElementById('results-count').textContent = res.length + ' bien' + (res.length>1?'s trouvés':' trouvé');
+  document.getElementById('results-title').textContent = labels.join(' · ') || 'Tous nos biens';
+  const grid=document.getElementById('results-grid');
+  grid.innerHTML='';
+  if (!res.length) { document.getElementById('no-results').style.display='block'; grid.style.display='none'; }
+  else {
+    document.getElementById('no-results').style.display='none'; grid.style.display='grid';
+    res.forEach(b => { grid.innerHTML += `<div onclick="window.location='fiche.html?id=${b.id}'" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);cursor:pointer;overflow:hidden;"><div style="height:200px;overflow:hidden;"><img src="${b.mainPhoto||'images/placeholder.jpg'}" style="width:100%;height:100%;object-fit:cover;"></div><div style="padding:20px 24px;"><div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">📍 ${b.ville}</div><div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:white;margin-bottom:8px;">${b.titre}</div><div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:var(--accent);">${b.prix}</div></div></div>`; });
   }
-
-  count.textContent = resultats.length + ' bien' + (resultats.length > 1 ? 's trouvés' : ' trouvé');
-  titleEl.textContent = labels.length > 0 ? labels.join(' · ') : 'Tous nos biens';
-  grid.innerHTML = '';
-
-  if (resultats.length === 0) {
-    noResults.style.display = 'block';
-    grid.style.display = 'none';
-  } else {
-    noResults.style.display = 'none';
-    grid.style.display = 'grid';
-    resultats.forEach(b => {
-      const url   = b.url || `fiche.html?id=${b.id}`;
-      const img   = b.mainPhoto || b.img || 'images/placeholder.jpg';
-      const surf  = b.caracteristiques?.surface || b.surface || '';
-      const det   = b.caracteristiques?.pieces ? b.caracteristiques.pieces : '';
-      const prix  = b.prix || 'Nous contacter';
-      const badge = b.typeLabel || capitalise(b.type);
-      grid.innerHTML += `
-        <div onclick="window.location='${url}'" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);cursor:pointer;transition:all .3s;overflow:hidden;" onmouseover="this.style.background='rgba(255,255,255,.09)'" onmouseout="this.style.background='rgba(255,255,255,.04)'">
-          <div style="height:200px;overflow:hidden;position:relative;">
-            <img src="${img}" alt="${b.titre}" style="width:100%;height:100%;object-fit:cover;">
-            <div style="position:absolute;top:12px;left:12px;background:var(--blue-mid);color:white;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;">${badge}</div>
-          </div>
-          <div style="padding:20px 24px;">
-            <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">📍 ${b.ville}</div>
-            <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:white;margin-bottom:8px;">${b.titre}</div>
-            <div style="font-size:12px;color:rgba(255,255,255,.4);font-weight:300;margin-bottom:14px;">${surf}${det ? ' · ' + det : ''}</div>
-            <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.06);padding-top:14px;">
-              <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:var(--accent);">${prix}</div>
-              <span style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);">Voir →</span>
-            </div>
-          </div>
-        </div>`;
-    });
-  }
-
-  section.style.display = 'block';
-  section.scrollIntoView({ behavior:'smooth', block:'start' });
+  document.getElementById('search-results').style.display='block';
+  document.getElementById('search-results').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 function fermerResultats() {
-  document.getElementById('search-results').style.display = 'none';
-  document.getElementById('filter-type').value   = '';
-  document.getElementById('filter-lieu').value   = '';
-  document.getElementById('filter-budget').value = '';
+  document.getElementById('search-results').style.display='none';
+  ['filter-type','filter-lieu','filter-budget'].forEach(id => document.getElementById(id).value='');
 }
 
-function capitalise(str) {
-  if (!str) return '';
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
+function capitalise(s) { return s ? s.charAt(0).toUpperCase()+s.slice(1) : ''; }
 
 function remplirFiltreVilles(biens) {
-  const sel = document.getElementById('filter-lieu');
-  if (!sel) return;
-  const villes = {};
-  biens.forEach(b => {
-    const key = (b.villeFilter || b.ville || '').toLowerCase().trim();
-    const label = b.ville || key;
-    if (key) villes[key] = label;
-  });
-  sel.innerHTML = '<option value="">Tous les secteurs</option>';
-  Object.entries(villes).sort((a,b2) => a[1].localeCompare(b2[1])).forEach(([key, label]) => {
-    const opt = document.createElement('option');
-    opt.value = key;
-    opt.textContent = label;
-    sel.appendChild(opt);
-  });
+  const sel=document.getElementById('filter-lieu');
+  const villes={};
+  biens.forEach(b => { const k=(b.villeFilter||b.ville||'').toLowerCase().trim(); if(k) villes[k]=b.ville||k; });
+  sel.innerHTML='<option value="">Tous les secteurs</option>';
+  Object.entries(villes).sort((a,b)=>a[1].localeCompare(b[1])).forEach(([k,v]) => { const o=document.createElement('option'); o.value=k; o.textContent=v; sel.appendChild(o); });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  chargerBiensAPIMO();
-});
+document.addEventListener('DOMContentLoaded', chargerBiensAPIMO);
 </script>
 
 <script>
-// ════════════════════════════════════════════════════════
-// SYSTÈME AVIS CLIENTS
-// ════════════════════════════════════════════════════════
-
-// ✅ Token retiré — soumission via proxy Vercel /api/submit-avis
-const AVIS_RAW_URL  = 'https://raw.githubusercontent.com/devouchkar6-dev/ags-immobilier/main/ags-immobilier-v43/avis.json';
-
-// ── Étoiles interactives ──
+const AVIS_RAW_URL = 'https://raw.githubusercontent.com/devouchkar6-dev/ags-immobilier/main/ags-immobilier-v43/avis.json';
 let noteSelectionnee = 0;
-const STAR_LABELS = ['', 'Très décevant', 'Décevant', 'Correct', 'Bien', 'Excellent'];
-
+const STAR_LABELS = ['','Très décevant','Décevant','Correct','Bien','Excellent'];
 document.querySelectorAll('.star').forEach(star => {
-  star.addEventListener('mouseover', () => {
-    colorierEtoiles(+star.dataset.v);
-    const lbl = document.getElementById('star-label');
-    if (lbl) lbl.textContent = STAR_LABELS[+star.dataset.v];
-  });
-  star.addEventListener('mouseout', () => {
-    colorierEtoiles(noteSelectionnee);
-    const lbl = document.getElementById('star-label');
-    if (lbl) lbl.textContent = noteSelectionnee > 0 ? STAR_LABELS[noteSelectionnee] : '';
-  });
-  star.addEventListener('click', () => {
-    noteSelectionnee = +star.dataset.v;
-    document.getElementById('avis-note').value = noteSelectionnee;
-    colorierEtoiles(noteSelectionnee);
-  });
+  star.addEventListener('mouseover', () => { colorierEtoiles(+star.dataset.v); const l=document.getElementById('star-label'); if(l) l.textContent=STAR_LABELS[+star.dataset.v]; });
+  star.addEventListener('mouseout', () => { colorierEtoiles(noteSelectionnee); const l=document.getElementById('star-label'); if(l) l.textContent=noteSelectionnee>0?STAR_LABELS[noteSelectionnee]:''; });
+  star.addEventListener('click', () => { noteSelectionnee=+star.dataset.v; document.getElementById('avis-note').value=noteSelectionnee; colorierEtoiles(noteSelectionnee); });
 });
-
-function colorierEtoiles(n) {
-  document.querySelectorAll('.star').forEach(s => {
-    s.style.color = +s.dataset.v <= n ? '#F5A623' : '#C8D6E5';
-    s.style.transform = +s.dataset.v <= n ? 'scale(1.15)' : 'scale(1)';
-  });
-}
-
-// ── Compteur caractères ──
-const avisTexte = document.getElementById('avis-texte');
-if (avisTexte) {
-  avisTexte.addEventListener('input', () => {
-    const c = document.getElementById('char-count');
-    if (c) c.textContent = avisTexte.value.length;
-  });
-}
-
-// ── Soumission ──
+function colorierEtoiles(n) { document.querySelectorAll('.star').forEach(s => { s.style.color=+s.dataset.v<=n?'#F5A623':'#C8D6E5'; s.style.transform=+s.dataset.v<=n?'scale(1.15)':'scale(1)'; }); }
+const avisTexte=document.getElementById('avis-texte');
+if (avisTexte) avisTexte.addEventListener('input', () => { const c=document.getElementById('char-count'); if(c) c.textContent=avisTexte.value.length; });
 async function soumettreAvis() {
-  const note    = +document.getElementById('avis-note').value;
-  const prenom  = document.getElementById('avis-prenom').value.trim();
-  const nom     = document.getElementById('avis-nom').value.trim();
-  const contexte= document.getElementById('avis-contexte').value.trim();
-  const texte   = document.getElementById('avis-texte').value.trim();
-  const consent = document.getElementById('avis-consent').checked;
-  const msg     = document.getElementById('avis-msg');
-  const btn     = document.getElementById('avis-btn');
-
-  if (note === 0)        { affMsg(msg,'⚠️ Veuillez sélectionner une note.',true); return; }
-  if (!prenom)           { affMsg(msg,'⚠️ Veuillez renseigner votre prénom.',true); return; }
-  if (!nom)              { affMsg(msg,'⚠️ Veuillez renseigner votre nom ou initiale.',true); return; }
-  if (texte.length < 20) { affMsg(msg,'⚠️ Témoignage trop court (20 caractères minimum).',true); return; }
-  if (!consent)          { affMsg(msg,'⚠️ Veuillez accepter les conditions.',true); return; }
-
-  btn.disabled = true;
-  btn.textContent = '⏳ Envoi…';
-  affMsg(msg,'', false);
-
+  const note=+document.getElementById('avis-note').value, prenom=document.getElementById('avis-prenom').value.trim(), nom=document.getElementById('avis-nom').value.trim(), contexte=document.getElementById('avis-contexte').value.trim(), texte=document.getElementById('avis-texte').value.trim(), consent=document.getElementById('avis-consent').checked, msg=document.getElementById('avis-msg'), btn=document.getElementById('avis-btn');
+  if (!note) { affMsg(msg,'⚠️ Veuillez sélectionner une note.',true); return; }
+  if (!prenom) { affMsg(msg,'⚠️ Veuillez renseigner votre prénom.',true); return; }
+  if (!nom) { affMsg(msg,'⚠️ Veuillez renseigner votre nom.',true); return; }
+  if (texte.length<20) { affMsg(msg,'⚠️ Témoignage trop court.',true); return; }
+  if (!consent) { affMsg(msg,'⚠️ Veuillez accepter les conditions.',true); return; }
+  btn.disabled=true; btn.textContent='⏳ Envoi…';
   try {
-    // ✅ Proxy Vercel — token caché côté serveur
-    const res = await fetch('https://ags-immobilier.vercel.app/api/submit-avis', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ note, prenom, nom, contexte, texte })
-    });
-    const result = await res.json();
-    if (res.ok && result.success) {
-      affMsg(msg,'✅ Merci pour votre témoignage ! Il sera publié après validation par notre équipe.',false);
-      ['avis-prenom','avis-nom','avis-contexte','avis-texte'].forEach(id => {
-        const el = document.getElementById(id); if (el) el.value = '';
-      });
-      document.getElementById('avis-consent').checked = false;
-      noteSelectionnee = 0;
-      colorierEtoiles(0);
-      const lbl = document.getElementById('star-label'); if (lbl) lbl.textContent = '';
-      const cc = document.getElementById('char-count'); if (cc) cc.textContent = '0';
-      document.getElementById('avis-note').value = '0';
-    } else { throw new Error(result.error || 'Erreur'); }
-  } catch(e) {
-    affMsg(msg,'❌ Une erreur est survenue. Veuillez nous contacter directement.', true);
-  }
-
-  btn.disabled = false;
-  btn.textContent = 'Envoyer mon avis →';
+    const res=await fetch('https://ags-immobilier.vercel.app/api/submit-avis',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({note,prenom,nom,contexte,texte})});
+    const result=await res.json();
+    if (res.ok&&result.success) { affMsg(msg,'✅ Merci ! Votre avis sera publié après validation.',false); document.getElementById('avis-consent').checked=false; noteSelectionnee=0; colorierEtoiles(0); ['avis-prenom','avis-nom','avis-contexte','avis-texte'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';}); }
+    else throw new Error();
+  } catch(e) { affMsg(msg,'❌ Erreur. Contactez-nous directement.',true); }
+  btn.disabled=false; btn.textContent='Envoyer mon avis →';
 }
-
-function affMsg(el, txt, erreur) {
-  if (!el) return;
-  el.textContent = txt;
-  el.style.color = erreur ? '#e74c3c' : '#27ae60';
-}
-
-// ── Chargement des avis approuvés ──
+function affMsg(el,txt,err) { if(!el)return; el.textContent=txt; el.style.color=err?'#e74c3c':'#27ae60'; }
 async function chargerAvisApprouves() {
   try {
-    const res = await fetch(AVIS_RAW_URL + '?t=' + Date.now());
-    if (!res.ok) return;
-    const avis = await res.json();
-    const approuves = avis.filter(a => a.statut === 'approuve').slice(-6).reverse();
-    if (!approuves.length) return; // garder les avis statiques
-
-    const grid = document.getElementById('testi-grid');
-    if (!grid) return;
-
-    grid.innerHTML = approuves.map((a, i) => {
-      const initiale = a.nom ? a.nom.charAt(0).toUpperCase() + '.' : '';
-      const etoilesP = '★'.repeat(a.note);
-      const etoilesV = '☆'.repeat(5 - a.note);
-      const delay    = i === 0 ? '' : i === 1 ? ' reveal-delay-1' : ' reveal-delay-2';
-      return `
-      <div class="testi-card reveal${delay}">
-        <div class="testi-quote">"</div>
-        <div style="color:#F5A623;font-size:18px;margin-bottom:12px;position:relative;z-index:1;">${etoilesP}<span style="color:#C8D6E5;">${etoilesV}</span></div>
-        <p class="testi-text">${a.texte}</p>
-        <div>
-          <div class="testi-name">${a.prenom} ${initiale}</div>
-          <div class="testi-role">${a.contexte || 'Client AGS Immobilier'} · ${a.date}</div>
-        </div>
-      </div>`;
-    }).join('');
-  } catch(e) {
-    // silencieux — conserver les avis statiques
-  }
+    const res=await fetch(AVIS_RAW_URL+'?t='+Date.now()); if(!res.ok)return;
+    const avis=await res.json(); const approuves=avis.filter(a=>a.statut==='approuve').slice(-6).reverse();
+    if (!approuves.length) return;
+    document.getElementById('testi-grid').innerHTML=approuves.map((a,i)=>`<div class="testi-card reveal"><div class="testi-quote">"</div><div style="color:#F5A623;font-size:18px;margin-bottom:12px;">${'★'.repeat(a.note)}<span style="color:#C8D6E5;">${'☆'.repeat(5-a.note)}</span></div><p class="testi-text">${a.texte}</p><div><div class="testi-name">${a.prenom} ${a.nom?a.nom.charAt(0)+'.'||'':''}</div><div class="testi-role">${a.contexte||'Client AGS Immobilier'} · ${a.date}</div></div></div>`).join('');
+  } catch(e) {}
 }
-
 document.addEventListener('DOMContentLoaded', chargerAvisApprouves);
 </script>
 
 <script>
-// ── EmailJS ──
 function envoyerEmailJS(e, form, templateId) {
   e.preventDefault();
-  const msg = document.getElementById('form-msg');
-  msg.textContent = '⏳ Envoi en cours…';
-  msg.style.color = 'var(--text-light)';
-
-  const params = {};
-  new FormData(form).forEach((v, k) => params[k] = v);
-
-  emailjs.send('service_ags', templateId, params)
-    .then(() => {
-      msg.textContent = '✅ Message envoyé ! Nous vous répondons sous 24h.';
-      msg.style.color = '#27ae60';
-      form.reset();
-      setTimeout(() => { window.location.href = 'merci.html'; }, 1000);
-    })
-    .catch(() => {
-      msg.textContent = '❌ Erreur d\'envoi. Contactez-nous directement.';
-      msg.style.color = '#e74c3c';
-    });
+  const msg=document.getElementById('form-msg');
+  msg.textContent='⏳ Envoi en cours…'; msg.style.color='var(--text-light)';
+  const params={}; new FormData(form).forEach((v,k)=>params[k]=v);
+  emailjs.send('service_rktxwry', templateId, params)
+    .then(()=>{ msg.textContent='✅ Message envoyé ! Nous vous répondons sous 24h.'; msg.style.color='#27ae60'; form.reset(); setTimeout(()=>{window.location.href='merci.html';},1000); })
+    .catch(()=>{ msg.textContent="❌ Erreur d'envoi. Contactez-nous directement."; msg.style.color='#e74c3c'; });
 }
 </script>
-
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>emailjs.init('JKP2Yx31rJQSjsRb2');</script>
 
 <script>
 (function() {
-  var nav = document.getElementById('nav');
-  if (!nav) return;
-
-  var burger = document.createElement('button');
-  burger.className = 'mob-burger';
-  burger.setAttribute('aria-label', 'Menu');
-  burger.innerHTML = '<span></span><span></span><span></span>';
-  nav.appendChild(burger);
-
-  var overlay = document.createElement('div');
-  overlay.className = 'mob-overlay';
-  document.body.appendChild(overlay);
-
-  var panel = document.createElement('div');
-  panel.className = 'mob-panel';
-
-  var navLinks = nav.querySelectorAll('ul li a');
-  navLinks.forEach(function(a) {
-    var link = document.createElement('a');
-    link.href = a.href;
-    link.textContent = a.textContent;
-    link.addEventListener('click', close);
-    panel.appendChild(link);
-  });
-
-  var tel = document.createElement('a');
-  tel.href = 'tel:+33607131181';
-  tel.className = 'mob-tel';
-  tel.textContent = '📞 06 07 13 11 81';
-  panel.appendChild(tel);
-
+  var nav=document.getElementById('nav'); if(!nav)return;
+  var burger=document.createElement('button'); burger.className='mob-burger'; burger.setAttribute('aria-label','Menu'); burger.innerHTML='<span></span><span></span><span></span>'; nav.appendChild(burger);
+  var overlay=document.createElement('div'); overlay.className='mob-overlay'; document.body.appendChild(overlay);
+  var panel=document.createElement('div'); panel.className='mob-panel';
+  nav.querySelectorAll('ul li a').forEach(function(a){var link=document.createElement('a');link.href=a.href;link.textContent=a.textContent;link.addEventListener('click',close);panel.appendChild(link);});
+  var tel=document.createElement('a'); tel.href='tel:+33607131181'; tel.className='mob-tel'; tel.textContent='📞 06 07 13 11 81'; panel.appendChild(tel);
   document.body.appendChild(panel);
-
-  function open() {
-    burger.classList.add('open');
-    panel.classList.add('on');
-    overlay.classList.add('on');
-    document.body.style.overflow = 'hidden';
-  }
-  function close() {
-    burger.classList.remove('open');
-    panel.classList.remove('on');
-    overlay.classList.remove('on');
-    document.body.style.overflow = '';
-  }
-
-  burger.addEventListener('click', function() {
-    panel.classList.contains('on') ? close() : open();
-  });
-  overlay.addEventListener('click', close);
+  function open(){burger.classList.add('open');panel.classList.add('on');overlay.classList.add('on');document.body.style.overflow='hidden';}
+  function close(){burger.classList.remove('open');panel.classList.remove('on');overlay.classList.remove('on');document.body.style.overflow='';}
+  burger.addEventListener('click',function(){panel.classList.contains('on')?close():open();});
+  overlay.addEventListener('click',close);
 })();
 </script>
 
@@ -1156,6 +766,5 @@ function envoyerEmailJS(e, form, templateId) {
   <a href="#contact"><span class="nav-icon">✉️</span>Contact</a>
   <a href="tel:+33607131181"><span class="nav-icon">📞</span>Appeler</a>
 </div>
-
 </body>
 </html>
