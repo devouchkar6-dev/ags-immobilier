@@ -100,7 +100,7 @@
   {
     "id": "bien-1773942052991",
     "titre": "À VENDRE – LOCAL COMMERCIAL MODERNE",
-    "soustitre": "Rocheville — Le Cannet",
+    "soustitre": "Le Cannet",
     "type": "commercial",
     "ville": "Le Cannet",
     "villeFilter": "Le Cannet",
@@ -140,7 +140,7 @@
   {
     "id": "bien-1773943202533",
     "titre": "À VENDRE – MAISON DE CARACTÈRE – TANNERON",
-    "soustitre": "Village — Tanneron",
+    "soustitre": "Tanneron",
     "type": "maison",
     "ville": "Tanneron",
     "villeFilter": "Tanneron",
@@ -189,10 +189,10 @@
     "surface": "161 m2",
     "pieces": "5 pièces",
     "chambres": "4 chambres",
-    "etage": "2 étages",
+    "etage": "",
     "exposition": "Sud",
     "annee": "",
     "ref": "AGS-2026-54",
-    "actif": false
+    "actif": true
   }
 ]
