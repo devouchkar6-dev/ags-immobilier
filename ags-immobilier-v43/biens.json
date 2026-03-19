@@ -136,5 +136,63 @@
     "annee": "",
     "ref": "AGS-26-52",
     "actif": true
+  },
+  {
+    "id": "bien-1773943202533",
+    "titre": "À VENDRE – MAISON DE CARACTÈRE – TANNERON",
+    "soustitre": "Village — Tanneron",
+    "type": "maison",
+    "ville": "Tanneron",
+    "villeFilter": "Tanneron",
+    "prix": "585 000 €",
+    "prixBrut": 585000,
+    "badge": "Coup de cœur",
+    "mainPhoto": "https://res.cloudinary.com/df15yd65n/image/upload/v1773942805/ai6zqxhhvukq03qijd2g.jpg",
+    "photos": [
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773942805/ai6zqxhhvukq03qijd2g.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773942827/jpykqlhmsvdol6ni3ez4.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773942848/wzulw0rghzwvmxwo0rdp.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773942870/ekyqzbenmyfevllyy3ja.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773942910/tyegmzwvixjztrqdfedj.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773942926/pipw2z8wzwrj0iralvei.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773943051/u5jtsplb5fsl2jpj75oz.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773942942/h2bcoedhfc6x3wsiqmnh.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773942962/lf6mxedch3r3qt8uryop.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773942979/abwmadfeufqiz6kxn815.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773942988/wrqplp7drollz6zqyotu.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773942996/hgrh1zwua87av9d9ktmq.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773943006/ozyqpwd1ka4axlbnxdmb.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773943014/guuedmhwgpj9z5p9ynfu.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773943024/gkqi1eplznqeq6amdtwp.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1773943037/hi6rqgubxjky1onglscc.jpg"
+    ],
+    "caracteristiques": {
+      "surface": "161 m2",
+      "pieces": "5 pièces"
+    },
+    "accroche": "À VENDRE – MAISON DE CARACTÈRE – TANNERON",
+    "description": "Tanneron – Village\n\n📍 Emplacement privilégié\nSituée au cœur du village de Tanneron, cette longère de charme édifiée à la fin du XIXᵉ siècle séduit par son authenticité, ses volumes généreux et son environnement calme avec vue dégagée sur les collines.\n\nImplantée sur un terrain de 1 550 m² en restanques, joliment arboré, le bien offre un cadre naturel recherché et une belle exposition sud ☀️\n\n🔹 À proximité :\n✅ Village\n✅ Commerces de proximité\n✅ Accès routiers\n\n🏡 Des atouts clés pour votre projet :\n\n✔ Terrain de 1 550 m²\n✔ Maison 5 pièces\n✔ 4 chambres à l’étage\n✔ Salle de séjour de 34,8 m²\n✔ Cheminée\n✔ Cuisine indépendante\n✔ 1 salle de bain\n✔ 1 salle d’eau\n✔ 1 toilette\n✔ Terrasse couverte avec cuisine d’été\n✔ Piscine\n✔ Puits\n✔ Cave de 16,49 m²\n✔ Atelier sur deux niveaux\n✔ Grande cour de stationnement\n✔ Environnement calme\n✔ Belle vue dégagée\n\n📊 Informations pratiques :\n\n🔸 Chauffage individuel fuel (radiateurs)\n🔸 Non meublé\n🔸 Édifiée fin XIXᵉ siècle\n🔸 Bien entretenu\n🔸 Standing : normal\n\n🔎 Performance énergétique :\n✔ DPE E\n✔ GES E\n\nLes informations sur les risques naturels et technologiques auxquels ce bien est exposé sont disponibles sur le site Géorisques.\n\n✨ Un bien rare sur le marché de Tanneron, idéal en résidence principale ou secondaire pour les amateurs de charme et d’authenticité.\n\n📞 Intéressé(e) ? Contactez-nous pour organiser une visite ou obtenir davantage d’informations.",
+    "equipements": [
+      "Cave",
+      "Terrasse",
+      "Piscine",
+      "Jardin",
+      "Lumineux",
+      "Vue montagne",
+      "Cheminée",
+      "Double vitrage",
+      "Proche écoles"
+    ],
+    "dpe": "E",
+    "ges": "E",
+    "rente": "",
+    "surface": "161 m2",
+    "pieces": "5 pièces",
+    "chambres": "4 chambres",
+    "etage": "2 étages",
+    "exposition": "Sud",
+    "annee": "",
+    "ref": "AGS-2026-54",
+    "actif": false
   }
 ]
