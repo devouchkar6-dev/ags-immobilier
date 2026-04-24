@@ -1,5 +1,58 @@
 [
   {
+    "id": "bien-1777048446438",
+    "titre": "Mandelieu-la-Napoule – Les 3 Rivières à Vendre Loué",
+    "soustitre": "Capitou — Mandelieu-la-Napoule",
+    "type": "appartement",
+    "ville": "Mandelieu-la-Napoule",
+    "villeFilter": "Mandelieu-la-Napoule",
+    "prix": "137 500 €",
+    "prixBrut": 137500,
+    "badge": "Exclusivité AGS",
+    "mainPhoto": "https://res.cloudinary.com/df15yd65n/image/upload/v1777048431/s9iltliulziqhfohympj.png",
+    "photos": [
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1777048431/s9iltliulziqhfohympj.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1777048336/fcwmkdoyo680v6gh4ohl.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1777048326/u3k5lwxaukvqoihfjmab.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1777048325/cyxlufbiosogkfk7pujn.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1777048330/t6t6bnirxqdjdqm95kgi.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1777048333/m5seoocxdygnuupuxx94.png"
+    ],
+    "caracteristiques": {
+      "surface": "22,6",
+      "pieces": "1"
+    },
+    "accroche": "Mandelieu-la-Napoule – Les 3 Rivières à Vendre Loué",
+    "description": "Emplacement recherché\n\nSitué au sein de la résidence Les 3 Rivières, ce studio de 22,6 m2 bénéficie d’un environnement agréable et bien desservi, à proximité immédiate des commodités. Ce secteur est particulièrement apprécié pour sa praticité et sa proximité avec les axes principaux, les commerces et la mer.\n\nÀ proximité immédiate :\nAutoroute\nBus et axes principaux\nCentre-ville et commerces\nÉcoles et services\nMédecins\nParcs et espaces verts\nMer, plages et port\n\nDes atouts clés pour votre projet :\n\nStudio loué\n4ème étage\nAscenseur\nVue dégagée sur les collines\nExposition Ouest\nRésidence avec piscine\nInterphone\n\nFenêtres coulissantes en double vitrage\n\nChauffage collectif (radiateurs)\nEau chaude collective\nTout à l’égout\n\nInformations pratiques :\nBien vendu loué\nLocataire en place depuis 2011\nAucun incident de paiement (loyers réglés avec régularité)\nIdéal investissement locatif sécurisé\nBon état\nCharges : 396,72 € / trimestre\n\nLes informations sur les risques naturels et technologiques auxquels ce bien est exposé sont disponibles sur Géorisques.\n\nIntéressé(e) ? Contactez-nous pour organiser une visite ou obtenir davantage d’informations.",
+    "equipements": [
+      "Ascenseur",
+      "Parking",
+      "Cave",
+      "Balcon",
+      "Piscine",
+      "Jardin",
+      "Lumineux",
+      "Digicode / Interphone",
+      "Double vitrage",
+      "Volets roulants",
+      "Proche commerces",
+      "Proche transports",
+      "Proche écoles",
+      "Proche mer"
+    ],
+    "dpe": "B",
+    "ges": "C",
+    "rente": "",
+    "surface": "22,6",
+    "pieces": "1",
+    "chambres": "",
+    "etage": "4 ème",
+    "exposition": "Ouest",
+    "annee": "",
+    "ref": "AGS-26-56",
+    "actif": true
+  },
+  {
     "id": "bien-1775208134715",
     "titre": "À VENDRE – VILLA – MOUGINS",
     "soustitre": "Mougins",
