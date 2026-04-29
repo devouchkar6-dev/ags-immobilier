@@ -3,6 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+<link rel="manifest" href="/images/site.webmanifest">
 <style id="mobile-css">
 @media only screen and (max-width: 768px) {
   nav ul { display: none !important; }
@@ -68,11 +73,13 @@
 <meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://ags-immobilier.vercel.app/images/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --navy:#1B2D4F; --navy-deep:#0F1E36; --blue-mid:#2C4A7C; --blue-light:#4A6FA5;
-    --accent:#5B9BD5; --cream:#F0F4F8; --stone:#C8D6E5; --text:#1B2D4F; --text-light:#5A7499; --white:#ffffff;
+    --accent:#5B9BD5; --cream:#F0F4F8; --stone:#C8D6E5; --text:#1B2D4F; --text-light:#5A7499;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; }
@@ -123,7 +130,7 @@
   .props-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
   .prop-card { position:relative; overflow:hidden; cursor:pointer; }
   .prop-card.featured { grid-column:span 2; grid-row:span 2; }
-  .prop-img { width:100%; height:280px; object-fit:cover; display:block; transition:transform .7s ease; }
+  .prop-img { width:100%; height:280px; object-fit:cover; display:block; transition:transform .7s ease; background:#e0e8f0; }
   .prop-card.featured .prop-img { height:562px; }
   .prop-card:hover .prop-img { transform:scale(1.05); }
   .prop-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(15,30,54,.88) 0%,transparent 55%); }
@@ -134,6 +141,8 @@
   .prop-card.featured .prop-name { font-size:30px; }
   .prop-loc { font-size:12px; color:rgba(255,255,255,.5); font-weight:300; margin-bottom:12px; }
   .prop-price { font-family:'Cormorant Garamond',serif; font-size:18px; color:#A8C0DC; font-weight:300; }
+  .prop-badge { position:absolute; top:18px; left:18px; background:var(--blue-mid); color:white; font-size:9px; letter-spacing:2px; text-transform:uppercase; padding:5px 12px; }
+  .prop-badge.new { background:var(--accent); }
   .about { padding:100px 60px; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; background:var(--cream); }
   .about-imgs { position:relative; height:620px; }
   .about-img-main { width:68%; height:420px; object-fit:cover; position:absolute; top:0; left:0; }
@@ -186,7 +195,6 @@
   .testi-text { font-family:'Cormorant Garamond',serif; font-size:17px; font-weight:300; font-style:italic; color:var(--text); line-height:1.7; margin-bottom:28px; position:relative; z-index:1; }
   .testi-name { font-size:13px; font-weight:500; color:var(--navy); }
   .testi-role { font-size:11px; color:var(--text-light); font-weight:300; margin-top:2px; }
-  /* ── PARTENAIRES ── */
   .partenaires { padding:80px 60px; background:var(--navy-deep); }
   .partenaires-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; margin-top:56px; max-width:860px; margin-left:auto; margin-right:auto; }
   .partenaire-card { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); padding:36px; display:flex; flex-direction:column; gap:14px; transition:all .3s; text-decoration:none; }
@@ -198,7 +206,6 @@
   .partenaire-promo { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); padding:8px 14px; font-size:11px; color:rgba(255,255,255,.7); display:inline-block; }
   .partenaire-link { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-top:auto; display:flex; align-items:center; gap:6px; transition:gap .2s; }
   .partenaire-card:hover .partenaire-link { gap:10px; }
-  /* ── CONTACT ── */
   .contact-section { padding:90px 60px; background:var(--cream); }
   .contact-wrap { display:grid; grid-template-columns:1fr 1.5fr; gap:72px; align-items:start; max-width:1060px; margin:56px auto 0; }
   .contact-info-block h3 { font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:300; color:var(--navy); margin-bottom:14px; line-height:1.25; }
@@ -239,6 +246,7 @@
   .whatsapp-btn { position:fixed; bottom:28px; left:28px; z-index:999; width:56px; height:56px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(37,211,102,.4); text-decoration:none; transition:transform .3s,box-shadow .3s; font-size:26px; }
   .whatsapp-btn:hover { transform:scale(1.1); box-shadow:0 6px 28px rgba(37,211,102,.5); }
 </style>
+</head>
 <body>
 <nav id="nav">
   <div class="logo"><img src="images/logo.jpg" alt="AGS Immobilier" id="logo-img"></div>
@@ -253,7 +261,6 @@
   <a href="#contact" class="nav-cta">Nous contacter</a>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div style="position:absolute;top:0;right:0;width:45%;height:100%;z-index:1;pointer-events:none;overflow:hidden">
@@ -278,7 +285,6 @@
   </div>
 </section>
 
-<!-- SEARCH BAR -->
 <div class="search-bar">
   <div class="search-field">
     <label>Type</label>
@@ -308,7 +314,6 @@
   <button class="search-submit" onclick="rechercherBiens()">Rechercher →</button>
 </div>
 
-<!-- RÉSULTATS -->
 <div id="search-results" style="display:none;background:var(--navy-deep);padding:40px 60px;">
   <div style="max-width:1200px;margin:0 auto;">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
@@ -327,7 +332,6 @@
   </div>
 </div>
 
-<!-- PROPERTIES -->
 <section class="properties" id="properties">
   <div class="section-header reveal">
     <div class="section-tag">Propriétés disponibles</div>
@@ -341,11 +345,10 @@
   </div>
 </section>
 
-<!-- ABOUT -->
 <section class="about" id="about">
   <div class="about-imgs reveal">
-    <img class="about-img-main" src="images/logo_bg.jpg" alt="Agence AGS Immobilier" style="object-fit:cover;">
-    <img class="about-img-accent" src="images/equipe_duo.jpg" alt="Philippe et Matéo — AGS Immobilier">
+    <img class="about-img-main" src="images/logo_bg.jpg" alt="Agence AGS Immobilier" loading="lazy" style="object-fit:cover;">
+    <img class="about-img-accent" src="images/equipe_duo.jpg" alt="Philippe et Matéo" loading="lazy">
   </div>
   <div class="about-text reveal">
     <div class="section-header">
@@ -363,7 +366,6 @@
   </div>
 </section>
 
-<!-- SERVICES -->
 <section class="services" id="services">
   <div class="section-header reveal">
     <div class="section-tag">Notre approche</div>
@@ -383,21 +385,19 @@
   </div>
 </section>
 
-<!-- LOCATIONS -->
 <section class="locations" id="locations">
   <div class="section-header reveal">
     <div class="section-tag">Nos secteurs</div>
     <h2 class="section-title">Notre territoire<br>la <em>Côte d'Azur</em></h2>
   </div>
   <div class="locs-grid">
-    <div class="loc-card reveal"><img class="loc-img" src="images/loc_cannet.jpg" alt="Le Cannet"><div class="loc-overlay"></div><div class="loc-info"><div class="loc-name">Le Cannet</div><div class="loc-sub">Notre cœur de marché</div></div></div>
-    <div class="loc-card reveal"><img class="loc-img" src="images/loc_cannes.jpg" alt="Cannes"><div class="loc-overlay"></div><div class="loc-info"><div class="loc-name">Cannes</div><div class="loc-sub">Prestige &amp; bord de mer</div></div></div>
-    <div class="loc-card reveal"><img class="loc-img" src="images/loc_mougins.jpg" alt="Mougins"><div class="loc-overlay"></div><div class="loc-info"><div class="loc-name">Mougins</div><div class="loc-sub">Village &amp; villas</div></div></div>
-    <div class="loc-card reveal"><img class="loc-img" src="images/loc_mandelieu.jpg" alt="Vallauris Mandelieu"><div class="loc-overlay"></div><div class="loc-info"><div class="loc-name">Vallauris &amp; Mandelieu</div><div class="loc-sub">Résidentiel &amp; calme</div></div></div>
+    <div class="loc-card reveal"><img class="loc-img" src="images/loc_cannet.jpg" alt="Le Cannet" loading="lazy"><div class="loc-overlay"></div><div class="loc-info"><div class="loc-name">Le Cannet</div><div class="loc-sub">Notre cœur de marché</div></div></div>
+    <div class="loc-card reveal"><img class="loc-img" src="images/loc_cannes.jpg" alt="Cannes" loading="lazy"><div class="loc-overlay"></div><div class="loc-info"><div class="loc-name">Cannes</div><div class="loc-sub">Prestige &amp; bord de mer</div></div></div>
+    <div class="loc-card reveal"><img class="loc-img" src="images/loc_mougins.jpg" alt="Mougins" loading="lazy"><div class="loc-overlay"></div><div class="loc-info"><div class="loc-name">Mougins</div><div class="loc-sub">Village &amp; villas</div></div></div>
+    <div class="loc-card reveal"><img class="loc-img" src="images/loc_mandelieu.jpg" alt="Vallauris Mandelieu" loading="lazy"><div class="loc-overlay"></div><div class="loc-info"><div class="loc-name">Vallauris &amp; Mandelieu</div><div class="loc-sub">Résidentiel &amp; calme</div></div></div>
   </div>
 </section>
 
-<!-- TEAM -->
 <section class="team" id="equipe">
   <div class="section-header reveal">
     <div class="section-tag">Notre équipe</div>
@@ -405,14 +405,14 @@
   </div>
   <div class="team-grid">
     <div class="team-card reveal">
-      <div class="team-photo-wrap"><img class="team-photo" src="images/philippe.jpg" alt="Philippe Servas"></div>
+      <div class="team-photo-wrap"><img class="team-photo" src="images/philippe.jpg" alt="Philippe Servas" loading="lazy"></div>
       <div class="team-name">Philippe Servas</div>
       <div class="team-role">Gérant de l'agence</div>
       <p class="team-bio">Fort d'une longue expérience dans l'immobilier local, Philippe met son expertise et sa connaissance parfaite du marché local au service de chaque client.</p>
       <a class="team-tel" href="tel:+33607131181">📞 06 07 13 11 81</a>
     </div>
     <div class="team-card reveal">
-      <div class="team-photo-wrap"><img class="team-photo" src="images/mateo.jpg" alt="Matéo Courrègelongue"></div>
+      <div class="team-photo-wrap"><img class="team-photo" src="images/mateo.jpg" alt="Matéo Courrègelongue" loading="lazy"></div>
       <div class="team-name">Matéo Courrègelongue</div>
       <div class="team-role">Responsable commercial</div>
       <p class="team-bio">Dynamique et à l'écoute, Matéo assure la relation client au quotidien et coordonne la stratégie commerciale avec réactivité et engagement.</p>
@@ -421,7 +421,6 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
 <section class="testimonials" id="temoignages">
   <div class="section-header reveal">
     <div class="section-tag">Témoignages</div>
@@ -432,7 +431,6 @@
     <div class="testi-card reveal"><div class="testi-quote">"</div><p class="testi-text">Nous cherchions une maison sur Mougins depuis plusieurs mois. L'équipe d'AGS a parfaitement cerné nos attentes et nous a proposé le bien idéal dès la deuxième visite.</p><div><div class="testi-name">Thomas &amp; Julie R.</div><div class="testi-role">Acquéreurs — Maison à Mougins</div></div></div>
     <div class="testi-card reveal"><div class="testi-quote">"</div><p class="testi-text">Très satisfait de l'estimation réalisée par AGS Immobilier. Sérieuse, argumentée, et parfaitement en phase avec le marché. La vente s'est conclue rapidement.</p><div><div class="testi-name">Claire M.</div><div class="testi-role">Vendeuse — Studio à Cannes</div></div></div>
   </div>
-  <!-- FORMULAIRE AVIS -->
   <div id="avis-form-section" style="max-width:680px;margin:64px auto 0;background:var(--cream);border:1px solid var(--stone);padding:48px 44px;">
     <div style="text-align:center;margin-bottom:32px;">
       <div class="section-tag" style="justify-content:center;">Votre expérience</div>
@@ -479,7 +477,6 @@
   </div>
 </section>
 
-<!-- PARTENAIRES -->
 <section class="partenaires" id="partenaires">
   <div class="section-header reveal">
     <div class="section-tag" style="color:rgba(255,255,255,.5);">Ils nous font confiance</div>
@@ -489,7 +486,7 @@
     <a class="partenaire-card reveal" href="https://www.loisiroscope.fr/" target="_blank" rel="noopener">
       <div class="partenaire-icon">🎭</div>
       <div class="partenaire-name">Le Loisiroscope</div>
-      <p class="partenaire-desc">Agenda culturel de référence sur la Côte d'Azur — spectacles, événements et fêtes locales. Un outil précieux pour découvrir et s'intégrer dans notre belle région.</p>
+      <p class="partenaire-desc">Agenda culturel de référence sur la Côte d'Azur — spectacles, événements et fêtes locales. Un outil précieux pour s'intégrer dans notre belle région.</p>
       <div class="partenaire-tag">Culture &amp; Événements</div>
       <div class="partenaire-link">Visiter le site →</div>
     </a>
@@ -504,7 +501,6 @@
   </div>
 </section>
 
-<!-- CONTACT -->
 <section class="contact-section" id="contact">
   <div class="section-header reveal">
     <div class="section-tag">Parlons de votre projet</div>
@@ -562,11 +558,10 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div>
-      <div class="footer-logo"><img src="images/logo.jpg" alt="AGS Immobilier"></div>
+      <div class="footer-logo"><img src="images/logo.jpg" alt="AGS Immobilier" loading="lazy"></div>
       <p class="footer-desc">Agence indépendante de proximité au Cannet, spécialisée en transaction immobilière sur le Cannet, Cannes, Mougins, Vallauris et Mandelieu.</p>
       <p class="footer-contact-line">📍 46 avenue Maurice Jeanpierre, 06110 Le Cannet</p>
       <p class="footer-contact-line">📞 <a href="tel:+33607131181">06 07 13 11 81</a></p>
@@ -587,7 +582,7 @@
   </div>
 </footer>
 
-<a class="whatsapp-btn" href="https://wa.me/33607131181" target="_blank" title="Nous contacter sur WhatsApp">💬</a>
+<a class="whatsapp-btn" href="https://wa.me/33607131181" target="_blank" title="WhatsApp">💬</a>
 
 <script>
 const nav = document.getElementById('nav');
@@ -602,36 +597,47 @@ localStorage.removeItem('ags_biens_admin');
 
 async function chargerBiensAPIMO() {
   try {
-    const res = await fetch('https://ags-immobilier.vercel.app/api/biens?t=' + Date.now());
+    const res = await fetch(
+      'https://raw.githubusercontent.com/devouchkar6-dev/ags-immobilier/main/ags-immobilier-v43/biens.json?t=' + Date.now()
+    );
     if (res.ok) {
-      const data = await res.json();
-      const biens = (data.biens || []).filter(b => (b.badge || '').toLowerCase() !== 'vendu');
-      if (biens.length > 0) { BIENS_APIMO = biens; mettreAJourGrilleBiens(biens); remplirFiltreVilles(biens); return; }
-    }
-  } catch(e) {}
-  try {
-    const res = await fetch('https://raw.githubusercontent.com/devouchkar6-dev/ags-immobilier/main/ags-immobilier-v43/biens.json?t=' + Date.now());
-    if (res.ok) {
-      const biens = (await res.json()).filter(b => (b.badge || '').toLowerCase() !== 'vendu');
+      const biens = (await res.json()).filter(b => b.actif !== false && (b.badge||'').toLowerCase() !== 'vendu');
       if (biens.length > 0) { BIENS_APIMO = biens; mettreAJourGrilleBiens(biens); remplirFiltreVilles(biens); }
     }
   } catch(e) {}
 }
 
+// ✅ 3 BIENS MAX + badge Nouveau sur le 1er
 function mettreAJourGrilleBiens(biens) {
   const grid = document.getElementById('props-grid');
-  if (!grid || !biens.length) return;
-  grid.innerHTML = [...biens].reverse().slice(0,6).map((b,i) => `
-    <div class="prop-card${i===0?' featured':''} reveal" onclick="window.location='fiche.html?id=${b.id}'" style="cursor:pointer">
-      <img class="prop-img" src="${b.mainPhoto||'images/placeholder.jpg'}" alt="${b.titre}" loading="${i<2?'eager':'lazy'}">
+  if (!grid) return;
+  if (!biens.length) {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text-light);font-size:14px;font-weight:300;">Aucun bien disponible.<br>Contactez-nous pour plus d\'informations.</div>';
+    return;
+  }
+  // 3 biens max, les plus récents en premier
+  const vitrine = [...biens].reverse().slice(0, 3);
+  grid.innerHTML = vitrine.map((b, i) => {
+    const featured = i === 0 ? ' featured' : '';
+    // Badge : admin en priorité, sinon "Nouveau" pour le 1er bien
+    const badge = b.badge || (i === 0 ? 'Nouveau' : '');
+    const badgeHTML = badge ? `<div class="prop-badge${badge === 'Nouveau' || badge === 'new' ? ' new' : ''}">${badge}</div>` : '';
+    const imgSrc = b.mainPhoto || 'images/placeholder.jpg';
+    return `<div class="prop-card${featured} reveal" onclick="window.location='fiche.html?id=${b.id}'" style="cursor:pointer">
+      <img class="prop-img" src="${imgSrc}" alt="${b.titre}"
+        loading="${i === 0 ? 'eager' : 'lazy'}"
+        decoding="async"
+        onerror="this.src='images/placeholder.jpg'">
       <div class="prop-overlay"></div>
+      ${badgeHTML}
       <div class="prop-info">
         <div class="prop-type">${capitalise(b.type)}</div>
         <div class="prop-name">${b.titre}</div>
         <div class="prop-loc">📍 ${b.ville}</div>
         <div class="prop-price">${b.prix}</div>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 
 function rechercherBiens() {
@@ -664,7 +670,7 @@ function afficherResultats(res, type, lieu, budget) {
   if (!res.length) { document.getElementById('no-results').style.display='block'; grid.style.display='none'; }
   else {
     document.getElementById('no-results').style.display='none'; grid.style.display='grid';
-    res.forEach(b => { grid.innerHTML += `<div onclick="window.location='fiche.html?id=${b.id}'" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);cursor:pointer;overflow:hidden;"><div style="height:200px;overflow:hidden;"><img src="${b.mainPhoto||'images/placeholder.jpg'}" style="width:100%;height:100%;object-fit:cover;"></div><div style="padding:20px 24px;"><div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">📍 ${b.ville}</div><div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:white;margin-bottom:8px;">${b.titre}</div><div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:var(--accent);">${b.prix}</div></div></div>`; });
+    res.forEach(b => { grid.innerHTML += `<div onclick="window.location='fiche.html?id=${b.id}'" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);cursor:pointer;overflow:hidden;"><div style="height:200px;overflow:hidden;"><img src="${b.mainPhoto||'images/placeholder.jpg'}" style="width:100%;height:100%;object-fit:cover;" loading="lazy"></div><div style="padding:20px 24px;"><div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">📍 ${b.ville}</div><div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:white;margin-bottom:8px;">${b.titre}</div><div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:var(--accent);">${b.prix}</div></div></div>`; });
   }
   document.getElementById('search-results').style.display='block';
   document.getElementById('search-results').scrollIntoView({behavior:'smooth',block:'start'});
@@ -674,9 +680,7 @@ function fermerResultats() {
   document.getElementById('search-results').style.display='none';
   ['filter-type','filter-lieu','filter-budget'].forEach(id => document.getElementById(id).value='');
 }
-
 function capitalise(s) { return s ? s.charAt(0).toUpperCase()+s.slice(1) : ''; }
-
 function remplirFiltreVilles(biens) {
   const sel=document.getElementById('filter-lieu');
   const villes={};
@@ -684,7 +688,6 @@ function remplirFiltreVilles(biens) {
   sel.innerHTML='<option value="">Tous les secteurs</option>';
   Object.entries(villes).sort((a,b)=>a[1].localeCompare(b[1])).forEach(([k,v]) => { const o=document.createElement('option'); o.value=k; o.textContent=v; sel.appendChild(o); });
 }
-
 document.addEventListener('DOMContentLoaded', chargerBiensAPIMO);
 </script>
 
@@ -722,7 +725,7 @@ async function chargerAvisApprouves() {
     const res=await fetch(AVIS_RAW_URL+'?t='+Date.now()); if(!res.ok)return;
     const avis=await res.json(); const approuves=avis.filter(a=>a.statut==='approuve').slice(-6).reverse();
     if (!approuves.length) return;
-    document.getElementById('testi-grid').innerHTML=approuves.map((a,i)=>`<div class="testi-card reveal"><div class="testi-quote">"</div><div style="color:#F5A623;font-size:18px;margin-bottom:12px;">${'★'.repeat(a.note)}<span style="color:#C8D6E5;">${'☆'.repeat(5-a.note)}</span></div><p class="testi-text">${a.texte}</p><div><div class="testi-name">${a.prenom} ${a.nom?a.nom.charAt(0)+'.'||'':''}</div><div class="testi-role">${a.contexte||'Client AGS Immobilier'} · ${a.date}</div></div></div>`).join('');
+    document.getElementById('testi-grid').innerHTML=approuves.map((a,i)=>`<div class="testi-card reveal"><div class="testi-quote">"</div><div style="color:#F5A623;font-size:18px;margin-bottom:12px;">${'★'.repeat(a.note)}<span style="color:#C8D6E5;">${'☆'.repeat(5-a.note)}</span></div><p class="testi-text">${a.texte}</p><div><div class="testi-name">${a.prenom} ${a.nom?a.nom.charAt(0)+'.':''}</div><div class="testi-role">${a.contexte||'Client AGS Immobilier'} · ${a.date}</div></div></div>`).join('');
   } catch(e) {}
 }
 document.addEventListener('DOMContentLoaded', chargerAvisApprouves);
@@ -758,7 +761,6 @@ function envoyerEmailJS(e, form, templateId) {
 })();
 </script>
 
-<!-- BARRE NAV MOBILE BAS -->
 <div class="mob-bottomnav">
   <a href="index.html"><span class="nav-icon">🏠</span>Accueil</a>
   <a href="biens.html"><span class="nav-icon">🔍</span>Biens</a>
