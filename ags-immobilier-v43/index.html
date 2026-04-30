@@ -615,8 +615,10 @@ function mettreAJourGrilleBiens(biens) {
     grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text-light);font-size:14px;font-weight:300;">Aucun bien disponible.<br>Contactez-nous pour plus d\'informations.</div>';
     return;
   }
-  // 3 biens max, les plus récents en premier
-  const vitrine = [...biens].reverse().slice(0, 3);
+  // 3 biens max — triés par date d'ajout (updatedAt) les plus récents en premier
+  const vitrine = [...biens]
+    .sort((a, b) => new Date(b.updatedAt || 0) - new Date(a.updatedAt || 0))
+    .slice(0, 3);
   grid.innerHTML = vitrine.map((b, i) => {
     const featured = i === 0 ? ' featured' : '';
     // Badge : admin en priorité, sinon "Nouveau" pour le 1er bien
