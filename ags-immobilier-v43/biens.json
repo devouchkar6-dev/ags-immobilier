@@ -1,5 +1,45 @@
 [
   {
+    "id": "bien-1777560911320",
+    "titre": "Local commercial 28 m² à louer à Juan les Pins, plage",
+    "soustitre": "Juan les Pins",
+    "type": "commercial",
+    "ville": "Juan les Pins",
+    "villeFilter": "Juan les Pins",
+    "prix": "1 900 €",
+    "prixBrut": 0,
+    "badge": "Nouveau",
+    "mainPhoto": "https://res.cloudinary.com/df15yd65n/image/upload/v1777560902/wopq2qwkh3uroawuthci.png",
+    "photos": [
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1777560902/wopq2qwkh3uroawuthci.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1777560908/w6s19abm8tghlrepregj.png"
+    ],
+    "caracteristiques": {
+      "surface": "28",
+      "pieces": "1"
+    },
+    "accroche": "Local commercial 28 m² à louer à Juan les Pins, plage",
+    "description": "Idéalement situé sur le boulevard Édouard Baudoin à Juan les Pins, ce local commercial de 28 m² vous offre une visibilité exceptionnelle en front de mer. Avec sa grande vitrine, il conviendra parfaitement à une activité de vente ou de services, bénéficiant du passage régulier des promeneurs et vacanciers.\n\nLa configuration en une grande pièce optimisée garantit une adaptation facile à votre projet professionnel : boutique, galerie, ou espace de conseil. Lumineux et facile d'accès, il se situe dans un secteur recherché à Juan les Pins, à deux pas de la plage et du centre.\n\nLa proximité immédiate des commerces et restaurants du bord de mer assure un flux de clientèle important et diversifié. Ce local rare est une opportunité à saisir pour développer votre activité dans un cadre attractif et dynamique.\n\nLes informations sur les risques naturels et technologiques auxquels ce bien est exposé sont disponibles sur Géorisques.\n\nIntéressé(e) ? Contactez-nous pour organiser une visite ou obtenir davantage d’informations.",
+    "equipements": [
+      "Climatisation",
+      "Volets roulants",
+      "Proche commerces",
+      "Proche transports",
+      "Proche mer"
+    ],
+    "dpe": "",
+    "ges": "",
+    "rente": "",
+    "surface": "28",
+    "pieces": "1",
+    "chambres": "",
+    "etage": "",
+    "exposition": "Sud",
+    "annee": "",
+    "ref": "AGS-26-62",
+    "actif": true
+  },
+  {
     "id": "bien-1777560657000",
     "titre": "À VENDRE – Villa vue mer – Théoule-sur-Mer",
     "soustitre": "Théoule-sur-Mer",
