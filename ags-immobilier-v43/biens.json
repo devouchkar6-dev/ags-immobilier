@@ -1,5 +1,54 @@
 [
   {
+    "id": "bien-1778594525660",
+    "titre": "Le Cannet - Rocheville",
+    "soustitre": "Rocheville — Le Cannet",
+    "type": "appartement",
+    "ville": "Le Cannet",
+    "villeFilter": "Le Cannet",
+    "prix": "192 000 €",
+    "prixBrut": 192000,
+    "badge": "Exclusivité AGS",
+    "mainPhoto": "https://res.cloudinary.com/df15yd65n/image/upload/v1778594344/awhniplra6c4yzvq7lyp.jpg",
+    "photos": [
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1778594344/awhniplra6c4yzvq7lyp.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1778594387/wqiubry20kelaq7rdyum.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1778594401/bocrmrperw0a8pwlappc.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1778594396/alecnpupntp9qnnjeygl.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1778594374/gbgmpj1idhf3dc7avzef.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1778594379/iwi33r0pglpwxlwjfspv.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1778594371/b5jfqpqwmyhlxs9tm3vj.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1778594351/x78gexyfkrsd0hi8wmy9.jpg"
+    ],
+    "caracteristiques": {
+      "surface": "40",
+      "pieces": "2"
+    },
+    "accroche": "Le Cannet - Rocheville",
+    "description": "Le Cannet\n\nEmplacement recherché\n\nSitué au Cannet, cet appartement 2 pièces de 41,01 m² offre un cadre de vie agréable dans un environnement calme et bien desservi. En bon état général, il bénéficie d’une belle luminosité ainsi que d’une vue dégagée, idéal pour une résidence principale ou un investissement locatif.\n\nÀ proximité immédiate :\nAutoroute\nBus et axes principaux\nCentre-ville et commerces\nÉcoles et services\nMédecins\nParcs et espaces verts\nMer et plages\n\nDes atouts clés pour votre projet :\n\n2 pièces\n40 m²\n2ème étage\nVue dégagée\nExposition Est\nSéjour lumineux\n\nChauffage collectif gaz (radiateurs)\nEau chaude individuelle (chaudière)\nTout à l’égout\n\nInformations pratiques :\nBon état\nCharges : 2 093,58 € / an\nTaxe foncière : 339 € / an\nImmeuble en copropriété (78 lots)\nIdéal résidence principale ou investissement locatif\n\nLes informations sur les risques naturels et technologiques auxquels ce bien est exposé sont disponibles sur Géorisques.\n\nIntéressé(e) ? Contactez-nous pour organiser une visite ou obtenir davantage d’informations.",
+    "equipements": [
+      "Ascenseur",
+      "Cave",
+      "Terrasse",
+      "Lumineux",
+      "Digicode / Interphone",
+      "Proche commerces",
+      "Proche transports",
+      "Proche écoles"
+    ],
+    "dpe": "C",
+    "ges": "C",
+    "rente": "",
+    "surface": "40",
+    "pieces": "2",
+    "chambres": "1",
+    "etage": "2",
+    "exposition": "Est",
+    "annee": "1980",
+    "ref": "",
+    "actif": true
+  },
+  {
     "id": "bien-1777560911320",
     "titre": "Local commercial 28 m² à louer à Juan les Pins, plage",
     "soustitre": "Juan les Pins",
@@ -237,7 +286,7 @@
   {
     "id": "bien-1773740790002",
     "titre": "Studio à vendre en Nue-Propriété à Marina Baie des Anges",
-    "soustitre": "Marina Baie des Anges — Villeneuve-Loubet",
+    "soustitre": "Villeneuve-Loubet",
     "type": "appartement",
     "ville": "Villeneuve-Loubet",
     "villeFilter": "Villeneuve-Loubet",
