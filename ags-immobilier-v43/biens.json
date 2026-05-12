@@ -1,5 +1,56 @@
 [
   {
+    "id": "bien-1778594977390",
+    "titre": "Le Cannet – Grande-Bretagne",
+    "soustitre": "Grande-Bretagne — Le Cannet",
+    "type": "appartement",
+    "ville": "Le Cannet",
+    "villeFilter": "Le Cannet",
+    "prix": "198 000 €",
+    "prixBrut": 198000,
+    "badge": "Nouveau",
+    "mainPhoto": "https://res.cloudinary.com/df15yd65n/image/upload/v1778594851/yaeez8o6mv49mz6qp8xp.jpg",
+    "photos": [
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1778594851/yaeez8o6mv49mz6qp8xp.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1778594736/cx7bnwj96ggcaoizztgm.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1778594867/rcaru2knrezlinjyxuvp.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1778594872/s2qsstp39wouxdwrr5zq.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1778594878/nbrexsjuwmdx76sbkhtv.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1778594735/s95k1v7wt6jykxuxn5ye.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1778594891/bjzdmxgvplvovhxb7ch3.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1778594894/fcbnkzggec3uksvargxr.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1778594734/pktmowukci0uw7ls6brp.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1778594887/rotbtq5nwgjojrenmc37.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1778594899/t9fw6he5dyksew7c7rgs.jpg"
+    ],
+    "caracteristiques": {
+      "surface": "51",
+      "pieces": "3"
+    },
+    "accroche": "Le Cannet – Grande-Bretagne",
+    "description": "Emplacement recherché\n\nSitué dans le quartier prisé de Grande-Bretagne au Cannet, cet appartement 3 pièces offre un cadre de vie agréable avec une vue dégagée sur les collines. Lumineux grâce à son exposition, il bénéficie d’un fort potentiel après rénovation, dans un environnement calme et bien desservi.\n\nÀ proximité immédiate :\nAutoroute\nBus et axes principaux\nCentre-ville et commerces\nÉcoles et crèches\nMédecins et services\nParcs et espaces verts\nMer et plages\n\nDes atouts clés pour votre projet :\n\n3 pièces\n6ème et dernier étage avec ascenseur\nVue dégagée sur les collines\nExposition Est\nGrand séjour lumineux\nBalcon\nClimatisation\nVolets roulants électriques\nInterphone\n\nChauffage électrique individuel (convecteurs)\nEau chaude individuelle\nTout à l’égout\nImmeuble en béton armé\n\nInformations pratiques :\nBien libre\nÉtat : à rénover\nCharges : 300 € / mois\nTaxe foncière : 1 100 € / an\nIdéal résidence principale ou investissement locatif\n\nLes informations sur les risques naturels et technologiques auxquels ce bien est exposé sont disponibles sur Géorisques.\n\nIntéressé(e) ? Contactez-nous pour organiser une visite ou obtenir davantage d’informations.",
+    "equipements": [
+      "Ascenseur",
+      "Terrasse",
+      "Cuisine équipée",
+      "Lumineux",
+      "Vue montagne",
+      "Digicode / Interphone",
+      "Proche transports"
+    ],
+    "dpe": "D",
+    "ges": "C",
+    "rente": "",
+    "surface": "51",
+    "pieces": "3",
+    "chambres": "2",
+    "etage": "6",
+    "exposition": "Est",
+    "annee": "",
+    "ref": "",
+    "actif": true
+  },
+  {
     "id": "bien-1778594525660",
     "titre": "Le Cannet - Rocheville",
     "soustitre": "Rocheville — Le Cannet",
