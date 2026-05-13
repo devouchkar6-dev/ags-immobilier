@@ -14,10 +14,16 @@
   gtag('js', new Date());
   gtag('config', 'G-JY1BK1B02T');
 </script>
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+<link rel="manifest" href="/images/site.webmanifest">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
   :root { --navy:#1B2D4F; --navy-deep:#0F1E36; --blue-mid:#2C4A7C; --blue-light:#4A6FA5; --accent:#5B9BD5; --cream:#F8F5F0; --text-light:#6B7280; }
   * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { overflow-x:hidden; max-width:100%; }
   body { font-family:'Jost',sans-serif; color:var(--navy); background:white; }
   nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; justify-content:space-between; align-items:center; padding:14px 60px; background:var(--navy); transition:all .4s ease; }
   nav.scrolled { background:rgba(255,255,255,.97); backdrop-filter:blur(12px); box-shadow:0 1px 0 rgba(27,45,79,.1); }
@@ -34,16 +40,12 @@
   .page-hero h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,4vw,56px); font-weight:300; color:white; line-height:1.15; }
   .page-hero h1 em { font-style:italic; color:var(--accent); }
   .page-hero p { color:rgba(255,255,255,.55); font-size:15px; font-weight:300; margin-top:16px; max-width:520px; margin-left:auto; margin-right:auto; }
-
-  /* ── ONGLETS ── */
   .tabs-bar { background:var(--navy); display:flex; align-items:flex-end; padding:0 60px; border-bottom:2px solid rgba(255,255,255,.06); }
   .tab-btn { background:none; border:none; color:rgba(255,255,255,.45); font-family:'Jost',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; padding:18px 28px; cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; transition:all .3s; display:flex; align-items:center; gap:8px; }
   .tab-btn:hover { color:rgba(255,255,255,.8); }
   .tab-btn.active { color:white; border-bottom-color:var(--accent); }
   .tab-count { background:rgba(255,255,255,.15); color:rgba(255,255,255,.7); font-size:10px; padding:2px 7px; border-radius:10px; font-weight:400; }
   .tab-btn.active .tab-count { background:var(--accent); color:white; }
-
-  /* ── FILTRES ── */
   .filtres-bar { background:var(--navy); padding:0 60px; display:flex; align-items:stretch; height:72px; }
   .filtre-field { display:flex; flex-direction:column; justify-content:center; padding:0 28px; border-right:1px solid rgba(255,255,255,.07); min-width:180px; }
   .filtre-field label { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:4px; }
@@ -51,8 +53,6 @@
   .filtre-field select option { background:var(--navy-deep); color:white; }
   .filtre-submit { margin-left:auto; background:var(--accent); border:none; color:white; font-family:'Jost',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; padding:0 40px; cursor:pointer; transition:background .3s; }
   .filtre-submit:hover { background:var(--blue-mid); }
-
-  /* ── GRILLE ── */
   .biens-section { padding:72px 60px; background:var(--cream); min-height:500px; }
   .biens-count { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--text-light); margin-bottom:40px; }
   .biens-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
@@ -120,14 +120,8 @@
   }
   .mob-bottomnav { display:none; }
 </style>
-<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-<link rel="manifest" href="/images/site.webmanifest">
 </head>
 <body>
-
 <nav id="nav">
   <div class="logo"><img src="images/logo.jpg" alt="AGS Immobilier"></div>
   <ul>
@@ -140,14 +134,11 @@
   </ul>
   <a href="index.html#contact" class="nav-cta">Nous contacter</a>
 </nav>
-
 <div class="page-hero">
   <div class="page-hero-tag">AGS Immobilier — Le Cannet</div>
   <h1>Tous nos <em>biens</em></h1>
   <p>Appartements, maisons, viager et locaux commerciaux sur la Côte d'Azur</p>
 </div>
-
-<!-- ONGLETS -->
 <div class="tabs-bar">
   <button class="tab-btn active" id="tab-dispo" onclick="changerOnglet('dispo')">
     🏠 Disponibles <span class="tab-count" id="count-dispo">0</span>
@@ -156,8 +147,6 @@
     ✓ Vendus <span class="tab-count" id="count-vendu">0</span>
   </button>
 </div>
-
-<!-- FILTRES (uniquement pour disponibles) -->
 <div class="filtres-bar" id="filtres-bar">
   <div class="filtre-field">
     <label>Type</label>
@@ -188,7 +177,6 @@
   </div>
   <button class="filtre-submit" onclick="rechercherBiens()">Rechercher →</button>
 </div>
-
 <section class="biens-section">
   <div class="biens-count" id="biensCount"></div>
   <div id="biensLoader" class="loader">Chargement…</div>
@@ -204,7 +192,6 @@
     <a href="index.html#contact">Estimation gratuite &amp; conseil →</a>
   </div>
 </section>
-
 <footer>
   <div class="footer-top">
     <div>
@@ -228,7 +215,6 @@
     <span><a href="mentions-legales.html" style="color:rgba(255,255,255,.4);text-decoration:underline;">Mentions légales</a></span>
   </div>
 </footer>
-
 <div class="mob-bottomnav">
   <a href="index.html"><span class="nav-icon">🏠</span>Accueil</a>
   <a href="biens.html"><span class="nav-icon">🔍</span>Biens</a>
@@ -236,14 +222,17 @@
   <a href="index.html#contact"><span class="nav-icon">✉️</span>Contact</a>
   <a href="tel:+33607131181"><span class="nav-icon">📞</span>Appeler</a>
 </div>
-
 <script>
 const TYPE_LABELS = { appartement:'Appartement', maison:'Maison / Villa', viager:'Viager', commercial:'Local commercial' };
 let BIENS_ALL = [];
 let ongletActif = 'dispo';
 
-localStorage.removeItem('ags_biens_site');
-localStorage.removeItem('ags_biens_admin');
+// Fonction de normalisation — même logique que index.html
+function normVille(s) {
+  return (s||'').toLowerCase().trim()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[-\s]+/g,' ').trim();
+}
 
 window.addEventListener('scroll', () => {
   document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
@@ -256,13 +245,10 @@ async function chargerBiens() {
     const data = await res.json();
     if (Array.isArray(data)) BIENS_ALL = data;
   } catch(e) {}
-
-  // Compter dispo vs vendus
-  const dispos = BIENS_ALL.filter(b => (b.badge || '').toLowerCase() !== 'vendu');
-  const vendus = BIENS_ALL.filter(b => (b.badge || '').toLowerCase() === 'vendu');
+  const dispos = BIENS_ALL.filter(b => b.actif !== false && (b.badge||'').toLowerCase() !== 'vendu');
+  const vendus = BIENS_ALL.filter(b => (b.badge||'').toLowerCase() === 'vendu');
   document.getElementById('count-dispo').textContent = dispos.length;
   document.getElementById('count-vendu').textContent = vendus.length;
-
   remplirFiltreVilles(dispos);
   afficherBiens(dispos);
   document.getElementById('biensLoader').style.display = 'none';
@@ -274,18 +260,13 @@ function changerOnglet(onglet) {
   document.getElementById('tab-vendu').classList.toggle('active', onglet === 'vendu');
   document.getElementById('filtres-bar').style.display = onglet === 'dispo' ? 'flex' : 'none';
   document.getElementById('biens-cta').style.display = onglet === 'dispo' ? 'block' : 'none';
-
-  // Réinitialiser les filtres
   document.getElementById('filter-type').value = '';
   document.getElementById('filter-lieu').value = '';
   document.getElementById('filter-budget').value = '';
-
   if (onglet === 'dispo') {
-    const dispos = BIENS_ALL.filter(b => (b.badge || '').toLowerCase() !== 'vendu');
-    afficherBiens(dispos);
+    afficherBiens(BIENS_ALL.filter(b => b.actif !== false && (b.badge||'').toLowerCase() !== 'vendu'));
   } else {
-    const vendus = BIENS_ALL.filter(b => (b.badge || '').toLowerCase() === 'vendu');
-    afficherVendus(vendus);
+    afficherVendus(BIENS_ALL.filter(b => (b.badge||'').toLowerCase() === 'vendu'));
   }
 }
 
@@ -293,31 +274,30 @@ function afficherBiens(biens) {
   const grid = document.getElementById('biensGrid');
   const noRes = document.getElementById('noResult');
   const count = document.getElementById('biensCount');
-  if (!biens.length) {
-    grid.innerHTML = ''; noRes.style.display = 'block';
-    count.textContent = ''; return;
-  }
+  if (!biens.length) { grid.innerHTML=''; noRes.style.display='block'; count.textContent=''; return; }
   noRes.style.display = 'none';
-  count.textContent = biens.length + ' bien' + (biens.length > 1 ? 's' : '') + ' disponible' + (biens.length > 1 ? 's' : '');
+  count.textContent = biens.length + ' bien' + (biens.length>1?'s':'') + ' disponible' + (biens.length>1?'s':'');
   grid.innerHTML = biens.map(b => {
     const url = 'fiche.html?id=' + b.id;
     const surf = b.surface || b.caracteristiques?.surface || '';
     const pieces = b.pieces || b.caracteristiques?.pieces || '';
-    const badgeClass = b.type === 'viager' ? 'viager' : b.type === 'commercial' ? 'commercial' : 'default';
-    return '<div class="bien-card" onclick="window.location=\'' + url + '\'">'
-      + '<div class="bien-img"><img src="' + (b.mainPhoto || 'images/placeholder.jpg') + '" alt="' + b.titre + '" loading="lazy">'
-      + (b.badge ? '<span class="bien-badge ' + badgeClass + '">' + b.badge + '</span>' : '')
-      + '</div>'
-      + '<div class="bien-info">'
-      + '<div class="bien-type">' + (TYPE_LABELS[b.type] || b.type || '') + '</div>'
-      + '<div class="bien-name">' + b.titre + '</div>'
-      + '<div class="bien-loc">📍 ' + b.ville + '</div>'
-      + '<div class="bien-features">'
-      + (surf ? '<span class="bien-feat">📐 ' + surf + '</span>' : '')
-      + (pieces ? '<span class="bien-feat">🚪 ' + pieces + '</span>' : '')
-      + '</div>'
-      + '<div class="bien-price">' + b.prix + '</div>'
-      + '</div></div>';
+    const badgeClass = b.type==='viager'?'viager':b.type==='commercial'?'commercial':'default';
+    return `<div class="bien-card" onclick="window.location='${url}'">
+      <div class="bien-img">
+        <img src="${b.mainPhoto||'images/placeholder.jpg'}" alt="${b.titre}" loading="lazy" onerror="this.src='images/placeholder.jpg'">
+        ${b.badge?`<span class="bien-badge ${badgeClass}">${b.badge}</span>`:''}
+      </div>
+      <div class="bien-info">
+        <div class="bien-type">${TYPE_LABELS[b.type]||b.type||''}</div>
+        <div class="bien-name">${b.titre}</div>
+        <div class="bien-loc">📍 ${b.ville||''}</div>
+        <div class="bien-features">
+          ${surf?`<span class="bien-feat">📐 ${surf}</span>`:''}
+          ${pieces?`<span class="bien-feat">🚪 ${pieces}</span>`:''}
+        </div>
+        <div class="bien-price">${b.prix}</div>
+      </div>
+    </div>`;
   }).join('');
 }
 
@@ -325,45 +305,46 @@ function afficherVendus(vendus) {
   const grid = document.getElementById('biensGrid');
   const noRes = document.getElementById('noResult');
   const count = document.getElementById('biensCount');
-  if (!vendus.length) {
-    grid.innerHTML = ''; noRes.style.display = 'block';
-    count.textContent = ''; return;
-  }
+  if (!vendus.length) { grid.innerHTML=''; noRes.style.display='block'; count.textContent=''; return; }
   noRes.style.display = 'none';
-  count.textContent = vendus.length + ' bien' + (vendus.length > 1 ? 's' : '') + ' vendu' + (vendus.length > 1 ? 's' : '');
+  count.textContent = vendus.length + ' bien' + (vendus.length>1?'s':'') + ' vendu' + (vendus.length>1?'s':'');
   grid.innerHTML = vendus.map(b => {
     const surf = b.surface || b.caracteristiques?.surface || '';
     const pieces = b.pieces || b.caracteristiques?.pieces || '';
-    return '<div class="bien-card vendu">'
-      + '<div class="bien-img"><img src="' + (b.mainPhoto || 'images/placeholder.jpg') + '" alt="' + b.titre + '" loading="lazy">'
-      + '<div class="vendu-overlay"><div class="vendu-stamp">Vendu</div></div>'
-      + '</div>'
-      + '<div class="bien-info">'
-      + '<div class="bien-type">' + (TYPE_LABELS[b.type] || b.type || '') + '</div>'
-      + '<div class="bien-name">' + b.titre + '</div>'
-      + '<div class="bien-loc">📍 ' + b.ville + '</div>'
-      + '<div class="bien-features">'
-      + (surf ? '<span class="bien-feat">📐 ' + surf + '</span>' : '')
-      + (pieces ? '<span class="bien-feat">🚪 ' + pieces + '</span>' : '')
-      + '</div>'
-      + '<div class="bien-price vendu-price">Vendu par AGS Immobilier</div>'
-      + '</div></div>';
+    return `<div class="bien-card vendu">
+      <div class="bien-img">
+        <img src="${b.mainPhoto||'images/placeholder.jpg'}" alt="${b.titre}" loading="lazy">
+        <div class="vendu-overlay"><div class="vendu-stamp">Vendu</div></div>
+      </div>
+      <div class="bien-info">
+        <div class="bien-type">${TYPE_LABELS[b.type]||b.type||''}</div>
+        <div class="bien-name">${b.titre}</div>
+        <div class="bien-loc">📍 ${b.ville||''}</div>
+        <div class="bien-features">
+          ${surf?`<span class="bien-feat">📐 ${surf}</span>`:''}
+          ${pieces?`<span class="bien-feat">🚪 ${pieces}</span>`:''}
+        </div>
+        <div class="bien-price vendu-price">Vendu par AGS Immobilier</div>
+      </div>
+    </div>`;
   }).join('');
 }
 
+// ✅ FIX FILTRE VILLE — même logique normalisée que index.html
 function remplirFiltreVilles(biens) {
   const sel = document.getElementById('filter-lieu');
   if (!sel) return;
   const villes = {};
   biens.forEach(b => {
-    const key = (b.villeFilter || b.ville || '').toLowerCase().trim();
-    const label = b.ville || key;
-    if (key) villes[key] = label;
+    const label = b.ville || b.villeFilter || '';
+    if (!label) return;
+    const k = normVille(label);
+    if (k) villes[k] = label;
   });
   sel.innerHTML = '<option value="">Tous les secteurs</option>';
-  Object.entries(villes).sort((a,b) => a[1].localeCompare(b[1])).forEach(([key, label]) => {
+  Object.entries(villes).sort((a,b) => a[1].localeCompare(b[1])).forEach(([k, label]) => {
     const opt = document.createElement('option');
-    opt.value = key; opt.textContent = label;
+    opt.value = k; opt.textContent = label;
     sel.appendChild(opt);
   });
 }
@@ -372,21 +353,27 @@ function rechercherBiens() {
   const type   = document.getElementById('filter-type').value;
   const lieu   = document.getElementById('filter-lieu').value;
   const budget = document.getElementById('filter-budget').value;
-  const dispos = BIENS_ALL.filter(b => (b.badge || '').toLowerCase() !== 'vendu');
+  const dispos = BIENS_ALL.filter(b => b.actif !== false && (b.badge||'').toLowerCase() !== 'vendu');
   const res = dispos.filter(b => {
     if (type && b.type !== type) return false;
     if (lieu) {
-      const bVille = (b.villeFilter || b.ville || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,'-');
-      if (bVille !== lieu) return false;
+      // ✅ Comparer les deux champs normalisés
+      const bVilleFilter = normVille(b.villeFilter);
+      const bVille = normVille(b.ville);
+      const lieuNorm = normVille(lieu);
+      const match = bVilleFilter === lieuNorm || bVille === lieuNorm ||
+                    bVilleFilter.includes(lieuNorm) || bVille.includes(lieuNorm) ||
+                    lieuNorm.includes(bVilleFilter) || lieuNorm.includes(bVille);
+      if (!match) return false;
     }
     if (budget) {
       const p = b.prixBrut || 0;
-      if (budget === 'viager' && b.type !== 'viager') return false;
-      if (budget !== 'viager' && b.type === 'viager') return false;
-      if (budget === '0-200'   && p >= 200000) return false;
-      if (budget === '200-400' && (p < 200000 || p >= 400000)) return false;
-      if (budget === '400-700' && (p < 400000 || p >= 700000)) return false;
-      if (budget === '700+'    && p < 700000) return false;
+      if (budget==='viager' && b.type!=='viager') return false;
+      if (budget!=='viager' && b.type==='viager') return false;
+      if (budget==='0-200'   && p>=200000) return false;
+      if (budget==='200-400' && (p<200000||p>=400000)) return false;
+      if (budget==='400-700' && (p<400000||p>=700000)) return false;
+      if (budget==='700+'    && p<700000) return false;
     }
     return true;
   });
