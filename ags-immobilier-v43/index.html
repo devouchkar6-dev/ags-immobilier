@@ -638,7 +638,19 @@ function rechercherBiens() {
   if (!type&&!lieu&&!budget) { document.getElementById('search-results').style.display='none'; return; }
   const res = BIENS_APIMO.filter(b => {
     if (type && b.type!==type) return false;
-    if (lieu && b.villeFilter!==lieu) return false;
+    if (lieu) {
+      // Normaliser : minuscules + sans accents
+      const norm = s => (s||'').toLowerCase().trim().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[-\s]+/g,' ');
+      const lieuNorm = norm(lieu);
+      // Chercher dans villeFilter ET ville (les deux peuvent contenir la valeur)
+      const bVilleFilter = norm(b.villeFilter);
+      const bVille = norm(b.ville);
+      // Correspondance exacte ou partielle (ex: "cannet" trouve "le cannet")
+      const match = bVilleFilter === lieuNorm || bVille === lieuNorm ||
+                    bVilleFilter.includes(lieuNorm) || bVille.includes(lieuNorm) ||
+                    lieuNorm.includes(bVilleFilter) || lieuNorm.includes(bVille);
+      if (!match) return false;
+    }
     if (budget) {
       const p=b.prixBrut||0;
       if (budget==='viager'&&b.type!=='viager') return false;
@@ -675,7 +687,13 @@ function capitalise(s) { return s ? s.charAt(0).toUpperCase()+s.slice(1) : ''; }
 function remplirFiltreVilles(biens) {
   const sel=document.getElementById('filter-lieu');
   const villes={};
-  biens.forEach(b => { const k=(b.villeFilter||b.ville||'').toLowerCase().trim(); if(k) villes[k]=b.ville||k; });
+  biens.forEach(b => {
+    // Utiliser ville (label affiché) comme clé de recherche normalisée
+    const label = b.ville || b.villeFilter || '';
+    if (!label) return;
+    const k = label.toLowerCase().trim().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[-\s]+/g,' ');
+    if (k) villes[k] = label;
+  });
   sel.innerHTML='<option value="">Tous les secteurs</option>';
   Object.entries(villes).sort((a,b)=>a[1].localeCompare(b[1])).forEach(([k,v]) => { const o=document.createElement('option'); o.value=k; o.textContent=v; sel.appendChild(o); });
 }

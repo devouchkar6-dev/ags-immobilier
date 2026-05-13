@@ -12,16 +12,23 @@
   gtag('js', new Date());
   gtag('config', 'G-JY1BK1B02T');
 </script>
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+<link rel="manifest" href="/images/site.webmanifest">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
   :root { --navy:#1B2D4F; --navy-deep:#0F1E36; --blue-mid:#2C4A7C; --blue-light:#4A6FA5; --accent:#5B9BD5; --cream:#F0F4F8; --stone:#C8D6E5; --text:#1B2D4F; --text-light:#5A7499; }
   * { margin:0; padding:0; box-sizing:border-box; }
+  /* ✅ FIX SCROLL HORIZONTAL */
+  html, body { overflow-x: hidden; max-width: 100%; }
   body { font-family:'Jost',sans-serif; background:var(--cream); color:var(--text); }
   nav { background:var(--navy); display:flex; justify-content:space-between; align-items:center; padding:16px 60px; }
   .logo img { height:48px; width:auto; display:block; }
   .nav-back { color:rgba(255,255,255,.7); text-decoration:none; font-size:11px; letter-spacing:2px; text-transform:uppercase; display:flex; align-items:center; gap:8px; transition:color .3s; }
   .nav-back:hover { color:var(--accent); }
-  .gallery { display:grid; grid-template-columns:2fr 1fr 1fr; grid-template-rows:1fr 1fr; gap:4px; height:520px; background:#1B2D4F; }
+  .gallery { display:grid; grid-template-columns:2fr 1fr 1fr; grid-template-rows:1fr 1fr; gap:4px; height:520px; background:#1B2D4F; overflow:hidden; }
   .gallery-main { grid-row:span 2; overflow:hidden; position:relative; }
   .gallery img { width:100%; height:100%; object-fit:cover; display:block; cursor:pointer; transition:transform .5s; }
   .gallery img:hover { transform:scale(1.03); }
@@ -62,10 +69,8 @@
   .sticky-contact-line { font-size:13px; color:var(--text-light); }
   .sticky-contact-line a { color:var(--navy); text-decoration:none; font-weight:400; }
   .sticky-contact-line a:hover { color:var(--accent); }
-  .msg-ok { color:#27ae60; font-size:13px; margin-top:10px; display:none; }
-  .msg-err { color:#e74c3c; font-size:13px; margin-top:10px; display:none; }
-  .dpe-row { display:flex; gap:24px; margin-top:16px; }
-  .dpe-block { flex:1; }
+  .dpe-row { display:flex; gap:24px; margin-top:16px; flex-wrap:wrap; }
+  .dpe-block { flex:1; min-width:120px; }
   .dpe-label-h { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-light); margin-bottom:8px; }
   .dpe-letters { display:flex; gap:4px; align-items:flex-end; }
   .dpe-l { width:28px; font-size:10px; font-weight:500; color:white; display:flex; align-items:center; justify-content:center; border-radius:2px; }
@@ -75,64 +80,57 @@
   footer a { font-size:12px; color:rgba(255,255,255,.6); text-decoration:none; }
   footer a:hover { color:var(--accent); }
   .whatsapp-btn { position:fixed; bottom:28px; left:28px; z-index:999; width:56px; height:56px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(37,211,102,.4); text-decoration:none; font-size:26px; }
-  /* ── BOTTOM NAV MOBILE ── */
   .mob-bottomnav { display:none; }
   @media(max-width:768px) {
+    /* ✅ FIX SCROLL HORIZONTAL MOBILE */
+    html, body { overflow-x: hidden !important; }
     nav { padding:12px 20px; }
-    .gallery { grid-template-columns:1fr; grid-template-rows:260px; height:260px; }
-    .gallery > *:not(.gallery-main) { display:none; }
-    .gallery-main { grid-row:span 1; }
-    .wrap { grid-template-columns:1fr; padding:24px 16px; gap:24px; }
-    .prop-title { font-size:28px; } .prop-price { font-size:32px; }
-    .equip-grid { grid-template-columns:1fr 1fr; }
-    .sticky-card { position:static; }
-    footer { padding:16px 20px 80px; flex-direction:column; gap:8px; text-align:center; }
-    body { padding-bottom:68px; }
+    .gallery { grid-template-columns:1fr !important; grid-template-rows:260px !important; height:260px !important; }
+    .gallery > *:not(.gallery-main) { display:none !important; }
+    .gallery-main { grid-row:span 1 !important; }
+    .wrap { grid-template-columns:1fr !important; padding:20px 16px !important; gap:24px !important; max-width:100% !important; }
+    .prop-title { font-size:26px !important; }
+    .prop-price { font-size:30px !important; }
+    .equip-grid { grid-template-columns:1fr 1fr !important; }
+    .sticky-card { position:static !important; padding:20px 16px !important; }
+    /* Simulateur mobile */
+    .sticky-card [style*="grid-template-columns:1fr 1fr 1fr"] { grid-template-columns:1fr 1fr !important; }
+    footer { padding:16px 20px 80px !important; flex-direction:column !important; gap:8px !important; text-align:center !important; }
+    body { padding-bottom:68px !important; }
     .mob-bottomnav {
-      display:flex !important;
-      position:fixed; bottom:0; left:0; right:0;
-      height:60px; max-height:60px;
-      background:#0F1E36;
-      border-top:1px solid rgba(255,255,255,.08);
-      z-index:500;
+      display:flex !important; position:fixed !important;
+      bottom:0 !important; left:0 !important; right:0 !important;
+      height:60px !important; max-height:60px !important;
+      background:#0F1E36 !important;
+      border-top:1px solid rgba(255,255,255,.08) !important;
+      z-index:500 !important;
     }
     .mob-bottomnav a {
-      flex:1; display:flex; flex-direction:column;
-      align-items:center; justify-content:center;
-      padding:8px 2px; text-decoration:none;
-      color:rgba(255,255,255,.5); font-size:8px;
-      letter-spacing:1px; text-transform:uppercase; gap:4px;
+      flex:1 !important; display:flex !important; flex-direction:column !important;
+      align-items:center !important; justify-content:center !important;
+      padding:8px 2px !important; text-decoration:none !important;
+      color:rgba(255,255,255,.5) !important; font-size:8px !important;
+      letter-spacing:1px !important; text-transform:uppercase !important; gap:4px !important;
     }
-    .mob-bottomnav a:hover { color:#5B9BD5; }
-    .mob-bottomnav .nav-icon { font-size:16px; }
+    .mob-bottomnav .nav-icon { font-size:16px !important; }
   }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script>emailjs.init("7m1BlSj4clGb0I9tl");</script>
-<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-<link rel="manifest" href="/images/site.webmanifest">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init('JKP2Yx31rJQSjsRb2');</script>
 </head>
 <body>
-
 <nav>
   <a href="index.html" class="logo"><img src="images/logo.jpg" alt="AGS Immobilier" onerror="this.style.display='none'"></a>
   <a href="biens.html" class="nav-back">← Retour aux biens</a>
 </nav>
-
 <div id="page-content">
   <div class="loading">⏳ Chargement de la fiche…</div>
 </div>
-
 <footer>
   <span>© 2024 AGS Immobilier — Le Cannet</span>
   <a href="index.html">← Retour au site</a>
 </footer>
-
 <a class="whatsapp-btn" href="https://wa.me/33607131181" target="_blank" title="WhatsApp">💬</a>
-
 <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
   <div class="lb-close" onclick="fermerLB()">✕</div>
   <div class="lb-prev" onclick="lbNav(-1)">‹</div>
@@ -140,8 +138,6 @@
   <div class="lb-next" onclick="lbNav(1)">›</div>
   <div class="lb-counter" id="lb-counter"></div>
 </div>
-
-<!-- BARRE NAV MOBILE BAS -->
 <div class="mob-bottomnav">
   <a href="index.html"><span class="nav-icon">🏠</span>Accueil</a>
   <a href="biens.html"><span class="nav-icon">🔍</span>Biens</a>
@@ -149,37 +145,25 @@
   <a href="index.html#contact"><span class="nav-icon">✉️</span>Contact</a>
   <a href="tel:+33607131181"><span class="nav-icon">📞</span>Appeler</a>
 </div>
-
 <script>
-const APIMO_API  = 'https://ags-immobilier.vercel.app/api/biens';
+// ✅ GitHub uniquement (APIMO supprimé)
 const GITHUB_RAW = 'https://raw.githubusercontent.com/devouchkar6-dev/ags-immobilier/main/ags-immobilier-v43/biens.json';
 const DPE_COLORS = {A:'#00a651',B:'#57b947',C:'#c4d600',D:'#fbaf17',E:'#f26522',F:'#ed1c24',G:'#be1e2d'};
 
 document.addEventListener('DOMContentLoaded', chargerFiche);
 
 async function chargerFiche() {
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get('id');
+  const id = new URLSearchParams(window.location.search).get('id');
   if (!id) { afficherErreur('Aucun bien spécifié.'); return; }
-  let bien = null;
   try {
-    const res = await fetch(APIMO_API + '?t=' + Date.now());
+    const res = await fetch(GITHUB_RAW + '?t=' + Date.now(), { cache:'no-store' });
     if (res.ok) {
-      const data = await res.json();
-      bien = (data.biens || []).find(b => String(b.id) === String(id));
+      const biens = await res.json();
+      const bien = biens.find(b => String(b.id) === String(id));
+      if (bien) { afficherBien(bien); return; }
     }
   } catch(e) {}
-  if (!bien) {
-    try {
-      const res = await fetch(GITHUB_RAW + '?t=' + Date.now(), { cache:'no-store' });
-      if (res.ok) {
-        const biens = await res.json();
-        bien = biens.find(b => String(b.id) === String(id));
-      }
-    } catch(e) {}
-  }
-  if (!bien) { afficherErreur("Ce bien n'existe plus ou a été retiré."); return; }
-  afficherBien(bien);
+  afficherErreur("Ce bien n'existe plus ou a été retiré.");
 }
 
 function afficherErreur(msg) {
@@ -197,9 +181,9 @@ function dpeBar(lettre) {
 
 function afficherBien(b) {
   const photos = b.photos && b.photos.length ? b.photos : (b.mainPhoto ? [b.mainPhoto] : []);
-  const titre  = (b.titre || '').replace(/'/g, "&#39;").replace(/"/g, "&quot;");
-  const prix   = b.prix  || '';
-  const ville  = (b.ville || '').replace(/'/g, "&#39;");
+  const titre  = (b.titre || '').replace(/'/g,"&#39;").replace(/"/g,"&quot;");
+  const prix   = b.prix || '';
+  const ville  = (b.ville || '').replace(/'/g,"&#39;");
   const loc    = [b.quartier, ville].filter(Boolean).join(' — ') || ville;
   window._fichPhotos = photos;
 
@@ -207,12 +191,12 @@ function afficherBien(b) {
     <div class="gallery">
       <div class="gallery-main" style="position:relative">
         ${photos[0]
-          ? `<img src="${photos[0]}" alt="${titre}" onclick="ouvrirLB(window._fichPhotos,0)" style="cursor:zoom-in">`
+          ? `<img src="${photos[0]}" alt="${titre}" onclick="ouvrirLB(window._fichPhotos,0)" style="cursor:zoom-in" loading="eager">`
           : `<div class="gallery-ph">🏠</div>`}
         ${photos.length > 1 ? `<div class="gallery-count">📷 ${photos.length} photos</div>` : ''}
       </div>
       ${[1,2].map(i => photos[i]
-        ? `<div><img src="${photos[i]}" alt="${titre}" onclick="ouvrirLB(window._fichPhotos,${i})" style="cursor:zoom-in"></div>`
+        ? `<div><img src="${photos[i]}" alt="${titre}" onclick="ouvrirLB(window._fichPhotos,${i})" style="cursor:zoom-in" loading="lazy"></div>`
         : `<div class="gallery-ph"></div>`).join('')}
     </div>`;
 
@@ -225,7 +209,8 @@ function afficherBien(b) {
     b.annee      && `📅 Construit en ${b.annee}`,
   ].filter(Boolean);
 
-  const equips  = (b.equipements || []).map(e => `<div class="equip-item">✓ ${e}</div>`).join('');
+  const equips = (b.equipements || []).map(e => `<div class="equip-item">✓ ${e}</div>`).join('');
+
   const dpeHTML = (b.dpe || b.ges) ? `
     <h2 class="section-h">Diagnostic énergétique</h2>
     <div class="dpe-row">
@@ -233,50 +218,36 @@ function afficherBien(b) {
       ${b.ges ? `<div class="dpe-block"><div class="dpe-label-h">Émissions (GES)</div>${dpeBar(b.ges)}</div>` : ''}
     </div>` : '';
 
-  const msgDefaut = `Je suis intéressé(e) par ${b.titre || ''}${b.ville ? ' à ' + b.ville : ''} et souhaite organiser une visite.`;
-
   document.title = (b.titre || '') + ' | AGS Immobilier';
   document.getElementById('page-content').innerHTML = `
     ${galHTML}
     <div class="wrap">
       <div>
-        ${b.badge       ? `<div class="prop-badge">${b.badge}</div>` : ''}
+        ${b.badge     ? `<div class="prop-badge">${b.badge}</div>` : ''}
         <h1 class="prop-title">${titre}</h1>
         <div class="prop-loc">📍 ${loc}</div>
         <div class="prop-price">${prix}</div>
-        ${b.rente       ? `<div class="prop-ref">Rente mensuelle : ${b.rente}</div>` : ''}
-        ${b.ref         ? `<div class="prop-ref">Réf. ${b.ref}</div>` : ''}
-        ${tags.length   ? `<div class="tags">${tags.map(t=>`<div class="tag">${t}</div>`).join('')}</div>` : ''}
-        ${b.accroche    ? `<p style="font-size:15px;font-style:italic;color:var(--navy);line-height:1.75;margin-bottom:24px">${b.accroche}</p>` : ''}
+        ${b.rente     ? `<div class="prop-ref">Rente mensuelle : ${b.rente}</div>` : ''}
+        ${b.ref       ? `<div class="prop-ref">Réf. ${b.ref}</div>` : ''}
+        ${tags.length ? `<div class="tags">${tags.map(t=>`<div class="tag">${t}</div>`).join('')}</div>` : ''}
+        ${b.accroche  ? `<p style="font-size:15px;font-style:italic;color:var(--navy);line-height:1.75;margin-bottom:24px">${b.accroche}</p>` : ''}
         ${b.description ? `<h2 class="section-h">Description</h2><p class="desc">${b.description.replace(/\n/g,'<br>')}</p>` : ''}
-        ${equips        ? `<h2 class="section-h">Équipements & prestations</h2><div class="equip-grid">${equips}</div>` : ''}
+        ${equips      ? `<h2 class="section-h">Équipements &amp; prestations</h2><div class="equip-grid">${equips}</div>` : ''}
         ${dpeHTML}
       </div>
       <div>
         <div class="sticky-card">
           <div class="sticky-price">${prix}</div>
           <div class="sticky-sub">${titre}${ville ? ' · ' + ville : ''}</div>
-          <form name="visite-fiche" onsubmit="envoyerEmailJS(event,this,'template_7o6elbd')">
+          <form name="visite-fiche" onsubmit="envoyerEmailJS(event,this,'template_visite')">
             <input type="hidden" name="bien" value="${b.titre || ''} — ${prix}">
-            <div class="form-group">
-              <label>Nom & Prénom *</label>
-              <input type="text" name="nom" placeholder="Jean Dupont" required>
-            </div>
-            <div class="form-group">
-              <label>Téléphone *</label>
-              <input type="tel" name="telephone" placeholder="06 00 00 00 00" required>
-            </div>
-            <div class="form-group">
-              <label>Email *</label>
-              <input type="email" name="email" placeholder="votre@email.com" required>
-            </div>
-            <div class="form-group">
-              <label>Message</label>
-              <textarea name="message" id="msg-visite"></textarea>
-            </div>
+            <div class="form-group"><label>Nom &amp; Prénom *</label><input type="text" name="nom" placeholder="Jean Dupont" required></div>
+            <div class="form-group"><label>Téléphone *</label><input type="tel" name="telephone" placeholder="06 00 00 00 00" required></div>
+            <div class="form-group"><label>Email *</label><input type="email" name="email" placeholder="votre@email.com" required></div>
+            <div class="form-group"><label>Message</label><textarea name="message" id="msg-visite"></textarea></div>
             <button type="submit" class="sticky-submit">Demander une visite →</button>
-            <p class="msg-ok" id="msg-ok">✓ Message envoyé ! Nous vous recontactons rapidement.</p>
-            <p class="msg-err" id="msg-err">⚠️ Erreur, veuillez réessayer.</p>
+            <p id="msg-ok" style="color:#27ae60;font-size:13px;margin-top:10px;display:none;">✓ Message envoyé !</p>
+            <p id="msg-err" style="color:#e74c3c;font-size:13px;margin-top:10px;display:none;">⚠️ Erreur, veuillez réessayer.</p>
           </form>
           <div class="sticky-contacts">
             <div class="sticky-contact-line">📞 <a href="tel:+33607131181">Philippe — 06 07 13 11 81</a></div>
@@ -285,44 +256,31 @@ function afficherBien(b) {
           </div>
           <div style="margin-top:24px;padding-top:24px;border-top:1px solid var(--stone);">
             <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--navy);font-weight:500;margin-bottom:16px;">📊 Simulateur de financement</div>
-
-            <div style="display:flex;flex-direction:column;gap:10px;">
-
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-                <div>
-                  <div style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:4px;">Prix (€)</div>
-                  <input id="sim-prix" type="number" min="0" oninput="calculerFinancement()"
-                    style="width:100%;border:1px solid var(--stone);background:var(--cream);padding:9px 10px;font-family:'Jost',sans-serif;font-size:13px;color:var(--navy);outline:none;">
-                </div>
-                <div>
-                  <div style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:4px;">Apport (€)</div>
-                  <input id="sim-apport" type="number" value="50000" min="0" oninput="calculerFinancement()"
-                    style="width:100%;border:1px solid var(--stone);background:white;padding:9px 10px;font-family:'Jost',sans-serif;font-size:13px;color:var(--navy);outline:none;">
-                </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+              <div>
+                <div style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:4px;">Prix (€)</div>
+                <input id="sim-prix" type="number" min="0" oninput="calculerFinancement()" style="width:100%;border:1px solid var(--stone);background:var(--cream);padding:9px 10px;font-family:'Jost',sans-serif;font-size:13px;color:var(--navy);outline:none;">
               </div>
-
-              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
-                <div>
-                  <div style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:4px;">Taux (%)</div>
-                  <input id="sim-taux" type="number" value="3.5" min="0" max="20" step="0.1" oninput="calculerFinancement()"
-                    style="width:100%;border:1px solid var(--stone);background:white;padding:9px 10px;font-family:'Jost',sans-serif;font-size:13px;color:var(--navy);outline:none;">
-                </div>
-                <div>
-                  <div style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:4px;">Durée (ans)</div>
-                  <input id="sim-duree" type="number" value="20" min="1" max="30" oninput="calculerFinancement()"
-                    style="width:100%;border:1px solid var(--stone);background:white;padding:9px 10px;font-family:'Jost',sans-serif;font-size:13px;color:var(--navy);outline:none;">
-                </div>
-                <div>
-                  <div style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:4px;">Notaire (%)</div>
-                  <input id="sim-notaire" type="number" value="7.5" min="0" max="15" step="0.1" oninput="calculerFinancement()"
-                    style="width:100%;border:1px solid var(--stone);background:white;padding:9px 10px;font-family:'Jost',sans-serif;font-size:13px;color:var(--navy);outline:none;">
-                </div>
+              <div>
+                <div style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:4px;">Apport (€)</div>
+                <input id="sim-apport" type="number" value="50000" min="0" oninput="calculerFinancement()" style="width:100%;border:1px solid var(--stone);background:white;padding:9px 10px;font-family:'Jost',sans-serif;font-size:13px;color:var(--navy);outline:none;">
               </div>
-
             </div>
-
-            <!-- Résultats -->
-            <div style="background:var(--navy);padding:16px;margin-top:12px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px;">
+              <div>
+                <div style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:4px;">Taux (%)</div>
+                <input id="sim-taux" type="number" value="3.5" min="0" max="20" step="0.1" oninput="calculerFinancement()" style="width:100%;border:1px solid var(--stone);background:white;padding:9px 10px;font-family:'Jost',sans-serif;font-size:13px;color:var(--navy);outline:none;">
+              </div>
+              <div>
+                <div style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:4px;">Durée (ans)</div>
+                <input id="sim-duree" type="number" value="20" min="1" max="30" oninput="calculerFinancement()" style="width:100%;border:1px solid var(--stone);background:white;padding:9px 10px;font-family:'Jost',sans-serif;font-size:13px;color:var(--navy);outline:none;">
+              </div>
+              <div>
+                <div style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:4px;">Notaire (%)</div>
+                <input id="sim-notaire" type="number" value="7.5" min="0" max="15" step="0.1" oninput="calculerFinancement()" style="width:100%;border:1px solid var(--stone);background:white;padding:9px 10px;font-family:'Jost',sans-serif;font-size:13px;color:var(--navy);outline:none;">
+              </div>
+            </div>
+            <div style="background:var(--navy);padding:16px;margin-top:4px;">
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.08);">
                 <div style="text-align:center;">
                   <div style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:4px;">Mensualité</div>
@@ -354,7 +312,6 @@ function afficherBien(b) {
       </div>
     </div>`;
 
-  // Initialiser simulateur après injection HTML
   initSimulateur(b.prixBrut || 0);
   const ta = document.getElementById('msg-visite');
   if (ta) ta.value = 'Je suis intéressé(e) par ' + (b.titre || '') + ' et souhaite organiser une visite.';
@@ -363,54 +320,39 @@ function afficherBien(b) {
 function envoyerEmailJS(e, form, templateId) {
   e.preventDefault();
   const btn = form.querySelector('button[type=submit]');
-  btn.textContent = '⏳ Envoi en cours...';
-  btn.disabled = true;
+  btn.textContent = '⏳ Envoi...'; btn.disabled = true;
   emailjs.sendForm('service_rktxwry', templateId, form)
     .then(() => { window.location.href = 'merci.html'; })
     .catch(() => {
       document.getElementById('msg-err').style.display = 'block';
-      btn.textContent = 'Demander une visite →';
-      btn.disabled = false;
+      btn.textContent = 'Demander une visite →'; btn.disabled = false;
     });
 }
 
-
-// ── SIMULATEUR FINANCEMENT ──
 function calculerFinancement() {
-  const prix    = parseFloat(document.getElementById('sim-prix')?.value) || 0;
-  const apport  = parseFloat(document.getElementById('sim-apport')?.value) || 0;
-  const taux    = parseFloat(document.getElementById('sim-taux')?.value) || 0;
-  const duree   = parseInt(document.getElementById('sim-duree')?.value) || 20;
+  const prix   = parseFloat(document.getElementById('sim-prix')?.value) || 0;
+  const apport = parseFloat(document.getElementById('sim-apport')?.value) || 0;
+  const taux   = parseFloat(document.getElementById('sim-taux')?.value) || 0;
+  const duree  = parseInt(document.getElementById('sim-duree')?.value) || 20;
   const notairePct = parseFloat(document.getElementById('sim-notaire')?.value) || 7.5;
-  const agence  = parseFloat(document.getElementById('sim-agence')?.value) || 0;
-
   if (!prix) return;
-
   const fraisNotaire = prix * notairePct / 100;
-  const emprunt = Math.max(0, prix - apport + agence);
-  const coutTotal = prix + fraisNotaire + agence;
-
+  const emprunt = Math.max(0, prix - apport);
+  const coutTotal = prix + fraisNotaire;
   const fmt = v => new Intl.NumberFormat('fr-FR', { style:'currency', currency:'EUR', maximumFractionDigits:0 }).format(v);
-
-  let mensualite = 0, totalInterets = 0, coutCredit = 0;
-
+  let mensualite = 0, totalInterets = 0;
   if (emprunt > 0 && taux > 0) {
-    const tauxMensuel = taux / 100 / 12;
-    const n = duree * 12;
-    mensualite = emprunt * tauxMensuel * Math.pow(1 + tauxMensuel, n) / (Math.pow(1 + tauxMensuel, n) - 1);
-    coutCredit = mensualite * n;
-    totalInterets = coutCredit - emprunt;
+    const tm = taux / 100 / 12, n = duree * 12;
+    mensualite = emprunt * tm * Math.pow(1+tm,n) / (Math.pow(1+tm,n)-1);
+    totalInterets = mensualite * n - emprunt;
   } else if (emprunt > 0) {
     mensualite = emprunt / (duree * 12);
-    coutCredit = emprunt;
-    totalInterets = 0;
   }
-
-  document.getElementById('res-mensualite').textContent  = mensualite ? fmt(mensualite) + '/mois' : '—';
-  document.getElementById('res-cout-total').textContent  = fmt(coutTotal + totalInterets);
-  document.getElementById('res-emprunt').textContent     = fmt(emprunt);
-  document.getElementById('res-notaire').textContent     = fmt(fraisNotaire);
-  document.getElementById('res-interets').textContent    = totalInterets ? fmt(totalInterets) : '0 €';
+  document.getElementById('res-mensualite').textContent = mensualite ? fmt(mensualite)+'/mois' : '—';
+  document.getElementById('res-cout-total').textContent = fmt(coutTotal + totalInterets);
+  document.getElementById('res-emprunt').textContent    = fmt(emprunt);
+  document.getElementById('res-notaire').textContent    = fmt(fraisNotaire);
+  document.getElementById('res-interets').textContent   = totalInterets ? fmt(totalInterets) : '0 €';
 }
 
 function initSimulateur(prixBrut) {
