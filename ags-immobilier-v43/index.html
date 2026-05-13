@@ -8,6 +8,14 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 <link rel="manifest" href="/images/site.webmanifest">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JY1BK1B02T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JY1BK1B02T');
+</script>
 <style id="mobile-css">
 @media only screen and (max-width: 768px) {
   nav ul { display: none !important; }
@@ -23,9 +31,19 @@
   .search-bar { flex-direction: column !important; height: auto !important; padding: 16px 20px !important; }
   .search-field { width: 100% !important; border-right: none !important; border-bottom: 1px solid rgba(255,255,255,.1) !important; padding: 10px 0 !important; }
   .search-submit { width: 100% !important; margin-top: 10px !important; }
-  .props-grid { grid-template-columns: 1fr !important; }
+
+  /* ✅ FIX BIENS MOBILE : 1 colonne, annuler featured */
+  .props-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+  .prop-card.featured { grid-column: span 1 !important; grid-row: span 1 !important; }
+  .prop-card.featured .prop-img { height: 240px !important; }
+  .prop-img { height: 220px !important; }
+
   .about { grid-template-columns: 1fr !important; padding: 48px 18px !important; gap: 28px !important; }
+  .about-imgs { height: 280px !important; }
+  .about-img-main { width: 100% !important; height: 280px !important; position: relative !important; }
+  .about-img-accent { display: none !important; }
   .services-grid { grid-template-columns: 1fr !important; }
+  .services { padding: 48px 18px !important; overflow: hidden !important; }
   .locs-grid { grid-template-columns: 1fr 1fr !important; }
   .team-grid { grid-template-columns: 1fr !important; }
   .testi-grid { grid-template-columns: 1fr !important; }
@@ -35,7 +53,6 @@
   .footer-top { grid-template-columns: 1fr !important; }
   .footer-bottom { flex-direction: column !important; text-align: center !important; }
   .properties { padding: 48px 18px !important; }
-  .services { padding: 48px 18px !important; }
   .locations { padding: 48px 18px !important; }
   .team { padding: 48px 18px !important; }
   .partenaires { padding: 48px 18px !important; }
@@ -43,6 +60,11 @@
   footer { padding: 40px 18px 80px !important; }
   .full-form { padding: 24px 16px !important; }
   body { padding-bottom: 68px !important; }
+
+  /* ✅ FIX SCROLL HORIZONTAL */
+  #search-results { padding: 32px 18px !important; }
+  #results-grid { grid-template-columns: 1fr !important; }
+
   .mob-bottomnav {
     display: flex !important; position: fixed !important;
     bottom: 0 !important; left: 0 !important; right: 0 !important;
@@ -77,13 +99,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --navy:#1B2D4F; --navy-deep:#0F1E36; --blue-mid:#2C4A7C; --blue-light:#4A6FA5;
-    --accent:#5B9BD5; --cream:#F0F4F8; --stone:#C8D6E5; --text:#1B2D4F; --text-light:#5A7499;
-  }
+  :root { --navy:#1B2D4F; --navy-deep:#0F1E36; --blue-mid:#2C4A7C; --blue-light:#4A6FA5; --accent:#5B9BD5; --cream:#F0F4F8; --stone:#C8D6E5; --text:#1B2D4F; --text-light:#5A7499; }
   * { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; }
-  body { font-family:'Jost',sans-serif; background:var(--cream); color:var(--text); overflow-x:hidden; }
+  /* ✅ FIX SCROLL HORIZONTAL GLOBAL */
+  html, body { overflow-x: hidden; max-width: 100%; }
+  body { font-family:'Jost',sans-serif; background:var(--cream); color:var(--text); }
   nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; justify-content:space-between; align-items:center; padding:14px 60px; background:var(--navy); transition:all .4s ease; }
   nav.scrolled { background:rgba(255,255,255,.97); backdrop-filter:blur(12px); box-shadow:0 1px 0 rgba(27,45,79,.1); }
   .logo img { height:52px; width:auto; display:block; }
@@ -260,7 +281,6 @@
   </ul>
   <a href="#contact" class="nav-cta">Nous contacter</a>
 </nav>
-
 <section class="hero">
   <div class="hero-bg"></div>
   <div style="position:absolute;top:0;right:0;width:45%;height:100%;z-index:1;pointer-events:none;overflow:hidden">
@@ -268,7 +288,6 @@
     <div style="position:absolute;top:10%;right:5%;width:400px;height:400px;border:1px solid rgba(255,255,255,.04);border-radius:50%"></div>
     <div style="position:absolute;bottom:15%;right:10%;width:200px;height:200px;border:1px solid rgba(74,111,165,.2);border-radius:50%"></div>
   </div>
-  <div style="position:absolute;left:60px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.12) 30%,rgba(255,255,255,.12) 70%,transparent);z-index:2;pointer-events:none"></div>
   <div class="hero-content">
     <div class="hero-tag">Agence Indépendante — Le Cannet</div>
     <h1>Votre projet immobilier<br>sur la <em>Côte d'Azur</em></h1>
@@ -284,7 +303,6 @@
     <div class="stat"><div class="stat-num">24h</div><div class="stat-label">Réactivité</div></div>
   </div>
 </section>
-
 <div class="search-bar">
   <div class="search-field">
     <label>Type</label>
@@ -313,17 +331,16 @@
   </div>
   <button class="search-submit" onclick="rechercherBiens()">Rechercher →</button>
 </div>
-
 <div id="search-results" style="display:none;background:var(--navy-deep);padding:40px 60px;">
   <div style="max-width:1200px;margin:0 auto;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px;">
       <div>
         <div id="results-count" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:6px;"></div>
         <div id="results-title" style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:white;"></div>
       </div>
       <button onclick="fermerResultats()" style="background:none;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.6);padding:8px 20px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;">✕ Effacer</button>
     </div>
-    <div id="results-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;"></div>
+    <div id="results-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;"></div>
     <div id="no-results" style="display:none;text-align:center;padding:40px;">
       <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:rgba(255,255,255,.5);margin-bottom:12px;">Aucun bien trouvé</div>
       <div style="font-size:13px;color:rgba(255,255,255,.3);font-weight:300;margin-bottom:24px;">Contactez-nous, nous trouvons pour vous !</div>
@@ -331,7 +348,6 @@
     </div>
   </div>
 </div>
-
 <section class="properties" id="properties">
   <div class="section-header reveal">
     <div class="section-tag">Propriétés disponibles</div>
@@ -344,7 +360,6 @@
     <a href="biens.html" class="btn-primary">Voir tous nos biens →</a>
   </div>
 </section>
-
 <section class="about" id="about">
   <div class="about-imgs reveal">
     <img class="about-img-main" src="images/logo_bg.jpg" alt="Agence AGS Immobilier" loading="lazy" style="object-fit:cover;">
@@ -365,7 +380,6 @@
     </div>
   </div>
 </section>
-
 <section class="services" id="services">
   <div class="section-header reveal">
     <div class="section-tag">Notre approche</div>
@@ -384,7 +398,6 @@
     <div class="service-card reveal"><div class="service-icon">💼</div><div class="service-title">Investissement locatif</div><p class="service-desc">Nous vous aidons à identifier les meilleures opportunités sur la Côte d'Azur et à optimiser la rentabilité de votre placement.</p></div>
   </div>
 </section>
-
 <section class="locations" id="locations">
   <div class="section-header reveal">
     <div class="section-tag">Nos secteurs</div>
@@ -397,7 +410,6 @@
     <div class="loc-card reveal"><img class="loc-img" src="images/loc_mandelieu.jpg" alt="Vallauris Mandelieu" loading="lazy"><div class="loc-overlay"></div><div class="loc-info"><div class="loc-name">Vallauris &amp; Mandelieu</div><div class="loc-sub">Résidentiel &amp; calme</div></div></div>
   </div>
 </section>
-
 <section class="team" id="equipe">
   <div class="section-header reveal">
     <div class="section-tag">Notre équipe</div>
@@ -420,7 +432,6 @@
     </div>
   </div>
 </section>
-
 <section class="testimonials" id="temoignages">
   <div class="section-header reveal">
     <div class="section-tag">Témoignages</div>
@@ -439,7 +450,7 @@
     </div>
     <div style="margin-bottom:24px;">
       <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:10px;">Votre note *</div>
-      <div id="star-rating" style="display:flex;gap:8px;align-items:center;">
+      <div id="star-rating" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
         <span class="star" data-v="1" style="font-size:34px;cursor:pointer;color:#C8D6E5;transition:color .15s,transform .15s;line-height:1;">★</span>
         <span class="star" data-v="2" style="font-size:34px;cursor:pointer;color:#C8D6E5;transition:color .15s,transform .15s;line-height:1;">★</span>
         <span class="star" data-v="3" style="font-size:34px;cursor:pointer;color:#C8D6E5;transition:color .15s,transform .15s;line-height:1;">★</span>
@@ -476,7 +487,6 @@
     <div id="avis-msg" style="text-align:center;margin-top:16px;font-size:13px;font-weight:300;min-height:20px;"></div>
   </div>
 </section>
-
 <section class="partenaires" id="partenaires">
   <div class="section-header reveal">
     <div class="section-tag" style="color:rgba(255,255,255,.5);">Ils nous font confiance</div>
@@ -500,7 +510,6 @@
     </a>
   </div>
 </section>
-
 <section class="contact-section" id="contact">
   <div class="section-header reveal">
     <div class="section-tag">Parlons de votre projet</div>
@@ -557,7 +566,6 @@
     </form>
   </div>
 </section>
-
 <footer>
   <div class="footer-top">
     <div>
@@ -581,33 +589,25 @@
     <span><a href="mentions-legales.html" style="color:rgba(255,255,255,.4);text-decoration:underline;">Mentions légales</a> · <a href="mentions-legales.html" style="color:rgba(255,255,255,.4);text-decoration:underline;">Politique de confidentialité</a></span>
   </div>
 </footer>
-
 <a class="whatsapp-btn" href="https://wa.me/33607131181" target="_blank" title="WhatsApp">💬</a>
-
 <script>
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > window.innerHeight - 80); });
 document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
 </script>
-
 <script>
 let BIENS_APIMO = [];
 localStorage.removeItem('ags_biens_site');
 localStorage.removeItem('ags_biens_admin');
-
 async function chargerBiensAPIMO() {
   try {
-    const res = await fetch(
-      'https://raw.githubusercontent.com/devouchkar6-dev/ags-immobilier/main/ags-immobilier-v43/biens.json?t=' + Date.now()
-    );
+    const res = await fetch('https://raw.githubusercontent.com/devouchkar6-dev/ags-immobilier/main/ags-immobilier-v43/biens.json?t=' + Date.now());
     if (res.ok) {
       const biens = (await res.json()).filter(b => b.actif !== false && (b.badge||'').toLowerCase() !== 'vendu');
       if (biens.length > 0) { BIENS_APIMO = biens; mettreAJourGrilleBiens(biens); remplirFiltreVilles(biens); }
     }
   } catch(e) {}
 }
-
-// ✅ 3 BIENS MAX + badge Nouveau sur le 1er
 function mettreAJourGrilleBiens(biens) {
   const grid = document.getElementById('props-grid');
   if (!grid) return;
@@ -615,21 +615,13 @@ function mettreAJourGrilleBiens(biens) {
     grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text-light);font-size:14px;font-weight:300;">Aucun bien disponible.<br>Contactez-nous pour plus d\'informations.</div>';
     return;
   }
-  // 3 biens max — triés par date d'ajout (updatedAt) les plus récents en premier
-  const vitrine = [...biens]
-    .sort((a, b) => new Date(b.updatedAt || 0) - new Date(a.updatedAt || 0))
-    .slice(0, 3);
+  const vitrine = [...biens].sort((a, b) => new Date(b.updatedAt || 0) - new Date(a.updatedAt || 0)).slice(0, 3);
   grid.innerHTML = vitrine.map((b, i) => {
     const featured = i === 0 ? ' featured' : '';
-    // Badge : admin en priorité, sinon "Nouveau" pour le 1er bien
     const badge = b.badge || (i === 0 ? 'Nouveau' : '');
     const badgeHTML = badge ? `<div class="prop-badge${badge === 'Nouveau' || badge === 'new' ? ' new' : ''}">${badge}</div>` : '';
-    const imgSrc = b.mainPhoto || 'images/placeholder.jpg';
     return `<div class="prop-card${featured} reveal" onclick="window.location='fiche.html?id=${b.id}'" style="cursor:pointer">
-      <img class="prop-img" src="${imgSrc}" alt="${b.titre}"
-        loading="${i === 0 ? 'eager' : 'lazy'}"
-        decoding="async"
-        onerror="this.src='images/placeholder.jpg'">
+      <img class="prop-img" src="${b.mainPhoto || 'images/placeholder.jpg'}" alt="${b.titre}" loading="${i === 0 ? 'eager' : 'lazy'}" decoding="async" onerror="this.src='images/placeholder.jpg'">
       <div class="prop-overlay"></div>
       ${badgeHTML}
       <div class="prop-info">
@@ -641,7 +633,6 @@ function mettreAJourGrilleBiens(biens) {
     </div>`;
   }).join('');
 }
-
 function rechercherBiens() {
   const type=document.getElementById('filter-type').value, lieu=document.getElementById('filter-lieu').value, budget=document.getElementById('filter-budget').value;
   if (!type&&!lieu&&!budget) { document.getElementById('search-results').style.display='none'; return; }
@@ -660,7 +651,6 @@ function rechercherBiens() {
   });
   afficherResultats(res, type, lieu, budget);
 }
-
 function afficherResultats(res, type, lieu, budget) {
   const TL={'appartement':'Appartements','maison':'Maisons','commercial':'Commerciaux','viager':'Viager'};
   const bl={'0-200':'< 200k €','200-400':'200–400k €','400-700':'400–700k €','700+':'> 700k €'};
@@ -677,7 +667,6 @@ function afficherResultats(res, type, lieu, budget) {
   document.getElementById('search-results').style.display='block';
   document.getElementById('search-results').scrollIntoView({behavior:'smooth',block:'start'});
 }
-
 function fermerResultats() {
   document.getElementById('search-results').style.display='none';
   ['filter-type','filter-lieu','filter-budget'].forEach(id => document.getElementById(id).value='');
@@ -692,7 +681,6 @@ function remplirFiltreVilles(biens) {
 }
 document.addEventListener('DOMContentLoaded', chargerBiensAPIMO);
 </script>
-
 <script>
 const AVIS_RAW_URL = 'https://raw.githubusercontent.com/devouchkar6-dev/ags-immobilier/main/ags-immobilier-v43/avis.json';
 let noteSelectionnee = 0;
@@ -732,7 +720,6 @@ async function chargerAvisApprouves() {
 }
 document.addEventListener('DOMContentLoaded', chargerAvisApprouves);
 </script>
-
 <script>
 function envoyerEmailJS(e, form, templateId) {
   e.preventDefault();
@@ -746,7 +733,6 @@ function envoyerEmailJS(e, form, templateId) {
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>emailjs.init('JKP2Yx31rJQSjsRb2');</script>
-
 <script>
 (function() {
   var nav=document.getElementById('nav'); if(!nav)return;
@@ -762,7 +748,6 @@ function envoyerEmailJS(e, form, templateId) {
   overlay.addEventListener('click',close);
 })();
 </script>
-
 <div class="mob-bottomnav">
   <a href="index.html"><span class="nav-icon">🏠</span>Accueil</a>
   <a href="biens.html"><span class="nav-icon">🔍</span>Biens</a>
