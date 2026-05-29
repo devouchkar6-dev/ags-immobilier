@@ -31,13 +31,10 @@
   .search-bar { flex-direction: column !important; height: auto !important; padding: 16px 20px !important; }
   .search-field { width: 100% !important; border-right: none !important; border-bottom: 1px solid rgba(255,255,255,.1) !important; padding: 10px 0 !important; }
   .search-submit { width: 100% !important; margin-top: 10px !important; }
-
-  /* ✅ FIX BIENS MOBILE : 1 colonne, annuler featured */
   .props-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
   .prop-card.featured { grid-column: span 1 !important; grid-row: span 1 !important; }
   .prop-card.featured .prop-img { height: 240px !important; }
   .prop-img { height: 220px !important; }
-
   .about { grid-template-columns: 1fr !important; padding: 48px 18px !important; gap: 28px !important; }
   .about-imgs { height: 280px !important; }
   .about-img-main { width: 100% !important; height: 280px !important; position: relative !important; }
@@ -60,11 +57,8 @@
   footer { padding: 40px 18px 80px !important; }
   .full-form { padding: 24px 16px !important; }
   body { padding-bottom: 68px !important; }
-
-  /* ✅ FIX SCROLL HORIZONTAL */
   #search-results { padding: 32px 18px !important; }
   #results-grid { grid-template-columns: 1fr !important; }
-
   .mob-bottomnav {
     display: flex !important; position: fixed !important;
     bottom: 0 !important; left: 0 !important; right: 0 !important;
@@ -102,8 +96,7 @@
   :root { --navy:#1B2D4F; --navy-deep:#0F1E36; --blue-mid:#2C4A7C; --blue-light:#4A6FA5; --accent:#5B9BD5; --cream:#F0F4F8; --stone:#C8D6E5; --text:#1B2D4F; --text-light:#5A7499; }
   * { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; }
-  /* ✅ FIX SCROLL HORIZONTAL GLOBAL */
-  html, body { overflow-x: hidden; max-width: 100%; }
+  html, body { overflow-x:hidden; max-width:100%; }
   body { font-family:'Jost',sans-serif; background:var(--cream); color:var(--text); }
   nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; justify-content:space-between; align-items:center; padding:14px 60px; background:var(--navy); transition:all .4s ease; }
   nav.scrolled { background:rgba(255,255,255,.97); backdrop-filter:blur(12px); box-shadow:0 1px 0 rgba(27,45,79,.1); }
@@ -281,6 +274,7 @@
   </ul>
   <a href="#contact" class="nav-cta">Nous contacter</a>
 </nav>
+
 <section class="hero">
   <div class="hero-bg"></div>
   <div style="position:absolute;top:0;right:0;width:45%;height:100%;z-index:1;pointer-events:none;overflow:hidden">
@@ -303,6 +297,7 @@
     <div class="stat"><div class="stat-num">24h</div><div class="stat-label">Réactivité</div></div>
   </div>
 </section>
+
 <div class="search-bar">
   <div class="search-field">
     <label>Type</label>
@@ -331,6 +326,7 @@
   </div>
   <button class="search-submit" onclick="rechercherBiens()">Rechercher →</button>
 </div>
+
 <div id="search-results" style="display:none;background:var(--navy-deep);padding:40px 60px;">
   <div style="max-width:1200px;margin:0 auto;">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px;">
@@ -348,6 +344,7 @@
     </div>
   </div>
 </div>
+
 <section class="properties" id="properties">
   <div class="section-header reveal">
     <div class="section-tag">Propriétés disponibles</div>
@@ -360,6 +357,7 @@
     <a href="biens.html" class="btn-primary">Voir tous nos biens →</a>
   </div>
 </section>
+
 <section class="about" id="about">
   <div class="about-imgs reveal">
     <img class="about-img-main" src="images/logo_bg.jpg" alt="Agence AGS Immobilier" loading="lazy" style="object-fit:cover;">
@@ -380,6 +378,7 @@
     </div>
   </div>
 </section>
+
 <section class="services" id="services">
   <div class="section-header reveal">
     <div class="section-tag">Notre approche</div>
@@ -398,6 +397,7 @@
     <div class="service-card reveal"><div class="service-icon">💼</div><div class="service-title">Investissement locatif</div><p class="service-desc">Nous vous aidons à identifier les meilleures opportunités sur la Côte d'Azur et à optimiser la rentabilité de votre placement.</p></div>
   </div>
 </section>
+
 <section class="locations" id="locations">
   <div class="section-header reveal">
     <div class="section-tag">Nos secteurs</div>
@@ -410,6 +410,7 @@
     <div class="loc-card reveal"><img class="loc-img" src="images/loc_mandelieu.jpg" alt="Vallauris Mandelieu" loading="lazy"><div class="loc-overlay"></div><div class="loc-info"><div class="loc-name">Vallauris &amp; Mandelieu</div><div class="loc-sub">Résidentiel &amp; calme</div></div></div>
   </div>
 </section>
+
 <section class="team" id="equipe">
   <div class="section-header reveal">
     <div class="section-tag">Notre équipe</div>
@@ -432,6 +433,7 @@
     </div>
   </div>
 </section>
+
 <section class="testimonials" id="temoignages">
   <div class="section-header reveal">
     <div class="section-tag">Témoignages</div>
@@ -442,6 +444,8 @@
     <div class="testi-card reveal"><div class="testi-quote">"</div><p class="testi-text">Nous cherchions une maison sur Mougins depuis plusieurs mois. L'équipe d'AGS a parfaitement cerné nos attentes et nous a proposé le bien idéal dès la deuxième visite.</p><div><div class="testi-name">Thomas &amp; Julie R.</div><div class="testi-role">Acquéreurs — Maison à Mougins</div></div></div>
     <div class="testi-card reveal"><div class="testi-quote">"</div><p class="testi-text">Très satisfait de l'estimation réalisée par AGS Immobilier. Sérieuse, argumentée, et parfaitement en phase avec le marché. La vente s'est conclue rapidement.</p><div><div class="testi-name">Claire M.</div><div class="testi-role">Vendeuse — Studio à Cannes</div></div></div>
   </div>
+
+  <!-- FORMULAIRE AVIS -->
   <div id="avis-form-section" style="max-width:680px;margin:64px auto 0;background:var(--cream);border:1px solid var(--stone);padding:48px 44px;">
     <div style="text-align:center;margin-bottom:32px;">
       <div class="section-tag" style="justify-content:center;">Votre expérience</div>
@@ -487,6 +491,7 @@
     <div id="avis-msg" style="text-align:center;margin-top:16px;font-size:13px;font-weight:300;min-height:20px;"></div>
   </div>
 </section>
+
 <section class="partenaires" id="partenaires">
   <div class="section-header reveal">
     <div class="section-tag" style="color:rgba(255,255,255,.5);">Ils nous font confiance</div>
@@ -510,6 +515,7 @@
     </a>
   </div>
 </section>
+
 <section class="contact-section" id="contact">
   <div class="section-header reveal">
     <div class="section-tag">Parlons de votre projet</div>
@@ -536,7 +542,7 @@
         <div class="contact-detail-text"><span>Email</span><a href="#" onclick="this.href='mailto:agsimmo06@gmail.com';return false;" style="color:inherit;">agsimmo06&#64;gmail.com</a></div>
       </div>
     </div>
-    <form class="full-form reveal" name="contact-ags" onsubmit="envoyerEmailJS(event,this,'template_contact')">
+    <form class="full-form reveal" name="contact-ags" onsubmit="envoyerEmailJS(event,this,'template_7o6elbd')">
       <div class="form-row">
         <div class="form-group"><label>Nom &amp; Prénom *</label><input type="text" name="nom" placeholder="Jean Dupont" required></div>
         <div class="form-group"><label>Téléphone *</label><input type="tel" name="telephone" placeholder="06 00 00 00 00" required></div>
@@ -566,6 +572,7 @@
     </form>
   </div>
 </section>
+
 <footer>
   <div class="footer-top">
     <div>
@@ -589,16 +596,20 @@
     <span><a href="mentions-legales.html" style="color:rgba(255,255,255,.4);text-decoration:underline;">Mentions légales</a> · <a href="mentions-legales.html" style="color:rgba(255,255,255,.4);text-decoration:underline;">Politique de confidentialité</a></span>
   </div>
 </footer>
+
 <a class="whatsapp-btn" href="https://wa.me/33607131181" target="_blank" title="WhatsApp">💬</a>
+
 <script>
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > window.innerHeight - 80); });
 document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
 </script>
+
 <script>
 let BIENS_APIMO = [];
 localStorage.removeItem('ags_biens_site');
 localStorage.removeItem('ags_biens_admin');
+
 async function chargerBiensAPIMO() {
   try {
     const res = await fetch('https://raw.githubusercontent.com/devouchkar6-dev/ags-immobilier/main/ags-immobilier-v43/biens.json?t=' + Date.now());
@@ -608,6 +619,7 @@ async function chargerBiensAPIMO() {
     }
   } catch(e) {}
 }
+
 function mettreAJourGrilleBiens(biens) {
   const grid = document.getElementById('props-grid');
   if (!grid) return;
@@ -633,23 +645,16 @@ function mettreAJourGrilleBiens(biens) {
     </div>`;
   }).join('');
 }
+
 function rechercherBiens() {
   const type=document.getElementById('filter-type').value, lieu=document.getElementById('filter-lieu').value, budget=document.getElementById('filter-budget').value;
   if (!type&&!lieu&&!budget) { document.getElementById('search-results').style.display='none'; return; }
+  const norm = s => (s||'').toLowerCase().trim().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[-\s]+/g,' ');
   const res = BIENS_APIMO.filter(b => {
     if (type && b.type!==type) return false;
     if (lieu) {
-      // Normaliser : minuscules + sans accents
-      const norm = s => (s||'').toLowerCase().trim().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[-\s]+/g,' ');
-      const lieuNorm = norm(lieu);
-      // Chercher dans villeFilter ET ville (les deux peuvent contenir la valeur)
-      const bVilleFilter = norm(b.villeFilter);
-      const bVille = norm(b.ville);
-      // Correspondance exacte ou partielle (ex: "cannet" trouve "le cannet")
-      const match = bVilleFilter === lieuNorm || bVille === lieuNorm ||
-                    bVilleFilter.includes(lieuNorm) || bVille.includes(lieuNorm) ||
-                    lieuNorm.includes(bVilleFilter) || lieuNorm.includes(bVille);
-      if (!match) return false;
+      const lieuNorm=norm(lieu), bVF=norm(b.villeFilter), bV=norm(b.ville);
+      if (!(bVF===lieuNorm||bV===lieuNorm||bVF.includes(lieuNorm)||bV.includes(lieuNorm)||lieuNorm.includes(bVF)||lieuNorm.includes(bV))) return false;
     }
     if (budget) {
       const p=b.prixBrut||0;
@@ -663,6 +668,7 @@ function rechercherBiens() {
   });
   afficherResultats(res, type, lieu, budget);
 }
+
 function afficherResultats(res, type, lieu, budget) {
   const TL={'appartement':'Appartements','maison':'Maisons','commercial':'Commerciaux','viager':'Viager'};
   const bl={'0-200':'< 200k €','200-400':'200–400k €','400-700':'400–700k €','700+':'> 700k €'};
@@ -679,6 +685,7 @@ function afficherResultats(res, type, lieu, budget) {
   document.getElementById('search-results').style.display='block';
   document.getElementById('search-results').scrollIntoView({behavior:'smooth',block:'start'});
 }
+
 function fermerResultats() {
   document.getElementById('search-results').style.display='none';
   ['filter-type','filter-lieu','filter-budget'].forEach(id => document.getElementById(id).value='');
@@ -687,11 +694,11 @@ function capitalise(s) { return s ? s.charAt(0).toUpperCase()+s.slice(1) : ''; }
 function remplirFiltreVilles(biens) {
   const sel=document.getElementById('filter-lieu');
   const villes={};
+  const norm = s => (s||'').toLowerCase().trim().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[-\s]+/g,' ');
   biens.forEach(b => {
-    // Utiliser ville (label affiché) comme clé de recherche normalisée
     const label = b.ville || b.villeFilter || '';
     if (!label) return;
-    const k = label.toLowerCase().trim().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[-\s]+/g,' ');
+    const k = norm(label);
     if (k) villes[k] = label;
   });
   sel.innerHTML='<option value="">Tous les secteurs</option>';
@@ -699,6 +706,7 @@ function remplirFiltreVilles(biens) {
 }
 document.addEventListener('DOMContentLoaded', chargerBiensAPIMO);
 </script>
+
 <script>
 const AVIS_RAW_URL = 'https://raw.githubusercontent.com/devouchkar6-dev/ags-immobilier/main/ags-immobilier-v43/avis.json';
 let noteSelectionnee = 0;
@@ -711,23 +719,44 @@ document.querySelectorAll('.star').forEach(star => {
 function colorierEtoiles(n) { document.querySelectorAll('.star').forEach(s => { s.style.color=+s.dataset.v<=n?'#F5A623':'#C8D6E5'; s.style.transform=+s.dataset.v<=n?'scale(1.15)':'scale(1)'; }); }
 const avisTexte=document.getElementById('avis-texte');
 if (avisTexte) avisTexte.addEventListener('input', () => { const c=document.getElementById('char-count'); if(c) c.textContent=avisTexte.value.length; });
+
+// ✅ AVIS : envoi via API Vercel → sauvegardé dans avis.json → modération admin
 async function soumettreAvis() {
-  const note=+document.getElementById('avis-note').value, prenom=document.getElementById('avis-prenom').value.trim(), nom=document.getElementById('avis-nom').value.trim(), contexte=document.getElementById('avis-contexte').value.trim(), texte=document.getElementById('avis-texte').value.trim(), consent=document.getElementById('avis-consent').checked, msg=document.getElementById('avis-msg'), btn=document.getElementById('avis-btn');
-  if (!note) { affMsg(msg,'⚠️ Veuillez sélectionner une note.',true); return; }
-  if (!prenom) { affMsg(msg,'⚠️ Veuillez renseigner votre prénom.',true); return; }
-  if (!nom) { affMsg(msg,'⚠️ Veuillez renseigner votre nom.',true); return; }
-  if (texte.length<20) { affMsg(msg,'⚠️ Témoignage trop court.',true); return; }
-  if (!consent) { affMsg(msg,'⚠️ Veuillez accepter les conditions.',true); return; }
+  const note=+document.getElementById('avis-note').value,
+        prenom=document.getElementById('avis-prenom').value.trim(),
+        nom=document.getElementById('avis-nom').value.trim(),
+        contexte=document.getElementById('avis-contexte').value.trim(),
+        texte=document.getElementById('avis-texte').value.trim(),
+        consent=document.getElementById('avis-consent').checked,
+        msg=document.getElementById('avis-msg'),
+        btn=document.getElementById('avis-btn');
+  if (!note)          { affMsg(msg,'⚠️ Veuillez sélectionner une note.',true); return; }
+  if (!prenom)        { affMsg(msg,'⚠️ Veuillez renseigner votre prénom.',true); return; }
+  if (!nom)           { affMsg(msg,'⚠️ Veuillez renseigner votre nom.',true); return; }
+  if (texte.length<20){ affMsg(msg,'⚠️ Témoignage trop court (20 caractères min).',true); return; }
+  if (!consent)       { affMsg(msg,'⚠️ Veuillez accepter les conditions.',true); return; }
   btn.disabled=true; btn.textContent='⏳ Envoi…';
   try {
-    const res=await fetch('https://ags-immobilier.vercel.app/api/submit-avis',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({note,prenom,nom,contexte,texte})});
-    const result=await res.json();
-    if (res.ok&&result.success) { affMsg(msg,'✅ Merci ! Votre avis sera publié après validation.',false); document.getElementById('avis-consent').checked=false; noteSelectionnee=0; colorierEtoiles(0); ['avis-prenom','avis-nom','avis-contexte','avis-texte'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';}); }
-    else throw new Error();
-  } catch(e) { affMsg(msg,'❌ Erreur. Contactez-nous directement.',true); }
+    const res = await fetch('https://ags-immobilier.vercel.app/api/submit-avis', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ note, prenom, nom, contexte, texte })
+    });
+    const result = await res.json();
+    if (res.ok && result.success) {
+      affMsg(msg,'✅ Merci ! Votre avis sera publié après validation.',false);
+      document.getElementById('avis-consent').checked=false;
+      noteSelectionnee=0; colorierEtoiles(0);
+      ['avis-prenom','avis-nom','avis-contexte','avis-texte'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+    } else throw new Error(result.error || 'Erreur');
+  } catch(e) {
+    affMsg(msg,'❌ Erreur. Contactez-nous directement.',true);
+  }
   btn.disabled=false; btn.textContent='Envoyer mon avis →';
 }
+
 function affMsg(el,txt,err) { if(!el)return; el.textContent=txt; el.style.color=err?'#e74c3c':'#27ae60'; }
+
 async function chargerAvisApprouves() {
   try {
     const res=await fetch(AVIS_RAW_URL+'?t='+Date.now()); if(!res.ok)return;
@@ -738,19 +767,31 @@ async function chargerAvisApprouves() {
 }
 document.addEventListener('DOMContentLoaded', chargerAvisApprouves);
 </script>
+
 <script>
+// ✅ FORMULAIRE CONTACT : template_7o6elbd avec les bons champs
 function envoyerEmailJS(e, form, templateId) {
   e.preventDefault();
   const msg=document.getElementById('form-msg');
   msg.textContent='⏳ Envoi en cours…'; msg.style.color='var(--text-light)';
-  const params={}; new FormData(form).forEach((v,k)=>params[k]=v);
+  const raw={}; new FormData(form).forEach((v,k)=>raw[k]=v);
+  // Adapter pour template_7o6elbd : nom, telephone, email, bien, message
+  const params = {
+    nom: raw.nom || '',
+    telephone: raw.telephone || '',
+    email: raw.email || '',
+    bien: `Projet: ${raw.projet||'—'} | Budget: ${raw.budget||'—'}`,
+    message: raw.message || ''
+  };
   emailjs.send('service_rktxwry', templateId, params)
     .then(()=>{ msg.textContent='✅ Message envoyé ! Nous vous répondons sous 24h.'; msg.style.color='#27ae60'; form.reset(); setTimeout(()=>{window.location.href='merci.html';},1000); })
-    .catch(()=>{ msg.textContent="❌ Erreur d'envoi. Contactez-nous directement."; msg.style.color='#e74c3c'; });
+    .catch(()=>{ msg.textContent="❌ Erreur d'envoi. Appelez le 06 07 13 11 81."; msg.style.color='#e74c3c'; });
 }
 </script>
+
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>emailjs.init('JKP2Yx31rJQSjsRb2');</script>
+<script>emailjs.init('7m1BlSj4clGb0I9tl');</script>
+
 <script>
 (function() {
   var nav=document.getElementById('nav'); if(!nav)return;
@@ -766,6 +807,7 @@ function envoyerEmailJS(e, form, templateId) {
   overlay.addEventListener('click',close);
 })();
 </script>
+
 <div class="mob-bottomnav">
   <a href="index.html"><span class="nav-icon">🏠</span>Accueil</a>
   <a href="biens.html"><span class="nav-icon">🔍</span>Biens</a>
