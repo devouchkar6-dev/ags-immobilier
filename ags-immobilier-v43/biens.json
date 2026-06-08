@@ -1,5 +1,52 @@
 [
   {
+    "id": "bien-1780923736563",
+    "titre": "Bel appartement 2 pièces de 50 m² au Cannet",
+    "soustitre": "Mimosas — Le Cannet",
+    "type": "appartement",
+    "ville": "Le Cannet",
+    "villeFilter": "Le Cannet",
+    "prix": "255 000 €",
+    "prixBrut": 255000,
+    "badge": "",
+    "mainPhoto": "https://res.cloudinary.com/df15yd65n/image/upload/v1780924660/ntek4kq5d5jf0lf7kyb9.png",
+    "photos": [
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1780924660/ntek4kq5d5jf0lf7kyb9.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1780924656/zkc1fgr07nl0oesgxg84.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1780924657/f1f7ecywhqml3vrkpmnw.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1780924657/e2q83uu5iqcii1lupzsn.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1780924659/xm7usfmkb20wm7nt8koa.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1780924661/y1c3cvxh7mgkrkpeunkc.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1780924662/dzfjklalu2i6a5dix238.png"
+    ],
+    "caracteristiques": {
+      "surface": "50",
+      "pieces": "2"
+    },
+    "accroche": "Bel appartement 2 pièces de 50 m² au Cannet",
+    "description": "Découvrez cet agréable appartement de 2 pièces situé au Cannet, offrant une surface de 50 m², idéalement agencé pour un confort optimal. La pièce de vie lumineuse est agrémentée de grandes baies vitrées coulissantes, donnant accès à un espace extérieur propice à la détente. Le séjour, décoré avec goût, bénéficie d'un aménagement pratique et chaleureux.\n\nLa cuisine séparée, moderne et équipée, séduira les amateurs de cuisine par son espace et sa fonctionnalité. La chambre spacieuse dispose de nombreux rangements intégrés ainsi que de belles finitions, tandis que la salle de bain, offre un cadre moderne avec baignoire et sanitaires de qualité.\n\nPour votre sécurité et votre confort, l'appartement est équipé d'un interphone. Proche des commerces, des transports et des commodités, ce bien représente une excellente opportunité pour un premier achat ou un pied-à-terre sur la Côte d'Azur.",
+    "equipements": [
+      "Parking",
+      "Terrasse",
+      "Jardin",
+      "Lumineux",
+      "Proche commerces",
+      "Proche transports",
+      "Proche écoles"
+    ],
+    "dpe": "",
+    "ges": "",
+    "rente": "",
+    "surface": "50",
+    "pieces": "2",
+    "chambres": "1",
+    "etage": "Rez-de-Jardin",
+    "exposition": "Sud et Nord",
+    "annee": "",
+    "ref": "",
+    "actif": true
+  },
+  {
     "id": "bien-1780569031633",
     "titre": "Cannes – Appartement 3 pièces en off-market – Fort potentiel locatif",
     "soustitre": "Cannes",
