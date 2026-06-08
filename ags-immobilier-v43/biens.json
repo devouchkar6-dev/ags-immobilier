@@ -2,22 +2,21 @@
   {
     "id": "bien-1780923736563",
     "titre": "Bel appartement 2 pièces de 50 m² au Cannet",
-    "soustitre": "Mimosas — Le Cannet",
+    "soustitre": "Le Cannet",
     "type": "appartement",
     "ville": "Le Cannet",
     "villeFilter": "Le Cannet",
     "prix": "255 000 €",
     "prixBrut": 255000,
     "badge": "",
-    "mainPhoto": "https://res.cloudinary.com/df15yd65n/image/upload/v1780924660/ntek4kq5d5jf0lf7kyb9.png",
+    "mainPhoto": "https://res.cloudinary.com/df15yd65n/image/upload/v1780924800/im0yn3mm249wdy6h8aje.png",
     "photos": [
-      "https://res.cloudinary.com/df15yd65n/image/upload/v1780924660/ntek4kq5d5jf0lf7kyb9.png",
-      "https://res.cloudinary.com/df15yd65n/image/upload/v1780924656/zkc1fgr07nl0oesgxg84.png",
-      "https://res.cloudinary.com/df15yd65n/image/upload/v1780924657/f1f7ecywhqml3vrkpmnw.png",
-      "https://res.cloudinary.com/df15yd65n/image/upload/v1780924657/e2q83uu5iqcii1lupzsn.png",
-      "https://res.cloudinary.com/df15yd65n/image/upload/v1780924659/xm7usfmkb20wm7nt8koa.png",
-      "https://res.cloudinary.com/df15yd65n/image/upload/v1780924661/y1c3cvxh7mgkrkpeunkc.png",
-      "https://res.cloudinary.com/df15yd65n/image/upload/v1780924662/dzfjklalu2i6a5dix238.png"
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1780924800/im0yn3mm249wdy6h8aje.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1780924808/p7rl0kuedcxmhmtytbkq.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1780924806/sl68a3dr6d0zhrqkbe8t.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1780924802/bhg6etmxe0truwk2rpuq.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1780924804/rm8nrjkgp200degoxamp.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1780924799/qkta6l22vvencbhcd2cm.png"
     ],
     "caracteristiques": {
       "surface": "50",
