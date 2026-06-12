@@ -132,7 +132,7 @@
       "https://res.cloudinary.com/df15yd65n/image/upload/v1780924799/qkta6l22vvencbhcd2cm.png"
     ],
     "caracteristiques": {
-      "surface": "50",
+      "surface": "50 m2",
       "pieces": "2"
     },
     "accroche": "Emplacement recherché",
@@ -149,7 +149,7 @@
     "dpe": "D",
     "ges": "D",
     "rente": "",
-    "surface": "50",
+    "surface": "50 m2",
     "pieces": "2",
     "chambres": "1",
     "etage": "Rez-de-Jardin",
