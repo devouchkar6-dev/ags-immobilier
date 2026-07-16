@@ -2,7 +2,7 @@
   {
     "id": "bien-1784199656598",
     "titre": "Le Cannet - Rocheville",
-    "soustitre": "Rocheville — Le Cannet",
+    "soustitre": "Le Cannet",
     "type": "appartement",
     "ville": "Le Cannet",
     "villeFilter": "Le Cannet",
@@ -178,8 +178,8 @@
     "type": "appartement",
     "ville": "Le Cannet",
     "villeFilter": "Le Cannet",
-    "prix": "255 000 €",
-    "prixBrut": 255000,
+    "prix": "245 000 €",
+    "prixBrut": 245000,
     "badge": "",
     "mainPhoto": "https://res.cloudinary.com/df15yd65n/image/upload/v1780924800/im0yn3mm249wdy6h8aje.png",
     "photos": [
