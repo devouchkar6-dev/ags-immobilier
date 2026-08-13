@@ -2,7 +2,7 @@
   {
     "id": "bien-1786464836711",
     "titre": "CANNES Quartier Carnot",
-    "soustitre": "Carnot — Cannes",
+    "soustitre": "Cannes",
     "type": "appartement",
     "ville": "Cannes",
     "villeFilter": "Cannes",
@@ -13,19 +13,16 @@
     "photos": [
       "https://res.cloudinary.com/df15yd65n/image/upload/v1786464345/fefwu1icun1pk13bjz53.jpg",
       "https://res.cloudinary.com/df15yd65n/image/upload/v1786464487/jfjygmfl30crd5z8crnc.jpg",
-      "https://res.cloudinary.com/df15yd65n/image/upload/v1786464523/jzyecbkybx7xzg4jlhoq.jpg",
       "https://res.cloudinary.com/df15yd65n/image/upload/v1786464593/c6tvqoqrkdq1dh8i766r.jpg",
-      "https://res.cloudinary.com/df15yd65n/image/upload/v1786464662/xo78kibjqh1qveazjehn.jpg",
       "https://res.cloudinary.com/df15yd65n/image/upload/v1786464709/ke6raaacvqrx6rfqm2fs.jpg",
       "https://res.cloudinary.com/df15yd65n/image/upload/v1786464732/sgxx0snoay1fdmrg217r.jpg",
       "https://res.cloudinary.com/df15yd65n/image/upload/v1786464758/e8j82towrlec1oqp05yy.jpg",
-      "https://res.cloudinary.com/df15yd65n/image/upload/v1786464775/nzmf9qlhqrw9w4xsk024.jpg",
-      "https://res.cloudinary.com/df15yd65n/image/upload/v1786464796/qvcw1tlvaeayw4a0v60w.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1786633224/hjh39wpgmrwjsyp9ix5j.png",
       "https://res.cloudinary.com/df15yd65n/image/upload/v1786464823/kgj8abmtf0rxw4bdle9f.jpg"
     ],
     "caracteristiques": {
       "surface": "67 m2",
-      "pieces": "3p"
+      "pieces": "3"
     },
     "accroche": "CANNES Quartier Carnot",
     "description": "Élégant appartement 3 pièces de 67 m² dans un immeuble bourgeois\n379 000 € HAI\n\nÀ quelques pas du Palais de Justice de Cannes, découvrez ce magnifique appartement de 67 m² situé en rez-de-chaussée surélevé d'un superbe immeuble bourgeois, alliant le charme de l'ancien au confort moderne.\n\nTraversant et lumineux grâce à son exposition plein Sud, il se compose d'une agréable pièce de vie, de deux belles chambres, d'une cuisine indépendante entièrement équipée ainsi que d'une salle d'eau rénovée. Les hauts plafonds, les grandes fenêtres et les volumes généreux confèrent à ce bien une atmosphère élégante et chaleureuse.\n\nSon bail mixte représente un véritable atout. Que vous recherchiez une résidence principale, un pied-à-terre ou un local pour exercer une profession libérale, cet appartement s'adapte parfaitement à votre projet.\n\nLes atouts du bien\n\n• 3 pièces\n\n• 67 m²\n\n• Prix : 379 000 € HAI\n\n• Immeuble bourgeois de standing\n\n• Rez-de-chaussée surélevé\n\n• Appartement traversant\n\n• Exposition Sud\n\n• Cuisine indépendante équipée\n\n• Salle d'eau rénovée\n\n• Hauts plafonds\n\n• Beaux volumes\n\n• Excellent état général\n\n• Chauffage électrique individuel\n\n• Eau chaude individuelle\n\n• Bail mixte habitation ou profession libérale\n\nUn emplacement privilégié\n\nÀ proximité immédiate de :\n\n• Palais de Justice\n\n• Palais des Festivals\n\n• Gare SNCF\n\n• Centre-ville\n\n• Commerces\n\n• Restaurants\n\n• Transports en commun\n\n• Port\n\n• Plages\n\n• Établissements médicaux\n\n• Salle de sport\n\n• Parkings publics\n\nInformations pratiques\n\n• Prix : 379 000 € HAI\n\n• Charges de copropriété : 100 € / mois\n\n• Chauffage électrique individuel\n\n• Eau chaude individuelle\n\nLes informations sur les risques naturels et technologiques auxquels ce bien est exposé sont disponibles sur le site Géorisques.\n\nUne adresse de caractère au cœur de Cannes, idéale pour habiter, exercer une profession libérale ou réaliser un investissement de qualité. Contactez pour obtenir davantage d'informations ou organiser une visite.",
@@ -44,7 +41,7 @@
     "ges": "",
     "rente": "",
     "surface": "67 m2",
-    "pieces": "3p",
+    "pieces": "3",
     "chambres": "2",
     "etage": "1er",
     "exposition": "Sud",
