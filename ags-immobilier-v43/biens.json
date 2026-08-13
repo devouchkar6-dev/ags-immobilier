@@ -422,19 +422,19 @@
     "type": "appartement",
     "ville": "Le Cannet",
     "villeFilter": "Le Cannet",
-    "prix": "179 000 €",
-    "prixBrut": 179000,
+    "prix": "174 000 €",
+    "prixBrut": 174000,
     "badge": "Exclusivité AGS",
-    "mainPhoto": "https://res.cloudinary.com/df15yd65n/image/upload/v1778594344/awhniplra6c4yzvq7lyp.jpg",
+    "mainPhoto": "https://res.cloudinary.com/df15yd65n/image/upload/v1778594351/x78gexyfkrsd0hi8wmy9.jpg",
     "photos": [
-      "https://res.cloudinary.com/df15yd65n/image/upload/v1778594344/awhniplra6c4yzvq7lyp.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1778594351/x78gexyfkrsd0hi8wmy9.jpg",
       "https://res.cloudinary.com/df15yd65n/image/upload/v1778594387/wqiubry20kelaq7rdyum.jpg",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1778594344/awhniplra6c4yzvq7lyp.jpg",
       "https://res.cloudinary.com/df15yd65n/image/upload/v1778594401/bocrmrperw0a8pwlappc.jpg",
       "https://res.cloudinary.com/df15yd65n/image/upload/v1778594396/alecnpupntp9qnnjeygl.jpg",
       "https://res.cloudinary.com/df15yd65n/image/upload/v1778594374/gbgmpj1idhf3dc7avzef.jpg",
       "https://res.cloudinary.com/df15yd65n/image/upload/v1778594379/iwi33r0pglpwxlwjfspv.jpg",
-      "https://res.cloudinary.com/df15yd65n/image/upload/v1778594371/b5jfqpqwmyhlxs9tm3vj.jpg",
-      "https://res.cloudinary.com/df15yd65n/image/upload/v1778594351/x78gexyfkrsd0hi8wmy9.jpg"
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1778594371/b5jfqpqwmyhlxs9tm3vj.jpg"
     ],
     "caracteristiques": {
       "surface": "40 m2",
