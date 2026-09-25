@@ -2,7 +2,7 @@
   {
     "id": "bien-1790326225621",
     "titre": "Mandelieu-la-Napoule – Marina Parc",
-    "soustitre": "Marina Parc — Mandelieu-la-Napoule",
+    "soustitre": "Mandelieu-la-Napoule",
     "type": "appartement",
     "ville": "Mandelieu-la-Napoule",
     "villeFilter": "Mandelieu-la-Napoule",
@@ -119,16 +119,15 @@
     "prix": "379 000 €",
     "prixBrut": 379000,
     "badge": "Exclusivité AGS",
-    "mainPhoto": "https://res.cloudinary.com/df15yd65n/image/upload/v1786464345/fefwu1icun1pk13bjz53.jpg",
+    "mainPhoto": "https://res.cloudinary.com/df15yd65n/image/upload/v1790337231/gv7jykg7ln6opjvg53ip.png",
     "photos": [
-      "https://res.cloudinary.com/df15yd65n/image/upload/v1786464345/fefwu1icun1pk13bjz53.jpg",
-      "https://res.cloudinary.com/df15yd65n/image/upload/v1786464487/jfjygmfl30crd5z8crnc.jpg",
-      "https://res.cloudinary.com/df15yd65n/image/upload/v1786464593/c6tvqoqrkdq1dh8i766r.jpg",
-      "https://res.cloudinary.com/df15yd65n/image/upload/v1786464709/ke6raaacvqrx6rfqm2fs.jpg",
-      "https://res.cloudinary.com/df15yd65n/image/upload/v1786464732/sgxx0snoay1fdmrg217r.jpg",
-      "https://res.cloudinary.com/df15yd65n/image/upload/v1786464758/e8j82towrlec1oqp05yy.jpg",
-      "https://res.cloudinary.com/df15yd65n/image/upload/v1786633224/hjh39wpgmrwjsyp9ix5j.png",
-      "https://res.cloudinary.com/df15yd65n/image/upload/v1786464823/kgj8abmtf0rxw4bdle9f.jpg"
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1790337231/gv7jykg7ln6opjvg53ip.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1790337253/xix5ygvbs7cxrwhx4dw9.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1790337237/difjcwx7pobiytqdtn3w.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1790337241/g4oxawfyn0cpwxmpyxp1.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1790337246/ttgbimt4r7w3xnorbpay.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1790337249/ao1at1lgaaylsqkjdib0.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1790337270/ahgpmzpulm44pkuwwogm.png"
     ],
     "caracteristiques": {
       "surface": "67 m2",
