@@ -689,7 +689,7 @@ async function toggleBien(id) {
   const biens = getBiens();
   const b = biens.find(x => x.id === id);
   if (!b) return;
-  b.actif = b.actif === false; // toggle
+  b.actif = !(b.actif !== false); // toggle (gère aussi les biens sans champ actif)
   b.updatedAt = new Date().toISOString();
   sauvegarderLocal(biens); chargerBiens();
   await publierSurGitHub(biens);

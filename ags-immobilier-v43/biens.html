@@ -91,19 +91,19 @@
   footer { background:var(--navy-deep); padding:72px 60px 36px; }
   .footer-top { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:52px; margin-bottom:52px; padding-bottom:52px; border-bottom:1px solid rgba(255,255,255,.06); }
   .footer-logo img { height:52px; width:auto; display:block; margin-bottom:18px; }
-  .footer-desc { font-size:13px; line-height:1.8; font-weight:300; color:rgba(255,255,255,.35); margin-bottom:10px; }
-  .footer-contact-line { font-size:12px; color:rgba(255,255,255,.3); font-weight:300; margin-bottom:5px; }
-  .footer-contact-line a { color:rgba(255,255,255,.4); text-decoration:none; }
+  .footer-desc { font-size:13px; line-height:1.8; font-weight:300; color:rgba(255,255,255,.7); margin-bottom:10px; }
+  .footer-contact-line { font-size:12px; color:rgba(255,255,255,.65); font-weight:300; margin-bottom:5px; }
+  .footer-contact-line a { color:rgba(255,255,255,.7); text-decoration:none; transition:color .3s; }
   .footer-contact-line a:hover { color:var(--accent); }
   .footer-social { display:flex; gap:10px; margin-top:20px; }
   .social-link { width:34px; height:34px; border:1px solid rgba(255,255,255,.12); display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.4); text-decoration:none; font-size:12px; transition:all .3s; }
   .social-link:hover { border-color:var(--accent); color:var(--accent); }
-  .footer-col h4 { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,.55); margin-bottom:20px; font-weight:400; }
+  .footer-col h4 { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,.8); margin-bottom:20px; font-weight:400; }
   .footer-col ul { list-style:none; }
   .footer-col ul li { margin-bottom:10px; }
-  .footer-col ul a { text-decoration:none; font-size:13px; color:rgba(255,255,255,.3); font-weight:300; transition:color .3s; }
+  .footer-col ul a { text-decoration:none; font-size:13px; color:rgba(255,255,255,.65); font-weight:300; transition:color .3s; }
   .footer-col ul a:hover { color:var(--accent); }
-  .footer-bottom { display:flex; justify-content:space-between; align-items:center; font-size:11px; color:rgba(255,255,255,.25); font-weight:300; }
+  .footer-bottom { display:flex; justify-content:space-between; align-items:center; font-size:11px; color:rgba(255,255,255,.8); font-weight:300; }
   @media(max-width:1024px) { nav { padding:12px 28px; } .biens-grid { grid-template-columns:1fr 1fr; } .footer-top { grid-template-columns:1fr 1fr; } .tabs-bar { padding:0 28px; } .filtres-bar { padding:0 28px; } .biens-section { padding:56px 32px; } }
   @media(max-width:768px) {
     nav ul { display:none !important; } .nav-cta { display:none !important; } nav { padding:10px 18px !important; } .logo img { height:36px !important; }
@@ -207,11 +207,11 @@
       </div>
     </div>
     <div class="footer-col"><h4>Propriétés</h4><ul><li><a href="biens.html">Tous les biens</a></li></ul></div>
-    <div class="footer-col"><h4>Secteurs</h4><ul><li><a href="#">Le Cannet</a></li><li><a href="#">Cannes</a></li><li><a href="#">Mougins</a></li><li><a href="#">Vallauris</a></li><li><a href="#">Mandelieu</a></li></ul></div>
+    <div class="footer-col"><h4>Secteurs</h4><ul><li><a href="biens.html?ville=cannet">Le Cannet</a></li><li><a href="biens.html?ville=cannes">Cannes</a></li><li><a href="biens.html?ville=mougins">Mougins</a></li><li><a href="biens.html?ville=vallauris">Vallauris</a></li><li><a href="biens.html?ville=mandelieu">Mandelieu</a></li></ul></div>
     <div class="footer-col"><h4>L'agence</h4><ul><li><a href="index.html#about">Qui sommes-nous</a></li><li><a href="honoraires.html">Honoraires</a></li><li><a href="index.html#contact">Contact</a></li></ul></div>
   </div>
   <div class="footer-bottom">
-    <span>© 2024 AGS Immobilier — Le Cannet · Tous droits réservés</span>
+    <span>© 2026 AGS Immobilier — Le Cannet · Tous droits réservés</span>
     <span><a href="mentions-legales.html" style="color:rgba(255,255,255,.4);text-decoration:underline;">Mentions légales</a></span>
   </div>
 </footer>
@@ -380,7 +380,17 @@ function rechercherBiens() {
   afficherBiens(res);
 }
 
-document.addEventListener('DOMContentLoaded', chargerBiens);
+document.addEventListener('DOMContentLoaded', () => {
+  chargerBiens().then(() => {
+    // Pré-filtrer par ville si paramètre URL (ex: biens.html?ville=cannes)
+    const params = new URLSearchParams(window.location.search);
+    const villeParam = params.get('ville');
+    if (villeParam) {
+      const sel = document.getElementById('filter-lieu');
+      if (sel) { sel.value = villeParam; rechercherBiens(); }
+    }
+  });
+});
 </script>
 </body>
 </html>

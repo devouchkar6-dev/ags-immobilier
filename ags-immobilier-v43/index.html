@@ -592,7 +592,7 @@
     <div class="footer-col"><h4>L'agence</h4><ul><li><a href="#about">Qui sommes-nous</a></li><li><a href="#services">Nos services</a></li><li><a href="#partenaires">Partenaires</a></li><li><a href="#contact">Contact</a></li></ul></div>
   </div>
   <div class="footer-bottom">
-    <span>© 2024 AGS Immobilier — Le Cannet · Tous droits réservés</span>
+    <span>© 2026 AGS Immobilier — Le Cannet · Tous droits réservés</span>
     <span><a href="mentions-legales.html" style="color:rgba(255,255,255,.4);text-decoration:underline;">Mentions légales</a> · <a href="mentions-legales.html" style="color:rgba(255,255,255,.4);text-decoration:underline;">Politique de confidentialité</a></span>
   </div>
 </footer>
@@ -607,8 +607,7 @@ document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
 
 <script>
 let BIENS_APIMO = [];
-localStorage.removeItem('ags_biens_site');
-localStorage.removeItem('ags_biens_admin');
+// Cache conservé pour éviter les rechargements inutiles depuis GitHub
 
 async function chargerBiensAPIMO() {
   try {
