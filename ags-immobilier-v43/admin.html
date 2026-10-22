@@ -321,6 +321,14 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
                 </div>
                 <div class="form-group"><label>Référence</label><input type="text" id="f-ref" placeholder="AGS-2024-001"></div>
               </div>
+              <div class="form-row">
+                <div class="form-group"><label>Agent responsable</label>
+                  <select id="f-agent">
+                    <option value="philippe">Philippe Servas</option>
+                    <option value="mateo">Matéo Courrègelongue</option>
+                  </select>
+                </div>
+              </div>
             </div>
 
             <input type="hidden" id="f-id">
@@ -480,6 +488,7 @@ async function publierSurGitHub(biens) {
         surface: b.surface||'', pieces: b.pieces||'', chambres: b.chambres||'',
         etage: b.etage||'', exposition: b.exposition||'', annee: b.annee||'',
         ref: b.ref||'',
+        agent: b.agent||'philippe',
         actif: b.actif !== false  // ✅ CHAMP CLÉ : false = masqué, true = visible
       };
     });
@@ -609,6 +618,7 @@ function editerBien(id) {
   document.getElementById('f-description').value = b.description||'';
   document.getElementById('f-actif').value = b.actif!==false?'1':'0';
   document.getElementById('f-ref').value = b.ref||'';
+  document.getElementById('f-agent').value = b.agent||'philippe';
   document.getElementById('viager-fields').style.display = b.type==='viager'?'block':'none';
   document.querySelectorAll('#equipements-list input[type=checkbox]').forEach(cb => { cb.checked = (b.equipements||[]).includes(cb.value); });
   currentPhotos = [...(b.photos||[])];
@@ -644,6 +654,7 @@ async function sauvegarderBien() {
     equipements, photos: currentPhotos,
     actif: document.getElementById('f-actif').value === '1',
     ref: document.getElementById('f-ref').value,
+    agent: document.getElementById('f-agent').value || 'philippe',
     updatedAt: new Date().toISOString()
   };
   await chargerDepuisGitHub();
