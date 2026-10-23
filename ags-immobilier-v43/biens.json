@@ -338,7 +338,7 @@
     "villeFilter": "Le Cannet",
     "prix": "245 000 €",
     "prixBrut": 245000,
-    "badge": "",
+    "badge": "Sous compromis",
     "mainPhoto": "https://res.cloudinary.com/df15yd65n/image/upload/v1780924800/im0yn3mm249wdy6h8aje.png",
     "photos": [
       "https://res.cloudinary.com/df15yd65n/image/upload/v1780924800/im0yn3mm249wdy6h8aje.png",
@@ -373,7 +373,7 @@
     "exposition": "Sud et Nord",
     "annee": "",
     "ref": "",
-    "agent": "philippe",
+    "agent": "mateo",
     "actif": true
   },
   {
