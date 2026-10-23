@@ -44,7 +44,7 @@
   .locs-grid { grid-template-columns: 1fr 1fr !important; }
   .team-grid { grid-template-columns: 1fr !important; }
   .testi-grid { grid-template-columns: 1fr !important; }
-  .partenaires-grid { grid-template-columns: 1fr !important; }
+  .partenaires-grid { grid-template-columns: 1fr !important; max-width:100% !important; }
   .contact-wrap { grid-template-columns: 1fr !important; gap: 28px !important; }
   .form-row { grid-template-columns: 1fr !important; }
   .footer-top { grid-template-columns: 1fr !important; }
@@ -210,7 +210,7 @@
   .testi-name { font-size:13px; font-weight:500; color:var(--navy); }
   .testi-role { font-size:11px; color:var(--text-light); font-weight:300; margin-top:2px; }
   .partenaires { padding:80px 60px; background:var(--navy-deep); }
-  .partenaires-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; margin-top:56px; max-width:860px; margin-left:auto; margin-right:auto; }
+  .partenaires-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:56px; max-width:1100px; margin-left:auto; margin-right:auto; }
   .partenaire-card { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); padding:36px; display:flex; flex-direction:column; gap:14px; transition:all .3s; text-decoration:none; }
   .partenaire-card:hover { background:rgba(255,255,255,.08); border-color:var(--accent); transform:translateY(-2px); }
   .partenaire-icon { font-size:32px; }
@@ -511,6 +511,13 @@
       <p class="partenaire-desc">Diagnostiqueur certifié, partenaire d'AGS Immobilier. Bénéficiez d'un code promo exclusif disponible sur demande auprès de notre agence.</p>
       <div class="partenaire-tag">Diagnostic immobilier</div>
       <div class="partenaire-promo">🎁 Code promo disponible sur demande</div>
+      <div class="partenaire-link">Visiter le site →</div>
+    </a>
+    <a class="partenaire-card reveal" href="https://www.laveriedumontfleuri.fr/" target="_blank" rel="noopener">
+      <div class="partenaire-icon">👕</div>
+      <div class="partenaire-name">Laverie du Montfleuri</div>
+      <p class="partenaire-desc">Laverie en libre-service au Cannet — machines modernes, disponibles 7j/7. Un service pratique recommandé par AGS Immobilier à nos clients et nouveaux arrivants dans la région.</p>
+      <div class="partenaire-tag">Services du quotidien</div>
       <div class="partenaire-link">Visiter le site →</div>
     </a>
   </div>
