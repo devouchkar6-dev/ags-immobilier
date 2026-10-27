@@ -430,7 +430,7 @@ function afficherBien(b) {
           <div class="sticky-sub">${titre}${ville ? ' · ' + ville : ''}</div>
           <div class="share-row">
             <button class="share-btn" onclick="copierLien()">🔗 Copier le lien</button>
-            <button class="share-btn" onclick="imprimerFiche()">🖨️ Imprimer</button>
+            <button class="share-btn" id="print-share-btn" onclick="printOuPartager()">🖨️ Imprimer</button>
           </div>
           <form name="visite-fiche" onsubmit="envoyerEmailJS(event,this,'template_visite')">
             <input type="hidden" name="bien" value="${b.titre || ''} — ${prix}">
@@ -601,6 +601,39 @@ async function urlToDataUrl(url) {
     return url;
   }
 }
+
+function printOuPartager() {
+  const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+  if (isMobile && navigator.share) {
+    const b = window._fichBien;
+    const titre = b ? (b.titre || 'Bien immobilier') : 'Bien immobilier';
+    const prix = b ? (b.prix || '') : '';
+    navigator.share({
+      title: titre + (prix ? ' — ' + prix : ''),
+      text: titre + (prix ? '\n' + prix : '') + '\nAGS Immobilier',
+      url: window.location.href
+    }).catch(() => {});
+  } else {
+    imprimerFiche();
+  }
+}
+
+// Met à jour le label du bouton selon mobile/desktop
+(function() {
+  function updateBtn() {
+    const btn = document.getElementById('print-share-btn');
+    if (!btn) return;
+    const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+    if (isMobile && navigator.share) {
+      btn.innerHTML = '📤 Partager';
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updateBtn);
+  } else {
+    updateBtn();
+  }
+})();
 
 async function imprimerFiche() {
   const b = window._fichBien;
