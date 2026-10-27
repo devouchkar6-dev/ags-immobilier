@@ -1026,7 +1026,23 @@ function copierLien() {
 </div>
 
 <script>
+function agsTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}catch(e){}}
 (function(){
+  // ---- Suivi Google Analytics ----
+  function bienInfo(){
+    var id = new URLSearchParams(location.search).get('id');
+    var b = (window.BIENS_DATA||[]).find(function(x){ return String(x.id)===String(id); }) || {};
+    return { bien_id:id||'', bien_titre:b.titre||'', conseiller:b.agent||'' };
+  }
+  document.addEventListener('click', function(e){
+    var t = e.target;
+    if (t.closest('#int-call-btn'))  agsTrack('popup_interet_appel', bienInfo());
+    else if (t.closest('#int-wa-btn')) agsTrack('popup_interet_whatsapp', bienInfo());
+    else if (t.closest('#int-stay, #interest-close')) agsTrack('popup_interet_ferme', bienInfo());
+    else if (t.closest('#toast-call-link')) agsTrack('toast_appel', Object.assign({page:'fiche'}, bienInfo()));
+    else if (t.closest('#gallery-fav')) agsTrack(t.closest('#gallery-fav').classList.contains('on') ? 'favori_ajoute' : 'favori_retire', bienInfo());
+  });
+
   // ---- Popup intérêt bien — déclenché quand 2min ET scroll 80% ----
   var overlay = document.getElementById('interest-overlay');
   var POPUP_KEY = 'ags_interest_shown';
@@ -1071,6 +1087,7 @@ function copierLien() {
     popupShown = true;
     sessionStorage.setItem(POPUP_KEY,'1');
     overlay.classList.add('show');
+    agsTrack('popup_interet_affiche', bienInfo());
   }
 
   // Condition 1 : 2 minutes sur la page
@@ -1100,6 +1117,7 @@ function copierLien() {
   if(!sessionStorage.getItem(TOAST_KEY)){
     setTimeout(function(){
       toast.classList.add('show');
+      agsTrack('toast_affiche', Object.assign({page:'fiche'}, bienInfo()));
       sessionStorage.setItem(TOAST_KEY,'1');
       setTimeout(function(){ toast.classList.remove('show'); }, 10000);
     }, 30000);
