@@ -383,6 +383,7 @@ function afficherFavoris() {
 }
 function toggleFav(id, btn) {
   const on = FAV.toggle(id);
+  if (typeof agsTrack === 'function') agsTrack(on ? 'favori_ajoute' : 'favori_retire', { bien_id:String(id) });
   if (btn) { btn.classList.toggle('on', on); btn.setAttribute('aria-pressed', on); btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop'); }
   majCompteurFav();
   if (ongletActif === 'fav' && !on) {
@@ -729,6 +730,12 @@ const CMP = {
   </div>
 </div>
 
+<script>
+function agsTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}catch(e){}}
+document.addEventListener('click', function(e){
+  if (e.target.closest('#toast-notif .toast-call')) agsTrack('toast_appel', {page:'biens'});
+});
+</script>
 <!-- ========== TOAST NOTIFICATION ========== -->
 <style>
 #toast-notif{position:fixed;bottom:28px;right:28px;z-index:9998;background:#0F1E36;border:1px solid rgba(91,155,213,.25);padding:18px 20px 16px;max-width:300px;width:calc(100vw - 56px);box-shadow:0 8px 40px rgba(0,0,0,.4);transform:translateY(20px);opacity:0;pointer-events:none;transition:transform .4s cubic-bezier(.25,.46,.45,.94),opacity .4s ease;}
@@ -770,6 +777,7 @@ const CMP = {
   if(!sessionStorage.getItem(TOAST_KEY)){
     setTimeout(function(){
       toast.classList.add('show');sessionStorage.setItem(TOAST_KEY,'1');
+      agsTrack('toast_affiche',{page:'biens'});
       setTimeout(function(){toast.classList.remove('show');},10000);
     },30000);
   }
