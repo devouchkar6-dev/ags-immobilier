@@ -112,20 +112,19 @@ footer{background:var(--navy-deep);padding:40px 60px;display:flex;justify-conten
   .hs-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.08);width:100%;}
   .hs-item:last-child{border-bottom:none;}
   .tl-section,.conseils-section,.cta-section{padding:60px 20px!important;}
-  /* Mobile : tout en colonne, ligne à gauche */
-  .tl-line{left:23px;}
-  .tl-item{flex-direction:row;gap:0;}
-  /* Mobile : tout en colonne unique, ligne à gauche */
-  .tl-item { flex-direction: row !important; align-items: flex-start !important; }
+  /* Mobile timeline : ligne à gauche, dot en premier, carte à droite */
+  .tl-wrap { padding-left: 0 !important; }
+  .tl-line { left: 23px !important; }
+  .tl-item { display: flex !important; flex-direction: row !important; align-items: flex-start !important; margin-bottom: 28px !important; }
   .tl-dot-wrap { width: 48px !important; flex-shrink: 0 !important; order: 1 !important; }
-  /* Étapes impaires : carte dans tl-side-l → on la ramène à droite du dot */
-  .tl-side-l { display: flex !important; flex: 1 !important; padding: 0 0 0 16px !important; order: 2 !important; justify-content: flex-start !important; }
-  .tl-side-l .tl-card { max-width: 100% !important; width: 100% !important; opacity: 0; transform: translateY(16px); }
-  .tl-item.visible .tl-side-l .tl-card { opacity: 1 !important; transform: translateY(0) !important; }
-  /* Étapes paires : côté droit normal, côté gauche vide caché */
+  /* Étapes PAIRES (.right) : side-l vide (order:0 → avant dot), side-r a la carte (order:2 → après dot) */
   .tl-item.right .tl-side-l { display: none !important; }
-  .tl-item.right .tl-side-r { display: block !important; flex: 1 !important; padding-left: 16px !important; padding-right: 0 !important; order: 2 !important; }
-  .tl-card { max-width: 100% !important; }
+  .tl-item.right .tl-side-r { display: block !important; flex: 1 !important; min-width: 0 !important; padding-left: 12px !important; padding-right: 0 !important; order: 2 !important; }
+  /* Étapes IMPAIRES (pas .right) : side-l a la carte → order:2 pour aller après le dot, side-r vide → caché */
+  .tl-item:not(.right) .tl-side-r { display: none !important; }
+  .tl-item:not(.right) .tl-side-l { display: block !important; flex: 1 !important; min-width: 0 !important; padding-left: 12px !important; padding-right: 0 !important; order: 2 !important; justify-content: flex-start !important; }
+  /* Carte prend toute la largeur */
+  .tl-card { max-width: 100% !important; width: 100% !important; box-sizing: border-box !important; }
   .conseils-grid{grid-template-columns:1fr!important;}
   footer{flex-direction:column;text-align:center;padding:32px 20px;}
   body{padding-bottom:68px;}
