@@ -24,9 +24,10 @@
   /* ✅ FIX SCROLL HORIZONTAL */
   html, body { overflow-x: hidden; max-width: 100%; }
   /* === PAGE TRANSITION === */
-  body { opacity:0; transition:opacity .35s ease; }
-  body.page-visible { opacity:1; }
-  body.page-leaving { opacity:0; transition:opacity .25s ease; }
+  body { opacity:1; }
+  #page-curtain{position:fixed;inset:0;background:#0F1E36;z-index:9999;transform:scaleY(1);transform-origin:top;transition:transform .55s cubic-bezier(.76,0,.24,1);pointer-events:none;}
+  #page-curtain.open{transform:scaleY(0);}
+  #page-curtain.closing{transform:scaleY(1);transform-origin:bottom;transition:transform .45s cubic-bezier(.76,0,.24,1);}
   body { font-family:'Jost',sans-serif; background:var(--cream); color:var(--text); }
   nav { background:var(--navy); display:flex; justify-content:space-between; align-items:center; padding:16px 60px; }
   .logo img { height:48px; width:auto; display:block; }
@@ -262,6 +263,7 @@
 <script>emailjs.init('7m1BlSj4clGb0I9tl');</script>
 </head>
 <body>
+<div id="page-curtain"></div>
 <nav>
   <a href="index.html" class="logo"><img src="images/logo.jpg" alt="AGS Immobilier" onerror="this.style.display='none'"></a>
   <a href="biens.html" class="nav-back">← Retour aux biens</a>
@@ -783,27 +785,23 @@ function copierLien() {
   });
 }
 
-// === TRANSITIONS DE PAGE ===
-document.addEventListener('DOMContentLoaded', () => {
-  requestAnimationFrame(() => document.body.classList.add('page-visible'));
-// Fix page blanche au retour arrière (bfcache)
-window.addEventListener('pageshow', e => {
-  if (e.persisted || performance.getEntriesByType('navigation')[0]?.type === 'back_forward') {
-    document.body.classList.remove('page-leaving');
-    document.body.classList.add('page-visible');
-  }
-});
-});
-document.addEventListener('click', e => {
-  const a = e.target.closest('a');
-  if (!a) return;
-  const href = a.getAttribute('href');
-  if (!href || href.startsWith('#') || href.startsWith('tel:') || href.startsWith('mailto:') || a.target === '_blank') return;
-  if (href.startsWith('http') && !href.includes(location.hostname)) return;
-  e.preventDefault();
-  document.body.classList.add('page-leaving');
-  setTimeout(() => { window.location.href = href; }, 260);
-});
+// === RIDEAU DE PAGE ===
+(function(){
+  const curtain = document.getElementById('page-curtain');
+  function openCurtain(){ requestAnimationFrame(()=>{ requestAnimationFrame(()=>curtain.classList.add('open')); }); }
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',openCurtain); } else { openCurtain(); }
+  window.addEventListener('pageshow',e=>{ if(e.persisted){ curtain.classList.remove('closing'); curtain.classList.add('open'); } });
+  document.addEventListener('click',e=>{
+    const a=e.target.closest('a');
+    if(!a) return;
+    const href=a.getAttribute('href');
+    if(!href||href.startsWith('#')||href.startsWith('tel:')||href.startsWith('mailto:')||a.target==='_blank') return;
+    if(href.startsWith('http')&&!href.includes(location.hostname)) return;
+    e.preventDefault();
+    curtain.classList.remove('open'); curtain.classList.add('closing');
+    setTimeout(()=>{ window.location.href=href; },480);
+  });
+})();
 </script>
 </body>
 </html>
