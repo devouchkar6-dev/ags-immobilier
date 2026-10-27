@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page introuvable — AGS Immobilier</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1B2D4F;--navy-deep:#0F1E36;--accent:#5B9BD5;--cream:#F8F5F0;--stone:#E8E4DF;--text-light:#6B7280;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;overflow-x:hidden;}
+body{font-family:'Jost',sans-serif;background:var(--navy-deep);color:white;min-height:100vh;display:flex;flex-direction:column;}
+#page-curtain{position:fixed;inset:0;background:var(--navy-deep);z-index:9999;transform:scaleY(1);transform-origin:top;transition:transform .55s cubic-bezier(.76,0,.24,1);pointer-events:none;}
+#page-curtain.open{transform:scaleY(0);}
+#page-curtain.closing{transform:scaleY(1);transform-origin:bottom;transition:transform .45s cubic-bezier(.76,0,.24,1);}
+
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 60px;position:relative;z-index:10;}
+.logo img{height:48px;display:block;}
+
+main{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 20px;position:relative;overflow:hidden;}
+
+/* Fond décoratif */
+.bg-num{position:absolute;font-family:'Cormorant Garamond',serif;font-size:clamp(180px,25vw,320px);font-weight:300;color:rgba(255,255,255,.03);letter-spacing:-20px;user-select:none;pointer-events:none;top:50%;transform:translateY(-50%);left:50%;transform:translate(-50%,-50%);}
+
+.content{position:relative;z-index:2;text-align:center;max-width:580px;}
+.tag{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:12px;}
+.tag::before,.tag::after{content:'';display:block;width:32px;height:1px;background:var(--accent);}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,64px);font-weight:300;line-height:1.1;margin-bottom:20px;}
+h1 em{font-style:italic;color:var(--accent);}
+p{color:rgba(255,255,255,.5);font-size:15px;font-weight:300;line-height:1.8;margin-bottom:40px;}
+
+.btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn-primary{background:var(--accent);color:white;padding:14px 32px;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;font-family:'Jost',sans-serif;transition:background .3s;}
+.btn-primary:hover{background:#4a8bc4;}
+.btn-ghost{border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);padding:14px 32px;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;font-family:'Jost',sans-serif;transition:all .3s;}
+.btn-ghost:hover{border-color:rgba(255,255,255,.5);color:white;}
+
+.divider{width:1px;height:60px;background:rgba(255,255,255,.08);margin:48px auto;}
+.links{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;}
+.links a{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.3);text-decoration:none;transition:color .3s;}
+.links a:hover{color:var(--accent);}
+
+footer{padding:20px 60px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.05);}
+footer span{font-size:11px;color:rgba(255,255,255,.2);}
+footer a{font-size:11px;color:rgba(255,255,255,.25);text-decoration:none;transition:color .3s;}
+footer a:hover{color:var(--accent);}
+
+@media(max-width:600px){
+  nav{padding:16px 20px;}
+  footer{padding:16px 20px;flex-direction:column;gap:8px;text-align:center;}
+}
+</style>
+</head>
+<body>
+<div id="page-curtain"></div>
+
+<nav>
+  <a href="index.html"><img src="images/logo.jpg" alt="AGS Immobilier" style="height:48px;display:block;" onerror="this.style.display='none'"></a>
+</nav>
+
+<main>
+  <div class="bg-num">404</div>
+  <div class="content">
+    <div class="tag">Erreur 404</div>
+    <h1>Page <em>introuvable</em></h1>
+    <p>Cette page n'existe pas ou a été déplacée.<br>Retournez à l'accueil pour découvrir nos biens sur la Côte d'Azur.</p>
+    <div class="btns">
+      <a href="index.html" class="btn-primary">Retour à l'accueil →</a>
+      <a href="biens.html" class="btn-ghost">Voir nos biens</a>
+    </div>
+    <div class="divider"></div>
+    <div class="links">
+      <a href="index.html#about">L'agence</a>
+      <a href="honoraires.html">Honoraires</a>
+      <a href="timeline.html">Processus d'achat</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <span>© 2026 AGS Immobilier — Le Cannet</span>
+  <a href="index.html">← Retour au site</a>
+</footer>
+
+<script>
+(function(){
+  const curtain = document.getElementById('page-curtain');
+  requestAnimationFrame(()=>{ requestAnimationFrame(()=>curtain.classList.add('open')); });
+  window.addEventListener('pageshow',e=>{ if(e.persisted){ curtain.classList.remove('closing'); curtain.classList.add('open'); } });
+  document.addEventListener('click',e=>{
+    const a=e.target.closest('a');
+    if(!a) return;
+    const href=a.getAttribute('href');
+    if(!href||href.startsWith('#')||href.startsWith('tel:')||href.startsWith('mailto:')||a.target==='_blank') return;
+    if(href.startsWith('http')&&!href.includes(location.hostname)) return;
+    e.preventDefault();
+    curtain.classList.remove('open'); curtain.classList.add('closing');
+    setTimeout(()=>{ window.location.href=href; },480);
+  });
+})();
+</script>
+</body>
+</html>
