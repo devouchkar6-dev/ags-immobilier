@@ -69,6 +69,9 @@
   .bien-badge.default { background:var(--navy); }
   .bien-badge.viager { background:#8B5E3C; }
   .bien-badge.exclusif { background:var(--accent); }
+  .bien-badge.badge-coupdecoeur { background:#B8860B; }
+  .bien-badge.badge-nouveau { background:#1a7a4a; }
+  .bien-badge.badge-souscompromis { background:#b03020; }
   .vendu-overlay { position:absolute; inset:0; background:rgba(0,0,0,.35); display:flex; align-items:center; justify-content:center; }
   .vendu-stamp { border:3px solid rgba(255,255,255,.8); color:white; font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; padding:6px 20px; letter-spacing:4px; transform:rotate(-12deg); text-transform:uppercase; }
   .bien-info { padding:24px; }
@@ -280,8 +283,10 @@ function afficherBiens(biens) {
   grid.innerHTML = biens.map(b => {
     const url = 'fiche.html?id=' + b.id;
     const surf = b.surface || b.caracteristiques?.surface || '';
-    const pieces = b.pieces || b.caracteristiques?.pieces || '';
-    const badgeClass = b.type==='viager'?'viager':b.type==='commercial'?'commercial':'default';
+    const piecesRaw = b.pieces || b.caracteristiques?.pieces || '';
+    const pieces = piecesRaw ? String(piecesRaw).replace(/\s*pièces?\s*/i,'') + ' p' : '';
+    const bl = (b.badge||'').toLowerCase().replace(/[\s-]/g,'');
+    const badgeClass = bl.includes('coeur')?'badge-coupdecoeur':bl.includes('nouveau')?'badge-nouveau':bl.includes('compromis')?'badge-souscompromis':b.type==='viager'?'viager':'default';
     return `<div class="bien-card" onclick="window.location='${url}'">
       <div class="bien-img">
         <img src="${b.mainPhoto||'images/placeholder.jpg'}" alt="${b.titre}" loading="lazy" onerror="this.src='images/placeholder.jpg'">
@@ -324,7 +329,7 @@ function afficherVendus(vendus) {
           ${surf?`<span class="bien-feat">📐 ${surf}</span>`:''}
           ${pieces?`<span class="bien-feat">🚪 ${pieces}</span>`:''}
         </div>
-        <div class="bien-price vendu-price">Vendu par AGS Immobilier</div>
+        <div class="bien-price vendu-price">${(()=>{const ANAMES={philippe:'Philippe Servas',mateo:'Matéo Courrègelongue'};const n=ANAMES[b.agent]||(b.vendeur||null);return n?`Vendu par ${n}<br><span style="font-size:11px;letter-spacing:1px">AGS Immobilier</span>`:'Vendu par AGS Immobilier';})()}</div>
       </div>
     </div>`;
   }).join('');

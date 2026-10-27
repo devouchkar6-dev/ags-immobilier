@@ -75,8 +75,9 @@
   }
   .mob-bottomnav .nav-icon { font-size: 16px !important; }
 }
-@media only screen and (min-width: 769px) {
-  .mob-bottomnav { display: none !important; }
+.mob-bottomnav { display: none; }
+@media only screen and (max-width: 768px) {
+  .mob-bottomnav { display: flex !important; }
 }
 </style>
 <title>AGS Immobilier — Agence Indépendante au Cannet</title>
@@ -101,7 +102,7 @@
   nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; justify-content:space-between; align-items:center; padding:14px 60px; background:var(--navy); transition:all .4s ease; }
   nav.scrolled { background:rgba(255,255,255,.97); backdrop-filter:blur(12px); box-shadow:0 1px 0 rgba(27,45,79,.1); }
   .logo img { height:52px; width:auto; display:block; }
-  nav ul { list-style:none; display:flex; gap:36px; }
+  nav ul { list-style:none; display:flex; gap:36px; flex-wrap:nowrap; }
   nav ul a { text-decoration:none; font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:300; color:rgba(255,255,255,.9); transition:color .3s; }
   nav.scrolled ul a { color:var(--text-light); }
   nav ul a:hover { color:var(--accent) !important; }

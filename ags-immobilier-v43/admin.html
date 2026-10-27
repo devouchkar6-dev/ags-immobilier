@@ -232,10 +232,10 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
               <div class="form-section-title">Caractéristiques</div>
               <div class="form-row">
                 <div class="form-group"><label>Surface</label><input type="text" id="f-surface" placeholder="65 m²"></div>
-                <div class="form-group"><label>Pièces</label><input type="text" id="f-pieces" placeholder="3 pièces"></div>
+                <div class="form-group"><label>Pièces</label><select id="f-pieces"><option value="">—</option>${[1,2,3,4,5,6,7,8,9,10].map(n=>`<option value="${n}">${n}</option>`).join('')}</select></div>
               </div>
               <div class="form-row">
-                <div class="form-group"><label>Chambres</label><input type="text" id="f-chambres" placeholder="2 chambres"></div>
+                <div class="form-group"><label>Chambres</label><select id="f-chambres"><option value="">—</option>${[1,2,3,4,5,6,7,8,9].map(n=>`<option value="${n}">${n}</option>`).join('')}</select></div>
                 <div class="form-group"><label>Étage</label><input type="text" id="f-etage" placeholder="3ème étage"></div>
               </div>
               <div class="form-row">
@@ -324,8 +324,8 @@ body { font-family:'Jost',sans-serif; background:#f0f2f5; color:var(--navy); min
               <div class="form-row">
                 <div class="form-group"><label>Agent responsable</label>
                   <select id="f-agent">
-                    <option value="philippe">Philippe Servas</option>
-                    <option value="mateo">Matéo Courrègelongue</option>
+                    <option value="philippe">Philippe Servas — Gérant</option>
+                    <option value="mateo">Matéo Courrègelongue — Responsable Commercial</option>
                   </select>
                 </div>
               </div>
