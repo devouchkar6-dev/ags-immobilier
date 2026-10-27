@@ -119,6 +119,32 @@
   footer a:hover { color:var(--accent); }
   .whatsapp-btn { position:fixed; bottom:28px; left:28px; z-index:999; width:56px; height:56px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(37,211,102,.4); text-decoration:none; font-size:26px; }
   .mob-bottomnav { display:none; }
+
+  /* Bouton impression */
+  .print-btn {
+    display:flex; align-items:center; justify-content:center; gap:7px;
+    width:100%; padding:11px; margin-top:12px;
+    border:1px solid var(--stone); background:white;
+    font-family:'Jost',sans-serif; font-size:10px; letter-spacing:1.5px;
+    text-transform:uppercase; color:var(--navy); cursor:pointer;
+    transition:all .25s;
+  }
+  .print-btn:hover { border-color:var(--navy); background:var(--navy); color:white; }
+
+  /* CSS IMPRESSION */
+  @media print {
+    nav, .gallery-count, footer, .whatsapp-btn, .mob-bottomnav,
+    .sticky-card form, .sticky-submit, .share-row, .print-btn,
+    .lb-prev, .lb-next, .lb-close, .lightbox { display:none !important; }
+    body { opacity:1 !important; background:white; }
+    .gallery { height:280px !important; grid-template-columns:2fr 1fr 1fr !important; grid-template-rows:1fr 1fr !important; }
+    .wrap { grid-template-columns:1fr !important; padding:24px 0 !important; gap:24px !important; }
+    .sticky-card { position:static !important; box-shadow:none !important; border:1px solid #ddd; padding:20px !important; }
+    .sticky-price, .sticky-sub { display:block !important; }
+    .prop-section { page-break-inside:avoid; }
+    @page { margin:15mm; }
+  }
+
   @media(max-width:768px) {
     /* ✅ FIX SCROLL HORIZONTAL MOBILE */
     html, body { overflow-x: hidden !important; }
@@ -321,6 +347,7 @@ function afficherBien(b) {
           <div class="sticky-sub">${titre}${ville ? ' · ' + ville : ''}</div>
           <div class="share-row">
             <button class="share-btn" onclick="copierLien()">🔗 Copier le lien</button>
+            <button class="share-btn" onclick="window.print()">🖨️ Imprimer</button>
           </div>
           <form name="visite-fiche" onsubmit="envoyerEmailJS(event,this,'template_visite')">
             <input type="hidden" name="bien" value="${b.titre || ''} — ${prix}">
@@ -485,6 +512,13 @@ function copierLien() {
 // === TRANSITIONS DE PAGE ===
 document.addEventListener('DOMContentLoaded', () => {
   requestAnimationFrame(() => document.body.classList.add('page-visible'));
+// Fix page blanche au retour arrière (bfcache)
+window.addEventListener('pageshow', e => {
+  if (e.persisted || performance.getEntriesByType('navigation')[0]?.type === 'back_forward') {
+    document.body.classList.remove('page-leaving');
+    document.body.classList.add('page-visible');
+  }
+});
 });
 document.addEventListener('click', e => {
   const a = e.target.closest('a');

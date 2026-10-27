@@ -490,6 +490,13 @@ function rechercherBiens() {
 document.addEventListener('DOMContentLoaded', () => {
   // === TRANSITION ENTRÉE ===
   requestAnimationFrame(() => document.body.classList.add('page-visible'));
+// Fix page blanche au retour arrière (bfcache)
+window.addEventListener('pageshow', e => {
+  if (e.persisted || performance.getEntriesByType('navigation')[0]?.type === 'back_forward') {
+    document.body.classList.remove('page-leaving');
+    document.body.classList.add('page-visible');
+  }
+});
 
   chargerBiens().then(() => {
     // Pré-filtrer par ville si paramètre URL (ex: biens.html?ville=cannes)

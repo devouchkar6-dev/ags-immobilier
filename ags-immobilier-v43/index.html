@@ -97,10 +97,33 @@
   :root { --navy:#1B2D4F; --navy-deep:#0F1E36; --blue-mid:#2C4A7C; --blue-light:#4A6FA5; --accent:#5B9BD5; --cream:#F0F4F8; --stone:#C8D6E5; --text:#1B2D4F; --text-light:#5A7499; }
   * { margin:0; padding:0; box-sizing:border-box; }
   /* === PAGE TRANSITION === */
-  body { opacity:0; transition:opacity .35s ease; }
+  body { opacity:0; transition:opacity .3s ease; }
   body.page-visible { opacity:1; }
-  body.page-leaving { opacity:0; transition:opacity .25s ease; }
+  body.page-leaving { opacity:0; transition:opacity .2s ease; }
   html { scroll-behavior:smooth; }
+
+  /* === CURSEUR PERSONNALISÉ (desktop uniquement) === */
+  @media(pointer:fine){
+    *, *:hover { cursor:none !important; }
+    #cursor-dot {
+      position:fixed; top:0; left:0; pointer-events:none; z-index:99999;
+      width:8px; height:8px; border-radius:50%;
+      background:var(--navy); opacity:.85;
+      transform:translate(-50%,-50%);
+      transition:transform .12s ease, width .2s ease, height .2s ease, background .2s ease, opacity .2s ease;
+      mix-blend-mode:multiply;
+    }
+    #cursor-ring {
+      position:fixed; top:0; left:0; pointer-events:none; z-index:99998;
+      width:32px; height:32px; border-radius:50%;
+      border:1.5px solid rgba(27,45,79,.35);
+      transform:translate(-50%,-50%);
+      transition:transform .22s ease, width .25s ease, height .25s ease, border-color .2s ease, opacity .2s ease;
+    }
+    body.cursor-hover #cursor-dot { width:12px; height:12px; background:var(--accent); }
+    body.cursor-hover #cursor-ring { width:48px; height:48px; border-color:var(--accent); opacity:.6; }
+    body.cursor-click #cursor-dot { transform:translate(-50%,-50%) scale(.7); }
+  }
   html, body { overflow-x:hidden; max-width:100%; }
   body { font-family:'Jost',sans-serif; background:var(--cream); color:var(--text); }
   nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; justify-content:space-between; align-items:center; padding:14px 60px; background:var(--navy); transition:all .4s ease; }
@@ -297,9 +320,9 @@
     </div>
   </div>
   <div class="hero-stats">
-    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Indépendant</div></div>
-    <div class="stat"><div class="stat-num">2</div><div class="stat-label">Départements</div></div>
-    <div class="stat"><div class="stat-num">24h</div><div class="stat-label">Réactivité</div></div>
+    <div class="stat"><div class="stat-num" data-count="40" data-suffix=" ans">0 ans</div><div class="stat-label">D'expérience</div></div>
+    <div class="stat"><div class="stat-num" data-count="2" data-suffix="">0</div><div class="stat-label">Départements</div></div>
+    <div class="stat"><div class="stat-num" data-count="24" data-suffix="h">0h</div><div class="stat-label">Réactivité</div></div>
   </div>
 </section>
 
@@ -826,10 +849,76 @@ function envoyerEmailJS(e, form, templateId) {
   <a href="#contact"><span class="nav-icon">✉️</span>Contact</a>
   <a href="tel:+33607131181"><span class="nav-icon">📞</span>Appeler</a>
 </div>
+<!-- Curseur personnalisé (desktop) -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
 <script>
 // === TRANSITIONS DE PAGE ===
 document.addEventListener('DOMContentLoaded', () => {
   requestAnimationFrame(() => document.body.classList.add('page-visible'));
+
+  // === CURSEUR PERSONNALISÉ ===
+  const dot  = document.getElementById('cursor-dot');
+  const ring = document.getElementById('cursor-ring');
+  if (dot && ring && window.matchMedia('(pointer:fine)').matches) {
+    let mx = -100, my = -100, rx = -100, ry = -100;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    // Ring suit avec légère inertie
+    (function animRing(){
+      rx += (mx - rx) * .18;
+      ry += (my - ry) * .18;
+      dot.style.left  = mx + 'px'; dot.style.top  = my + 'px';
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(animRing);
+    })();
+    // Hover sur liens, boutons, images
+    const hoverSel = 'a, button, .prop-card, .team-card, img, .btn-primary, .filtre-submit, .nav-cta';
+    document.addEventListener('mouseover', e => {
+      if (e.target.closest(hoverSel)) document.body.classList.add('cursor-hover');
+    });
+    document.addEventListener('mouseout', e => {
+      if (e.target.closest(hoverSel)) document.body.classList.remove('cursor-hover');
+    });
+    document.addEventListener('mousedown', () => document.body.classList.add('cursor-click'));
+    document.addEventListener('mouseup',   () => document.body.classList.remove('cursor-click'));
+  }
+
+  // === CHIFFRES ANIMÉS (stats hero) ===
+  function animateCounter(el, target, suffix, duration) {
+    const start = performance.now();
+    const isFloat = String(target).includes('.');
+    function step(now) {
+      const p = Math.min((now - start) / duration, 1);
+      // easeOutQuart
+      const ease = 1 - Math.pow(1 - p, 4);
+      const val = isFloat ? (target * ease).toFixed(1) : Math.round(target * ease);
+      el.textContent = val + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  // Observer les stats
+  const statObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const raw = el.dataset.count;
+      if (!raw) return;
+      statObs.unobserve(el);
+      const suffix = el.dataset.suffix || '';
+      const target = parseFloat(raw);
+      animateCounter(el, target, suffix, 1400);
+    });
+  }, { threshold: 0.6 });
+  document.querySelectorAll('.stat-num[data-count]').forEach(el => statObs.observe(el));
+});
+// Fix page blanche au retour arrière (bfcache)
+window.addEventListener('pageshow', e => {
+  if (e.persisted || performance.getEntriesByType('navigation')[0]?.type === 'back_forward') {
+    document.body.classList.remove('page-leaving');
+    document.body.classList.add('page-visible');
+  }
 });
 document.addEventListener('click', e => {
   const a = e.target.closest('a');

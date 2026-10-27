@@ -436,6 +436,13 @@
   // === TRANSITIONS DE PAGE ===
   document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(() => document.body.classList.add('page-visible'));
+// Fix page blanche au retour arrière (bfcache)
+window.addEventListener('pageshow', e => {
+  if (e.persisted || performance.getEntriesByType('navigation')[0]?.type === 'back_forward') {
+    document.body.classList.remove('page-leaving');
+    document.body.classList.add('page-visible');
+  }
+});
   });
   document.addEventListener('click', e => {
     const a = e.target.closest('a');
