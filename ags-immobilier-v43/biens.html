@@ -126,6 +126,99 @@
     .mob-bottomnav .nav-icon { font-size:16px; }
   }
   .mob-bottomnav { display:none; }
+
+  /* ===== COMPARATEUR ===== */
+  /* Checkbox sur chaque card */
+  .bien-card { position:relative; }
+  .cmp-check-wrap { position:absolute; top:12px; right:12px; z-index:10; }
+  .cmp-check-wrap input[type=checkbox] { display:none; }
+  .cmp-check-wrap label {
+    width:28px; height:28px; border-radius:50%;
+    background:rgba(255,255,255,.9); border:2px solid rgba(27,45,79,.25);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; font-size:13px; transition:all .2s;
+    box-shadow:0 2px 8px rgba(0,0,0,.15);
+  }
+  .cmp-check-wrap label::after { content:''; }
+  .cmp-check-wrap input:checked + label {
+    background:var(--accent); border-color:var(--accent); color:white;
+  }
+  .cmp-check-wrap input:checked + label::after { content:'✓'; font-size:13px; color:white; font-weight:600; }
+  .bien-card.cmp-selected { outline:2px solid var(--accent); outline-offset:-2px; }
+
+  /* Barre flottante */
+  .cmp-bar {
+    position:fixed; bottom:80px; left:50%; transform:translateX(-50%) translateY(120px);
+    background:var(--navy); color:white;
+    display:flex; align-items:center; gap:16px;
+    padding:14px 24px; z-index:500;
+    box-shadow:0 8px 32px rgba(0,0,0,.25);
+    transition:transform .35s cubic-bezier(.34,1.56,.64,1), opacity .3s;
+    opacity:0; pointer-events:none; white-space:nowrap;
+  }
+  .cmp-bar.visible { transform:translateX(-50%) translateY(0); opacity:1; pointer-events:all; }
+  .cmp-bar-label { font-size:11px; letter-spacing:2px; text-transform:uppercase; }
+  .cmp-bar-label span { color:var(--accent); font-size:18px; font-family:'Cormorant Garamond',serif; font-weight:400; margin-right:4px; }
+  .cmp-bar-compare {
+    background:var(--accent); color:white; border:none;
+    font-family:'Jost',sans-serif; font-size:10px; letter-spacing:2px;
+    text-transform:uppercase; padding:10px 24px; cursor:pointer;
+    transition:background .2s;
+  }
+  .cmp-bar-compare:hover { background:#4a8bc4; }
+  .cmp-bar-compare:disabled { opacity:.45; cursor:not-allowed; }
+  .cmp-bar-clear { background:none; border:1px solid rgba(255,255,255,.2); color:rgba(255,255,255,.6);
+    font-family:'Jost',sans-serif; font-size:10px; letter-spacing:1.5px; text-transform:uppercase;
+    padding:9px 16px; cursor:pointer; transition:all .2s; }
+  .cmp-bar-clear:hover { border-color:white; color:white; }
+
+  /* Modal comparateur */
+  .cmp-modal-bg {
+    display:none; position:fixed; inset:0;
+    background:rgba(15,30,54,.85); z-index:900;
+    overflow-y:auto; padding:40px 20px;
+  }
+  .cmp-modal-bg.open { display:block; }
+  .cmp-modal {
+    background:white; max-width:960px; margin:0 auto;
+    position:relative;
+  }
+  .cmp-modal-header {
+    background:var(--navy); padding:24px 32px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .cmp-modal-title { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; color:white; letter-spacing:1px; }
+  .cmp-modal-close { background:none; border:none; color:rgba(255,255,255,.6); font-size:28px; cursor:pointer; line-height:1; padding:0; transition:color .2s; }
+  .cmp-modal-close:hover { color:white; }
+  .cmp-cols { display:grid; gap:0; }
+  .cmp-cols.n2 { grid-template-columns:1fr 1fr; }
+  .cmp-cols.n3 { grid-template-columns:1fr 1fr 1fr; }
+  .cmp-col { border-right:1px solid var(--stone); }
+  .cmp-col:last-child { border-right:none; }
+  .cmp-col-img { height:200px; overflow:hidden; }
+  .cmp-col-img img { width:100%; height:100%; object-fit:cover; }
+  .cmp-col-body { padding:0; }
+  .cmp-row {
+    display:flex; flex-direction:column; padding:14px 20px;
+    border-bottom:1px solid var(--stone); font-size:13px; color:var(--navy);
+    min-height:54px; justify-content:center;
+  }
+  .cmp-row-label { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--text-light); margin-bottom:4px; }
+  .cmp-row-val { font-weight:400; line-height:1.4; }
+  .cmp-row-val.highlight { color:var(--accent); font-family:'Cormorant Garamond',serif; font-size:20px; }
+  .cmp-row-val.best { color:#1a7a4a; font-weight:500; }
+  .cmp-col-cta { padding:20px; }
+  .cmp-col-cta a {
+    display:block; text-align:center; background:var(--navy); color:white;
+    text-decoration:none; font-size:10px; letter-spacing:2px; text-transform:uppercase;
+    padding:13px; font-family:'Jost',sans-serif; transition:background .2s;
+  }
+  .cmp-col-cta a:hover { background:var(--blue-mid); }
+  @media(max-width:768px) {
+    .cmp-bar { bottom:74px; width:calc(100% - 32px); flex-wrap:wrap; gap:10px; }
+    .cmp-cols.n2,.cmp-cols.n3 { grid-template-columns:1fr; }
+    .cmp-col { border-right:none; border-bottom:1px solid var(--stone); }
+  }
 </style>
 </head>
 <body>
@@ -291,10 +384,15 @@ function afficherBiens(biens) {
     const pieces = piecesRaw ? String(piecesRaw).replace(/\s*pièces?\s*/i,'') + ' p' : '';
     const bl = (b.badge||'').toLowerCase().replace(/[\s-]/g,'');
     const badgeClass = bl.includes('coeur')?'badge-coupdecoeur':bl.includes('nouveau')?'badge-nouveau':bl.includes('compromis')?'badge-souscompromis':b.type==='viager'?'viager':'default';
-    return `<div class="bien-card" onclick="window.location='${url}'">
+    const isSelected = CMP.selection.has(b.id);
+    return `<div class="bien-card${isSelected?' cmp-selected':''}" data-id="${b.id}" data-nav="${url}">
       <div class="bien-img">
         <img src="${b.mainPhoto||'images/placeholder.jpg'}" alt="${b.titre}" loading="lazy" onerror="this.src='images/placeholder.jpg'">
         ${b.badge?`<span class="bien-badge ${badgeClass}">${b.badge}</span>`:''}
+      </div>
+      <div class="cmp-check-wrap">
+        <input type="checkbox" class="cmp-cb" id="cmp-${b.id}" data-id="${b.id}"${isSelected?' checked':''} onchange="CMP.toggle('${b.id}')">
+        <label for="cmp-${b.id}" title="Comparer"></label>
       </div>
       <div class="bien-info">
         <div class="bien-type">${TYPE_LABELS[b.type]||b.type||''}</div>
@@ -418,16 +516,15 @@ document.addEventListener('click', e => {
 
 // Intercepte aussi les onclick="window.location=..." des cartes biens
 (function() {
-  const origLoc = Object.getOwnPropertyDescriptor(window, 'location');
-  // Override via event delegation déjà géré — les cartes utilisent onclick direct
-  // On patche via MutationObserver après injection du HTML
   const observer = new MutationObserver(() => {
-    document.querySelectorAll('.bien-card[onclick]').forEach(card => {
-      const href = card.getAttribute('onclick').match(/'([^']+)'/)?.[1];
-      if (!href) return;
-      card.removeAttribute('onclick');
-      card.dataset.href = href;
-      card.addEventListener('click', () => {
+    document.querySelectorAll('.bien-card[data-nav]').forEach(card => {
+      if (card.dataset.patched) return;
+      card.dataset.patched = '1';
+      card.addEventListener('click', e => {
+        // Ne pas naviguer si clic sur la checkbox
+        if (e.target.closest('.cmp-check-wrap')) return;
+        const href = card.dataset.nav;
+        if (!href) return;
         document.body.classList.add('page-leaving');
         setTimeout(() => { window.location.href = href; }, 260);
       });
@@ -435,6 +532,116 @@ document.addEventListener('click', e => {
   });
   observer.observe(document.getElementById('biensGrid') || document.body, { childList:true, subtree:true });
 })();
+
+// ===== COMPARATEUR =====
+const CMP = {
+  selection: new Map(), // id → bien
+  MAX: 3,
+
+  toggle(id) {
+    const b = BIENS_ALL.find(x => x.id == id);
+    if (!b) return;
+    if (this.selection.has(id)) {
+      this.selection.delete(id);
+    } else {
+      if (this.selection.size >= this.MAX) {
+        // Retire le premier
+        const firstKey = this.selection.keys().next().value;
+        this.selection.delete(firstKey);
+        const cb = document.querySelector(`.cmp-cb[data-id="${firstKey}"]`);
+        if (cb) { cb.checked = false; cb.closest('.bien-card').classList.remove('cmp-selected'); }
+      }
+      this.selection.set(id, b);
+    }
+    // Met à jour visuellement la card
+    const card = document.querySelector(`.bien-card[data-id="${id}"]`);
+    if (card) card.classList.toggle('cmp-selected', this.selection.has(id));
+    this.updateBar();
+  },
+
+  updateBar() {
+    const bar = document.getElementById('cmpBar');
+    const n = this.selection.size;
+    bar.querySelector('.cmp-bar-count').textContent = n;
+    bar.querySelector('.cmp-bar-compare').disabled = n < 2;
+    bar.classList.toggle('visible', n > 0);
+  },
+
+  open() {
+    if (this.selection.size < 2) return;
+    const biens = [...this.selection.values()];
+    const modal = document.getElementById('cmpModal');
+    // Colonnes
+    const cols = modal.querySelector('.cmp-cols');
+    cols.className = 'cmp-cols n' + biens.length;
+
+    // Trouver le prix le plus bas
+    const prix = biens.map(b => b.prixBrut || 0);
+    const minPrix = Math.min(...prix.filter(p => p > 0));
+
+    cols.innerHTML = biens.map(b => {
+      const surf = b.surface || b.caracteristiques?.surface || '—';
+      const pieces = b.pieces || b.caracteristiques?.pieces || '—';
+      const chambres = b.chambres || b.caracteristiques?.chambres || '—';
+      const etage = b.etage || b.caracteristiques?.etage || '—';
+      const dpe = b.dpe || b.caracteristiques?.dpe || '—';
+      const isBest = b.prixBrut === minPrix && minPrix > 0 && biens.length > 1;
+      return `
+        <div class="cmp-col">
+          <div class="cmp-col-img">
+            <img src="${b.mainPhoto||'images/placeholder.jpg'}" alt="${b.titre}" onerror="this.src='images/placeholder.jpg'">
+          </div>
+          <div class="cmp-col-body">
+            <div class="cmp-row"><div class="cmp-row-label">Bien</div><div class="cmp-row-val">${b.titre}</div></div>
+            <div class="cmp-row"><div class="cmp-row-label">Ville</div><div class="cmp-row-val">📍 ${b.ville||'—'}</div></div>
+            <div class="cmp-row"><div class="cmp-row-label">Prix</div><div class="cmp-row-val highlight${isBest?' best':''}">${b.prix}${isBest?' ✓':''}</div></div>
+            <div class="cmp-row"><div class="cmp-row-label">Surface</div><div class="cmp-row-val">${surf}</div></div>
+            <div class="cmp-row"><div class="cmp-row-label">Pièces</div><div class="cmp-row-val">${pieces}</div></div>
+            <div class="cmp-row"><div class="cmp-row-label">Chambres</div><div class="cmp-row-val">${chambres}</div></div>
+            <div class="cmp-row"><div class="cmp-row-label">Étage</div><div class="cmp-row-val">${etage}</div></div>
+            <div class="cmp-row"><div class="cmp-row-label">DPE</div><div class="cmp-row-val">${dpe}</div></div>
+          </div>
+          <div class="cmp-col-cta"><a href="fiche.html?id=${b.id}">Voir la fiche →</a></div>
+        </div>`;
+    }).join('');
+
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  },
+
+  close() {
+    document.getElementById('cmpModal').classList.remove('open');
+    document.body.style.overflow = '';
+  },
+
+  clear() {
+    this.selection.forEach((v, id) => {
+      const cb = document.querySelector(`.cmp-cb[data-id="${id}"]`);
+      if (cb) { cb.checked = false; cb.closest('.bien-card').classList.remove('cmp-selected'); }
+    });
+    this.selection.clear();
+    this.updateBar();
+  }
+};
 </script>
+
+<!-- BARRE COMPARATEUR -->
+<div class="cmp-bar" id="cmpBar">
+  <div class="cmp-bar-label"><span class="cmp-bar-count">0</span> bien(s) sélectionné(s)</div>
+  <button class="cmp-bar-compare" onclick="CMP.open()" disabled>Comparer</button>
+  <button class="cmp-bar-clear" onclick="CMP.clear()">✕ Effacer</button>
+</div>
+
+<!-- MODAL COMPARATEUR -->
+<div class="cmp-modal-bg" id="cmpModal" onclick="if(event.target===this)CMP.close()">
+  <div class="cmp-modal">
+    <div class="cmp-modal-header">
+      <div class="cmp-modal-title">Comparaison de biens</div>
+      <button class="cmp-modal-close" onclick="CMP.close()">×</button>
+    </div>
+    <div class="cmp-cols n2"></div>
+  </div>
+</div>
+
 </body>
 </html>

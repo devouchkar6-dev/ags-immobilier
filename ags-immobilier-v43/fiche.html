@@ -79,8 +79,6 @@
   .share-row { display:flex; gap:8px; margin-bottom:20px; padding-bottom:20px; border-bottom:1px solid var(--stone); }
   .share-btn { flex:1; display:flex; align-items:center; justify-content:center; gap:6px; padding:9px 10px; border:1px solid var(--stone); background:white; font-family:'Jost',sans-serif; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--navy); cursor:pointer; transition:all .25s; text-decoration:none; }
   .share-btn:hover { border-color:var(--navy); background:var(--navy); color:white; }
-  .share-btn.wa { border-color:#25D366; color:#25D366; }
-  .share-btn.wa:hover { background:#25D366; border-color:#25D366; color:white; }
   .share-toast { position:fixed; bottom:32px; left:50%; transform:translateX(-50%) translateY(20px); background:var(--navy); color:white; font-size:12px; letter-spacing:1px; padding:12px 24px; opacity:0; transition:all .3s; pointer-events:none; z-index:9999; }
   .share-toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
   .sticky-contacts { margin-top:20px; padding-top:20px; border-top:1px solid var(--stone); display:flex; flex-direction:column; gap:8px; }
@@ -292,12 +290,6 @@ function afficherBien(b) {
     </div>` : '';
 
   document.title = (b.titre || '') + ' | AGS Immobilier';
-  // Lien WhatsApp partage dynamique
-  const waBtn = document.getElementById('share-wa');
-  if (waBtn) {
-    const msg = encodeURIComponent((b.titre || 'Bien AGS Immobilier') + (b.prix ? ' — ' + b.prix : '') + '\n' + window.location.href);
-    waBtn.href = 'https://wa.me/?text=' + msg;
-  }
   document.getElementById('page-content').innerHTML = `
     ${galHTML}
     <div class="wrap">
@@ -329,7 +321,6 @@ function afficherBien(b) {
           <div class="sticky-sub">${titre}${ville ? ' · ' + ville : ''}</div>
           <div class="share-row">
             <button class="share-btn" onclick="copierLien()">🔗 Copier le lien</button>
-            <a class="share-btn wa" id="share-wa" href="#" target="_blank">💬 WhatsApp</a>
           </div>
           <form name="visite-fiche" onsubmit="envoyerEmailJS(event,this,'template_visite')">
             <input type="hidden" name="bien" value="${b.titre || ''} — ${prix}">
