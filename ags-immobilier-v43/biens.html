@@ -28,10 +28,17 @@
   nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; justify-content:space-between; align-items:center; padding:14px 60px; background:var(--navy); transition:background .4s ease, box-shadow .4s ease; will-change:background; }
   nav.scrolled { background:rgba(255,255,255,.97); box-shadow:0 1px 0 rgba(27,45,79,.1); }
   .logo img { height:52px; width:auto; display:block; }
-  /* === PAGE TRANSITION === */
-  body { opacity:0; transition:opacity .35s ease; }
-  body.page-visible { opacity:1; }
-  body.page-leaving { opacity:0; transition:opacity .25s ease; }
+  /* === RIDEAU DE PAGE === */
+  body { opacity:1; }
+  #page-curtain { position:fixed; inset:0; background:var(--navy-deep); z-index:9999; transform:scaleY(1); transform-origin:top; transition:transform .55s cubic-bezier(.76,0,.24,1); pointer-events:none; }
+  #page-curtain.open { transform:scaleY(0); }
+  #page-curtain.closing { transform:scaleY(1); transform-origin:bottom; transition:transform .45s cubic-bezier(.76,0,.24,1); }
+  /* Bandeau prix hover */
+  .bien-hover-band { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(to top,rgba(27,45,79,.97) 0%,rgba(27,45,79,.7) 60%,transparent 100%); padding:20px 18px 14px; transform:translateY(100%); transition:transform .4s cubic-bezier(.25,.46,.45,.94); pointer-events:none; }
+  .bien-card:hover .bien-hover-band { transform:translateY(0); }
+  .bien-card.vendu:hover .bien-hover-band { transform:translateY(100%); }
+  .bien-hover-price { font-family:'Cormorant Garamond',serif; font-size:22px; color:white; font-weight:300; }
+  .bien-hover-titre { font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,.6); margin-bottom:4px; }
   nav ul { list-style:none; display:flex; gap:36px; }
   nav ul a { text-decoration:none; font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:300; color:rgba(255,255,255,.9); transition:color .3s; }
   nav.scrolled ul a { color:var(--text-light); }
@@ -224,6 +231,7 @@
 </style>
 </head>
 <body>
+<div id="page-curtain"></div>
 <nav id="nav">
   <div class="logo"><img src="images/logo.jpg" alt="AGS Immobilier"></div>
   <ul>
@@ -391,6 +399,10 @@ function afficherBiens(biens) {
       <div class="bien-img">
         <img src="${b.mainPhoto||'images/placeholder.jpg'}" alt="${b.titre}" loading="lazy" onerror="this.src='images/placeholder.jpg'">
         ${b.badge?`<span class="bien-badge ${badgeClass}">${b.badge}</span>`:''}
+        <div class="bien-hover-band">
+          <div class="bien-hover-titre">${b.ville||''}</div>
+          <div class="bien-hover-price">${b.prix}</div>
+        </div>
       </div>
       <div class="cmp-check-wrap">
         <input type="checkbox" class="cmp-cb" id="cmp-${b.id}" data-id="${b.id}"${isSelected?' checked':''} onchange="CMP.toggle('${b.id}')">
@@ -489,17 +501,25 @@ function rechercherBiens() {
   afficherBiens(res);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  // === TRANSITION ENTRÉE ===
-  requestAnimationFrame(() => document.body.classList.add('page-visible'));
-// Fix page blanche au retour arrière (bfcache)
-window.addEventListener('pageshow', e => {
-  if (e.persisted || performance.getEntriesByType('navigation')[0]?.type === 'back_forward') {
-    document.body.classList.remove('page-leaving');
-    document.body.classList.add('page-visible');
-  }
-});
+// === RIDEAU DE PAGE ===
+(function() {
+  const curtain = document.getElementById('page-curtain');
+  function openCurtain() { requestAnimationFrame(() => { requestAnimationFrame(() => curtain.classList.add('open')); }); }
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', openCurtain); } else { openCurtain(); }
+  window.addEventListener('pageshow', e => { if (e.persisted) { curtain.classList.remove('closing'); curtain.classList.add('open'); } });
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a');
+    if (!a) return;
+    const href = a.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('tel:') || href.startsWith('mailto:') || a.target === '_blank') return;
+    if (href.startsWith('http') && !href.includes(location.hostname)) return;
+    e.preventDefault();
+    curtain.classList.remove('open'); curtain.classList.add('closing');
+    setTimeout(() => { window.location.href = href; }, 480);
+  });
+})();
 
+document.addEventListener('DOMContentLoaded', () => {
   chargerBiens().then(() => {
     // Pré-filtrer par ville si paramètre URL (ex: biens.html?ville=cannes)
     const params = new URLSearchParams(window.location.search);
@@ -511,17 +531,6 @@ window.addEventListener('pageshow', e => {
   });
 });
 
-// === TRANSITION SORTIE — intercepte tous les liens internes ===
-document.addEventListener('click', e => {
-  const a = e.target.closest('a');
-  if (!a) return;
-  const href = a.getAttribute('href');
-  if (!href || href.startsWith('#') || href.startsWith('tel:') || href.startsWith('mailto:') || a.target === '_blank') return;
-  if (href.startsWith('http') && !href.includes(location.hostname)) return;
-  e.preventDefault();
-  document.body.classList.add('page-leaving');
-  setTimeout(() => { window.location.href = href; }, 260);
-});
 
 // Délégation d'événements sur la grid — plus besoin de MutationObserver
 (function() {
