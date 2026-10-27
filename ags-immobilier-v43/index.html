@@ -556,6 +556,209 @@
   </div>
 </section>
 
+<!-- ========== RÉSEAUX SOCIAUX — TÉLÉPHONE ANIMÉ ========== -->
+<style>
+.social-sec{position:relative;overflow:hidden;background:linear-gradient(180deg,#F7F9FC 0%,#E9EFF6 100%);padding:110px 60px;}
+.social-sec .wm{position:absolute;right:-2%;top:50%;transform:translateY(-50%);font-family:'Jost',sans-serif;font-weight:500;font-size:clamp(220px,30vw,460px);letter-spacing:-12px;color:rgba(27,45,79,.04);line-height:1;pointer-events:none;user-select:none;}
+.social-inner{position:relative;z-index:1;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.social-text .section-tag{justify-content:flex-start;}
+.social-text .section-tag::after{display:none;}
+.social-text .section-title{margin-bottom:18px;}
+.social-lead{font-size:15px;color:var(--text-light);font-weight:300;line-height:1.8;margin-bottom:36px;max-width:440px;}
+.sn-list{display:flex;flex-direction:column;gap:12px;max-width:440px;}
+.sn-tab{position:relative;display:flex;align-items:center;gap:16px;width:100%;text-align:left;background:white;border:1px solid var(--stone);padding:16px 18px;cursor:pointer;font-family:'Jost',sans-serif;overflow:hidden;transition:border-color .3s,box-shadow .3s,transform .3s;}
+.sn-tab:hover{border-color:var(--blue-light);transform:translateX(4px);}
+.sn-tab.active{border-color:var(--navy);box-shadow:0 10px 30px rgba(27,45,79,.10);}
+.sn-ico{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--cream);color:var(--navy);transition:background .3s,color .3s;}
+.sn-ico svg{width:20px;height:20px;}
+.sn-tab.active .sn-ico{background:var(--navy);color:white;}
+.sn-meta{flex:1;min-width:0;}
+.sn-name{display:block;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:3px;}
+.sn-handle{display:block;font-family:'Cormorant Garamond',serif;font-size:21px;color:var(--navy);line-height:1.1;}
+.sn-follow{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);text-decoration:none;padding:8px 0 8px 10px;white-space:nowrap;}
+.sn-follow:hover{color:var(--navy);}
+.sn-bar{position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:left;}
+.sn-note{margin-top:22px;font-size:12px;color:var(--text-light);font-weight:300;display:flex;align-items:center;gap:10px;}
+.sn-note::before{content:'';width:6px;height:6px;border-radius:50%;background:#2ECC71;box-shadow:0 0 0 4px rgba(46,204,113,.15);}
+
+/* Téléphone */
+.phone-stage{position:relative;display:flex;justify-content:center;align-items:center;min-height:620px;}
+.phone{position:relative;width:300px;background:#0F1E36;border-radius:48px;padding:11px;box-shadow:0 40px 80px rgba(15,30,54,.28),0 0 0 1px rgba(255,255,255,.06) inset,0 0 0 2px #2C4A7C;animation:phoneFloat 7s ease-in-out infinite;z-index:2;}
+.phone::before{content:'';position:absolute;right:-3px;top:130px;width:3px;height:64px;background:#1B2D4F;border-radius:0 3px 3px 0;}
+.phone::after{content:'';position:absolute;left:-3px;top:110px;width:3px;height:38px;background:#1B2D4F;border-radius:3px 0 0 3px;box-shadow:0 56px 0 #1B2D4F;}
+@keyframes phoneFloat{0%,100%{transform:translateY(0) rotate(-1.2deg)}50%{transform:translateY(-12px) rotate(.4deg)}}
+.phone-screen{position:relative;border-radius:38px;overflow:hidden;background:#0c0f14;aspect-ratio:278/510;}
+.ph-status{position:absolute;top:0;left:0;right:0;height:40px;z-index:3;display:flex;align-items:center;justify-content:space-between;padding:0 24px 0 28px;font-family:-apple-system,'Jost',sans-serif;font-size:13px;font-weight:600;transition:background .4s,color .4s;}
+.ph-island{position:absolute;left:50%;top:9px;transform:translateX(-50%);width:86px;height:24px;background:#000;border-radius:14px;}
+.ph-icons{display:flex;gap:5px;align-items:center;}
+.ph-icons i{display:block;background:currentColor;border-radius:1px;}
+.ph-status.dark{background:#0c0f14;color:white;}
+.ph-status.light{background:#ffffff;color:#000;}
+.ph-videos{position:absolute;top:40px;left:0;right:0;bottom:0;}
+.ph-videos video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;opacity:0;transition:opacity .5s ease;}
+.ph-videos video.on{opacity:1;}
+.ph-home{position:absolute;bottom:7px;left:50%;transform:translateX(-50%);width:96px;height:4px;border-radius:3px;background:rgba(255,255,255,.55);z-index:4;mix-blend-mode:difference;}
+
+/* Bulles flottantes */
+.sn-bubble{position:absolute;z-index:3;background:white;box-shadow:0 14px 34px rgba(15,30,54,.14);padding:12px 16px;border-radius:14px;font-family:'Jost',sans-serif;display:flex;align-items:center;gap:10px;opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease;}
+.sn-bubble.show{opacity:1;transform:translateY(0);}
+.sn-bubble .bb-ico{width:30px;height:30px;border-radius:50%;background:var(--navy);color:white;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.sn-bubble .bb-ico svg{width:14px;height:14px;}
+.sn-bubble .bb-big{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--navy);line-height:1;}
+.sn-bubble .bb-small{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-top:3px;}
+.bb-1{left:-3%;top:16%;animation:bbFloat 6s ease-in-out infinite;}
+.bb-2{right:-5%;top:58%;animation:bbFloat 6.5s ease-in-out -2s infinite;}
+.bb-3{left:0;bottom:8%;animation:bbFloat 7s ease-in-out -4s infinite;}
+@keyframes bbFloat{0%,100%{translate:0 0}50%{translate:0 -8px}}
+
+@media(max-width:960px){
+  .social-sec{padding:72px 18px;}
+  .social-inner{grid-template-columns:1fr;gap:40px;}
+  .social-text{text-align:center;}
+  .social-text .section-tag{justify-content:center;}
+  .social-text .section-tag::after{display:block;}
+  .social-lead{margin-left:auto;margin-right:auto;}
+  .sn-list{margin:0 auto;}
+  .sn-note{justify-content:center;}
+  .phone-stage{min-height:0;padding:10px 0 20px;}
+  .phone{width:250px;border-radius:42px;padding:9px;}
+  .phone-screen{border-radius:34px;}
+  .bb-1{left:-2%;top:12%;}
+  .bb-2{right:-2%;top:60%;}
+  .bb-3{display:none;}
+  .sn-bubble{padding:9px 12px;}
+  .sn-bubble .bb-big{font-size:18px;}
+}
+@media(max-width:400px){ .sn-follow{display:none;} .sn-bubble .bb-ico{display:none;} }
+@media(prefers-reduced-motion:reduce){ .phone,.sn-bubble{animation:none!important;} }
+</style>
+
+<section class="social-sec" id="reseaux">
+  <div class="wm" aria-hidden="true">AGS</div>
+  <div class="social-inner">
+    <div class="social-text reveal">
+      <div class="section-tag">Suivez l'agence</div>
+      <h2 class="section-title">Notre quotidien<br><em>en images</em></h2>
+      <p class="social-lead">Biens en exclusivité, visites vidéo, conseils pour vendre ou acheter sur la Côte d'Azur : on publie chaque semaine sur nos réseaux.</p>
+
+      <div class="sn-list" role="tablist" aria-label="Nos réseaux sociaux">
+        <div class="sn-tab active" role="tab" tabindex="0" aria-selected="true" data-net="ig">
+          <span class="sn-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg></span>
+          <span class="sn-meta"><span class="sn-name">Instagram</span><span class="sn-handle">@ags.immo</span></span>
+          <a class="sn-follow" href="https://www.instagram.com/ags.immo/" target="_blank" rel="noopener">Suivre →</a>
+          <span class="sn-bar"></span>
+        </div>
+        <div class="sn-tab" role="tab" tabindex="0" aria-selected="false" data-net="fb">
+          <span class="sn-ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1z"/></svg></span>
+          <span class="sn-meta"><span class="sn-name">Facebook</span><span class="sn-handle">Agence AGS Immobilier</span></span>
+          <a class="sn-follow" href="https://www.facebook.com/profile.php?id=100090291204330&locale=fr_FR" target="_blank" rel="noopener">Suivre →</a>
+          <span class="sn-bar"></span>
+        </div>
+        <div class="sn-tab" role="tab" tabindex="0" aria-selected="false" data-net="tt">
+          <span class="sn-ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.7 5.6A4.4 4.4 0 0 1 15.6 3h-3.2v12.3a2.6 2.6 0 1 1-1.8-2.5V9.5a5.8 5.8 0 1 0 5 5.8V9.1a7.4 7.4 0 0 0 4.3 1.4V7.3a4.3 4.3 0 0 1-3.2-1.7z"/></svg></span>
+          <span class="sn-meta"><span class="sn-name">TikTok</span><span class="sn-handle">@ags.immobilier</span></span>
+          <a class="sn-follow" href="https://www.tiktok.com/@ags.immobilier" target="_blank" rel="noopener">Suivre →</a>
+          <span class="sn-bar"></span>
+        </div>
+      </div>
+      <div class="sn-note">Nouveau contenu chaque semaine</div>
+    </div>
+
+    <div class="phone-stage">
+      <div class="phone" aria-hidden="true">
+        <div class="phone-screen">
+          <div class="ph-status dark" id="ph-status">
+            <span>9:41</span>
+            <span class="ph-island"></span>
+            <span class="ph-icons"><i style="width:3px;height:5px"></i><i style="width:3px;height:7px"></i><i style="width:3px;height:9px"></i><i style="width:20px;height:9px;border-radius:3px;margin-left:4px"></i></span>
+          </div>
+          <div class="ph-videos">
+            <video class="on" data-net="ig" data-src="videos/social/ig.mp4" poster="videos/social/ig.jpg" muted playsinline preload="none"></video>
+            <video data-net="fb" data-src="videos/social/fb.mp4" poster="videos/social/fb.jpg" muted playsinline preload="none"></video>
+            <video data-net="tt" data-src="videos/social/tt.mp4" poster="videos/social/tt.jpg" muted playsinline preload="none"></video>
+          </div>
+          <span class="ph-home"></span>
+        </div>
+      </div>
+
+      <div class="sn-bubble bb-1" id="bb-1"><span class="bb-ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span><div class="bb-big" id="bb-1-big">2 695</div><div class="bb-small" id="bb-1-small">vues · Grand terrain ?</div></span></div>
+      <div class="sn-bubble bb-2" id="bb-2"><span class="bb-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></span><span><div class="bb-big" id="bb-2-big">Exclusivité</div><div class="bb-small" id="bb-2-small">Appartement · Cannes</div></span></div>
+      <div class="sn-bubble bb-3" id="bb-3"><span class="bb-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span><div class="bb-big">1 / semaine</div><div class="bb-small">Nouvelle publication</div></span></div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var sec=document.getElementById('reseaux'); if(!sec) return;
+  var tabs=[].slice.call(sec.querySelectorAll('.sn-tab'));
+  var vids={}; [].slice.call(sec.querySelectorAll('.ph-videos video')).forEach(function(v){vids[v.dataset.net]=v;});
+  var order=['ig','fb','tt'];
+  var status=document.getElementById('ph-status');
+  var theme={ig:'dark',fb:'light',tt:'light'};
+  var bubbles={
+    ig:[['2 695','vues · Grand terrain ?'],['Exclusivité','Appartement · Cannes']],
+    fb:[['259','vues · Vidéo de l\'agence'],['45 ans','au Cannet depuis 1981']],
+    tt:[['3 483','vues · T2 Mandelieu'],['House tour','Villa · Tanneron']]
+  };
+  var current='ig', started=false, raf=null;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function load(v){
+    if(v.src||!v.dataset.src) return;
+    var mp4=v.canPlayType('video/mp4; codecs="avc1.42E01E"');
+    v.src = mp4 ? v.dataset.src : v.dataset.src.replace(/\.mp4$/,'.webm');
+  }
+  function setBubbles(net){
+    var b1=document.getElementById('bb-1'), b2=document.getElementById('bb-2');
+    [b1,b2].forEach(function(b){b.classList.remove('show');});
+    setTimeout(function(){
+      document.getElementById('bb-1-big').textContent=bubbles[net][0][0];
+      document.getElementById('bb-1-small').textContent=bubbles[net][0][1];
+      document.getElementById('bb-2-big').textContent=bubbles[net][1][0];
+      document.getElementById('bb-2-small').textContent=bubbles[net][1][1];
+      b1.classList.add('show'); setTimeout(function(){b2.classList.add('show');},250);
+    },350);
+  }
+  function progress(){
+    var v=vids[current], bar=sec.querySelector('.sn-tab[data-net="'+current+'"] .sn-bar');
+    if(v&&v.duration&&bar){ bar.style.transform='scaleX('+(v.currentTime/v.duration)+')'; }
+    raf=requestAnimationFrame(progress);
+  }
+  function show(net){
+    current=net;
+    tabs.forEach(function(t){
+      var on=t.dataset.net===net;
+      t.classList.toggle('active',on); t.setAttribute('aria-selected',on);
+      t.querySelector('.sn-bar').style.transform='scaleX(0)';
+    });
+    Object.keys(vids).forEach(function(k){
+      var v=vids[k];
+      if(k===net){ load(v); v.classList.add('on'); try{v.currentTime=0;}catch(e){} if(!reduce){ var p=v.play(); if(p&&p.catch)p.catch(function(){}); } }
+      else { v.classList.remove('on'); v.pause(); }
+    });
+    status.className='ph-status '+theme[net];
+    setBubbles(net);
+    // précharger la suivante
+    load(vids[order[(order.indexOf(net)+1)%order.length]]);
+  }
+  Object.keys(vids).forEach(function(k){
+    vids[k].addEventListener('ended',function(){ if(k===current) show(order[(order.indexOf(k)+1)%order.length]); });
+  });
+  tabs.forEach(function(t){
+    t.addEventListener('click',function(e){ if(e.target.closest('.sn-follow')) return; show(t.dataset.net); });
+    t.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); show(t.dataset.net); } });
+  });
+  // Démarre seulement quand la section est visible, met en pause sinon
+  var io=new IntersectionObserver(function(en){
+    var vis=en[0].isIntersecting;
+    if(vis&&!started){ started=true; show('ig'); document.getElementById('bb-3').classList.add('show'); raf=requestAnimationFrame(progress); }
+    else if(started){ var v=vids[current]; if(vis){ if(!reduce){var p=v.play(); if(p&&p.catch)p.catch(function(){});} } else { v.pause(); } }
+  },{threshold:.25});
+  io.observe(sec);
+})();
+</script>
+
 <section class="partenaires" id="partenaires">
   <div class="section-header reveal">
     <div class="section-tag" style="color:rgba(255,255,255,.5);">Ils nous font confiance</div>
@@ -656,6 +859,7 @@
         <a class="social-link" href="https://www.linkedin.com" target="_blank">in</a>
         <a class="social-link" href="https://www.instagram.com/ags.immo/" target="_blank">ig</a>
         <a class="social-link" href="https://www.facebook.com/profile.php?id=100090291204330&locale=fr_FR" target="_blank">fb</a>
+        <a class="social-link" href="https://www.tiktok.com/@ags.immobilier" target="_blank">tk</a>
       </div>
     </div>
     <div class="footer-col"><h4>Propriétés</h4><ul><li><a href="biens.html">Appartements</a></li><li><a href="biens.html">Maisons &amp; Villas</a></li><li><a href="biens.html">Studios</a></li><li><a href="biens.html">Terrains</a></li></ul></div>
