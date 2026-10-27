@@ -27,7 +27,10 @@
   .hero-btns { flex-direction: column !important; gap: 10px !important; }
   .btn-primary { display: block !important; text-align: center !important; width: 100% !important; box-sizing: border-box !important; padding: 14px 20px !important; }
   .btn-ghost { display: block !important; text-align: center !important; width: 100% !important; box-sizing: border-box !important; padding: 14px 20px !important; }
-  .hero-stats { position: static !important; display: flex !important; justify-content: space-around !important; padding: 20px 0 !important; margin-top: 28px !important; border-top: 1px solid rgba(255,255,255,.15) !important; gap: 0 !important; }
+  .hero-stats { position: static !important; display: flex !important; justify-content: space-around !important; padding: 20px 0 !important; margin-top: 28px !important; border-top: 1px solid rgba(255,255,255,.15) !important; gap: 0 !important; flex-wrap: nowrap !important; }
+  .stat { display: flex !important; flex-direction: column !important; align-items: center !important; text-align: center !important; flex: 1 !important; min-width: 0 !important; }
+  .stat-num { font-size: 28px !important; white-space: nowrap !important; }
+  .stat-label { font-size: 8px !important; letter-spacing: 1.5px !important; white-space: nowrap !important; }
   .search-bar { flex-direction: column !important; height: auto !important; padding: 16px 20px !important; }
   .search-field { width: 100% !important; border-right: none !important; border-bottom: 1px solid rgba(255,255,255,.1) !important; padding: 10px 0 !important; }
   .search-submit { width: 100% !important; margin-top: 10px !important; }
@@ -56,6 +59,10 @@
   .contact-section { padding: 48px 18px !important; }
   footer { padding: 40px 18px 80px !important; }
   .full-form { padding: 24px 16px !important; }
+  /* Formulaire avis : réduire padding et taille étoiles sur mobile */
+  #avis-form-section { padding: 28px 16px !important; margin: 32px 18px 0 !important; max-width: 100% !important; }
+  .star { font-size: 28px !important; }
+  #star-rating { flex-wrap: nowrap !important; gap: 6px !important; }
   body { padding-bottom: 68px !important; }
   #search-results { padding: 32px 18px !important; }
   #results-grid { grid-template-columns: 1fr !important; }
