@@ -39,13 +39,38 @@
   .gallery img:hover { transform:scale(1.03); }
   .gallery-ph { background:#2C4A7C; display:flex; align-items:center; justify-content:center; font-size:40px; opacity:.3; }
   .gallery-count { position:absolute; bottom:12px; right:12px; background:rgba(0,0,0,.6); color:white; font-size:11px; padding:4px 10px; letter-spacing:1px; pointer-events:none; }
-  .lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.92); z-index:9999; align-items:center; justify-content:center; }
-  .lightbox.open { display:flex; }
-  .lightbox img { max-width:90vw; max-height:88vh; object-fit:contain; border:2px solid rgba(255,255,255,.1); }
-  .lb-close { position:absolute; top:20px; right:28px; color:white; font-size:36px; cursor:pointer; line-height:1; opacity:.7; }
-  .lb-close:hover { opacity:1; }
-  .lb-prev, .lb-next { position:absolute; top:50%; transform:translateY(-50%); color:white; font-size:44px; cursor:pointer; opacity:.6; padding:10px; user-select:none; }
-  .lb-prev:hover, .lb-next:hover { opacity:1; }
+  /* === GALERIE PLEIN ÉCRAN === */
+  .lightbox { position:fixed; inset:0; background:#05080F; z-index:10001; display:flex; flex-direction:column; opacity:0; pointer-events:none; transition:opacity .3s ease; touch-action:none; }
+  .lightbox.open { opacity:1; pointer-events:all; }
+  .lbx-top { display:flex; align-items:center; justify-content:space-between; padding:16px 20px; color:white; font-family:'Jost',sans-serif; flex-shrink:0; z-index:2; }
+  .lbx-title { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.5); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:55vw; }
+  .lbx-counter { font-family:'Cormorant Garamond',serif; font-size:20px; color:white; }
+  .lbx-counter span { color:rgba(255,255,255,.4); }
+  .lbx-close { width:42px; height:42px; border-radius:50%; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.04); color:white; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .2s; }
+  .lbx-close:hover { background:rgba(255,255,255,.12); }
+  .lbx-stage { position:relative; flex:1; overflow:hidden; min-height:0; }
+  .lbx-track { display:flex; height:100%; will-change:transform; transition:transform .45s cubic-bezier(.25,.46,.45,.94); }
+  .lbx-track.dragging { transition:none; }
+  .lbx-slide { flex:0 0 100%; height:100%; display:flex; align-items:center; justify-content:center; padding:0 70px; box-sizing:border-box; }
+  .lbx-slide img { max-width:100%; max-height:100%; object-fit:contain; user-select:none; -webkit-user-drag:none; pointer-events:none; }
+  .lbx-nav { position:absolute; top:50%; transform:translateY(-50%); width:52px; height:52px; border-radius:50%; border:1px solid rgba(255,255,255,.15); background:rgba(15,30,54,.55); color:white; font-size:26px; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:2; transition:background .2s; backdrop-filter:blur(6px); }
+  .lbx-nav:hover { background:rgba(91,155,213,.6); }
+  .lbx-prev { left:14px; } .lbx-next { right:14px; }
+  .lbx-thumbs { display:flex; gap:8px; padding:14px 20px 20px; overflow-x:auto; flex-shrink:0; justify-content:center; scrollbar-width:none; }
+  .lbx-thumbs::-webkit-scrollbar { display:none; }
+  .lbx-thumbs img { width:72px; height:52px; object-fit:cover; opacity:.4; cursor:pointer; flex-shrink:0; border:2px solid transparent; transition:opacity .2s,border-color .2s; }
+  .lbx-thumbs img.on { opacity:1; border-color:#5B9BD5; }
+  .lbx-thumbs img:hover { opacity:.85; }
+  body.lbx-lock { overflow:hidden; }
+  .gallery-count { pointer-events:auto !important; cursor:pointer; border:none; font-family:'Jost',sans-serif; transition:background .2s; }
+  .gallery-count:hover { background:rgba(27,45,79,.9) !important; }
+  @media(max-width:768px){
+    .lbx-slide { padding:0; }
+    .lbx-nav { display:none; }
+    .lbx-thumbs { justify-content:flex-start; padding:10px 12px calc(14px + env(safe-area-inset-bottom)); }
+    .lbx-thumbs img { width:56px; height:42px; }
+    .gallery-count { font-size:12px !important; padding:8px 14px !important; }
+  }
   .lb-prev { left:16px; } .lb-next { right:16px; }
   .lb-counter { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); color:rgba(255,255,255,.5); font-size:12px; letter-spacing:2px; }
   .wrap { max-width:1200px; margin:0 auto; padding:56px 40px; display:grid; grid-template-columns:1fr 400px; gap:56px; align-items:start; }
@@ -81,6 +106,15 @@
   .share-btn { flex:1; display:flex; align-items:center; justify-content:center; gap:6px; padding:9px 10px; border:1px solid var(--stone); background:white; font-family:'Jost',sans-serif; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--navy); cursor:pointer; transition:all .25s; text-decoration:none; }
   .share-btn:hover { border-color:var(--navy); background:var(--navy); color:white; }
   .share-toast { position:fixed; bottom:32px; left:50%; transform:translateX(-50%) translateY(20px); background:var(--navy); color:white; font-size:12px; letter-spacing:1px; padding:12px 24px; opacity:0; transition:all .3s; pointer-events:none; z-index:9999; }
+  .gallery-fav { position:absolute; top:14px; right:14px; z-index:3; width:44px; height:44px; border-radius:50%; border:none; background:rgba(255,255,255,.94); box-shadow:0 4px 14px rgba(0,0,0,.18); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:transform .2s; padding:0; }
+  .gallery-fav:hover { transform:scale(1.08); }
+  .gallery-fav svg { width:21px; height:21px; fill:none; stroke:#1B2D4F; stroke-width:1.8; transition:fill .2s, stroke .2s; }
+  .gallery-fav.on svg { fill:#D94F6B; stroke:#D94F6B; }
+  .gallery-fav.pop { animation:favPop .45s cubic-bezier(.3,1.6,.5,1); }
+  @keyframes favPop { 0%{transform:scale(1)} 40%{transform:scale(1.35)} 100%{transform:scale(1)} }
+  .share-toast a { color:#9CC4EA; margin-left:10px; text-decoration:underline; }
+  .share-toast.show a { pointer-events:auto; }
+  @media(max-width:768px){ .share-toast { bottom:84px; white-space:nowrap; } }
   .share-toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
   .sticky-contacts { margin-top:20px; padding-top:20px; border-top:1px solid var(--stone); display:flex; flex-direction:column; gap:8px; }
   .sticky-contact-line { font-size:13px; color:var(--text-light); }
@@ -278,12 +312,18 @@
 <a class="whatsapp-btn" href="https://wa.me/33607131181" target="_blank" title="WhatsApp">💬</a>
 <div class="share-toast" id="share-toast">✓ Lien copié !</div>
 <div id="print-sheet"></div>
-<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-  <div class="lb-close" onclick="fermerLB()">✕</div>
-  <div class="lb-prev" onclick="lbNav(-1)">‹</div>
-  <img id="lb-img" src="" alt="">
-  <div class="lb-next" onclick="lbNav(1)">›</div>
-  <div class="lb-counter" id="lb-counter"></div>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Galerie photos">
+  <div class="lbx-top">
+    <div class="lbx-counter" id="lb-counter">1 <span>/ 1</span></div>
+    <div class="lbx-title" id="lbx-title"></div>
+    <button class="lbx-close" onclick="fermerLB()" aria-label="Fermer">✕</button>
+  </div>
+  <div class="lbx-stage" id="lbx-stage">
+    <div class="lbx-track" id="lbx-track"></div>
+    <button class="lbx-nav lbx-prev" onclick="lbNav(-1)" aria-label="Photo précédente">‹</button>
+    <button class="lbx-nav lbx-next" onclick="lbNav(1)" aria-label="Photo suivante">›</button>
+  </div>
+  <div class="lbx-thumbs" id="lbx-thumbs"></div>
 </div>
 <div class="mob-bottomnav">
   <a href="index.html"><span class="nav-icon">🏠</span>Accueil</a>
@@ -296,6 +336,31 @@
 // ✅ GitHub uniquement (APIMO supprimé)
 const GITHUB_RAW = 'https://raw.githubusercontent.com/devouchkar6-dev/ags-immobilier/main/ags-immobilier-v43/biens.json';
 const DPE_COLORS = {A:'#00a651',B:'#57b947',C:'#c4d600',D:'#fbaf17',E:'#f26522',F:'#ed1c24',G:'#be1e2d'};
+
+// ===== FAVORIS (gardés dans le navigateur du visiteur) =====
+const FAV = {
+  key: 'ags_favoris',
+  list() { try { return JSON.parse(localStorage.getItem(this.key)) || []; } catch(e) { return []; } },
+  has(id) { return this.list().includes(String(id)); },
+  toggle(id) {
+    id = String(id); let l = this.list(); const on = !l.includes(id);
+    l = on ? l.concat(id) : l.filter(x => x !== id);
+    try { localStorage.setItem(this.key, JSON.stringify(l)); } catch(e) {}
+    return on;
+  }
+};
+const HEART_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.3-9.2C1.4 7.9 3.6 4.5 7 4.5c2 0 3.6 1.1 5 3 1.4-1.9 3-3 5-3 3.4 0 5.6 3.4 4.3 6.8-1.8 4.6-9.3 9.2-9.3 9.2z"/></svg>';
+function toggleFavFiche(id, btn) {
+  const on = FAV.toggle(id);
+  btn.classList.toggle('on', on); btn.setAttribute('aria-pressed', on);
+  btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+  const t = document.getElementById('share-toast');
+  if (t) {
+    t.innerHTML = on ? '♥ Ajouté à vos favoris <a href="biens.html?onglet=fav">Voir mes favoris</a>' : 'Retiré de vos favoris';
+    t.classList.add('show'); clearTimeout(t._h);
+    t._h = setTimeout(() => { t.classList.remove('show'); }, 3200);
+  }
+}
 
 const AGENTS = {
   philippe: {
@@ -374,7 +439,8 @@ function afficherBien(b) {
         ${photos[0]
           ? `<img src="${photos[0]}" alt="${titre}" onclick="ouvrirLB(window._fichPhotos,0)" style="cursor:zoom-in" loading="eager">`
           : `<div class="gallery-ph">🏠</div>`}
-        ${nbPhotos > 1 ? `<div class="gallery-count">📷 ${nbPhotos} photos</div>` : ''}
+        <button class="gallery-fav${FAV.has(b.id)?' on':''}" id="gallery-fav" aria-label="Ajouter aux favoris" aria-pressed="${FAV.has(b.id)}" onclick="toggleFavFiche('${b.id}',this)">${HEART_SVG}</button>
+        ${nbPhotos > 1 ? `<button class="gallery-count" onclick="ouvrirLB(window._fichPhotos,0)">📷 Voir les ${nbPhotos} photos</button>` : ''}
       </div>
       ${nbPhotos === 2
         ? `<div><img src="${photos[1]}" alt="${titre}" onclick="ouvrirLB(window._fichPhotos,1)" style="cursor:zoom-in;width:100%;height:100%;object-fit:cover" loading="lazy"></div>`
@@ -566,18 +632,49 @@ function initSimulateur(prixBrut) {
 }
 
 let _lbPhotos = [], _lbIdx = 0;
-function ouvrirLB(photos, idx) {
-  _lbPhotos = photos; _lbIdx = idx;
-  document.getElementById('lb-img').src = photos[idx];
-  document.getElementById('lb-counter').textContent = (idx+1) + ' / ' + photos.length;
-  document.getElementById('lightbox').classList.add('open');
+function _lbRender() {
+  const track = document.getElementById('lbx-track');
+  track.style.transform = 'translateX(' + (-_lbIdx * 100) + '%)';
+  // charge la photo courante + voisines
+  [-1,0,1].forEach(d => {
+    const i = (_lbIdx + d + _lbPhotos.length) % _lbPhotos.length;
+    const img = track.children[i] && track.children[i].querySelector('img');
+    if (img && !img.src) img.src = img.dataset.src;
+  });
+  document.getElementById('lb-counter').innerHTML = (_lbIdx+1) + ' <span>/ ' + _lbPhotos.length + '</span>';
+  const thumbs = document.getElementById('lbx-thumbs');
+  [].forEach.call(thumbs.children, (t, i) => t.classList.toggle('on', i === _lbIdx));
+  const cur = thumbs.children[_lbIdx];
+  if (cur) cur.scrollIntoView({ behavior:'smooth', inline:'center', block:'nearest' });
+  const many = _lbPhotos.length > 1;
+  document.querySelectorAll('.lbx-nav').forEach(b => b.style.visibility = many ? 'visible' : 'hidden');
+  thumbs.style.display = many ? '' : 'none';
 }
-function fermerLB() { document.getElementById('lightbox').classList.remove('open'); }
+function ouvrirLB(photos, idx) {
+  _lbPhotos = photos || []; _lbIdx = idx || 0;
+  if (!_lbPhotos.length) return;
+  const track = document.getElementById('lbx-track');
+  const thumbs = document.getElementById('lbx-thumbs');
+  track.classList.add('dragging');
+  track.innerHTML = _lbPhotos.map((p,i) => `<div class="lbx-slide"><img data-src="${p}" alt="Photo ${i+1}"></div>`).join('');
+  thumbs.innerHTML = _lbPhotos.map((p,i) => `<img src="${p}" alt="" loading="lazy" onclick="lbGo(${i})">`).join('');
+  const t = document.querySelector('.prop-title');
+  document.getElementById('lbx-title').textContent = t ? t.textContent.trim() : '';
+  _lbRender();
+  requestAnimationFrame(() => track.classList.remove('dragging'));
+  document.getElementById('lightbox').classList.add('open');
+  document.body.classList.add('lbx-lock');
+}
+function fermerLB() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.classList.remove('lbx-lock');
+}
 function closeLightbox(e) { if (e.target === document.getElementById('lightbox')) fermerLB(); }
+function lbGo(i) { _lbIdx = i; _lbRender(); }
 function lbNav(dir) {
+  if (!_lbPhotos.length) return;
   _lbIdx = (_lbIdx + dir + _lbPhotos.length) % _lbPhotos.length;
-  document.getElementById('lb-img').src = _lbPhotos[_lbIdx];
-  document.getElementById('lb-counter').textContent = (_lbIdx+1) + ' / ' + _lbPhotos.length;
+  _lbRender();
 }
 document.addEventListener('keydown', e => {
   if (!document.getElementById('lightbox').classList.contains('open')) return;
@@ -585,6 +682,42 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight') lbNav(1);
   if (e.key === 'Escape')     fermerLB();
 });
+// Swipe : gauche/droite = photo suivante/précédente, bas = fermer
+(function(){
+  const stage = document.getElementById('lbx-stage');
+  const track = document.getElementById('lbx-track');
+  const box = document.getElementById('lightbox');
+  let x0 = null, y0 = 0, dx = 0, dy = 0, axis = null;
+  stage.addEventListener('pointerdown', e => {
+    if (e.target.closest('.lbx-nav')) return;
+    x0 = e.clientX; y0 = e.clientY; dx = dy = 0; axis = null;
+    track.classList.add('dragging');
+    stage.setPointerCapture(e.pointerId);
+  });
+  stage.addEventListener('pointermove', e => {
+    if (x0 === null) return;
+    dx = e.clientX - x0; dy = e.clientY - y0;
+    if (!axis && (Math.abs(dx) > 8 || Math.abs(dy) > 8)) axis = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y';
+    if (axis === 'x') {
+      track.style.transform = 'translateX(calc(' + (-_lbIdx * 100) + '% + ' + dx + 'px))';
+    } else if (axis === 'y' && dy > 0) {
+      track.style.transform = 'translateX(' + (-_lbIdx * 100) + '%) translateY(' + dy + 'px)';
+      box.style.background = 'rgba(5,8,15,' + Math.max(.35, 1 - dy / 500) + ')';
+    }
+  });
+  function end() {
+    if (x0 === null) return;
+    track.classList.remove('dragging');
+    box.style.background = '';
+    const w = stage.clientWidth;
+    if (axis === 'x' && Math.abs(dx) > Math.min(80, w * .18) && _lbPhotos.length > 1) lbNav(dx < 0 ? 1 : -1);
+    else if (axis === 'y' && dy > 120) { fermerLB(); setTimeout(_lbRender, 300); }
+    else _lbRender();
+    x0 = null;
+  }
+  stage.addEventListener('pointerup', end);
+  stage.addEventListener('pointercancel', end);
+})();
 
 // === IMPRESSION ===
 /* Convertit une URL image en data:URL via canvas (contourne le CORS à l'impression) */
@@ -781,6 +914,7 @@ async function imprimerFiche() {
 function copierLien() {
   navigator.clipboard.writeText(window.location.href).then(() => {
     const t = document.getElementById('share-toast');
+    t.textContent = '✓ Lien copié !';
     t.classList.add('show');
     setTimeout(() => t.classList.remove('show'), 2500);
   });
