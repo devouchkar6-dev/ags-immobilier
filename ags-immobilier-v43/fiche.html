@@ -362,6 +362,22 @@ function toggleFavFiche(id, btn) {
   }
 }
 
+// ===== PHOTOS CLOUDINARY : taille adaptée + format moderne (WebP/AVIF) =====
+var CLD_RE = /\/upload\/f_auto,q_auto,c_limit,w_\d+\//;
+function cld(u, w) {
+  if (!u || u.indexOf('res.cloudinary.com') < 0 || u.indexOf('/upload/') < 0) return u;
+  if (/\/upload\/(f_|q_|w_|c_)/.test(u)) return u;
+  return u.replace('/upload/', '/upload/f_auto,q_auto,c_limit,w_' + w + '/');
+}
+// Si une image échoue : d'abord la photo d'origine, puis l'image de secours
+function agsImgErr(img) {
+  if (CLD_RE.test(img.src)) { img.src = img.src.replace(CLD_RE, '/upload/'); return; }
+  if (img.src.indexOf('images/placeholder.jpg') < 0) img.src = 'images/placeholder.jpg';
+}
+document.addEventListener('error', function(e) {
+  var t = e.target;
+  if (t && t.tagName === 'IMG' && !t.hasAttribute('onerror') && CLD_RE.test(t.src)) t.src = t.src.replace(CLD_RE, '/upload/');
+}, true);
 const AGENTS = {
   philippe: {
     nom: 'Philippe Servas',
@@ -437,15 +453,15 @@ function afficherBien(b) {
     <div class="gallery" style="grid-template-columns:${galCols};grid-template-rows:${galRows};height:${galHeight}">
       <div class="gallery-main" style="position:relative;${nbPhotos===1?'grid-column:1/-1':''}">
         ${photos[0]
-          ? `<img src="${photos[0]}" alt="${titre}" onclick="ouvrirLB(window._fichPhotos,0)" style="cursor:zoom-in" loading="eager">`
+          ? `<img src="${cld(photos[0],1600)}" alt="${titre}" onclick="ouvrirLB(window._fichPhotos,0)" style="cursor:zoom-in" loading="eager" fetchpriority="high">`
           : `<div class="gallery-ph">🏠</div>`}
         <button class="gallery-fav${FAV.has(b.id)?' on':''}" id="gallery-fav" aria-label="Ajouter aux favoris" aria-pressed="${FAV.has(b.id)}" onclick="toggleFavFiche('${b.id}',this)">${HEART_SVG}</button>
         ${nbPhotos > 1 ? `<button class="gallery-count" onclick="ouvrirLB(window._fichPhotos,0)">📷 Voir les ${nbPhotos} photos</button>` : ''}
       </div>
       ${nbPhotos === 2
-        ? `<div><img src="${photos[1]}" alt="${titre}" onclick="ouvrirLB(window._fichPhotos,1)" style="cursor:zoom-in;width:100%;height:100%;object-fit:cover" loading="lazy"></div>`
+        ? `<div><img src="${cld(photos[1],800)}" alt="${titre}" onclick="ouvrirLB(window._fichPhotos,1)" style="cursor:zoom-in;width:100%;height:100%;object-fit:cover" loading="lazy"></div>`
         : nbPhotos >= 3
-          ? [1,2].map(i => `<div><img src="${photos[i]}" alt="${titre}" onclick="ouvrirLB(window._fichPhotos,${i})" style="cursor:zoom-in;width:100%;height:100%;object-fit:cover" loading="lazy"></div>`).join('')
+          ? [1,2].map(i => `<div><img src="${cld(photos[i],800)}" alt="${titre}" onclick="ouvrirLB(window._fichPhotos,${i})" style="cursor:zoom-in;width:100%;height:100%;object-fit:cover" loading="lazy"></div>`).join('')
           : ''}
     </div>`;
 
@@ -656,8 +672,8 @@ function ouvrirLB(photos, idx) {
   const track = document.getElementById('lbx-track');
   const thumbs = document.getElementById('lbx-thumbs');
   track.classList.add('dragging');
-  track.innerHTML = _lbPhotos.map((p,i) => `<div class="lbx-slide"><img data-src="${p}" alt="Photo ${i+1}"></div>`).join('');
-  thumbs.innerHTML = _lbPhotos.map((p,i) => `<img src="${p}" alt="" loading="lazy" onclick="lbGo(${i})">`).join('');
+  track.innerHTML = _lbPhotos.map((p,i) => `<div class="lbx-slide"><img data-src="${cld(p,2000)}" alt="Photo ${i+1}"></div>`).join('');
+  thumbs.innerHTML = _lbPhotos.map((p,i) => `<img src="${cld(p,200)}" alt="" loading="lazy" onclick="lbGo(${i})">`).join('');
   const t = document.querySelector('.prop-title');
   document.getElementById('lbx-title').textContent = t ? t.textContent.trim() : '';
   _lbRender();
@@ -787,7 +803,7 @@ async function imprimerFiche() {
   };
 
   // Convertir toutes les photos en base64 (résout le problème CORS à l'impression)
-  const photos = await Promise.all(rawPhotos.map(u => urlToDataUrl(u)));
+  const photos = await Promise.all(rawPhotos.map(u => urlToDataUrl(cld(u,1200))));
 
   // Rétablir le bouton
   if (btn) { btn.innerHTML = '🖨️ Imprimer'; btn.disabled = false; }
