@@ -993,7 +993,7 @@ function copierLien() {
     <h3 class="int-title" id="int-title">Organisons une<br><em>visite ensemble</em></h3>
     <p class="int-sub">Vous avez pris le temps de découvrir ce bien —<br>votre conseiller est disponible pour vous accompagner.</p>
     <div class="int-divider"></div>
-    <div class="int-agent" id="int-agent-card">
+    <div class="int-agent" id="int-agent-card" style="display:none">
       <img class="int-agent-photo" id="int-agent-photo" src="" alt="">
       <div class="int-agent-info">
         <div class="int-agent-role" id="int-agent-role">Votre conseiller</div>
@@ -1042,8 +1042,10 @@ function copierLien() {
       if(!id || !window.BIENS_DATA) return;
       var bien = window.BIENS_DATA.find(function(b){ return String(b.id)===String(id); });
       if(!bien) return;
-      var ag = (window.AGENTS && window.AGENTS[bien.agent]) || window.AGENTS['philippe'];
-      if(!ag) return;
+      var LIST = (typeof AGENTS !== 'undefined') ? AGENTS : null;
+      var ag = LIST && LIST[bien.agent];
+      if(!ag) return; // conseiller inconnu : on garde la carte masquée et le numéro de l'agence
+      document.getElementById('int-agent-card').style.display = '';
       document.getElementById('int-agent-photo').src = ag.photo||'';
       document.getElementById('int-agent-photo').alt = ag.nom||'';
       document.getElementById('int-agent-role').textContent = ag.titre||'Votre conseiller';
