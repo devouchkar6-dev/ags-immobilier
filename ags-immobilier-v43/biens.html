@@ -655,22 +655,8 @@ const CMP = {
   </div>
 </div>
 
-<!-- ========== POPUP SORTIE + TOAST ========== -->
+<!-- ========== TOAST NOTIFICATION ========== -->
 <style>
-#exit-overlay{position:fixed;inset:0;background:rgba(10,18,32,.75);z-index:10000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s ease;backdrop-filter:blur(4px);}
-#exit-overlay.show{opacity:1;pointer-events:all;}
-#exit-box{background:#0F1E36;border:1px solid rgba(91,155,213,.2);max-width:420px;width:calc(100% - 40px);padding:44px 40px 36px;position:relative;transform:translateY(16px);transition:transform .35s cubic-bezier(.25,.46,.45,.94);}
-#exit-overlay.show #exit-box{transform:translateY(0);}
-#exit-close{position:absolute;top:16px;right:18px;background:none;border:none;color:rgba(255,255,255,.35);font-size:22px;cursor:pointer;line-height:1;padding:4px 6px;transition:color .2s;}
-#exit-close:hover{color:white;}
-#exit-box .ex-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#5B9BD5;margin-bottom:18px;}
-#exit-box h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:white;margin-bottom:10px;line-height:1.25;}
-#exit-box p{font-size:13px;color:rgba(255,255,255,.45);font-weight:300;line-height:1.75;margin-bottom:28px;}
-.exit-actions{display:flex;flex-direction:column;gap:10px;}
-.exit-call-btn{display:flex;align-items:center;justify-content:center;gap:10px;background:#5B9BD5;color:white;text-decoration:none;padding:14px;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-family:'Jost',sans-serif;transition:background .3s;}
-.exit-call-btn:hover{background:#4a8bc4;}
-.exit-stay-btn{background:none;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.5);padding:12px;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-family:'Jost',sans-serif;cursor:pointer;transition:all .3s;}
-.exit-stay-btn:hover{border-color:rgba(255,255,255,.3);color:white;}
 #toast-notif{position:fixed;bottom:28px;right:28px;z-index:9998;background:#0F1E36;border:1px solid rgba(91,155,213,.25);padding:18px 20px 16px;max-width:300px;width:calc(100vw - 56px);box-shadow:0 8px 40px rgba(0,0,0,.4);transform:translateY(20px);opacity:0;pointer-events:none;transition:transform .4s cubic-bezier(.25,.46,.45,.94),opacity .4s ease;}
 #toast-notif.show{transform:translateY(0);opacity:1;pointer-events:all;}
 .toast-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px;}
@@ -685,21 +671,8 @@ const CMP = {
 .toast-call:hover{background:#4a8bc4;}
 .toast-dismiss{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.25);cursor:pointer;transition:color .2s;background:none;border:none;font-family:'Jost',sans-serif;}
 .toast-dismiss:hover{color:rgba(255,255,255,.6);}
-@media(max-width:480px){#toast-notif{bottom:72px;right:12px;left:12px;max-width:100%;width:auto;}#exit-box{padding:36px 24px 28px;}}
+@media(max-width:480px){#toast-notif{bottom:72px;right:12px;left:12px;max-width:100%;width:auto;}}
 </style>
-
-<div id="exit-overlay" role="dialog" aria-modal="true" aria-labelledby="exit-title">
-  <div id="exit-box">
-    <button id="exit-close" aria-label="Fermer">×</button>
-    <div class="ex-tag">Un bien vous intéresse ?</div>
-    <h3 id="exit-title">Parlons de votre<br><em style="font-style:italic;color:#5B9BD5">projet ensemble</em></h3>
-    <p>Philippe vous conseille personnellement,<br>sans engagement, en moins de 24h.</p>
-    <div class="exit-actions">
-      <a href="tel:+33607131181" class="exit-call-btn">📞 Appeler Philippe — 06 07 13 11 81</a>
-      <button class="exit-stay-btn" id="exit-stay">Continuer ma recherche</button>
-    </div>
-  </div>
-</div>
 
 <div id="toast-notif" role="status" aria-live="polite">
   <div class="toast-top">
@@ -718,16 +691,6 @@ const CMP = {
 
 <script>
 (function(){
-  var overlay=document.getElementById('exit-overlay');
-  var POPUP_KEY='ags_exit_shown';
-  var popupShown=sessionStorage.getItem(POPUP_KEY);
-  function showPopup(){if(popupShown)return;popupShown=true;sessionStorage.setItem(POPUP_KEY,'1');overlay.classList.add('show');}
-  function closePopup(){overlay.classList.remove('show');}
-  document.addEventListener('mouseleave',function(e){if(e.clientY<0&&!popupShown)showPopup();});
-  if(/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent))setTimeout(function(){if(!popupShown)showPopup();},45000);
-  document.getElementById('exit-close').addEventListener('click',closePopup);
-  document.getElementById('exit-stay').addEventListener('click',closePopup);
-  overlay.addEventListener('click',function(e){if(e.target===overlay)closePopup();});
   var toast=document.getElementById('toast-notif');
   var TOAST_KEY='ags_toast_shown';
   if(!sessionStorage.getItem(TOAST_KEY)){
