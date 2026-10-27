@@ -28,6 +28,10 @@
   nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; justify-content:space-between; align-items:center; padding:14px 60px; background:var(--navy); transition:all .4s ease; }
   nav.scrolled { background:rgba(255,255,255,.97); backdrop-filter:blur(12px); box-shadow:0 1px 0 rgba(27,45,79,.1); }
   .logo img { height:52px; width:auto; display:block; }
+  /* === PAGE TRANSITION === */
+  body { opacity:0; transition:opacity .35s ease; }
+  body.page-visible { opacity:1; }
+  body.page-leaving { opacity:0; transition:opacity .25s ease; }
   nav ul { list-style:none; display:flex; gap:36px; }
   nav ul a { text-decoration:none; font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:300; color:rgba(255,255,255,.9); transition:color .3s; }
   nav.scrolled ul a { color:var(--text-light); }
@@ -61,8 +65,8 @@
   .bien-card.vendu { cursor:default; }
   .bien-card.vendu:hover { transform:none; box-shadow:none; }
   .bien-img { position:relative; height:240px; overflow:hidden; }
-  .bien-img img { width:100%; height:100%; object-fit:cover; transition:transform .6s ease; }
-  .bien-card:hover .bien-img img { transform:scale(1.04); }
+  .bien-img img { width:100%; height:100%; object-fit:cover; transition:transform .7s cubic-bezier(.25,.46,.45,.94); }
+  .bien-card:hover .bien-img img { transform:scale(1.08); }
   .bien-card.vendu .bien-img img { filter:grayscale(40%); }
   .bien-badge { position:absolute; top:16px; left:16px; color:white; font-size:9px; letter-spacing:2px; text-transform:uppercase; padding:6px 12px; font-weight:400; }
   .bien-badge.vendu-badge { background:#6B7280; }
@@ -386,6 +390,9 @@ function rechercherBiens() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  // === TRANSITION ENTRÉE ===
+  requestAnimationFrame(() => document.body.classList.add('page-visible'));
+
   chargerBiens().then(() => {
     // Pré-filtrer par ville si paramètre URL (ex: biens.html?ville=cannes)
     const params = new URLSearchParams(window.location.search);
@@ -396,6 +403,38 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+// === TRANSITION SORTIE — intercepte tous les liens internes ===
+document.addEventListener('click', e => {
+  const a = e.target.closest('a');
+  if (!a) return;
+  const href = a.getAttribute('href');
+  if (!href || href.startsWith('#') || href.startsWith('tel:') || href.startsWith('mailto:') || a.target === '_blank') return;
+  if (href.startsWith('http') && !href.includes(location.hostname)) return;
+  e.preventDefault();
+  document.body.classList.add('page-leaving');
+  setTimeout(() => { window.location.href = href; }, 260);
+});
+
+// Intercepte aussi les onclick="window.location=..." des cartes biens
+(function() {
+  const origLoc = Object.getOwnPropertyDescriptor(window, 'location');
+  // Override via event delegation déjà géré — les cartes utilisent onclick direct
+  // On patche via MutationObserver après injection du HTML
+  const observer = new MutationObserver(() => {
+    document.querySelectorAll('.bien-card[onclick]').forEach(card => {
+      const href = card.getAttribute('onclick').match(/'([^']+)'/)?.[1];
+      if (!href) return;
+      card.removeAttribute('onclick');
+      card.dataset.href = href;
+      card.addEventListener('click', () => {
+        document.body.classList.add('page-leaving');
+        setTimeout(() => { window.location.href = href; }, 260);
+      });
+    });
+  });
+  observer.observe(document.getElementById('biensGrid') || document.body, { childList:true, subtree:true });
+})();
 </script>
 </body>
 </html>

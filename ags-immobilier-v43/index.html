@@ -96,6 +96,10 @@
 <style>
   :root { --navy:#1B2D4F; --navy-deep:#0F1E36; --blue-mid:#2C4A7C; --blue-light:#4A6FA5; --accent:#5B9BD5; --cream:#F0F4F8; --stone:#C8D6E5; --text:#1B2D4F; --text-light:#5A7499; }
   * { margin:0; padding:0; box-sizing:border-box; }
+  /* === PAGE TRANSITION === */
+  body { opacity:0; transition:opacity .35s ease; }
+  body.page-visible { opacity:1; }
+  body.page-leaving { opacity:0; transition:opacity .25s ease; }
   html { scroll-behavior:smooth; }
   html, body { overflow-x:hidden; max-width:100%; }
   body { font-family:'Jost',sans-serif; background:var(--cream); color:var(--text); }
@@ -822,5 +826,21 @@ function envoyerEmailJS(e, form, templateId) {
   <a href="#contact"><span class="nav-icon">✉️</span>Contact</a>
   <a href="tel:+33607131181"><span class="nav-icon">📞</span>Appeler</a>
 </div>
+<script>
+// === TRANSITIONS DE PAGE ===
+document.addEventListener('DOMContentLoaded', () => {
+  requestAnimationFrame(() => document.body.classList.add('page-visible'));
+});
+document.addEventListener('click', e => {
+  const a = e.target.closest('a');
+  if (!a) return;
+  const href = a.getAttribute('href');
+  if (!href || href.startsWith('#') || href.startsWith('tel:') || href.startsWith('mailto:') || a.target === '_blank') return;
+  if (href.startsWith('http') && !href.includes(location.hostname)) return;
+  e.preventDefault();
+  document.body.classList.add('page-leaving');
+  setTimeout(() => { window.location.href = href; }, 260);
+});
+</script>
 </body>
 </html>

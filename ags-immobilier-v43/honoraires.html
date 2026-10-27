@@ -17,6 +17,10 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* === PAGE TRANSITION === */
+    body { opacity:0; transition:opacity .35s ease; }
+    body.page-visible { opacity:1; }
+    body.page-leaving { opacity:0; transition:opacity .25s ease; }
     body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--text); }
 
     /* ── NAV ── */
@@ -427,6 +431,21 @@
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // === TRANSITIONS DE PAGE ===
+  document.addEventListener('DOMContentLoaded', () => {
+    requestAnimationFrame(() => document.body.classList.add('page-visible'));
+  });
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a');
+    if (!a) return;
+    const href = a.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('tel:') || href.startsWith('mailto:') || a.target === '_blank') return;
+    if (href.startsWith('http') && !href.includes(location.hostname)) return;
+    e.preventDefault();
+    document.body.classList.add('page-leaving');
+    setTimeout(() => { window.location.href = href; }, 260);
   });
 </script>
 

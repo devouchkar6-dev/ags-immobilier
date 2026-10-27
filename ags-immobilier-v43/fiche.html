@@ -23,6 +23,10 @@
   * { margin:0; padding:0; box-sizing:border-box; }
   /* ✅ FIX SCROLL HORIZONTAL */
   html, body { overflow-x: hidden; max-width: 100%; }
+  /* === PAGE TRANSITION === */
+  body { opacity:0; transition:opacity .35s ease; }
+  body.page-visible { opacity:1; }
+  body.page-leaving { opacity:0; transition:opacity .25s ease; }
   body { font-family:'Jost',sans-serif; background:var(--cream); color:var(--text); }
   nav { background:var(--navy); display:flex; justify-content:space-between; align-items:center; padding:16px 60px; }
   .logo img { height:48px; width:auto; display:block; }
@@ -457,6 +461,21 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft')  lbNav(-1);
   if (e.key === 'ArrowRight') lbNav(1);
   if (e.key === 'Escape')     fermerLB();
+});
+
+// === TRANSITIONS DE PAGE ===
+document.addEventListener('DOMContentLoaded', () => {
+  requestAnimationFrame(() => document.body.classList.add('page-visible'));
+});
+document.addEventListener('click', e => {
+  const a = e.target.closest('a');
+  if (!a) return;
+  const href = a.getAttribute('href');
+  if (!href || href.startsWith('#') || href.startsWith('tel:') || href.startsWith('mailto:') || a.target === '_blank') return;
+  if (href.startsWith('http') && !href.includes(location.hostname)) return;
+  e.preventDefault();
+  document.body.classList.add('page-leaving');
+  setTimeout(() => { window.location.href = href; }, 260);
 });
 </script>
 </body>
