@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Du compromis à la remise des clés — AGS Immobilier</title>
+<meta name="description" content="Les grandes étapes d'un achat immobilier, du compromis à la remise des clés — AGS Immobilier Le Cannet.">
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1B2D4F;--navy-deep:#0F1E36;--blue-mid:#2C4A7C;--blue-light:#4A6FA5;--accent:#5B9BD5;--cream:#F8F5F0;--text-light:#6B7280;--stone:#E8E4DF;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{overflow-x:hidden;}
+body{opacity:0;transition:opacity .35s ease;font-family:'Jost',sans-serif;color:var(--navy);background:white;}
+body.page-visible{opacity:1;}
+body.page-leaving{opacity:0;transition:opacity .25s ease;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:14px 60px;background:var(--navy);transition:all .4s;}
+nav.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(27,45,79,.1);}
+.logo img{height:52px;width:auto;display:block;}
+nav ul{list-style:none;display:flex;gap:36px;}
+nav ul a{text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:300;color:rgba(255,255,255,.9);transition:color .3s;}
+nav.scrolled ul a{color:var(--text-light);}
+nav ul a:hover{color:var(--accent)!important;}
+.nav-cta{border:1px solid rgba(255,255,255,.5);padding:10px 24px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:white!important;text-decoration:none;transition:all .3s;font-family:'Jost',sans-serif;font-weight:300;white-space:nowrap;}
+nav.scrolled .nav-cta{border-color:var(--navy);color:var(--navy)!important;}
+.nav-cta:hover{background:var(--navy)!important;color:white!important;}
+
+/* HERO */
+.hero{background:var(--navy-deep);padding:140px 60px 80px;text-align:center;}
+.hero-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,58px);font-weight:300;color:white;line-height:1.15;}
+.hero h1 em{font-style:italic;color:var(--accent);}
+.hero p{color:rgba(255,255,255,.5);font-size:15px;font-weight:300;margin-top:18px;max-width:540px;margin-left:auto;margin-right:auto;line-height:1.75;}
+.hero-stats{display:inline-flex;align-items:center;gap:0;margin-top:48px;border:1px solid rgba(255,255,255,.1);}
+.hs-item{padding:20px 36px;text-align:center;border-right:1px solid rgba(255,255,255,.08);}
+.hs-item:last-child{border-right:none;}
+.hs-num{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--accent);line-height:1;}
+.hs-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:5px;}
+
+/* TIMELINE SECTION */
+.tl-section{padding:100px 60px;background:var(--cream);}
+.tl-header{text-align:center;max-width:600px;margin:0 auto 80px;}
+.tl-header-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+.tl-header h2{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3vw,40px);font-weight:300;color:var(--navy);line-height:1.2;}
+
+/* La ligne centrale */
+.tl-wrap{position:relative;max-width:880px;margin:0 auto;}
+.tl-line{position:absolute;left:50%;top:24px;bottom:24px;width:2px;background:linear-gradient(to bottom,transparent,var(--accent) 4%,var(--accent) 96%,transparent);transform:translateX(-50%);}
+
+/* Chaque item : alternance G / D */
+.tl-item{display:flex;align-items:flex-start;gap:0;margin-bottom:48px;position:relative;}
+.tl-item:last-child{margin-bottom:0;}
+
+/* Côté gauche = zone card ou vide */
+.tl-side-l{flex:1;padding-right:40px;display:flex;justify-content:flex-end;}
+.tl-side-r{flex:1;padding-left:40px;}
+
+/* Le dot au centre */
+.tl-dot-wrap{flex-shrink:0;width:48px;display:flex;flex-direction:column;align-items:center;z-index:2;}
+.tl-dot{width:48px;height:48px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 0 0 6px var(--cream);opacity:0;transform:scale(.4);transition:opacity .4s,transform .4s;}
+.tl-item.visible .tl-dot{opacity:1;transform:scale(1);}
+
+/* Card */
+.tl-card{background:white;padding:26px 30px;box-shadow:0 2px 20px rgba(27,45,79,.07);max-width:360px;width:100%;border-top:3px solid transparent;opacity:0;transform:translateY(16px);transition:opacity .45s,transform .45s,border-color .3s,box-shadow .3s;}
+.tl-item.visible .tl-card{opacity:1;transform:translateY(0);}
+.tl-card:hover{border-top-color:var(--accent);box-shadow:0 8px 32px rgba(27,45,79,.13);}
+.tl-badge{display:inline-block;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);background:rgba(91,155,213,.1);padding:4px 10px;margin-bottom:12px;}
+.tl-num{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(27,45,79,.35);margin-bottom:6px;}
+.tl-title{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:400;color:var(--navy);margin-bottom:10px;line-height:1.2;}
+.tl-body{font-size:12.5px;color:var(--text-light);line-height:1.8;font-weight:300;}
+.tl-body strong{color:var(--navy);font-weight:400;}
+
+/* Vide = l'autre côté */
+.tl-empty{flex:1;}
+
+/* CONSEILS */
+.conseils-section{padding:80px 60px;background:var(--navy);}
+.conseils-inner{max-width:960px;margin:0 auto;}
+.conseils-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;text-align:center;}
+.conseils-h{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3vw,36px);font-weight:300;color:white;text-align:center;margin-bottom:48px;}
+.conseils-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.conseil-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);padding:28px;}
+.conseil-icon{font-size:26px;margin-bottom:14px;}
+.conseil-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:white;margin-bottom:10px;}
+.conseil-body{font-size:12px;color:rgba(255,255,255,.5);line-height:1.75;font-weight:300;}
+
+/* CTA */
+.cta-section{padding:80px 60px;text-align:center;background:var(--cream);}
+.cta-section small{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:12px;}
+.cta-section h2{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3vw,38px);font-weight:300;color:var(--navy);margin-bottom:28px;}
+.cta-btn{display:inline-block;background:var(--navy);color:white;text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:16px 40px;font-family:'Jost',sans-serif;transition:background .3s;}
+.cta-btn:hover{background:var(--blue-mid);}
+
+/* FOOTER */
+footer{background:var(--navy-deep);padding:40px 60px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.3);}
+.footer-links{display:flex;gap:24px;}
+.footer-links a{font-size:11px;color:rgba(255,255,255,.3);text-decoration:none;letter-spacing:1px;transition:color .3s;}
+.footer-links a:hover{color:var(--accent);}
+
+/* MOBILE */
+.mob-bottomnav{display:none;}
+@media(max-width:768px){
+  nav ul,.nav-cta{display:none!important;}
+  nav{padding:12px 20px!important;}
+  .hero{padding:100px 20px 60px!important;}
+  .hero-stats{flex-direction:column;width:100%;}
+  .hs-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.08);width:100%;}
+  .hs-item:last-child{border-bottom:none;}
+  .tl-section,.conseils-section,.cta-section{padding:60px 20px!important;}
+  /* Mobile : tout en colonne, ligne à gauche */
+  .tl-line{left:23px;}
+  .tl-item{flex-direction:row;gap:0;}
+  .tl-side-l{display:none;}
+  .tl-dot-wrap{width:48px;}
+  .tl-side-r,.tl-side-r-mob{flex:1;padding-left:16px;}
+  .tl-item.right .tl-side-l{display:none;}
+  .tl-item.right .tl-side-r{display:block;padding-left:16px;padding-right:0;}
+  .tl-card{max-width:100%;}
+  .conseils-grid{grid-template-columns:1fr!important;}
+  footer{flex-direction:column;text-align:center;padding:32px 20px;}
+  body{padding-bottom:68px;}
+  .mob-bottomnav{display:flex!important;position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid var(--stone);z-index:200;justify-content:space-around;padding:8px 0 10px;}
+  .mob-bottomnav a{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);text-decoration:none;}
+  .nav-icon{font-size:18px;}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="logo"><a href="index.html"><img src="images/logo.jpg" alt="AGS Immobilier"></a></div>
+  <ul>
+    <li><a href="biens.html">Propriétés</a></li>
+    <li><a href="index.html#about">L'agence</a></li>
+    <li><a href="index.html#equipe">Équipe</a></li>
+    <li><a href="honoraires.html">Honoraires</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="index.html#contact">Nous contacter</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-tag">Guide pratique</div>
+  <h1>Du compromis<br>à la <em>remise des clés</em></h1>
+  <p>Acheteur ou vendeur, voici les étapes de votre transaction immobilière, de la signature du compromis jusqu'au jour J — accompagnées pas à pas par AGS.</p>
+  <div class="hero-stats">
+    <div class="hs-item"><div class="hs-num">7</div><div class="hs-label">Étapes clés</div></div>
+    <div class="hs-item"><div class="hs-num">~3</div><div class="hs-label">Mois en moyenne</div></div>
+    <div class="hs-item"><div class="hs-num">1</div><div class="hs-label">Agence, du début à la fin</div></div>
+  </div>
+</section>
+
+<section class="tl-section">
+  <div class="tl-header">
+    <div class="tl-header-tag">Le parcours</div>
+    <h2>Les étapes de votre achat immobilier</h2>
+  </div>
+
+  <div class="tl-wrap">
+    <div class="tl-line"></div>
+
+    <!-- 1 — gauche -->
+    <div class="tl-item">
+      <div class="tl-side-l">
+        <div class="tl-card">
+          <div class="tl-badge">Jour J</div>
+          <div class="tl-num">Étape 01</div>
+          <div class="tl-title">L'offre d'achat acceptée</div>
+          <div class="tl-body">L'acheteur formule une offre au prix ou en dessous que le vendeur accepte par écrit. C'est le point de départ officiel. <strong>L'offre doit préciser le prix, les conditions et le délai de validité.</strong></div>
+        </div>
+      </div>
+      <div class="tl-dot-wrap"><div class="tl-dot">🤝</div></div>
+      <div class="tl-side-r"></div>
+    </div>
+
+    <!-- 2 — droite -->
+    <div class="tl-item right">
+      <div class="tl-side-l"></div>
+      <div class="tl-dot-wrap"><div class="tl-dot">📄</div></div>
+      <div class="tl-side-r">
+        <div class="tl-card">
+          <div class="tl-badge">J + 7 à 15</div>
+          <div class="tl-num">Étape 02</div>
+          <div class="tl-title">La signature du compromis</div>
+          <div class="tl-body">Le compromis engage les deux parties : il fixe le prix, les conditions suspensives et la date prévisionnelle de l'acte définitif. <strong>AGS rédige et accompagne la signature pour sécuriser toutes les clauses.</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 — gauche -->
+    <div class="tl-item">
+      <div class="tl-side-l">
+        <div class="tl-card">
+          <div class="tl-badge">J + 25 après compromis</div>
+          <div class="tl-num">Étape 03</div>
+          <div class="tl-title">Le délai de rétractation</div>
+          <div class="tl-body">L'acheteur dispose de <strong>10 jours</strong> pour se rétracter sans motif ni pénalité (loi SRU). Passé ce délai, il est engagé définitivement. Ce droit ne concerne que l'acheteur.</div>
+        </div>
+      </div>
+      <div class="tl-dot-wrap"><div class="tl-dot">⏱️</div></div>
+      <div class="tl-side-r"></div>
+    </div>
+
+    <!-- 4 — droite -->
+    <div class="tl-item right">
+      <div class="tl-side-l"></div>
+      <div class="tl-dot-wrap"><div class="tl-dot">🏦</div></div>
+      <div class="tl-side-r">
+        <div class="tl-card">
+          <div class="tl-badge">J + 30 à 60</div>
+          <div class="tl-num">Étape 04</div>
+          <div class="tl-title">L'obtention du prêt</div>
+          <div class="tl-body">L'acheteur dépose ses dossiers en banque. Si le financement est refusé, la vente est annulée sans pénalité (condition suspensive). <strong>La banque dispose de 30 jours pour répondre.</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 — gauche -->
+    <div class="tl-item">
+      <div class="tl-side-l">
+        <div class="tl-card">
+          <div class="tl-badge">J + 45 à 75</div>
+          <div class="tl-num">Étape 05</div>
+          <div class="tl-title">Les vérifications notariales</div>
+          <div class="tl-body">Le notaire vérifie les hypothèques, droits de préemption, servitudes et urbanisme. Il prépare l'acte authentique et rassemble tous les diagnostics. <strong>Comptez 2 à 3 mois après le compromis.</strong></div>
+        </div>
+      </div>
+      <div class="tl-dot-wrap"><div class="tl-dot">🔍</div></div>
+      <div class="tl-side-r"></div>
+    </div>
+
+    <!-- 6 — droite -->
+    <div class="tl-item right">
+      <div class="tl-side-l"></div>
+      <div class="tl-dot-wrap"><div class="tl-dot">✍️</div></div>
+      <div class="tl-side-r">
+        <div class="tl-card">
+          <div class="tl-badge">J + 60 à 90</div>
+          <div class="tl-num">Étape 06</div>
+          <div class="tl-title">La signature de l'acte authentique</div>
+          <div class="tl-body">Les deux parties signent chez le notaire. L'acheteur verse le solde par virement notaire. Les frais d'agence et de notaire sont réglés. <strong>La transaction est finalisée juridiquement.</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 — gauche -->
+    <div class="tl-item">
+      <div class="tl-side-l">
+        <div class="tl-card">
+          <div class="tl-badge">Jour J final 🎉</div>
+          <div class="tl-num">Étape 07</div>
+          <div class="tl-title">La remise des clés</div>
+          <div class="tl-body">Après la signature, le vendeur remet les clés à l'acheteur. L'état des lieux est réalisé le jour même. Le bien est officiellement le vôtre. <strong>AGS Immobilier vous accompagne de la première visite jusqu'à ce moment.</strong></div>
+        </div>
+      </div>
+      <div class="tl-dot-wrap"><div class="tl-dot">🗝️</div></div>
+      <div class="tl-side-r"></div>
+    </div>
+
+  </div>
+</section>
+
+<section class="conseils-section">
+  <div class="conseils-inner">
+    <div class="conseils-tag">Conseils AGS</div>
+    <h2 class="conseils-h">Nos conseils pour une transaction sereine</h2>
+    <div class="conseils-grid">
+      <div class="conseil-card">
+        <div class="conseil-icon">📂</div>
+        <div class="conseil-title">Préparez vos documents en amont</div>
+        <div class="conseil-body">Rassemblez dès le départ vos trois derniers bulletins de salaire, avis d'imposition, relevés bancaires et justificatif d'identité. Un dossier complet accélère significativement l'accord de prêt.</div>
+      </div>
+      <div class="conseil-card">
+        <div class="conseil-icon">⚖️</div>
+        <div class="conseil-title">Soignez les conditions suspensives</div>
+        <div class="conseil-body">Les conditions suspensives vous protègent en cas de refus de prêt ou de vice caché. Lisez-les attentivement avec votre notaire avant de signer le compromis.</div>
+      </div>
+      <div class="conseil-card">
+        <div class="conseil-icon">🤝</div>
+        <div class="conseil-title">Restez disponible et réactif</div>
+        <div class="conseil-body">Notaire et banque peuvent avoir besoin de documents rapidement. Une bonne réactivité peut raccourcir le délai global de plusieurs semaines.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <small>AGS Immobilier — Le Cannet</small>
+  <h2>Un projet d'achat ou de vente ?<br>Parlons-en.</h2>
+  <a class="cta-btn" href="index.html#contact">Nous contacter</a>
+</section>
+
+<footer>
+  <span class="footer-copy">© 2026 AGS Immobilier — Le Cannet · Tous droits réservés</span>
+  <div class="footer-links">
+    <a href="biens.html">Nos biens</a>
+    <a href="honoraires.html">Honoraires</a>
+    <a href="mentions-legales.html">Mentions légales</a>
+  </div>
+</footer>
+
+<div class="mob-bottomnav">
+  <a href="index.html"><span class="nav-icon">🏠</span>Accueil</a>
+  <a href="biens.html"><span class="nav-icon">🔍</span>Biens</a>
+  <a href="honoraires.html"><span class="nav-icon">💶</span>Honoraires</a>
+  <a href="index.html#contact"><span class="nav-icon">✉️</span>Contact</a>
+  <a href="tel:+33607131181"><span class="nav-icon">📞</span>Appeler</a>
+</div>
+
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60);
+});
+
+// Animation scroll : chaque item apparaît quand il entre dans le viewport
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach((entry,i)=>{
+    if(entry.isIntersecting){
+      const item = entry.target;
+      // dot d'abord, card avec léger délai
+      setTimeout(()=>{ item.classList.add('visible'); },80);
+      observer.unobserve(item);
+    }
+  });
+},{threshold:0.25,rootMargin:'0px 0px -40px 0px'});
+
+document.querySelectorAll('.tl-item').forEach(el=>observer.observe(el));
+
+// PAGE TRANSITIONS
+document.addEventListener('DOMContentLoaded',()=>{
+  requestAnimationFrame(()=>document.body.classList.add('page-visible'));
+});
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a');
+  if(!a) return;
+  const href=a.getAttribute('href');
+  if(!href||href.startsWith('#')||href.startsWith('tel:')||href.startsWith('mailto:')||a.target==='_blank') return;
+  if(href.startsWith('http')&&!href.includes(location.hostname)) return;
+  e.preventDefault();
+  document.body.classList.add('page-leaving');
+  setTimeout(()=>{window.location.href=href;},260);
+});
+</script>
+</body>
+</html>
