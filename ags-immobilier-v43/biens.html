@@ -349,6 +349,22 @@
 <script>
 const TYPE_LABELS = { appartement:'Appartement', maison:'Maison / Villa', viager:'Viager', commercial:'Local commercial' };
 let BIENS_ALL = [];
+// ===== PHOTOS CLOUDINARY : taille adaptée + format moderne (WebP/AVIF) =====
+var CLD_RE = /\/upload\/f_auto,q_auto,c_limit,w_\d+\//;
+function cld(u, w) {
+  if (!u || u.indexOf('res.cloudinary.com') < 0 || u.indexOf('/upload/') < 0) return u;
+  if (/\/upload\/(f_|q_|w_|c_)/.test(u)) return u;
+  return u.replace('/upload/', '/upload/f_auto,q_auto,c_limit,w_' + w + '/');
+}
+// Si une image échoue : d'abord la photo d'origine, puis l'image de secours
+function agsImgErr(img) {
+  if (CLD_RE.test(img.src)) { img.src = img.src.replace(CLD_RE, '/upload/'); return; }
+  if (img.src.indexOf('images/placeholder.jpg') < 0) img.src = 'images/placeholder.jpg';
+}
+document.addEventListener('error', function(e) {
+  var t = e.target;
+  if (t && t.tagName === 'IMG' && !t.hasAttribute('onerror') && CLD_RE.test(t.src)) t.src = t.src.replace(CLD_RE, '/upload/');
+}, true);
 let ongletActif = 'dispo';
 // ===== FAVORIS (gardés dans le navigateur du visiteur) =====
 const FAV = {
@@ -462,7 +478,7 @@ function afficherBiens(biens) {
     const isSelected = CMP.selection.has(b.id);
     return `<div class="bien-card${isSelected?' cmp-selected':''}" data-id="${b.id}" data-nav="${url}">
       <div class="bien-img">
-        <img src="${b.mainPhoto||'images/placeholder.jpg'}" alt="${b.titre}" loading="lazy" onerror="this.src='images/placeholder.jpg'">
+        <img src="${cld(b.mainPhoto,800)||'images/placeholder.jpg'}" alt="${b.titre}" loading="lazy" decoding="async" onerror="agsImgErr(this)">
         ${b.badge?`<span class="bien-badge ${badgeClass}">${b.badge}</span>`:''}
         <div class="bien-hover-band">
           <div class="bien-hover-titre">${b.ville||''}</div>
@@ -500,7 +516,7 @@ function afficherVendus(vendus) {
     const pieces = b.pieces || b.caracteristiques?.pieces || '';
     return `<div class="bien-card vendu">
       <div class="bien-img">
-        <img src="${b.mainPhoto||'images/placeholder.jpg'}" alt="${b.titre}" loading="lazy">
+        <img src="${cld(b.mainPhoto,800)||'images/placeholder.jpg'}" alt="${b.titre}" loading="lazy" decoding="async" onerror="agsImgErr(this)">
         <div class="vendu-overlay"><div class="vendu-stamp">Vendu</div></div>
       </div>
       <div class="bien-info">
@@ -676,7 +692,7 @@ const CMP = {
       return `
         <div class="cmp-col">
           <div class="cmp-col-img">
-            <img src="${b.mainPhoto||'images/placeholder.jpg'}" alt="${b.titre}" onerror="this.src='images/placeholder.jpg'">
+            <img src="${cld(b.mainPhoto,700)||'images/placeholder.jpg'}" alt="${b.titre}" onerror="agsImgErr(this)">
           </div>
           <div class="cmp-col-body">
             <div class="cmp-row"><div class="cmp-row-label">Bien</div><div class="cmp-row-val">${b.titre}</div></div>
