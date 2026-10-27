@@ -11,6 +11,24 @@
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JY1BK1B02T"></script>
 <script>
+// ===== PHOTOS CLOUDINARY : taille adaptée + format moderne (WebP/AVIF) =====
+var CLD_RE = /\/upload\/f_auto,q_auto,c_limit,w_\d+\//;
+function cld(u, w) {
+  if (!u || u.indexOf('res.cloudinary.com') < 0 || u.indexOf('/upload/') < 0) return u;
+  if (/\/upload\/(f_|q_|w_|c_)/.test(u)) return u;
+  return u.replace('/upload/', '/upload/f_auto,q_auto,c_limit,w_' + w + '/');
+}
+// Si une image échoue : d'abord la photo d'origine, puis l'image de secours
+function agsImgErr(img) {
+  if (CLD_RE.test(img.src)) { img.src = img.src.replace(CLD_RE, '/upload/'); return; }
+  if (img.src.indexOf('images/placeholder.jpg') < 0) img.src = 'images/placeholder.jpg';
+}
+document.addEventListener('error', function(e) {
+  var t = e.target;
+  if (t && t.tagName === 'IMG' && !t.hasAttribute('onerror') && CLD_RE.test(t.src)) t.src = t.src.replace(CLD_RE, '/upload/');
+}, true);
+</script>
+<script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -125,7 +143,7 @@
   nav.scrolled .nav-cta { border-color:var(--navy); color:var(--navy) !important; }
   .nav-cta:hover { background:var(--navy) !important; color:white !important; border-color:var(--navy) !important; }
   .hero { height:100vh; position:relative; display:flex; align-items:center; overflow:hidden; }
-  .hero-bg { position:absolute; inset:0; background:linear-gradient(135deg,rgba(10,22,45,.88) 0%,rgba(15,30,54,.82) 40%,rgba(15,30,54,.75) 70%,rgba(15,30,54,.72) 100%), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=80') center/cover no-repeat; animation:slowzoom 18s ease-in-out infinite alternate; will-change:transform; }
+  .hero-bg { position:absolute; inset:0; background:linear-gradient(135deg,rgba(10,22,45,.88) 0%,rgba(15,30,54,.82) 40%,rgba(15,30,54,.75) 70%,rgba(15,30,54,.72) 100%), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=72&auto=format&fit=crop') center/cover no-repeat; animation:slowzoom 18s ease-in-out infinite alternate; will-change:transform; }
   /* Parallaxe */
   .hero-bg.parallax { transform:translateY(var(--py,0px)); }
   .hero::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(74,111,165,.18) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 20% 80%,rgba(15,30,54,.4) 0%,transparent 50%); pointer-events:none; z-index:1; }
@@ -907,7 +925,7 @@ function mettreAJourGrilleBiens(biens) {
     const badge = b.badge || (i === 0 ? 'Nouveau' : '');
     const badgeHTML = badge ? `<div class="prop-badge${badge === 'Nouveau' || badge === 'new' ? ' new' : ''}">${badge}</div>` : '';
     return `<div class="prop-card${featured} reveal" onclick="window.location='fiche.html?id=${b.id}'" style="cursor:pointer">
-      <img class="prop-img" src="${b.mainPhoto || 'images/placeholder.jpg'}" alt="${b.titre}" loading="${i === 0 ? 'eager' : 'lazy'}" decoding="async" onerror="this.src='images/placeholder.jpg'">
+      <img class="prop-img" src="${cld(b.mainPhoto, 1000) || 'images/placeholder.jpg'}" alt="${b.titre}" loading="${i === 0 ? 'eager' : 'lazy'}" decoding="async" onerror="agsImgErr(this)">
       <div class="prop-overlay"></div>
       ${badgeHTML}
       <div class="prop-info">
@@ -954,7 +972,7 @@ function afficherResultats(res, type, lieu, budget) {
   if (!res.length) { document.getElementById('no-results').style.display='block'; grid.style.display='none'; }
   else {
     document.getElementById('no-results').style.display='none'; grid.style.display='grid';
-    res.forEach(b => { grid.innerHTML += `<div onclick="window.location='fiche.html?id=${b.id}'" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);cursor:pointer;overflow:hidden;"><div style="height:200px;overflow:hidden;"><img src="${b.mainPhoto||'images/placeholder.jpg'}" style="width:100%;height:100%;object-fit:cover;" loading="lazy"></div><div style="padding:20px 24px;"><div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">📍 ${b.ville}</div><div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:white;margin-bottom:8px;">${b.titre}</div><div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:var(--accent);">${b.prix}</div></div></div>`; });
+    res.forEach(b => { grid.innerHTML += `<div onclick="window.location='fiche.html?id=${b.id}'" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);cursor:pointer;overflow:hidden;"><div style="height:200px;overflow:hidden;"><img src="${cld(b.mainPhoto,700)||'images/placeholder.jpg'}" style="width:100%;height:100%;object-fit:cover;" loading="lazy" onerror="agsImgErr(this)"></div><div style="padding:20px 24px;"><div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">📍 ${b.ville}</div><div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:white;margin-bottom:8px;">${b.titre}</div><div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:var(--accent);">${b.prix}</div></div></div>`; });
   }
   document.getElementById('search-results').style.display='block';
   document.getElementById('search-results').scrollIntoView({behavior:'smooth',block:'start'});
