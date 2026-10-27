@@ -136,49 +136,66 @@
 
   /* Forcer les couleurs d'arrière-plan à l'impression (Chrome) */
   @media print {
-    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; box-sizing:border-box; }
 
-    /* Masquer tout le site, afficher uniquement la feuille */
     body > *:not(#print-sheet) { display:none !important; }
-    #print-sheet { display:block !important; font-family:'Helvetica Neue',Arial,sans-serif; color:#1B2D4F; background:white; }
+    #print-sheet { display:block !important; font-family:'Helvetica Neue',Arial,sans-serif; color:#1B2D4F; background:white; width:100%; }
 
-    @page { margin:10mm 12mm; size:A4 portrait; }
+    @page { margin:0; size:A4 portrait; }
 
-    /* En-tête */
-    .ps-header { display:flex !important; justify-content:space-between; align-items:flex-end;
-      border-bottom:2px solid #1B2D4F; padding-bottom:8px; margin-bottom:14px; }
-    .ps-logo { font-size:16px; font-weight:bold; letter-spacing:2px; color:#1B2D4F; }
-    .ps-logo span { display:block; font-size:8px; font-weight:normal; letter-spacing:3px; text-transform:uppercase; color:#5A7499; margin-top:2px; }
-    .ps-ref { font-size:10px; color:#5A7499; text-align:right; line-height:1.6; }
+    /* ── BANDEAU HEADER ── */
+    .ps-header {
+      background-color:#1B2D4F !important;
+      display:flex !important; justify-content:space-between; align-items:center;
+      padding:14px 18px 12px; margin-bottom:0;
+    }
+    .ps-logo { color:white; font-size:15px; font-weight:700; letter-spacing:3px; text-transform:uppercase; }
+    .ps-logo span { display:block; font-size:7.5px; font-weight:300; letter-spacing:4px; color:rgba(255,255,255,.6); margin-top:3px; }
+    .ps-ref { color:rgba(255,255,255,.65); font-size:9px; text-align:right; line-height:1.7; letter-spacing:.5px; }
+
+    /* ── CORPS ── */
+    .ps-body { padding:16px 18px 0; }
 
     /* Titre & prix */
-    .ps-title { font-size:20px; font-weight:normal; margin-bottom:3px; }
-    .ps-prix { font-size:26px; font-weight:bold; color:#1B2D4F; margin-bottom:3px; }
-    .ps-loc { font-size:11px; color:#5A7499; margin-bottom:12px; }
+    .ps-title { font-size:18px; font-weight:300; letter-spacing:.5px; margin-bottom:2px; color:#1B2D4F; }
+    .ps-prix { font-size:28px; font-weight:700; color:#1B2D4F; margin-bottom:2px; }
+    .ps-loc { font-size:10px; color:#5B9BD5; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:12px; }
 
     /* Photos */
-    .ps-photos { width:100%; margin-bottom:12px; }
+    .ps-photos { width:100%; margin-bottom:14px; }
     .ps-photos img { display:block; object-fit:cover; }
+    .ps-photo-main { width:100%; height:200px; object-fit:cover; display:block; }
 
     /* Tags */
-    .ps-tags { display:flex !important; flex-wrap:wrap; gap:6px; margin-bottom:12px; }
-    .ps-tag { border:1px solid #C8D6E5; padding:3px 10px; font-size:10px; }
+    .ps-tags { display:flex !important; flex-wrap:wrap; gap:5px; margin-bottom:14px; }
+    .ps-tag {
+      background-color:#F0F4F8 !important;
+      padding:4px 12px; font-size:9.5px; letter-spacing:1px;
+      text-transform:uppercase; color:#1B2D4F; border-radius:2px;
+    }
 
-    /* Description */
-    .ps-section-h { font-size:9px; letter-spacing:3px; text-transform:uppercase;
-      color:#5B9BD5; border-bottom:1px solid #C8D6E5; padding-bottom:3px;
-      margin:12px 0 6px; }
-    .ps-desc { font-size:11px; line-height:1.65; color:#333; }
+    /* Séparateur section */
+    .ps-section-h {
+      font-size:8px; letter-spacing:3.5px; text-transform:uppercase;
+      color:#5B9BD5; border-bottom:1px solid #D8E4F0; padding-bottom:4px;
+      margin:14px 0 7px;
+    }
+    .ps-desc { font-size:10.5px; line-height:1.7; color:#333; }
 
-    /* Équipements */
-    .ps-equips { display:grid !important; grid-template-columns:1fr 1fr 1fr; gap:2px; }
-    .ps-equip { font-size:10px; padding:2px 0; }
+    /* Équipements en 3 colonnes */
+    .ps-equips { display:grid !important; grid-template-columns:1fr 1fr 1fr; gap:0; }
+    .ps-equip { font-size:10px; padding:2.5px 0; color:#1B2D4F; }
+    .ps-equip::before { content:'✓ '; color:#5B9BD5; }
 
-    /* DPE — badge coloré sans clip-path (juste background + border-radius) */
-    .ps-dpe-row { display:flex !important; gap:24px; margin-top:6px; }
-    .ps-dpe-label { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#5A7499; margin-bottom:5px; }
-    .ps-dpe-badge { display:inline-block !important; width:36px; height:36px; border-radius:4px;
-      text-align:center; line-height:36px; font-size:18px; font-weight:bold; color:white; }
+    /* DPE */
+    .ps-dpe-row { display:flex !important; gap:28px; align-items:flex-end; margin-top:6px; }
+    .ps-dpe-block { text-align:center; }
+    .ps-dpe-label { font-size:8px; letter-spacing:2px; text-transform:uppercase; color:#5A7499; margin-bottom:6px; }
+    .ps-dpe-badge {
+      display:inline-flex !important; align-items:center; justify-content:center;
+      width:40px; height:40px; border-radius:5px;
+      font-size:20px; font-weight:700; color:white;
+    }
     .dpe-A { background-color:#009A44 !important; }
     .dpe-B { background-color:#51B848 !important; }
     .dpe-C { background-color:#B8D234 !important; color:#1B2D4F !important; }
@@ -188,16 +205,23 @@
     .dpe-G { background-color:#E9161C !important; }
 
     /* Agent */
-    .ps-agent { display:flex !important; align-items:center; gap:14px;
-      border:1px solid #C8D6E5; padding:12px; margin-top:12px; }
-    .ps-agent-photo { width:52px; height:52px; border-radius:50%; object-fit:cover; flex-shrink:0; }
-    .ps-agent-name { font-size:14px; font-weight:bold; margin-bottom:2px; }
-    .ps-agent-titre { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#5A7499; margin-bottom:5px; }
-    .ps-agent-contact { font-size:11px; color:#1B2D4F; line-height:1.7; }
+    .ps-agent {
+      display:flex !important; align-items:center; gap:14px;
+      background-color:#F7F9FC !important;
+      padding:12px 14px; margin-top:14px; border-left:3px solid #1B2D4F !important;
+    }
+    .ps-agent-photo { width:54px; height:54px; border-radius:50%; object-fit:cover; flex-shrink:0; }
+    .ps-agent-name { font-size:14px; font-weight:700; margin-bottom:1px; }
+    .ps-agent-titre { font-size:8px; letter-spacing:2.5px; text-transform:uppercase; color:#5B9BD5; margin-bottom:6px; }
+    .ps-agent-contact { font-size:10.5px; color:#1B2D4F; line-height:1.75; }
 
-    /* Pied de page */
-    .ps-footer { border-top:1px solid #C8D6E5; padding-top:6px; margin-top:14px;
-      display:flex !important; justify-content:space-between; font-size:9px; color:#5A7499; }
+    /* Footer */
+    .ps-footer {
+      background-color:#1B2D4F !important;
+      display:flex !important; justify-content:space-between; align-items:center;
+      padding:8px 18px; margin-top:16px;
+      font-size:8.5px; color:rgba(255,255,255,.65); letter-spacing:.5px;
+    }
   }
 
   @media(max-width:768px) {
@@ -560,10 +584,32 @@ document.addEventListener('keydown', e => {
 });
 
 // === IMPRESSION ===
-function imprimerFiche() {
+/* Convertit une URL image en data:URL via canvas (contourne le CORS à l'impression) */
+async function urlToDataUrl(url) {
+  try {
+    const res = await fetch(url, { mode: 'cors' });
+    if (!res.ok) throw new Error('fetch fail');
+    const blob = await res.blob();
+    return await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+  } catch(_) {
+    // fallback : retourner l'URL directe (tentera quand même)
+    return url;
+  }
+}
+
+async function imprimerFiche() {
   const b = window._fichBien;
-  const photos = window._fichPhotos || [];
+  const rawPhotos = window._fichPhotos || [];
   if (!b) { window.print(); return; }
+
+  // Montrer un indicateur de chargement sur le bouton
+  const btn = document.querySelector('[onclick*="imprimerFiche"]');
+  if (btn) { btn.textContent = '⏳ Chargement…'; btn.disabled = true; }
 
   const ag = AGENTS[b.agent] || AGENTS['philippe'];
   const fmt = v => {
@@ -571,7 +617,13 @@ function imprimerFiche() {
     return n ? new Intl.NumberFormat('fr-FR',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n) : '';
   };
 
-  // Badge DPE coloré (sans clip-path pour impression Chrome)
+  // Convertir toutes les photos en base64 (résout le problème CORS à l'impression)
+  const photos = await Promise.all(rawPhotos.map(u => urlToDataUrl(u)));
+
+  // Rétablir le bouton
+  if (btn) { btn.innerHTML = '🖨️ Imprimer'; btn.disabled = false; }
+
+  // Badge DPE
   const dpeBadge = (label, lettre) => {
     if (!lettre) return '';
     const l = lettre.toUpperCase();
@@ -581,54 +633,68 @@ function imprimerFiche() {
     </div>`;
   };
 
-  // Photos : toutes les photos en grille 3 colonnes
+  // ── BLOC PHOTOS ──
+  // 1 photo : pleine largeur
+  // 2 photos : côte à côte
+  // 3 photos : grande à gauche (60%) + 2 petites à droite empilées
+  // 4+ photos : même layout 3 + ligne(s) de 3 colonnes pour le reste
   let photoHtml = '';
   if (photos.length === 1) {
-    photoHtml = `<div class="ps-photos"><img src="${photos[0]}" alt="" style="width:100%;height:180px;object-fit:cover;display:block;margin-bottom:12px;"></div>`;
+    photoHtml = `<img src="${photos[0]}" alt="" style="width:100%;height:210px;object-fit:cover;display:block;">`;
   } else if (photos.length === 2) {
-    photoHtml = `<div class="ps-photos"><table style="width:100%;border-collapse:separate;border-spacing:3px;"><tr>
-      <td style="width:50%;"><img src="${photos[0]}" alt="" style="width:100%;height:160px;object-fit:cover;display:block;"></td>
-      <td style="width:50%;"><img src="${photos[1]}" alt="" style="width:100%;height:160px;object-fit:cover;display:block;"></td>
-    </tr></table></div>`;
-  } else if (photos.length >= 3) {
-    // Grande photo + 2 vignettes sur la 1re ligne, puis toutes les suivantes en grille 3 col
-    const firstRow = `<table style="width:100%;border-collapse:separate;border-spacing:3px;margin-bottom:3px;"><tr>
-      <td style="width:60%;"><img src="${photos[0]}" alt="" style="width:100%;height:160px;object-fit:cover;display:block;"></td>
+    photoHtml = `<table style="width:100%;border-collapse:collapse;border-spacing:0;"><tr>
+      <td style="width:50%;padding-right:2px;"><img src="${photos[0]}" alt="" style="width:100%;height:190px;object-fit:cover;display:block;"></td>
+      <td style="width:50%;padding-left:2px;"><img src="${photos[1]}" alt="" style="width:100%;height:190px;object-fit:cover;display:block;"></td>
+    </tr></table>`;
+  } else {
+    // 3 premières photos : layout éditorial
+    const mainRow = `<table style="width:100%;border-collapse:collapse;"><tr>
+      <td style="width:60%;padding-right:2px;vertical-align:top;">
+        <img src="${photos[0]}" alt="" style="width:100%;height:190px;object-fit:cover;display:block;">
+      </td>
       <td style="width:40%;vertical-align:top;">
-        <img src="${photos[1]}" alt="" style="width:100%;height:78px;object-fit:cover;display:block;margin-bottom:3px;">
-        <img src="${photos[2]}" alt="" style="width:100%;height:78px;object-fit:cover;display:block;">
+        <img src="${photos[1]}" alt="" style="width:100%;height:93px;object-fit:cover;display:block;margin-bottom:4px;">
+        ${photos[2] ? `<img src="${photos[2]}" alt="" style="width:100%;height:93px;object-fit:cover;display:block;">` : '<div style="height:93px;background:#f0f4f8;"></div>'}
       </td>
     </tr></table>`;
-    // Photos suivantes en grille 3 colonnes (si > 3)
-    let extraRows = '';
+
+    // Photos supplémentaires (4 et +) en grille 3 colonnes
+    let extraHtml = '';
     const extras = photos.slice(3);
-    if (extras.length > 0) {
-      // Grouper par 3
-      for (let i = 0; i < extras.length; i += 3) {
-        const row = extras.slice(i, i+3);
-        extraRows += `<table style="width:100%;border-collapse:separate;border-spacing:3px;margin-bottom:3px;"><tr>
-          ${row.map(p => `<td style="width:33%;"><img src="${p}" alt="" style="width:100%;height:90px;object-fit:cover;display:block;"></td>`).join('')}
-          ${row.length < 3 ? '<td></td>'.repeat(3 - row.length) : ''}
-        </tr></table>`;
-      }
+    for (let i = 0; i < extras.length; i += 3) {
+      const row = extras.slice(i, i + 3);
+      extraHtml += `<table style="width:100%;border-collapse:collapse;margin-top:4px;"><tr>
+        ${row.map(p => `<td style="width:33.33%;padding:0 2px 0 0;">
+          <img src="${p}" alt="" style="width:100%;height:85px;object-fit:cover;display:block;">
+        </td>`).join('')}
+        ${'<td></td>'.repeat(Math.max(0, 3 - row.length))}
+      </tr></table>`;
     }
-    photoHtml = `<div class="ps-photos" style="margin-bottom:12px;">${firstRow}${extraRows}</div>`;
+    photoHtml = mainRow + extraHtml;
   }
 
   // Tags
+  const surf = b.surface || b.caracteristiques?.surface;
+  const pieces = b.pieces || b.caracteristiques?.pieces;
+  const chambres = b.chambres || b.caracteristiques?.chambres;
+  const etage = b.etage || b.caracteristiques?.etage;
+  const expo = b.exposition;
   const tags = [
-    b.surface    ? `${b.surface}` : null,
-    b.pieces     ? `${b.pieces} pièces` : null,
-    b.chambres   ? `${b.chambres} chambres` : null,
-    b.etage      ? `${b.etage}` : null,
-    b.exposition ? `Expo. ${b.exposition}` : null,
-    b.annee      ? `Construit ${b.annee}` : null,
+    surf     ? surf : null,
+    pieces   ? `${String(pieces).replace(/\s*pièces?\s*/i,'')} pièces` : null,
+    chambres ? `${chambres} chambres` : null,
+    etage    ? `${etage}` : null,
+    expo     ? `Expo. ${expo}` : null,
   ].filter(Boolean);
   const tagsHtml = tags.map(t => `<span class="ps-tag">${t}</span>`).join('');
 
-  // Équipements
+  // Équipements (sans le "✓" en JS car géré en CSS ::before)
   const equipsHtml = b.equipements && b.equipements.length
-    ? b.equipements.map(eq => `<div class="ps-equip">✓ ${eq}</div>`).join('') : '';
+    ? b.equipements.map(eq => `<div class="ps-equip">${eq}</div>`).join('') : '';
+
+  // Description tronquée si trop longue (évite débordement sur 2e page)
+  const desc = (b.description || '').replace(/\n\n+/g,'\n').trim();
+  const descHtml = desc ? `<div class="ps-section-h">Description</div><div class="ps-desc">${desc.replace(/\n/g,'<br>')}</div>` : '';
 
   const sheet = document.getElementById('print-sheet');
   sheet.innerHTML = `
@@ -637,33 +703,33 @@ function imprimerFiche() {
       <div class="ps-ref">Réf. ${b.ref || '—'}<br>${new Date().toLocaleDateString('fr-FR')}</div>
     </div>
 
-    <div class="ps-title">${b.titre || ''}</div>
-    <div class="ps-prix">${fmt(b.prixBrut) || b.prix || ''}</div>
-    <div class="ps-loc">📍 ${b.ville || ''}</div>
+    <div class="ps-body">
+      <div class="ps-title">${b.titre || ''}</div>
+      <div class="ps-prix">${fmt(b.prixBrut) || b.prix || ''}</div>
+      <div class="ps-loc">📍 ${b.ville || ''}</div>
 
-    ${photoHtml}
+      <div class="ps-photos">${photoHtml}</div>
 
-    ${tagsHtml ? `<div class="ps-tags">${tagsHtml}</div>` : ''}
+      ${tagsHtml ? `<div class="ps-tags">${tagsHtml}</div>` : ''}
 
-    ${b.description ? `<div class="ps-section-h">Description</div>
-    <div class="ps-desc">${b.description.replace(/\n/g,'<br>')}</div>` : ''}
+      ${descHtml}
 
-    ${equipsHtml ? `<div class="ps-section-h">Équipements</div>
-    <div class="ps-equips">${equipsHtml}</div>` : ''}
+      ${equipsHtml ? `<div class="ps-section-h">Équipements</div><div class="ps-equips">${equipsHtml}</div>` : ''}
 
-    ${(b.dpe || b.ges) ? `<div class="ps-section-h">Diagnostics énergétiques</div>
-    <div class="ps-dpe-row">
-      ${dpeBadge('Énergie (DPE)', b.dpe)}
-      ${dpeBadge('Émissions (GES)', b.ges)}
-    </div>` : ''}
+      ${(b.dpe || b.ges) ? `<div class="ps-section-h">Diagnostics énergétiques</div>
+      <div class="ps-dpe-row">
+        ${dpeBadge('Énergie (DPE)', b.dpe)}
+        ${dpeBadge('Émissions (GES)', b.ges)}
+      </div>` : ''}
 
-    <div class="ps-section-h">Votre conseiller</div>
-    <div class="ps-agent">
-      <img class="ps-agent-photo" src="${ag.photo}" alt="${ag.nom}">
-      <div>
-        <div class="ps-agent-titre">${ag.titre}</div>
-        <div class="ps-agent-name">${ag.nom}</div>
-        <div class="ps-agent-contact">📞 ${ag.telDisplay}<br>✉️ ${ag.email || 'agsimmo06@gmail.com'}</div>
+      <div class="ps-section-h">Votre conseiller</div>
+      <div class="ps-agent">
+        <img class="ps-agent-photo" src="${ag.photo}" alt="${ag.nom}">
+        <div>
+          <div class="ps-agent-titre">${ag.titre}</div>
+          <div class="ps-agent-name">${ag.nom}</div>
+          <div class="ps-agent-contact">📞 ${ag.telDisplay}<br>✉️ ${ag.email || 'agsimmo06@gmail.com'}</div>
+        </div>
       </div>
     </div>
 
