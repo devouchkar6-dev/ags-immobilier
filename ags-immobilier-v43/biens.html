@@ -60,7 +60,7 @@
   .biens-section { padding:72px 60px; background:var(--cream); min-height:500px; }
   .biens-count { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--text-light); margin-bottom:40px; }
   .biens-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
-  .bien-card { background:white; cursor:pointer; transition:transform .3s ease, box-shadow .3s ease; overflow:hidden; }
+  .bien-card { background:white; cursor:pointer; transition:transform .3s ease, box-shadow .3s ease; overflow:hidden; content-visibility:auto; contain-intrinsic-size:0 340px; }
   .bien-card:hover { will-change:transform; }
   .bien-card:hover { transform:translateY(-4px); box-shadow:0 16px 48px rgba(27,45,79,.12); }
   .bien-card.vendu { cursor:default; }
@@ -523,23 +523,17 @@ document.addEventListener('click', e => {
   setTimeout(() => { window.location.href = href; }, 260);
 });
 
-// Intercepte aussi les onclick="window.location=..." des cartes biens
+// Délégation d'événements sur la grid — plus besoin de MutationObserver
 (function() {
-  const observer = new MutationObserver(() => {
-    document.querySelectorAll('.bien-card[data-nav]').forEach(card => {
-      if (card.dataset.patched) return;
-      card.dataset.patched = '1';
-      card.addEventListener('click', e => {
-        // Ne pas naviguer si clic sur la checkbox
-        if (e.target.closest('.cmp-check-wrap')) return;
-        const href = card.dataset.nav;
-        if (!href) return;
-        document.body.classList.add('page-leaving');
-        setTimeout(() => { window.location.href = href; }, 260);
-      });
-    });
+  document.addEventListener('click', e => {
+    const card = e.target.closest('.bien-card[data-nav]');
+    if (!card) return;
+    if (e.target.closest('.cmp-check-wrap')) return;
+    const href = card.dataset.nav;
+    if (!href) return;
+    document.body.classList.add('page-leaving');
+    setTimeout(() => { window.location.href = href; }, 260);
   });
-  observer.observe(document.getElementById('biensGrid') || document.body, { childList:true, subtree:true });
 })();
 
 // ===== COMPARATEUR =====
