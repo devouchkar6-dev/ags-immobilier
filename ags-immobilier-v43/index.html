@@ -105,10 +105,11 @@
 <style>
   :root { --navy:#1B2D4F; --navy-deep:#0F1E36; --blue-mid:#2C4A7C; --blue-light:#4A6FA5; --accent:#5B9BD5; --cream:#F0F4F8; --stone:#C8D6E5; --text:#1B2D4F; --text-light:#5A7499; }
   * { margin:0; padding:0; box-sizing:border-box; }
-  /* === PAGE TRANSITION === */
-  body { opacity:0; transition:opacity .3s ease; }
-  body.page-visible { opacity:1; }
-  body.page-leaving { opacity:0; transition:opacity .2s ease; }
+  /* === PAGE TRANSITION RIDEAU === */
+  body { opacity:1; }
+  #page-curtain { position:fixed; inset:0; background:var(--navy-deep); z-index:9999; transform:scaleY(1); transform-origin:top; transition:transform .55s cubic-bezier(.76,0,.24,1); pointer-events:none; }
+  #page-curtain.open { transform:scaleY(0); transform-origin:top; }
+  #page-curtain.closing { transform:scaleY(1); transform-origin:bottom; transition:transform .45s cubic-bezier(.76,0,.24,1); }
   html { scroll-behavior:smooth; }
 
     html, body { overflow-x:hidden; max-width:100%; }
@@ -124,7 +125,9 @@
   nav.scrolled .nav-cta { border-color:var(--navy); color:var(--navy) !important; }
   .nav-cta:hover { background:var(--navy) !important; color:white !important; border-color:var(--navy) !important; }
   .hero { height:100vh; position:relative; display:flex; align-items:center; overflow:hidden; }
-  .hero-bg { position:absolute; inset:0; background:linear-gradient(135deg,rgba(10,22,45,.88) 0%,rgba(15,30,54,.82) 40%,rgba(15,30,54,.75) 70%,rgba(15,30,54,.72) 100%), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=80') center/cover no-repeat; animation:slowzoom 18s ease-in-out infinite alternate; }
+  .hero-bg { position:absolute; inset:0; background:linear-gradient(135deg,rgba(10,22,45,.88) 0%,rgba(15,30,54,.82) 40%,rgba(15,30,54,.75) 70%,rgba(15,30,54,.72) 100%), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=80') center/cover no-repeat; animation:slowzoom 18s ease-in-out infinite alternate; will-change:transform; }
+  /* Parallaxe */
+  .hero-bg.parallax { transform:translateY(var(--py,0px)); }
   .hero::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(74,111,165,.18) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 20% 80%,rgba(15,30,54,.4) 0%,transparent 50%); pointer-events:none; z-index:1; }
   @keyframes slowzoom { from{transform:scale(1.03)} to{transform:scale(1.1)} }
   .hero-content { position:relative; z-index:2; padding:0 60px; max-width:680px; animation:fadeUp .8s ease both; }
@@ -274,7 +277,42 @@
   .reveal { opacity:1; transform:none; }
   .whatsapp-btn { position:fixed; bottom:28px; left:28px; z-index:999; width:56px; height:56px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(37,211,102,.4); text-decoration:none; transition:transform .3s,box-shadow .3s; font-size:26px; }
   .whatsapp-btn:hover { transform:scale(1.1); box-shadow:0 6px 28px rgba(37,211,102,.5); }
+  /* Mots titre animés */
+  .hero-word { display:inline-block; opacity:0; transform:translateY(22px); transition:opacity .5s ease, transform .5s ease; }
+  .hero-word.visible { opacity:1; transform:none; }
+  #hero-title br-placeholder { display:block; content:''; }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "name": "AGS Immobilier",
+  "url": "https://ags-immobilier.vercel.app",
+  "logo": "https://ags-immobilier.vercel.app/images/logo.jpg",
+  "image": "https://ags-immobilier.vercel.app/images/og-image.jpg",
+  "description": "Agence immobilière indépendante au Cannet depuis 1981. Vente, achat, estimation et viager sur Cannes, Mougins, Mandelieu, Vallauris et la Côte d'Azur.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Le Cannet",
+    "addressLocality": "Le Cannet",
+    "postalCode": "06110",
+    "addressCountry": "FR",
+    "addressRegion": "Provence-Alpes-Côte d'Azur"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 43.5768,
+    "longitude": 7.0097
+  },
+  "telephone": "+33607131181",
+  "email": "agsimmo06@gmail.com",
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "18:00" }
+  ],
+  "sameAs": [],
+  "areaServed": ["Le Cannet","Cannes","Mougins","Mandelieu","Vallauris"]
+}
+</script>
 </head>
 <body>
 <nav id="nav">
@@ -290,8 +328,9 @@
   <a href="#contact" class="nav-cta">Nous contacter</a>
 </nav>
 
+<div id="page-curtain"></div>
 <section class="hero">
-  <div class="hero-bg"></div>
+  <div class="hero-bg parallax" id="hero-bg"></div>
   <div style="position:absolute;top:0;right:0;width:45%;height:100%;z-index:1;pointer-events:none;overflow:hidden">
     <div style="position:absolute;top:-10%;right:-5%;width:600px;height:600px;border:1px solid rgba(255,255,255,.06);border-radius:50%;transform:translate(30%,-10%)"></div>
     <div style="position:absolute;top:10%;right:5%;width:400px;height:400px;border:1px solid rgba(255,255,255,.04);border-radius:50%"></div>
@@ -299,7 +338,7 @@
   </div>
   <div class="hero-content">
     <div class="hero-tag">Agence Indépendante — Le Cannet</div>
-    <h1>Votre projet immobilier<br>sur la <em>Côte d'Azur</em></h1>
+    <h1 id="hero-title" aria-label="Votre projet immobilier sur la Côte d'Azur"></h1>
     <p>Installée au Cannet depuis 1981, l'agence AGS Immobilier vous accompagne avec sérieux et engagement dans vos projets de vente, d'achat ou d'investissement dans les Alpes Maritimes et le Var Est.</p>
     <div class="hero-btns">
       <a href="#properties" class="btn-primary">Découvrir les biens</a>
@@ -849,10 +888,72 @@ function envoyerEmailJS(e, form, templateId) {
 <!-- Curseur personnalisé (desktop) -->
 
 <script>
-// === TRANSITIONS DE PAGE ===
-document.addEventListener('DOMContentLoaded', () => {
-  requestAnimationFrame(() => document.body.classList.add('page-visible'));
+// === RIDEAU + PARALLAXE + MOTS ANIMÉS ===
+(function() {
+  const curtain = document.getElementById('page-curtain');
 
+  // Ouvrir le rideau à l'arrivée
+  function openCurtain() {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => { curtain.classList.add('open'); });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', openCurtain);
+  } else { openCurtain(); }
+
+  // Fix bfcache
+  window.addEventListener('pageshow', e => {
+    if (e.persisted) { curtain.classList.remove('closing'); curtain.classList.add('open'); }
+  });
+
+  // Fermer le rideau sur les clics de navigation
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a');
+    if (!a) return;
+    const href = a.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('tel:') || href.startsWith('mailto:') || a.target === '_blank') return;
+    if (href.startsWith('http') && !href.includes(location.hostname)) return;
+    e.preventDefault();
+    curtain.classList.remove('open');
+    curtain.classList.add('closing');
+    setTimeout(() => { window.location.href = href; }, 480);
+  });
+
+  // Parallaxe hero (desktop only)
+  const heroBg = document.getElementById('hero-bg');
+  if (heroBg && window.innerWidth > 768) {
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      heroBg.style.setProperty('--py', (y * 0.35) + 'px');
+    }, { passive: true });
+  }
+
+  // Révélation mots titre hero
+  const titleEl = document.getElementById('hero-title');
+  if (titleEl) {
+    const lines = [
+      ['Votre', 'projet', 'immobilier'],
+      ['sur', 'la', '<em>Côte d\'Azur</em>']
+    ];
+    let html = '';
+    lines.forEach((words, li) => {
+      if (li > 0) html += '<br>';
+      words.forEach((w, wi) => {
+        const delay = (li * words.length + wi) * 80 + 400;
+        html += `<span class="hero-word" style="transition-delay:${delay}ms">${w}</span>`;
+        if (wi < words.length - 1) html += ' ';
+      });
+    });
+    titleEl.innerHTML = html;
+    // Déclencher après ouverture rideau
+    setTimeout(() => {
+      titleEl.querySelectorAll('.hero-word').forEach(w => w.classList.add('visible'));
+    }, 300);
+  }
+})();
+
+document.addEventListener('DOMContentLoaded', () => {
   // === CHIFFRES ANIMÉS (stats hero) ===
   function animateCounter(el, target, suffix, duration) {
     const start = performance.now();
@@ -881,23 +982,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.6 });
   document.querySelectorAll('.stat-num[data-count]').forEach(el => statObs.observe(el));
-});
-// Fix page blanche au retour arrière (bfcache)
-window.addEventListener('pageshow', e => {
-  if (e.persisted || performance.getEntriesByType('navigation')[0]?.type === 'back_forward') {
-    document.body.classList.remove('page-leaving');
-    document.body.classList.add('page-visible');
-  }
-});
-document.addEventListener('click', e => {
-  const a = e.target.closest('a');
-  if (!a) return;
-  const href = a.getAttribute('href');
-  if (!href || href.startsWith('#') || href.startsWith('tel:') || href.startsWith('mailto:') || a.target === '_blank') return;
-  if (href.startsWith('http') && !href.includes(location.hostname)) return;
-  e.preventDefault();
-  document.body.classList.add('page-leaving');
-  setTimeout(() => { window.location.href = href; }, 260);
 });
 </script>
 </body>
