@@ -176,7 +176,8 @@
     body > *:not(#print-sheet) { display:none !important; }
     #print-sheet { display:block !important; font-family:'Helvetica Neue',Arial,sans-serif; color:#1B2D4F; background:white; width:100%; }
 
-    @page { margin:0; size:A4 portrait; }
+    @page { margin:12mm 0 10mm; size:A4 portrait; }
+    @page :first { margin-top:0; }
 
     /* ── BANDEAU HEADER ── */
     .ps-header {
@@ -197,8 +198,15 @@
     .ps-loc { font-size:10px; color:#5B9BD5; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:12px; }
 
     /* Photos */
-    .ps-photos { width:100%; margin-bottom:14px; }
-    .ps-photos img { display:block; object-fit:cover; }
+    .ps-photos { width:100%; margin-bottom:16px; }
+    .ps-ph-main { text-align:center; margin-bottom:8px; break-inside:avoid; page-break-inside:avoid; }
+    .ps-ph-main img { display:inline-block; max-width:100%; max-height:100mm; width:auto; height:auto; border-radius:3px; }
+    .ps-ph-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+    .ps-ph { aspect-ratio:4/3; background:#F3F5F8 !important; border-radius:3px; overflow:hidden; break-inside:avoid; page-break-inside:avoid; }
+    .ps-ph img { display:block; width:100%; height:100%; object-fit:contain; }
+    html, body { background:#fff !important; }
+    .ps-section-h { break-after:avoid; page-break-after:avoid; }
+    .ps-agent, .ps-dpe-row, .ps-footer { break-inside:avoid; page-break-inside:avoid; }
     .ps-photo-main { width:100%; height:200px; object-fit:cover; display:block; }
 
     /* Tags */
@@ -828,39 +836,15 @@ async function imprimerFiche() {
   // 2 photos : côte à côte
   // 3 photos : grande à gauche (60%) + 2 petites à droite empilées
   // 4+ photos : même layout 3 + ligne(s) de 3 colonnes pour le reste
+  // Photo principale en grand + les autres en grille 3 colonnes,
+  // toutes affichées en entier (pas de recadrage) et espacées.
   let photoHtml = '';
-  if (photos.length === 1) {
-    photoHtml = `<img src="${photos[0]}" alt="" style="width:100%;height:210px;object-fit:cover;display:block;">`;
-  } else if (photos.length === 2) {
-    photoHtml = `<table style="width:100%;border-collapse:collapse;border-spacing:0;"><tr>
-      <td style="width:50%;padding-right:2px;"><img src="${photos[0]}" alt="" style="width:100%;height:190px;object-fit:cover;display:block;"></td>
-      <td style="width:50%;padding-left:2px;"><img src="${photos[1]}" alt="" style="width:100%;height:190px;object-fit:cover;display:block;"></td>
-    </tr></table>`;
-  } else {
-    // 3 premières photos : layout éditorial
-    const mainRow = `<table style="width:100%;border-collapse:collapse;"><tr>
-      <td style="width:60%;padding-right:2px;vertical-align:top;">
-        <img src="${photos[0]}" alt="" style="width:100%;height:190px;object-fit:cover;display:block;">
-      </td>
-      <td style="width:40%;vertical-align:top;">
-        <img src="${photos[1]}" alt="" style="width:100%;height:93px;object-fit:cover;display:block;margin-bottom:4px;">
-        ${photos[2] ? `<img src="${photos[2]}" alt="" style="width:100%;height:93px;object-fit:cover;display:block;">` : '<div style="height:93px;background:#f0f4f8;"></div>'}
-      </td>
-    </tr></table>`;
-
-    // Photos supplémentaires (4 et +) en grille 3 colonnes
-    let extraHtml = '';
-    const extras = photos.slice(3);
-    for (let i = 0; i < extras.length; i += 3) {
-      const row = extras.slice(i, i + 3);
-      extraHtml += `<table style="width:100%;border-collapse:collapse;margin-top:4px;"><tr>
-        ${row.map(p => `<td style="width:33.33%;padding:0 2px 0 0;">
-          <img src="${p}" alt="" style="width:100%;height:85px;object-fit:cover;display:block;">
-        </td>`).join('')}
-        ${'<td></td>'.repeat(Math.max(0, 3 - row.length))}
-      </tr></table>`;
+  if (photos.length) {
+    photoHtml = `<div class="ps-ph-main"><img src="${photos[0]}" alt=""></div>`;
+    const rest = photos.slice(1);
+    if (rest.length) {
+      photoHtml += `<div class="ps-ph-grid">${rest.map(p => `<div class="ps-ph"><img src="${p}" alt=""></div>`).join('')}</div>`;
     }
-    photoHtml = mainRow + extraHtml;
   }
 
   // Tags
