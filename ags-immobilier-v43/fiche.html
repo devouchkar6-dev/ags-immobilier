@@ -793,17 +793,22 @@ async function imprimerFiche() {
   if (!b) { window.print(); return; }
 
   // Montrer un indicateur de chargement sur le bouton
-  const btn = document.querySelector('[onclick*="imprimerFiche"]');
+  const btn = document.getElementById('print-share-btn');
   if (btn) { btn.textContent = '⏳ Chargement…'; btn.disabled = true; }
 
   const ag = AGENTS[b.agent] || AGENTS['philippe'];
   const fmt = v => {
     const n = typeof v === 'number' ? v : parseInt((v||'').toString().replace(/[^\d]/g,''));
-    return n ? new Intl.NumberFormat('fr-FR',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n) : '';
+    return n ? new Intl.NumberFormat('fr-FR',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n).replace(/[\u202f\u00a0]/g,' ') : '';
   };
 
   // Convertir toutes les photos en base64 (résout le problème CORS à l'impression)
-  const photos = await Promise.all(rawPhotos.map(u => urlToDataUrl(cld(u,1200))));
+  const photos = await Promise.all(rawPhotos.map(async u => {
+    const small = cld(u,1200);
+    const d = await urlToDataUrl(small);
+    if (d.startsWith('data:') || small === u) return d;
+    return urlToDataUrl(u); // version allégée refusée : photo d'origine
+  }));
 
   // Rétablir le bouton
   if (btn) { btn.innerHTML = '🖨️ Imprimer'; btn.disabled = false; }
@@ -922,6 +927,17 @@ async function imprimerFiche() {
       <span>AGS Immobilier — 06 07 13 11 81 — agsimmo06@gmail.com</span>
       <span>Document non contractuel</span>
     </div>`;
+
+  // Attendre que toutes les photos soient affichées avant d'ouvrir l'impression (8 s max)
+  if (btn) { btn.textContent = '⏳ Préparation…'; btn.disabled = true; }
+  const imgs = Array.from(sheet.querySelectorAll('img'));
+  await Promise.race([
+    Promise.all(imgs.map(img => (img.complete && img.naturalWidth > 0)
+      ? (img.decode ? img.decode().catch(() => {}) : null)
+      : new Promise(res => { img.onload = () => (img.decode ? img.decode().catch(() => {}) : Promise.resolve()).then(res); img.onerror = res; }))),
+    new Promise(res => setTimeout(res, 8000))
+  ]);
+  if (btn) { btn.innerHTML = '🖨️ Imprimer'; btn.disabled = false; }
 
   window.print();
 }
