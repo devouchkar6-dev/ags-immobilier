@@ -955,7 +955,7 @@ function copierLien() {
 })();
 </script>
 
-<!-- ========== POPUP INTÉRÊT BIEN (2min + scroll 80%) + TOAST ========== -->
+<!-- ========== POPUP INTÉRÊT BIEN (1min + scroll 80%) + TOAST ========== -->
 <style>
 /* Popup intérêt bien */
 #interest-overlay{position:fixed;inset:0;background:rgba(10,18,32,.8);z-index:10000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s ease;backdrop-filter:blur(6px);}
@@ -1059,7 +1059,7 @@ function agsTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     else if (t.closest('#gallery-fav')) agsTrack(t.closest('#gallery-fav').classList.contains('on') ? 'favori_ajoute' : 'favori_retire', bienInfo());
   });
 
-  // ---- Popup intérêt bien — déclenché quand 2min ET scroll 80% ----
+  // ---- Popup intérêt bien — déclenché quand 1min ET scroll 80% ----
   var overlay = document.getElementById('interest-overlay');
   var POPUP_KEY = 'ags_interest_shown';
   var popupShown = sessionStorage.getItem(POPUP_KEY);
@@ -1106,8 +1106,8 @@ function agsTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
     agsTrack('popup_interet_affiche', bienInfo());
   }
 
-  // Condition 1 : 2 minutes sur la page
-  setTimeout(function(){ timerDone=true; tryShowPopup(); }, 120000);
+  // Condition 1 : 1 minute sur la page
+  setTimeout(function(){ timerDone=true; tryShowPopup(); }, 60000);
 
   // Condition 2 : scroll ≥ 80%
   function onScroll(){
