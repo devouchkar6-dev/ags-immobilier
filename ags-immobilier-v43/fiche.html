@@ -21,7 +21,7 @@
 <style>
   :root { --navy:#1B2D4F; --navy-deep:#0F1E36; --blue-mid:#2C4A7C; --blue-light:#4A6FA5; --accent:#5B9BD5; --cream:#F0F4F8; --stone:#C8D6E5; --text:#1B2D4F; --text-light:#5A7499; }
   * { margin:0; padding:0; box-sizing:border-box; }
-  /* ✅ FIX SCROLL HORIZONTAL */
+  /* FIX SCROLL HORIZONTAL */
   html, body { overflow-x: hidden; max-width: 100%; }
   /* === PAGE TRANSITION === */
   body { opacity:1; }
@@ -268,7 +268,7 @@
   }
 
   @media(max-width:768px) {
-    /* ✅ FIX SCROLL HORIZONTAL MOBILE */
+    /* FIX SCROLL HORIZONTAL MOBILE */
     html, body { overflow-x: hidden !important; }
     nav { padding:12px 20px; }
     .gallery { grid-template-columns:1fr !important; grid-template-rows:260px !important; height:260px !important; }
@@ -303,6 +303,15 @@
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>emailjs.init('7m1BlSj4clGb0I9tl');</script>
+<style>
+/* === Icônes fines & numéros éditoriaux (remplacent les emojis) === */
+.mob-bottomnav .nav-icon{display:block;line-height:0;}
+.mob-bottomnav .nav-icon svg{width:19px;height:19px;margin:0 auto 4px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.toast-icon svg{width:16px;height:16px;fill:none;stroke:#5B9BD5;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.whatsapp-btn svg{width:27px;height:27px;color:#fff;display:block;}
+.ed-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:#5B9BD5;line-height:1;display:flex;align-items:center;gap:14px;}
+.ed-num::after{content:'';display:block;width:34px;height:1px;background:currentColor;opacity:.45;}
+</style>
 </head>
 <body>
 <div id="page-curtain"></div>
@@ -311,13 +320,13 @@
   <a href="biens.html" class="nav-back">← Retour aux biens</a>
 </nav>
 <div id="page-content">
-  <div class="loading">⏳ Chargement de la fiche…</div>
+  <div class="loading">Chargement de la fiche…</div>
 </div>
 <footer>
   <span>© 2026 AGS Immobilier — Le Cannet</span>
   <a href="index.html">← Retour au site</a>
 </footer>
-<a class="whatsapp-btn" href="https://wa.me/33607131181" target="_blank" title="WhatsApp">💬</a>
+<a class="whatsapp-btn" href="https://wa.me/33607131181" target="_blank" title="WhatsApp" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 15l-1.4 5 5.2-1.4A9.9 9.9 0 1 0 12.04 2zm0 18.1a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3.1.8.8-3-.2-.3a8.2 8.2 0 1 1 7 3.9zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3z"/></svg></a>
 <div class="share-toast" id="share-toast">✓ Lien copié !</div>
 <div id="print-sheet"></div>
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Galerie photos">
@@ -334,14 +343,14 @@
   <div class="lbx-thumbs" id="lbx-thumbs"></div>
 </div>
 <div class="mob-bottomnav">
-  <a href="index.html"><span class="nav-icon">🏠</span>Accueil</a>
-  <a href="biens.html"><span class="nav-icon">🔍</span>Biens</a>
-  <a href="honoraires.html"><span class="nav-icon">💶</span>Honoraires</a>
-  <a href="index.html#contact"><span class="nav-icon">✉️</span>Contact</a>
-  <a href="tel:+33607131181"><span class="nav-icon">📞</span>Appeler</a>
+  <a href="index.html"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.5 12 3.5l8.5 7"/><path d="M5.5 9v11.5h13V9"/><path d="M10 20.5v-6h4v6"/></svg></span>Accueil</a>
+  <a href="biens.html"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></span>Biens</a>
+  <a href="honoraires.html"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 6.2A7.2 7.2 0 1 0 17.5 17.8"/><path d="M4.5 10h9M4.5 14h9"/></svg></span>Honoraires</a>
+  <a href="index.html#contact"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5"/><path d="m4 6.5 8 6.5 8-6.5"/></svg></span>Contact</a>
+  <a href="tel:+33607131181"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5h3l1.5 4.2-2 1.4a11 11 0 0 0 5.8 5.8l1.4-2 4.2 1.5v3a1.6 1.6 0 0 1-1.7 1.6A16.5 16.5 0 0 1 5 5.2a1.6 1.6 0 0 1 1.6-1.7z"/></svg></span>Appeler</a>
 </div>
 <script>
-// ✅ GitHub uniquement (APIMO supprimé)
+// GitHub uniquement (APIMO supprimé)
 const GITHUB_RAW = 'https://raw.githubusercontent.com/devouchkar6-dev/ags-immobilier/main/ags-immobilier-v43/biens.json';
 const DPE_COLORS = {A:'#00a651',B:'#57b947',C:'#c4d600',D:'#fbaf17',E:'#f26522',F:'#ed1c24',G:'#be1e2d'};
 
@@ -426,7 +435,7 @@ async function chargerFiche() {
 
 function afficherErreur(msg) {
   document.getElementById('page-content').innerHTML =
-    `<div class="loading">⚠️ ${msg}<br><br><a href="biens.html" style="color:var(--accent);font-size:13px;">← Retour aux biens</a></div>`;
+    `<div class="loading">${msg}<br><br><a href="biens.html" style="color:var(--accent);font-size:13px;">← Retour aux biens</a></div>`;
 }
 
 const DPE_LABELS = { A:'≤ 70 kWh', B:'71–110', C:'111–180', D:'181–250', E:'251–330', F:'331–420', G:'> 420' };
@@ -462,9 +471,9 @@ function afficherBien(b) {
       <div class="gallery-main" style="position:relative;${nbPhotos===1?'grid-column:1/-1':''}">
         ${photos[0]
           ? `<img src="${cld(photos[0],1600)}" alt="${titre}" onclick="ouvrirLB(window._fichPhotos,0)" style="cursor:zoom-in" loading="eager" fetchpriority="high">`
-          : `<div class="gallery-ph">🏠</div>`}
+          : `<div class="gallery-ph"><span style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#fff;">Photos à venir</span></div>`}
         <button class="gallery-fav${FAV.has(b.id)?' on':''}" id="gallery-fav" aria-label="Ajouter aux favoris" aria-pressed="${FAV.has(b.id)}" onclick="toggleFavFiche('${b.id}',this)">${HEART_SVG}</button>
-        ${nbPhotos > 1 ? `<button class="gallery-count" onclick="ouvrirLB(window._fichPhotos,0)">📷 Voir les ${nbPhotos} photos</button>` : ''}
+        ${nbPhotos > 1 ? `<button class="gallery-count" onclick="ouvrirLB(window._fichPhotos,0)">Voir les ${nbPhotos} photos</button>` : ''}
       </div>
       ${nbPhotos === 2
         ? `<div><img src="${cld(photos[1],800)}" alt="${titre}" onclick="ouvrirLB(window._fichPhotos,1)" style="cursor:zoom-in;width:100%;height:100%;object-fit:cover" loading="lazy"></div>`
@@ -474,12 +483,12 @@ function afficherBien(b) {
     </div>`;
 
   const tags = [
-    b.surface    && `📐 ${b.surface}`,
-    b.pieces     && `🚪 ${String(b.pieces).replace(/\s*pièces?\s*/i,'')} pièces`,
-    b.chambres   && `🛏 ${String(b.chambres).replace(/\s*chambres?\s*/i,'')} chambres`,
-    b.etage      && `🏢 Étage ${b.etage}`,
-    b.exposition && `🌅 ${b.exposition}`,
-    b.annee      && `📅 Construit en ${b.annee}`,
+    b.surface    && `${b.surface}`,
+    b.pieces     && `${String(b.pieces).replace(/\s*pièces?\s*/i,'')} pièces`,
+    b.chambres   && `${String(b.chambres).replace(/\s*chambres?\s*/i,'')} chambres`,
+    b.etage      && `Étage ${b.etage}`,
+    b.exposition && `${b.exposition}`,
+    b.annee      && `Construit en ${b.annee}`,
   ].filter(Boolean);
 
   const equips = (b.equipements || []).map(e => `<div class="equip-item">✓ ${e}</div>`).join('');
@@ -507,7 +516,7 @@ function afficherBien(b) {
           return `<div class="vendu-par">Vendu par <strong>${nom}</strong> — AGS Immobilier</div>`;
         })() : ''}
         <h1 class="prop-title">${titre}</h1>
-        <div class="prop-loc">📍 ${loc}</div>
+        <div class="prop-loc">${loc}</div>
         <div class="prop-price">${prix}</div>
         ${b.rente     ? `<div class="prop-ref">Rente mensuelle : ${b.rente}</div>` : ''}
         ${b.ref       ? `<div class="prop-ref">Réf. ${b.ref}</div>` : ''}
@@ -522,8 +531,8 @@ function afficherBien(b) {
           <div class="sticky-price">${prix}</div>
           <div class="sticky-sub">${titre}${ville ? ' · ' + ville : ''}</div>
           <div class="share-row">
-            <button class="share-btn" onclick="copierLien()">🔗 Copier le lien</button>
-            <button class="share-btn" id="print-share-btn" onclick="printOuPartager()">🖨️ Imprimer</button>
+            <button class="share-btn" onclick="copierLien()">Copier le lien</button>
+            <button class="share-btn" id="print-share-btn" onclick="printOuPartager()">Imprimer</button>
           </div>
           <form name="visite-fiche" onsubmit="envoyerEmailJS(event,this,'template_visite')">
             <input type="hidden" name="bien" value="${b.titre || ''} — ${prix}">
@@ -533,7 +542,7 @@ function afficherBien(b) {
             <div class="form-group"><label>Message</label><textarea name="message" id="msg-visite"></textarea></div>
             <button type="submit" class="sticky-submit">Demander une visite →</button>
             <p id="msg-ok" style="color:#27ae60;font-size:13px;margin-top:10px;display:none;">✓ Message envoyé !</p>
-            <p id="msg-err" style="color:#e74c3c;font-size:13px;margin-top:10px;display:none;">⚠️ Erreur, veuillez réessayer.</p>
+            <p id="msg-err" style="color:#e74c3c;font-size:13px;margin-top:10px;display:none;">Erreur, veuillez réessayer.</p>
           </form>
           ${(function() {
             const ag = AGENTS[b.agent] || AGENTS['philippe'];
@@ -542,15 +551,15 @@ function afficherBien(b) {
               <div class="agent-info">
                 <div class="agent-label">${ag.titre||'Votre conseiller'}</div>
                 <div class="agent-name">${ag.nom}</div>
-                <a class="agent-tel" href="tel:${ag.tel}">📞 ${ag.telDisplay}</a>
+                <a class="agent-tel" href="tel:${ag.tel}">${ag.telDisplay}</a>
               </div>
             </div>
             <div class="sticky-contacts" style="margin-top:12px;padding-top:12px;">
-              <div class="sticky-contact-line">✉️ <a href="#" onclick="this.href='mailto:agsimmo06@gmail.com';return false;">agsimmo06&#64;gmail.com</a></div>
+              <div class="sticky-contact-line"><a href="#" onclick="this.href='mailto:agsimmo06@gmail.com';return false;">agsimmo06&#64;gmail.com</a></div>
             </div>`;
           })()}
           <div style="margin-top:24px;padding-top:24px;border-top:1px solid var(--stone);">
-            <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--navy);font-weight:500;margin-bottom:16px;">📊 Simulateur de financement</div>
+            <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--navy);font-weight:500;margin-bottom:16px;">Simulateur de financement</div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
               <div>
                 <div style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:4px;">Prix (€)</div>
@@ -615,7 +624,7 @@ function afficherBien(b) {
 function envoyerEmailJS(e, form, templateId) {
   e.preventDefault();
   const btn = form.querySelector('button[type=submit]');
-  btn.textContent = '⏳ Envoi...'; btn.disabled = true;
+  btn.textContent = 'Envoi…'; btn.disabled = true;
   emailjs.sendForm('service_rktxwry', templateId, form)
     .then(() => { window.location.href = 'merci.html'; })
     .catch(() => {
@@ -785,7 +794,7 @@ function printOuPartager() {
     if (!btn) return;
     const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
     if (isMobile && navigator.share) {
-      btn.innerHTML = '📤 Partager';
+      btn.innerHTML = 'Partager';
     }
   }
   if (document.readyState === 'loading') {
@@ -802,7 +811,7 @@ async function imprimerFiche() {
 
   // Montrer un indicateur de chargement sur le bouton
   const btn = document.getElementById('print-share-btn');
-  if (btn) { btn.textContent = '⏳ Chargement…'; btn.disabled = true; }
+  if (btn) { btn.textContent = 'Chargement…'; btn.disabled = true; }
 
   const ag = AGENTS[b.agent] || AGENTS['philippe'];
   const fmt = v => {
@@ -819,7 +828,7 @@ async function imprimerFiche() {
   }));
 
   // Rétablir le bouton
-  if (btn) { btn.innerHTML = '🖨️ Imprimer'; btn.disabled = false; }
+  if (btn) { btn.innerHTML = 'Imprimer'; btn.disabled = false; }
 
   // Badge DPE
   const dpeBadge = (label, lettre) => {
@@ -880,7 +889,7 @@ async function imprimerFiche() {
     <div class="ps-body">
       <div class="ps-title">${b.titre || ''}</div>
       <div class="ps-prix">${fmt(b.prixBrut) || b.prix || ''}</div>
-      <div class="ps-loc">📍 ${b.ville || ''}</div>
+      <div class="ps-loc">${b.ville || ''}</div>
 
       <div class="ps-photos">${photoHtml}</div>
 
@@ -902,7 +911,7 @@ async function imprimerFiche() {
         <div>
           <div class="ps-agent-titre">${ag.titre}</div>
           <div class="ps-agent-name">${ag.nom}</div>
-          <div class="ps-agent-contact">📞 ${ag.telDisplay}<br>✉️ ${ag.email || 'agsimmo06@gmail.com'}</div>
+          <div class="ps-agent-contact">Tél. ${ag.telDisplay}<br>${ag.email || 'agsimmo06@gmail.com'}</div>
         </div>
       </div>
     </div>
@@ -913,7 +922,7 @@ async function imprimerFiche() {
     </div>`;
 
   // Attendre que toutes les photos soient affichées avant d'ouvrir l'impression (8 s max)
-  if (btn) { btn.textContent = '⏳ Préparation…'; btn.disabled = true; }
+  if (btn) { btn.textContent = 'Préparation…'; btn.disabled = true; }
   const imgs = Array.from(sheet.querySelectorAll('img'));
   await Promise.race([
     Promise.all(imgs.map(img => (img.complete && img.naturalWidth > 0)
@@ -921,7 +930,7 @@ async function imprimerFiche() {
       : new Promise(res => { img.onload = () => (img.decode ? img.decode().catch(() => {}) : Promise.resolve()).then(res); img.onerror = res; }))),
     new Promise(res => setTimeout(res, 8000))
   ]);
-  if (btn) { btn.innerHTML = '🖨️ Imprimer'; btn.disabled = false; }
+  if (btn) { btn.innerHTML = 'Imprimer'; btn.disabled = false; }
 
   window.print();
 }
@@ -1018,8 +1027,8 @@ function copierLien() {
       </div>
     </div>
     <div class="int-btns">
-      <a href="tel:+33607131181" class="int-call" id="int-call-btn">📞 Appeler maintenant</a>
-      <a href="https://wa.me/33607131181" class="int-whatsapp" id="int-wa-btn" target="_blank">💬 WhatsApp</a>
+      <a href="tel:+33607131181" class="int-call" id="int-call-btn">Appeler maintenant</a>
+      <a href="https://wa.me/33607131181" class="int-whatsapp" id="int-wa-btn" target="_blank">WhatsApp</a>
       <button class="int-stay" id="int-stay">Continuer ma lecture</button>
     </div>
   </div>
@@ -1028,7 +1037,7 @@ function copierLien() {
 <!-- Toast notification -->
 <div id="toast-notif" role="status" aria-live="polite">
   <div class="toast-top">
-    <div class="toast-icon">📞</div>
+    <div class="toast-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5h3l1.5 4.2-2 1.4a11 11 0 0 0 5.8 5.8l1.4-2 4.2 1.5v3a1.6 1.6 0 0 1-1.7 1.6A16.5 16.5 0 0 1 5 5.2a1.6 1.6 0 0 1 1.6-1.7z"/></svg></div>
     <div class="toast-body">
       <div class="toast-name" id="toast-agent-name">AGS Immobilier</div>
       <div class="toast-msg" id="toast-agent-msg">Philippe est disponible aujourd'hui</div>
@@ -1084,7 +1093,7 @@ function agsTrack(n,p){try{if(typeof gtag==='function')gtag('event',n,p||{});}ca
       document.getElementById('int-agent-name').textContent = ag.nom||'Philippe Servas';
       document.getElementById('int-agent-tel').textContent = ag.telDisplay||'';
       document.getElementById('int-call-btn').href = 'tel:'+ag.tel;
-      document.getElementById('int-call-btn').textContent = '📞 Appeler ' + (ag.nom||'').split(' ')[0];
+      document.getElementById('int-call-btn').textContent = 'Appeler ' + (ag.nom||'').split(' ')[0];
       var waNum = ag.tel.replace(/\D/g,'').replace(/^0/,'33');
       document.getElementById('int-wa-btn').href = 'https://wa.me/'+waNum;
       // Toast aussi
