@@ -63,7 +63,7 @@ nav.scrolled .nav-cta{border-color:var(--navy);color:var(--navy)!important;}
 
 /* Le dot au centre */
 .tl-dot-wrap{flex-shrink:0;width:48px;display:flex;flex-direction:column;align-items:center;z-index:2;}
-.tl-dot{width:48px;height:48px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 0 0 6px var(--cream);opacity:0;transform:scale(.4);transition:opacity .4s,transform .4s;}
+.tl-dot{width:48px;height:48px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 0 0 6px var(--cream);font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:#fff;opacity:0;transform:scale(.4);transition:opacity .4s,transform .4s;}
 .tl-item.visible .tl-dot{opacity:1;transform:scale(1);}
 
 /* Card */
@@ -86,7 +86,7 @@ nav.scrolled .nav-cta{border-color:var(--navy);color:var(--navy)!important;}
 .conseils-h{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3vw,36px);font-weight:300;color:white;text-align:center;margin-bottom:48px;}
 .conseils-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
 .conseil-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);padding:28px;}
-.conseil-icon{font-size:26px;margin-bottom:14px;}
+.conseil-icon{font-size:32px;margin-bottom:18px;}
 .conseil-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:white;margin-bottom:10px;}
 .conseil-body{font-size:12px;color:rgba(255,255,255,.5);line-height:1.75;font-weight:300;}
 
@@ -135,6 +135,15 @@ footer{background:var(--navy-deep);padding:40px 60px;display:flex;justify-conten
   .nav-icon{font-size:18px;}
 }
 </style>
+<style>
+/* === Icônes fines & numéros éditoriaux (remplacent les emojis) === */
+.mob-bottomnav .nav-icon{display:block;line-height:0;}
+.mob-bottomnav .nav-icon svg{width:19px;height:19px;margin:0 auto 4px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.toast-icon svg{width:16px;height:16px;fill:none;stroke:#5B9BD5;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.whatsapp-btn svg{width:27px;height:27px;color:#fff;display:block;}
+.ed-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:#5B9BD5;line-height:1;display:flex;align-items:center;gap:14px;}
+.ed-num::after{content:'';display:block;width:34px;height:1px;background:currentColor;opacity:.45;}
+</style>
 </head>
 <body>
 <div id="page-curtain"></div>
@@ -180,14 +189,14 @@ footer{background:var(--navy-deep);padding:40px 60px;display:flex;justify-conten
           <div class="tl-body">L'acheteur formule une offre au prix ou en dessous que le vendeur accepte par écrit. C'est le point de départ officiel. <strong>L'offre doit préciser le prix, les conditions et le délai de validité.</strong></div>
         </div>
       </div>
-      <div class="tl-dot-wrap"><div class="tl-dot">🤝</div></div>
+      <div class="tl-dot-wrap"><div class="tl-dot">01</div></div>
       <div class="tl-side-r"></div>
     </div>
 
     <!-- 2 — droite -->
     <div class="tl-item right">
       <div class="tl-side-l"></div>
-      <div class="tl-dot-wrap"><div class="tl-dot">📄</div></div>
+      <div class="tl-dot-wrap"><div class="tl-dot">02</div></div>
       <div class="tl-side-r">
         <div class="tl-card">
           <div class="tl-badge">J + 7 à 15</div>
@@ -208,14 +217,14 @@ footer{background:var(--navy-deep);padding:40px 60px;display:flex;justify-conten
           <div class="tl-body">L'acheteur dispose de <strong>10 jours</strong> pour se rétracter sans motif ni pénalité (loi SRU). Passé ce délai, il est engagé définitivement. Ce droit ne concerne que l'acheteur.</div>
         </div>
       </div>
-      <div class="tl-dot-wrap"><div class="tl-dot">⏱️</div></div>
+      <div class="tl-dot-wrap"><div class="tl-dot">03</div></div>
       <div class="tl-side-r"></div>
     </div>
 
     <!-- 4 — droite -->
     <div class="tl-item right">
       <div class="tl-side-l"></div>
-      <div class="tl-dot-wrap"><div class="tl-dot">🏦</div></div>
+      <div class="tl-dot-wrap"><div class="tl-dot">04</div></div>
       <div class="tl-side-r">
         <div class="tl-card">
           <div class="tl-badge">J + 30 à 60</div>
@@ -236,14 +245,14 @@ footer{background:var(--navy-deep);padding:40px 60px;display:flex;justify-conten
           <div class="tl-body">Le notaire vérifie les hypothèques, droits de préemption, servitudes et urbanisme. Il prépare l'acte authentique et rassemble tous les diagnostics. <strong>Comptez 2 à 3 mois après le compromis.</strong></div>
         </div>
       </div>
-      <div class="tl-dot-wrap"><div class="tl-dot">🔍</div></div>
+      <div class="tl-dot-wrap"><div class="tl-dot">05</div></div>
       <div class="tl-side-r"></div>
     </div>
 
     <!-- 6 — droite -->
     <div class="tl-item right">
       <div class="tl-side-l"></div>
-      <div class="tl-dot-wrap"><div class="tl-dot">✍️</div></div>
+      <div class="tl-dot-wrap"><div class="tl-dot">06</div></div>
       <div class="tl-side-r">
         <div class="tl-card">
           <div class="tl-badge">J + 60 à 90</div>
@@ -258,13 +267,13 @@ footer{background:var(--navy-deep);padding:40px 60px;display:flex;justify-conten
     <div class="tl-item">
       <div class="tl-side-l">
         <div class="tl-card">
-          <div class="tl-badge">Jour J final 🎉</div>
+          <div class="tl-badge">Jour J final</div>
           <div class="tl-num">Étape 07</div>
           <div class="tl-title">La remise des clés</div>
           <div class="tl-body">Après la signature, le vendeur remet les clés à l'acheteur. L'état des lieux est réalisé le jour même. Le bien est officiellement le vôtre. <strong>AGS Immobilier vous accompagne de la première visite jusqu'à ce moment.</strong></div>
         </div>
       </div>
-      <div class="tl-dot-wrap"><div class="tl-dot">🗝️</div></div>
+      <div class="tl-dot-wrap"><div class="tl-dot">07</div></div>
       <div class="tl-side-r"></div>
     </div>
 
@@ -277,17 +286,17 @@ footer{background:var(--navy-deep);padding:40px 60px;display:flex;justify-conten
     <h2 class="conseils-h">Nos conseils pour une transaction sereine</h2>
     <div class="conseils-grid">
       <div class="conseil-card">
-        <div class="conseil-icon">📂</div>
+        <div class="conseil-icon ed-num">01</div>
         <div class="conseil-title">Préparez vos documents en amont</div>
         <div class="conseil-body">Rassemblez dès le départ vos trois derniers bulletins de salaire, avis d'imposition, relevés bancaires et justificatif d'identité. Un dossier complet accélère significativement l'accord de prêt.</div>
       </div>
       <div class="conseil-card">
-        <div class="conseil-icon">💬</div>
+        <div class="conseil-icon ed-num">02</div>
         <div class="conseil-title">Posez toutes vos questions</div>
         <div class="conseil-body">Aucune question n'est de trop : votre conseiller AGS vous explique chaque étape et chaque document, du compromis jusqu'à la remise des clés. Vous avancez en toute confiance.</div>
       </div>
       <div class="conseil-card">
-        <div class="conseil-icon">🤝</div>
+        <div class="conseil-icon ed-num">03</div>
         <div class="conseil-title">Restez disponible et réactif</div>
         <div class="conseil-body">Notaire et banque peuvent avoir besoin de documents rapidement. Une bonne réactivité peut raccourcir le délai global de plusieurs semaines.</div>
       </div>
@@ -311,11 +320,11 @@ footer{background:var(--navy-deep);padding:40px 60px;display:flex;justify-conten
 </footer>
 
 <div class="mob-bottomnav">
-  <a href="index.html"><span class="nav-icon">🏠</span>Accueil</a>
-  <a href="biens.html"><span class="nav-icon">🔍</span>Biens</a>
-  <a href="honoraires.html"><span class="nav-icon">💶</span>Honoraires</a>
-  <a href="index.html#contact"><span class="nav-icon">✉️</span>Contact</a>
-  <a href="tel:+33607131181"><span class="nav-icon">📞</span>Appeler</a>
+  <a href="index.html"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.5 12 3.5l8.5 7"/><path d="M5.5 9v11.5h13V9"/><path d="M10 20.5v-6h4v6"/></svg></span>Accueil</a>
+  <a href="biens.html"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></span>Biens</a>
+  <a href="honoraires.html"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 6.2A7.2 7.2 0 1 0 17.5 17.8"/><path d="M4.5 10h9M4.5 14h9"/></svg></span>Honoraires</a>
+  <a href="index.html#contact"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5"/><path d="m4 6.5 8 6.5 8-6.5"/></svg></span>Contact</a>
+  <a href="tel:+33607131181"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5h3l1.5 4.2-2 1.4a11 11 0 0 0 5.8 5.8l1.4-2 4.2 1.5v3a1.6 1.6 0 0 1-1.7 1.6A16.5 16.5 0 0 1 5 5.2a1.6 1.6 0 0 1 1.6-1.7z"/></svg></span>Appeler</a>
 </div>
 
 <script>
