@@ -213,7 +213,7 @@ document.addEventListener('error', function(e) {
   .service-card::after { content:''; position:absolute; bottom:0; left:0; width:0; height:2px; background:var(--accent); transition:width .4s; }
   .service-card:hover { background:rgba(255,255,255,.07); }
   .service-card:hover::after { width:100%; }
-  .service-icon { font-size:28px; margin-bottom:20px; }
+  .service-icon { font-size:36px; margin-bottom:22px; }
   .service-title { font-family:'Cormorant Garamond',serif; font-size:22px; color:white; margin-bottom:14px; }
   .service-desc { font-size:13px; color:rgba(255,255,255,.7); font-weight:300; line-height:1.8; }
   .locations { padding:90px 60px; background:white; }
@@ -249,7 +249,7 @@ document.addEventListener('error', function(e) {
   .partenaires-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:56px; max-width:1100px; margin-left:auto; margin-right:auto; }
   .partenaire-card { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); padding:36px; display:flex; flex-direction:column; gap:14px; transition:all .3s; text-decoration:none; }
   .partenaire-card:hover { background:rgba(255,255,255,.08); border-color:var(--accent); transform:translateY(-2px); }
-  .partenaire-icon { font-size:32px; }
+  .partenaire-icon { width:54px; height:54px; border-radius:50%; border:1px solid rgba(255,255,255,.22); display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:26px; font-weight:300; color:var(--accent); }
   .partenaire-name { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:300; color:white; }
   .partenaire-desc { font-size:13px; color:rgba(255,255,255,.6); line-height:1.85; font-weight:300; }
   .partenaire-tag { display:inline-block; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--accent); border:1px solid rgba(91,155,213,.3); padding:4px 12px; }
@@ -260,7 +260,7 @@ document.addEventListener('error', function(e) {
   .contact-wrap { display:grid; grid-template-columns:1fr 1.5fr; gap:72px; align-items:start; max-width:1060px; margin:56px auto 0; }
   .contact-info-block h3 { font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:300; color:var(--navy); margin-bottom:14px; line-height:1.25; }
   .contact-info-block > p { font-size:14px; color:var(--text-light); line-height:1.9; font-weight:300; margin-bottom:32px; }
-  .contact-detail { display:flex; align-items:flex-start; gap:14px; margin-bottom:20px; }
+  .contact-detail { display:flex; align-items:flex-start; gap:14px; margin-bottom:22px; border-left:1px solid var(--accent); padding-left:18px; }
   .contact-detail-icon { width:40px; height:40px; background:var(--navy); display:flex; align-items:center; justify-content:center; font-size:15px; flex-shrink:0; }
   .contact-detail-text a { display:block; font-size:14px; color:var(--navy); text-decoration:none; font-weight:400; transition:color .3s; }
   .contact-detail-text a:hover { color:var(--blue-light); }
@@ -331,6 +331,15 @@ document.addEventListener('error', function(e) {
   "areaServed": ["Le Cannet","Cannes","Mougins","Mandelieu","Vallauris"]
 }
 </script>
+<style>
+/* === Icônes fines & numéros éditoriaux (remplacent les emojis) === */
+.mob-bottomnav .nav-icon{display:block;line-height:0;}
+.mob-bottomnav .nav-icon svg{width:19px;height:19px;margin:0 auto 4px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.toast-icon svg{width:16px;height:16px;fill:none;stroke:#5B9BD5;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.whatsapp-btn svg{width:27px;height:27px;color:#fff;display:block;}
+.ed-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:#5B9BD5;line-height:1;display:flex;align-items:center;gap:14px;}
+.ed-num::after{content:'';display:block;width:34px;height:1px;background:currentColor;opacity:.45;}
+</style>
 </head>
 <body>
 <nav id="nav">
@@ -423,7 +432,7 @@ document.addEventListener('error', function(e) {
     <h2 class="section-title">Nos <em>biens</em></h2>
   </div>
   <div class="props-grid" id="props-grid">
-    <div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text-light);font-size:14px;font-weight:300;">⏳ Chargement des biens…</div>
+    <div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text-light);font-size:14px;font-weight:300;">Chargement des biens…</div>
   </div>
   <div style="text-align:center;margin-top:48px;">
     <a href="biens.html" class="btn-primary">Voir tous nos biens →</a>
@@ -461,12 +470,12 @@ document.addEventListener('error', function(e) {
     </p>
   </div>
   <div class="services-grid">
-    <div class="service-card reveal"><div class="service-icon">📊</div><div class="service-title">Estimation précise</div><p class="service-desc">Une estimation cohérente et argumentée, basée sur une analyse rigoureuse du marché local et des transactions récentes dans votre secteur.</p></div>
-    <div class="service-card reveal"><div class="service-icon">🎯</div><div class="service-title">Stratégie ciblée</div><p class="service-desc">Une stratégie de commercialisation personnalisée : sélection des canaux, positionnement prix, mise en valeur adaptée à votre profil d'acquéreurs.</p></div>
-    <div class="service-card reveal"><div class="service-icon">📸</div><div class="service-title">Communication soignée</div><p class="service-desc">Photos professionnelles, diffusion sur les portails immobiliers, réseaux sociaux et réseau local pour maximiser la visibilité de votre bien.</p></div>
-    <div class="service-card reveal"><div class="service-icon">🔍</div><div class="service-title">Suivi rigoureux</div><p class="service-desc">Un suivi transparent et régulier à chaque étape, de la première visite jusqu'à la signature chez le notaire.</p></div>
-    <div class="service-card reveal"><div class="service-icon">🤝</div><div class="service-title">Accompagnement acheteurs</div><p class="service-desc">Nous identifions les biens correspondant à vos critères et vous guidons dans votre décision avec un conseil honnête et personnalisé.</p></div>
-    <div class="service-card reveal"><div class="service-icon">💼</div><div class="service-title">Investissement locatif</div><p class="service-desc">Nous vous aidons à identifier les meilleures opportunités sur la Côte d'Azur et à optimiser la rentabilité de votre placement.</p></div>
+    <div class="service-card reveal"><div class="service-icon ed-num">01</div><div class="service-title">Estimation précise</div><p class="service-desc">Une estimation cohérente et argumentée, basée sur une analyse rigoureuse du marché local et des transactions récentes dans votre secteur.</p></div>
+    <div class="service-card reveal"><div class="service-icon ed-num">02</div><div class="service-title">Stratégie ciblée</div><p class="service-desc">Une stratégie de commercialisation personnalisée : sélection des canaux, positionnement prix, mise en valeur adaptée à votre profil d'acquéreurs.</p></div>
+    <div class="service-card reveal"><div class="service-icon ed-num">03</div><div class="service-title">Communication soignée</div><p class="service-desc">Photos professionnelles, diffusion sur les portails immobiliers, réseaux sociaux et réseau local pour maximiser la visibilité de votre bien.</p></div>
+    <div class="service-card reveal"><div class="service-icon ed-num">04</div><div class="service-title">Suivi rigoureux</div><p class="service-desc">Un suivi transparent et régulier à chaque étape, de la première visite jusqu'à la signature chez le notaire.</p></div>
+    <div class="service-card reveal"><div class="service-icon ed-num">05</div><div class="service-title">Accompagnement acheteurs</div><p class="service-desc">Nous identifions les biens correspondant à vos critères et vous guidons dans votre décision avec un conseil honnête et personnalisé.</p></div>
+    <div class="service-card reveal"><div class="service-icon ed-num">06</div><div class="service-title">Investissement locatif</div><p class="service-desc">Nous vous aidons à identifier les meilleures opportunités sur la Côte d'Azur et à optimiser la rentabilité de votre placement.</p></div>
   </div>
 
   <!-- Bouton timeline -->
@@ -475,7 +484,7 @@ document.addEventListener('error', function(e) {
     <a href="timeline.html" style="display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:white;padding:16px 36px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;transition:all .3s;"
        onmouseover="this.style.background='rgba(91,155,213,.15)';this.style.borderColor='var(--accent)'"
        onmouseout="this.style.background='rgba(255,255,255,.06)';this.style.borderColor='rgba(255,255,255,.2)'">
-      🗓️ &nbsp;Voir les étapes — du mandat à la remise des clés →
+      Voir les étapes — du mandat à la remise des clés →
     </a>
   </div>
 </section>
@@ -504,14 +513,14 @@ document.addEventListener('error', function(e) {
       <div class="team-name">Philippe Servas</div>
       <div class="team-role">Gérant de l'agence</div>
       <p class="team-bio">Fort d'une longue expérience dans l'immobilier local, Philippe met son expertise et sa connaissance parfaite du marché local au service de chaque client.</p>
-      <a class="team-tel" href="tel:+33607131181">📞 06 07 13 11 81</a>
+      <a class="team-tel" href="tel:+33607131181">06 07 13 11 81</a>
     </div>
     <div class="team-card reveal">
       <div class="team-photo-wrap"><img class="team-photo" src="images/mateo.jpg" alt="Matéo Courrègelongue" loading="lazy"></div>
       <div class="team-name">Matéo Courrègelongue</div>
       <div class="team-role">Responsable commercial</div>
       <p class="team-bio">Dynamique et à l'écoute, Matéo assure la relation client au quotidien et coordonne la stratégie commerciale avec réactivité et engagement.</p>
-      <a class="team-tel" href="tel:+33681140665">📞 06 81 14 06 65</a>
+      <a class="team-tel" href="tel:+33681140665">06 81 14 06 65</a>
     </div>
   </div>
 </section>
@@ -784,22 +793,22 @@ document.addEventListener('error', function(e) {
   </div>
   <div class="partenaires-grid">
     <a class="partenaire-card reveal" href="https://www.loisiroscope.fr/" target="_blank" rel="noopener">
-      <div class="partenaire-icon">🎭</div>
+      <div class="partenaire-icon">L</div>
       <div class="partenaire-name">Le Loisiroscope</div>
       <p class="partenaire-desc">Agenda culturel de référence sur la Côte d'Azur — spectacles, événements et fêtes locales. Un outil précieux pour s'intégrer dans notre belle région.</p>
       <div class="partenaire-tag">Culture &amp; Événements</div>
       <div class="partenaire-link">Visiter le site →</div>
     </a>
     <a class="partenaire-card reveal" href="https://www.stratege.com/" target="_blank" rel="noopener">
-      <div class="partenaire-icon">🔬</div>
+      <div class="partenaire-icon">S</div>
       <div class="partenaire-name">Stratège</div>
       <p class="partenaire-desc">Diagnostiqueur certifié, partenaire d'AGS Immobilier. Bénéficiez d'un code promo exclusif disponible sur demande auprès de notre agence.</p>
       <div class="partenaire-tag">Diagnostic immobilier</div>
-      <div class="partenaire-promo">🎁 Code promo disponible sur demande</div>
+      <div class="partenaire-promo">Code promo disponible sur demande</div>
       <div class="partenaire-link">Visiter le site →</div>
     </a>
     <a class="partenaire-card reveal" href="https://www.laveriedumontfleuri.fr/" target="_blank" rel="noopener">
-      <div class="partenaire-icon">👕</div>
+      <div class="partenaire-icon">M</div>
       <div class="partenaire-name">Laverie du Montfleuri</div>
       <p class="partenaire-desc">Laverie en libre-service au Cannet, disponible 7j/7. Un service pratique recommandé par AGS Immobilier à nos clients.</p>
       <div class="partenaire-tag">Services du quotidien</div>
@@ -818,19 +827,15 @@ document.addEventListener('error', function(e) {
       <h3>Une question ?<br>Contactez-nous directement.</h3>
       <p>Nous sommes à votre écoute pour vous conseiller avec sérieux et engagement sur Le Cannet, Cannes, Mougins, Vallauris et Mandelieu.</p>
       <div class="contact-detail">
-        <div class="contact-detail-icon">📍</div>
         <div class="contact-detail-text"><span>Adresse</span><a href="https://maps.google.com/?q=46+avenue+Maurice+Jeanpierre+Le+Cannet" target="_blank">46 avenue Maurice Jeanpierre<br>06110 Le Cannet</a></div>
       </div>
       <div class="contact-detail">
-        <div class="contact-detail-icon">📞</div>
         <div class="contact-detail-text"><span>Philippe Servas — Gérant</span><a href="tel:+33607131181">06 07 13 11 81</a></div>
       </div>
       <div class="contact-detail">
-        <div class="contact-detail-icon">📞</div>
         <div class="contact-detail-text"><span>Matéo Courrègelongue — Responsable Commercial</span><a href="tel:+33681140665">06 81 14 06 65</a></div>
       </div>
       <div class="contact-detail">
-        <div class="contact-detail-icon">✉️</div>
         <div class="contact-detail-text"><span>Email</span><a href="#" onclick="this.href='mailto:agsimmo06@gmail.com';return false;" style="color:inherit;">agsimmo06&#64;gmail.com</a></div>
       </div>
     </div>
@@ -870,9 +875,9 @@ document.addEventListener('error', function(e) {
     <div>
       <div class="footer-logo"><img src="images/logo.jpg" alt="AGS Immobilier" loading="lazy"></div>
       <p class="footer-desc">Agence indépendante de proximité au Cannet, spécialisée en transaction immobilière sur le Cannet, Cannes, Mougins, Vallauris et Mandelieu.</p>
-      <p class="footer-contact-line">📍 46 avenue Maurice Jeanpierre, 06110 Le Cannet</p>
-      <p class="footer-contact-line">📞 <a href="tel:+33607131181">06 07 13 11 81</a></p>
-      <p class="footer-contact-line">✉️ <a href="#" onclick="this.href='mailto:agsimmo06@gmail.com';return false;" style="color:inherit;">agsimmo06&#64;gmail.com</a></p>
+      <p class="footer-contact-line">46 avenue Maurice Jeanpierre, 06110 Le Cannet</p>
+      <p class="footer-contact-line">Tél. <a href="tel:+33607131181">06 07 13 11 81</a></p>
+      <p class="footer-contact-line"><a href="#" onclick="this.href='mailto:agsimmo06@gmail.com';return false;" style="color:inherit;">agsimmo06&#64;gmail.com</a></p>
       <div class="footer-social">
         <a class="social-link" href="https://www.linkedin.com" target="_blank">in</a>
         <a class="social-link" href="https://www.instagram.com/ags.immo/" target="_blank">ig</a>
@@ -890,7 +895,7 @@ document.addEventListener('error', function(e) {
   </div>
 </footer>
 
-<a class="whatsapp-btn" href="https://wa.me/33607131181" target="_blank" title="WhatsApp">💬</a>
+<a class="whatsapp-btn" href="https://wa.me/33607131181" target="_blank" title="WhatsApp" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 15l-1.4 5 5.2-1.4A9.9 9.9 0 1 0 12.04 2zm0 18.1a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3.1.8.8-3-.2-.3a8.2 8.2 0 1 1 7 3.9zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3z"/></svg></a>
 
 <script>
 const nav = document.getElementById('nav');
@@ -931,7 +936,7 @@ function mettreAJourGrilleBiens(biens) {
       <div class="prop-info">
         <div class="prop-type">${capitalise(b.type)}</div>
         <div class="prop-name">${b.titre}</div>
-        <div class="prop-loc">📍 ${b.ville}</div>
+        <div class="prop-loc">${b.ville}</div>
         <div class="prop-price">${b.prix}</div>
       </div>
     </div>`;
@@ -972,7 +977,7 @@ function afficherResultats(res, type, lieu, budget) {
   if (!res.length) { document.getElementById('no-results').style.display='block'; grid.style.display='none'; }
   else {
     document.getElementById('no-results').style.display='none'; grid.style.display='grid';
-    res.forEach(b => { grid.innerHTML += `<div onclick="window.location='fiche.html?id=${b.id}'" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);cursor:pointer;overflow:hidden;"><div style="height:200px;overflow:hidden;"><img src="${cld(b.mainPhoto,700)||'images/placeholder.jpg'}" style="width:100%;height:100%;object-fit:cover;" loading="lazy" onerror="agsImgErr(this)"></div><div style="padding:20px 24px;"><div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">📍 ${b.ville}</div><div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:white;margin-bottom:8px;">${b.titre}</div><div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:var(--accent);">${b.prix}</div></div></div>`; });
+    res.forEach(b => { grid.innerHTML += `<div onclick="window.location='fiche.html?id=${b.id}'" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);cursor:pointer;overflow:hidden;"><div style="height:200px;overflow:hidden;"><img src="${cld(b.mainPhoto,700)||'images/placeholder.jpg'}" style="width:100%;height:100%;object-fit:cover;" loading="lazy" onerror="agsImgErr(this)"></div><div style="padding:20px 24px;"><div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">${b.ville}</div><div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:white;margin-bottom:8px;">${b.titre}</div><div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:var(--accent);">${b.prix}</div></div></div>`; });
   }
   document.getElementById('search-results').style.display='block';
   document.getElementById('search-results').scrollIntoView({behavior:'smooth',block:'start'});
@@ -1012,7 +1017,7 @@ function colorierEtoiles(n) { document.querySelectorAll('.star').forEach(s => { 
 const avisTexte=document.getElementById('avis-texte');
 if (avisTexte) avisTexte.addEventListener('input', () => { const c=document.getElementById('char-count'); if(c) c.textContent=avisTexte.value.length; });
 
-// ✅ AVIS : envoi via API Vercel → sauvegardé dans avis.json → modération admin
+// AVIS : envoi via API Vercel → sauvegardé dans avis.json → modération admin
 async function soumettreAvis() {
   const note=+document.getElementById('avis-note').value,
         prenom=document.getElementById('avis-prenom').value.trim(),
@@ -1022,12 +1027,12 @@ async function soumettreAvis() {
         consent=document.getElementById('avis-consent').checked,
         msg=document.getElementById('avis-msg'),
         btn=document.getElementById('avis-btn');
-  if (!note)          { affMsg(msg,'⚠️ Veuillez sélectionner une note.',true); return; }
-  if (!prenom)        { affMsg(msg,'⚠️ Veuillez renseigner votre prénom.',true); return; }
-  if (!nom)           { affMsg(msg,'⚠️ Veuillez renseigner votre nom.',true); return; }
-  if (texte.length<20){ affMsg(msg,'⚠️ Témoignage trop court (20 caractères min).',true); return; }
-  if (!consent)       { affMsg(msg,'⚠️ Veuillez accepter les conditions.',true); return; }
-  btn.disabled=true; btn.textContent='⏳ Envoi…';
+  if (!note)          { affMsg(msg,'Veuillez sélectionner une note.',true); return; }
+  if (!prenom)        { affMsg(msg,'Veuillez renseigner votre prénom.',true); return; }
+  if (!nom)           { affMsg(msg,'Veuillez renseigner votre nom.',true); return; }
+  if (texte.length<20){ affMsg(msg,'Témoignage trop court (20 caractères min).',true); return; }
+  if (!consent)       { affMsg(msg,'Veuillez accepter les conditions.',true); return; }
+  btn.disabled=true; btn.textContent='Envoi…';
   try {
     const res = await fetch('https://ags-immobilier.vercel.app/api/submit-avis', {
       method: 'POST',
@@ -1036,13 +1041,13 @@ async function soumettreAvis() {
     });
     const result = await res.json();
     if (res.ok && result.success) {
-      affMsg(msg,'✅ Merci ! Votre avis sera publié après validation.',false);
+      affMsg(msg,'Merci ! Votre avis sera publié après validation.',false);
       document.getElementById('avis-consent').checked=false;
       noteSelectionnee=0; colorierEtoiles(0);
       ['avis-prenom','avis-nom','avis-contexte','avis-texte'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
     } else throw new Error(result.error || 'Erreur');
   } catch(e) {
-    affMsg(msg,'❌ Erreur. Contactez-nous directement.',true);
+    affMsg(msg,'Erreur. Contactez-nous directement.',true);
   }
   btn.disabled=false; btn.textContent='Envoyer mon avis →';
 }
@@ -1061,11 +1066,11 @@ document.addEventListener('DOMContentLoaded', chargerAvisApprouves);
 </script>
 
 <script>
-// ✅ FORMULAIRE CONTACT : template_7o6elbd avec les bons champs
+// FORMULAIRE CONTACT : template_7o6elbd avec les bons champs
 function envoyerEmailJS(e, form, templateId) {
   e.preventDefault();
   const msg=document.getElementById('form-msg');
-  msg.textContent='⏳ Envoi en cours…'; msg.style.color='var(--text-light)';
+  msg.textContent='Envoi en cours…'; msg.style.color='var(--text-light)';
   const raw={}; new FormData(form).forEach((v,k)=>raw[k]=v);
   // Adapter pour template_7o6elbd : nom, telephone, email, bien, message
   const params = {
@@ -1076,8 +1081,8 @@ function envoyerEmailJS(e, form, templateId) {
     message: raw.message || ''
   };
   emailjs.send('service_rktxwry', templateId, params)
-    .then(()=>{ msg.textContent='✅ Message envoyé ! Nous vous répondons sous 24h.'; msg.style.color='#27ae60'; form.reset(); setTimeout(()=>{window.location.href='merci.html';},1000); })
-    .catch(()=>{ msg.textContent="❌ Erreur d'envoi. Appelez le 06 07 13 11 81."; msg.style.color='#e74c3c'; });
+    .then(()=>{ msg.textContent='Message envoyé ! Nous vous répondons sous 24h.'; msg.style.color='#27ae60'; form.reset(); setTimeout(()=>{window.location.href='merci.html';},1000); })
+    .catch(()=>{ msg.textContent="Erreur d'envoi. Appelez le 06 07 13 11 81."; msg.style.color='#e74c3c'; });
 }
 </script>
 
@@ -1091,7 +1096,7 @@ function envoyerEmailJS(e, form, templateId) {
   var overlay=document.createElement('div'); overlay.className='mob-overlay'; document.body.appendChild(overlay);
   var panel=document.createElement('div'); panel.className='mob-panel';
   nav.querySelectorAll('ul li a').forEach(function(a){var link=document.createElement('a');link.href=a.href;link.textContent=a.textContent;link.addEventListener('click',close);panel.appendChild(link);});
-  var tel=document.createElement('a'); tel.href='tel:+33607131181'; tel.className='mob-tel'; tel.textContent='📞 06 07 13 11 81'; panel.appendChild(tel);
+  var tel=document.createElement('a'); tel.href='tel:+33607131181'; tel.className='mob-tel'; tel.textContent='06 07 13 11 81'; panel.appendChild(tel);
   document.body.appendChild(panel);
   function open(){burger.classList.add('open');panel.classList.add('on');overlay.classList.add('on');document.body.style.overflow='hidden';}
   function close(){burger.classList.remove('open');panel.classList.remove('on');overlay.classList.remove('on');document.body.style.overflow='';}
@@ -1101,11 +1106,11 @@ function envoyerEmailJS(e, form, templateId) {
 </script>
 
 <div class="mob-bottomnav">
-  <a href="index.html"><span class="nav-icon">🏠</span>Accueil</a>
-  <a href="biens.html"><span class="nav-icon">🔍</span>Biens</a>
-  <a href="honoraires.html"><span class="nav-icon">💶</span>Honoraires</a>
-  <a href="#contact"><span class="nav-icon">✉️</span>Contact</a>
-  <a href="tel:+33607131181"><span class="nav-icon">📞</span>Appeler</a>
+  <a href="index.html"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.5 12 3.5l8.5 7"/><path d="M5.5 9v11.5h13V9"/><path d="M10 20.5v-6h4v6"/></svg></span>Accueil</a>
+  <a href="biens.html"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></span>Biens</a>
+  <a href="honoraires.html"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 6.2A7.2 7.2 0 1 0 17.5 17.8"/><path d="M4.5 10h9M4.5 14h9"/></svg></span>Honoraires</a>
+  <a href="#contact"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5"/><path d="m4 6.5 8 6.5 8-6.5"/></svg></span>Contact</a>
+  <a href="tel:+33607131181"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5h3l1.5 4.2-2 1.4a11 11 0 0 0 5.8 5.8l1.4-2 4.2 1.5v3a1.6 1.6 0 0 1-1.7 1.6A16.5 16.5 0 0 1 5 5.2a1.6 1.6 0 0 1 1.6-1.7z"/></svg></span>Appeler</a>
 </div>
 <!-- Curseur personnalisé (desktop) -->
 
@@ -1239,7 +1244,7 @@ document.addEventListener('click', function(e){
 
 <div id="toast-notif" role="status" aria-live="polite">
   <div class="toast-top">
-    <div class="toast-icon">📞</div>
+    <div class="toast-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5h3l1.5 4.2-2 1.4a11 11 0 0 0 5.8 5.8l1.4-2 4.2 1.5v3a1.6 1.6 0 0 1-1.7 1.6A16.5 16.5 0 0 1 5 5.2a1.6 1.6 0 0 1 1.6-1.7z"/></svg></div>
     <div class="toast-body">
       <div class="toast-name">AGS Immobilier</div>
       <div class="toast-msg">Philippe est disponible aujourd'hui</div>
