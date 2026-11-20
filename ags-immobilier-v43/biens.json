@@ -1,5 +1,56 @@
 [
   {
+    "id": "bien-1795185033322",
+    "titre": "Tanneron – Village",
+    "soustitre": "Mairie — Tanneron",
+    "type": "maison",
+    "ville": "Tanneron",
+    "villeFilter": "Tanneron",
+    "prix": "520 000 €",
+    "prixBrut": 520000,
+    "badge": "Nouveau",
+    "mainPhoto": "https://res.cloudinary.com/df15yd65n/image/upload/v1795184926/zq8uwxawwacs9zzdjtlj.png",
+    "photos": [
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1795184926/zq8uwxawwacs9zzdjtlj.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1795184874/o6icaqvhkhxhjxkze26e.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1795184888/gm9qqlk7ti9y4qebeghb.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1795184883/pganmjakur4jdzkrvobg.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1795184935/rn2oguls2ssyv9ipj8lp.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1795184867/cgwniwngph8uwswixe1t.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1795184897/cnfk9leilign3znofflj.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1795184892/ulwip4rf9qhfawrffv3f.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1795184878/azfcafc6nhra7yyuonwd.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1795184930/yinydmqxzgvmcnjmy3lk.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1795184901/z00iz7to5dmmetj5ghpi.png",
+      "https://res.cloudinary.com/df15yd65n/image/upload/v1795184906/jggehw8iigrc89eozdee.png"
+    ],
+    "caracteristiques": {
+      "surface": "142",
+      "pieces": "5"
+    },
+    "accroche": "TANNERON – MAISON 5 PIÈCES DE 142 M² AVEC ANNEXE DE 55 M²",
+    "description": "AGS vous propose cette maison provençale située au cœur du village de Tanneron, dans un environnement calme, à quelques pas de la boulangerie et des commerces de proximité.\n\nD’une surface de 142 m², cette maison bénéficie d’une belle luminosité grâce à ses nombreuses baies vitrées réparties sur plusieurs façades, offrant une agréable ouverture sur l’extérieur.\n\nElle se compose d’une pièce de vie spacieuse et conviviale, de quatre grandes chambres, d’une salle de bains et d’une salle d’eau. Le salon ainsi que deux chambres sont équipés de la climatisation.\n\nImplantée sur un terrain plat de 505 m², la propriété dispose d’un extérieur agréable, facile à aménager selon vos envies.\n\nUne annexe de 55 m² complète l’ensemble et offre de nombreuses possibilités d’utilisation : garage, salle de réception, atelier ou espace de stockage. Une cave apporte également un espace de rangement supplémentaire.\n\nIdéale en résidence principale comme secondaire, cette maison réunit de beaux volumes, un cadre de vie paisible et la proximité des commodités.\n\nDossier complet et visite sur demande auprès d'AGS.\n\nÀ propos des performances énergétiques :\nDate de réalisation du diagnostic énergétique : 20/11/2024.\nDPE : D – 201 kWhEP/m²/an.\nGES : B – 8 kg CO₂/m²/an.\nMontant estimé des dépenses annuelles d’énergie pour un usage standard : entre 2 570 € et 3 560 € par an. Prix moyens des énergies indexés sur l’année 2023, abonnements compris.\n\nLa présentation d’une pièce d’identité en cours de validité sera demandée lors de la visite.\n\nLes informations sur les risques auxquels ce bien est exposé sont disponibles sur le site Géorisques : https://georisques.gouv.fr",
+    "equipements": [
+      "Garage",
+      "Jardin",
+      "Lumineux",
+      "Vue montagne",
+      "Double vitrage"
+    ],
+    "dpe": "D",
+    "ges": "B",
+    "rente": "",
+    "surface": "142",
+    "pieces": "5",
+    "chambres": "4",
+    "etage": "",
+    "exposition": "Sud",
+    "annee": "",
+    "ref": "",
+    "agent": "mateo",
+    "actif": true
+  },
+  {
     "id": "bien-1793118330413",
     "titre": "Le Cannet  – Europe",
     "soustitre": "Europe — Le Cannet",
